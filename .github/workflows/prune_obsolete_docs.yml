@@ -1,0 +1,86 @@
+name: Prune docs for closed PRs and deleted branches
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Sunday 03:00 UTC. This force-pushes, so it wants a window where a Jenkins
+    # docs build is unlikely to be publishing at the same moment.
+    - cron: "0 3 * * 0"
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_REPO: flatironinstitute/nemos
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # git filter-repo rewrites history, so it needs all of it.
+          fetch-depth: 0
+
+      - name: Install git-filter-repo
+        run: pipx install git-filter-repo
+
+      - name: Remove obsolete trees from history
+        id: prune
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ ! -d docs ]; then
+            echo "No docs/ directory yet, nothing to prune."
+            exit 0
+          fi
+
+          # Every tree Jenkins publishes carries a .nemos-commit marker at its
+          # root, so locating trees this way is independent of how deeply a
+          # branch name nests them (e.g. branch/feature/some-work).
+          paths=()
+          while read -r dir; do
+            rel="${dir#docs/}"
+            case "$rel" in
+              pulls/*)
+                num="${rel#pulls/}"
+                if [ "$(gh api "repos/$SOURCE_REPO/pulls/$num" --jq .closed_at)" != "null" ]; then
+                  echo "PR $num is closed"
+                  paths+=("$dir")
+                fi
+                ;;
+              branch/*)
+                name="${rel#branch/}"
+                if ! gh api "repos/$SOURCE_REPO/branches/$name" >/dev/null 2>&1; then
+                  echo "Branch $name no longer exists"
+                  paths+=("$dir")
+                fi
+                ;;
+              # tags/ are releases and are kept indefinitely.
+            esac
+          done < <(find docs -name .nemos-commit -printf '%h\n' | sort)
+
+          if [ "${#paths[@]}" -eq 0 ]; then
+            echo "Nothing to prune."
+            exit 0
+          fi
+
+          # One invocation: each filter-repo call rewrites the entire history,
+          # so passing every path at once does the same work in a single pass.
+          args=()
+          for p in "${paths[@]}"; do
+            args+=(--path "$p")
+          done
+          git filter-repo --force --invert-paths "${args[@]}"
+
+          echo "pruned=true" >> "$GITHUB_OUTPUT"
+
+      - name: Push rewritten history
+        if: steps.prune.outputs.pruned == 'true'
+        run: |
+          # filter-repo drops the origin remote; the credential actions/checkout
+          # wrote into .git/config survives, so no token is needed here.
+          git remote add origin "https://github.com/${{ github.repository }}"
+          git push --force origin main
