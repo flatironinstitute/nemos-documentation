@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev471 documentation</title>
+    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev475 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=48b1dd4b"></script>
+    <script src="../../../_static/documentation_options.js?v=b4c0c7ec"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev471 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev471 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev475 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev475 documentation - Home"/>
   
   
 </a></div>
@@ -2047,8 +2047,8 @@
         <span class="n">opt_state</span><span class="p">:</span> <span class="n">NamedTuple</span><span class="p">,</span>
         <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
         <span class="n">y</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-        <span class="n">session_starts</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">n_samples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">safe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -2066,9 +2066,10 @@
 <span class="sd">        :meth:`initialize_optimizer_and_state` must be called first so that the EM</span>
 <span class="sd">        step function and initial ``opt_state`` are available.</span>
 
-<span class="sd">        **Important**: Unlike :meth:`fit`, this method requires the user to provide</span>
-<span class="sd">        ``session_starts`` explicitly as a boolean array. You can validate this variable</span>
-<span class="sd">        by passing it as a keyword argument to `initialize_optimizer_and_state`.</span>
+<span class="sd">        **Important**: If using ``safe=False`` to skip validation while providing a</span>
+<span class="sd">        custom ``session_starts``, it must be formatted as a boolean  array of shape</span>
+<span class="sd">        ``(n_time_bins,)``. You can validate this variable by passing it as a keyword</span>
+<span class="sd">        argument to ``initialize_optimizer_and_state``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2085,8 +2086,15 @@
 <span class="sd">        y :</span>
 <span class="sd">            Observations, shape ``(n_time_bins,)`` or ``(n_time_bins, n_neurons)``.</span>
 <span class="sd">        session_starts :</span>
-<span class="sd">            A boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
-<span class="sd">            session start.</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``None``, the entire input is treated as a single session.</span>
 <span class="sd">        n_samples :</span>
 <span class="sd">            Total sample count to use when estimating the residual degrees of</span>
 <span class="sd">            freedom. Defaults to ``X.shape[0]``.</span>
@@ -2118,7 +2126,7 @@
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
 <span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(init_params, X, y, session_starts=session_starts)</span>
-<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(init_params, opt_state, X, y, session_starts)</span>
+<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(init_params, opt_state, X, y, session_starts=session_starts)</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">safe</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="c1"># validate inputs and session boundaries</span>
@@ -2128,6 +2136,8 @@
             <span class="c1"># drop nans and pull pytree data</span>
             <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_inputs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">session_starts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">session_starts</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="c1"># find non-nans</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">drop_nans</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
             <span class="c1"># ensure boolean and first sample is a session start</span>

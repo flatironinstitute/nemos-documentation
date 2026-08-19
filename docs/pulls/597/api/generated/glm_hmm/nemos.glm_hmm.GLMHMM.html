@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm_hmm.GLMHMM &#8212; nemos 0.2.10.dev471 documentation</title>
+    <title>nemos.glm_hmm.GLMHMM &#8212; nemos 0.2.10.dev475 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=48b1dd4b"></script>
+    <script src="../../../_static/documentation_options.js?v=b4c0c7ec"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev471 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev471 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev475 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev475 documentation - Home"/>
   
   
 </a></div>
@@ -1100,7 +1100,7 @@ will share the same pytree structure, with the trailing axis indexing states:</p
 <tr class="row-odd"><td><p><a class="reference internal" href="#nemos.glm_hmm.GLMHMM.smooth_proba" title="nemos.glm_hmm.GLMHMM.smooth_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smooth_proba</span></code></a>(X, y[, session_starts])</p></td>
 <td><p>Compute smoothing posterior probabilities over hidden states.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nemos.glm_hmm.GLMHMM.update" title="nemos.glm_hmm.GLMHMM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(params, opt_state, X, y, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.glm_hmm.GLMHMM.update" title="nemos.glm_hmm.GLMHMM.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(params, opt_state, X, y, *args[, ...])</p></td>
 <td><p>Run a single EM iteration on the GLM-HMM.</p></td>
 </tr>
 </tbody>
@@ -2160,7 +2160,7 @@ consecutive iterations falls below this threshold:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.glm_hmm.GLMHMM.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_starts</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">safe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/glm_hmm/glm_hmm.html#GLMHMM.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.glm_hmm.GLMHMM.update" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_starts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">safe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/glm_hmm/glm_hmm.html#GLMHMM.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.glm_hmm.GLMHMM.update" title="Link to this definition">#</a></dt>
 <dd><p>Run a single EM iteration on the GLM-HMM.</p>
 <p>Performs one E-step / M-step pair starting from the supplied parameters and
 EM state, updates the model’s fitted attributes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>, <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>,
@@ -2171,9 +2171,10 @@ iteration (e.g. checkpointing, custom convergence criteria) instead of the
 bundled <a class="reference internal" href="#nemos.glm_hmm.GLMHMM.fit" title="nemos.glm_hmm.GLMHMM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> loop.</p>
 <p><a class="reference internal" href="#nemos.glm_hmm.GLMHMM.initialize_optimizer_and_state" title="nemos.glm_hmm.GLMHMM.initialize_optimizer_and_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_optimizer_and_state()</span></code></a> must be called first so that the EM
 step function and initial <code class="docutils literal notranslate"><span class="pre">opt_state</span></code> are available.</p>
-<p><strong>Important</strong>: Unlike <a class="reference internal" href="#nemos.glm_hmm.GLMHMM.fit" title="nemos.glm_hmm.GLMHMM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>, this method requires the user to provide
-<code class="docutils literal notranslate"><span class="pre">session_starts</span></code> explicitly as a boolean array. You can validate this variable
-by passing it as a keyword argument to <cite>initialize_optimizer_and_state</cite>.</p>
+<p><strong>Important</strong>: If using <code class="docutils literal notranslate"><span class="pre">safe=False</span></code> to skip validation while providing a
+custom <code class="docutils literal notranslate"><span class="pre">session_starts</span></code>, it must be formatted as a boolean  array of shape
+<code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code>. You can validate this variable by passing it as a keyword
+argument to <code class="docutils literal notranslate"><span class="pre">initialize_optimizer_and_state</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2185,8 +2186,16 @@ previous call to <a class="reference internal" href="#nemos.glm_hmm.GLMHMM.updat
 <li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – Predictors, shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code> (or a pytree of arrays
 of the same shape).</p></li>
 <li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">jnp.ndarray</span>) – Observations, shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> or <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_neurons)</span></code>.</p></li>
-<li><p><strong>session_starts</strong> (<span class="sphinx_autodoc_typehints-type">jnp.ndarray</span>) – A boolean array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> with <code class="docutils literal notranslate"><span class="pre">True</span></code> at each
-session start.</p></li>
+<li><p><strong>session_starts</strong> (<span class="sphinx_autodoc_typehints-type">Optional[jnp.ndarray]</span>) – <p>Optional session boundaries. Accepts:</p>
+<ul>
+<li><p>a boolean array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> with <code class="docutils literal notranslate"><span class="pre">True</span></code> at each
+session start,</p></li>
+<li><p>an integer array of session-start indices,</p></li>
+<li><p>a pynapple <code class="docutils literal notranslate"><span class="pre">IntervalSet</span></code> (requires <code class="docutils literal notranslate"><span class="pre">X</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> to be a
+pynapple object to supply timestamps).</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the entire input is treated as a single session.</p>
+</p></li>
 <li><p><strong>n_samples</strong> (<span class="sphinx_autodoc_typehints-type">Optional[int]</span>) – Total sample count to use when estimating the residual degrees of
 freedom. Defaults to <code class="docutils literal notranslate"><span class="pre">X.shape[0]</span></code>.</p></li>
 <li><p><strong>safe</strong> (<span class="sphinx_autodoc_typehints-type">bool</span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, perform input validation and consistency checks. If
@@ -2218,7 +2227,7 @@ freedom. Defaults to <code class="docutils literal notranslate"><span class="pre
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">init_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_params</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">opt_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_optimizer_and_state</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">new_params</span><span class="p">,</span> <span class="n">new_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_params</span><span class="p">,</span> <span class="n">new_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
