@@ -1,0 +1,1288 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GLM Demo: Toy Model Examples &#8212; nemos 0.2.10.dev378 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3a9cef1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how_to_guide/plot_02_glm_demo';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Population GLM" href="plot_03_population_glm.html" />
+    <link rel="prev" title="Saving and Loading" href="save_and_load.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="save_and_load.html">Saving and Loading</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">GLM Demo: Toy Model Examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glm_for_classification.html">Fit GLM for Classification</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="finegrained_regularization.html">Regularizing parameters with different strengths</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handling_composite_bases.html">Handling Composite Bases</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="define_a_custom_basis.html">How to Define A Custom Basis Class</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="categorical_predictors/README.html">Categorical Predictors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_predictors.html">Design Matrices Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_identifiability.html">Technical Note: Redundancy in Categorical Designs</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_predictors.html">Precomputed Features</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_05_transformer_basis.html">Using bases as scikit-learn transformers</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_06_sklearn_pipeline_cv_demo.html">Selecting basis by cross-validation with scikit-learn</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_zero_basis.html">Model Selection: Cross-validate over Inputs</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_group_lasso.html">Selecting Covariates via Group Lasso</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="convolve_large_arrays.html">Convolve Large Arrays</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="batching/README.html">Stochastic optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="batching/stochastic_fit.html">Stochastic optimization basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_dataloader.html">Creating a custom <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_callbacks_and_termination.html">Stopping on convergence and custom callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/manual_batching_loop.html">Manual update loop for more control</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_solvers.html">Creating custom solvers for use with NeMoS</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">How-To Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">GLM Demo: Toy Model Examples</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="important admonition">
+<p class="admonition-title">Download</p>
+<p>Download this notebook: <strong><a class="reference download internal" download="" href="../_downloads/e779a2f6378d2bf8b4daa9d165ad559c/plot_02_glm_demo.ipynb"><code class="xref download myst-nb docutils literal notranslate"><span class="pre">plot_02_glm_demo.ipynb</span></code></a></strong>!</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Ignore the first specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"plotting functions contained within `_documentation_utils` are intended for nemos's documentation."</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Ignore the second specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"Ignoring cached namespace 'core'"</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">"invalid value encountered in div "</span>
+    <span class="p">),</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="glm-demo-toy-model-examples">
+<h1>GLM Demo: Toy Model Examples<a class="headerlink" href="#glm-demo-toy-model-examples" title="Link to this heading">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This demonstration is currently in its alpha stage. It presents various regularization techniques on
+GLMs trained on a Gaussian noise stimuli, and a minimal example of fitting and simulating a pair of coupled
+neurons. More work needs to be done to properly compare the performance of the regularization strategies on
+realistic simulations and real neural recordings.</p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In this demo we will work through two toy examples of a Poisson-GLM on synthetic data: a purely feed-forward input model
+and a recurrently coupled model.</p>
+<p>In particular, we will learn how to:</p>
+<ul class="simple">
+<li><p>Define &amp; configurate a GLM object.</p></li>
+<li><p>Fit the model</p></li>
+<li><p>Cross-validate the model with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
+<li><p>Simulate spike trains.</p></li>
+</ul>
+<p>Before digging into the GLM module, let’s first import the packages
+we are going to use for this tutorial, and generate some synthetic
+data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rectangle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">model_selection</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="c1"># random design tensor. Shape (n_time_points, n_features).</span>
+<span class="n">X</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># log-rates &amp; weights, shape (1, ) and (n_features, ) respectively.</span>
+<span class="n">b_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="p">))</span>
+<span class="n">w_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">))</span>
+
+<span class="c1"># sparsify weights</span>
+<span class="n">w_true</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="c1"># generate counts</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"k,tk-&gt;t"</span><span class="p">,</span> <span class="n">w_true</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_true</span><span class="p">)</span>
+<span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-feed-forward-glm">
+<h2>The Feed-Forward GLM<a class="headerlink" href="#the-feed-forward-glm" title="Link to this heading">#</a></h2>
+<section id="model-definition">
+<h3>Model Definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h3>
+<p>The class implementing the  feed-forward GLM is <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.glm.GLM</span></code></span></a>.
+In order to define the class, one <strong>must</strong> provide:</p>
+<ul class="simple">
+<li><p><strong>Observation Model</strong>: The observation model for the GLM, e.g. an object of the class of type
+<a class="reference internal" href="../api/generated/observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations" title="nemos.observation_models.Observations"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.observation_models.Observations</span></code></span></a>. So far, only the <a class="reference internal" href="../api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations" title="nemos.observation_models.PoissonObservations"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PoissonObservations</span></code></span></a>
+model has been implemented.</p></li>
+<li><p><strong>Regularizer</strong>: The desired regularizer, e.g. an object of the <a class="reference internal" href="../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.regularizer.Regularizer</span></code></span></a> class.
+Currently, we implemented the un-regularized, Ridge, Lasso, and Group-Lasso regularization.</p></li>
+</ul>
+<p>The default for the GLM class is the <a class="reference internal" href="../api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations" title="nemos.observation_models.PoissonObservations"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PoissonObservations</span></code></span></a> with log-link function with a Ridge regularization.
+Here is how to define the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># default Poisson GLM with Ridge regularization and Poisson observation model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Regularization type:     "</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">regularizer</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observation model:"</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">observation_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Regularization type:      &lt;class 'nemos.regularizer.UnRegularized'&gt;
+Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-configuration">
+<h3>Model Configuration<a class="headerlink" href="#model-configuration" title="Link to this heading">#</a></h3>
+<p>One could visualize the model hyperparameters by calling <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.get_params" title="nemos.glm.GLM.get_params"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">get_params</span></code></span></a> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the glm model parameters only</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">GLM model parameters:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># get the glm model parameters, including the all the</span>
+<span class="c1"># attributes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Nested parameters:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">continue</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GLM model parameters:
+	- inverse_link_function: &lt;function exp at 0x7f05fba10c20&gt;
+	- observation_model: PoissonObservations()
+	- regularizer: UnRegularized()
+	- regularizer_strength: None
+	- solver_kwargs: {}
+	- solver_name: LBFGS
+
+Nested parameters:
+</pre></div>
+</div>
+</div>
+</div>
+<p>These parameters can be configured at initialization and/or
+set after the model is initialized with the following syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Poisson GLM with soft-plus NL</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+    <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">,</span>
+    <span class="n">inverse_link_function</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">,</span>
+    <span class="n">solver_name</span><span class="o">=</span><span class="s2">"LBFGS"</span><span class="p">,</span>
+    <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"tol"</span><span class="p">:</span><span class="mi">10</span><span class="o">**-</span><span class="mi">10</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Regularizer type:      "</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">regularizer</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observation model:"</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">observation_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Regularizer type:       &lt;class 'nemos.regularizer.UnRegularized'&gt;
+Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hyperparameters can be set at any moment via the <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.set_params" title="nemos.glm.GLM.set_params"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">set_params</span></code></span></a> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="n">nmo</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(),</span>
+    <span class="n">inverse_link_function</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">exp</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Updated regularizer: "</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">regularizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Updated NL: "</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">inverse_link_function</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated regularizer:  Lasso()
+Updated NL:  &lt;PjitFunction of &lt;function exp at 0x7f062f0354e0&gt;&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_PR-612/venv/lib/python3.12/site-packages/nemos/base_class.py:83: UserWarning: Solver ``LBFGS`` is not allowed for regularizer Lasso(). Overriding solver with the default allowed solver ProximalGradient.
+  setattr(self, key, value)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Each <a class="reference internal" href="../api/regularizers.html#regularizers"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">Regularizer</span></code></span></a> has an associated attribute <a class="reference internal" href="../api/generated/regularizer/nemos.regularizer.Regularizer.html#id0" title="nemos.regularizer.Regularizer.allowed_solvers"><span class="xref myst py py-attr"><code class="docutils literal notranslate"><span class="pre">Regularizer.allowed_solvers</span></code></span></a>
+which lists the optimizers that are suited for each optimization problem.
+For example, a <a class="reference internal" href="../api/generated/regularizer/nemos.regularizer.Ridge.html#nemos.regularizer.Ridge" title="nemos.regularizer.Ridge"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Ridge</span></code></span></a> is differentiable and can be fit with <code class="docutils literal notranslate"><span class="pre">GradientDescent</span></code>
+, <code class="docutils literal notranslate"><span class="pre">BFGS</span></code>, etc., while a <a class="reference internal" href="../api/generated/regularizer/nemos.regularizer.Lasso.html#nemos.regularizer.Lasso" title="nemos.regularizer.Lasso"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Lasso</span></code></span></a> should use the <code class="docutils literal notranslate"><span class="pre">ProximalGradient</span></code> method instead.
+If the provided <code class="docutils literal notranslate"><span class="pre">solver_name</span></code> is not listed in the <code class="docutils literal notranslate"><span class="pre">allowed_solvers</span></code> this will raise an
+exception.</p>
+</div>
+</section>
+<section id="model-fit">
+<h3>Model Fit<a class="headerlink" href="#model-fit" title="Link to this heading">#</a></h3>
+<p>Fitting the model is as straight forward as calling the <code class="docutils literal notranslate"><span class="pre">model.fit</span></code>
+providing the design tensor and the population counts.
+Additionally one may provide an initial parameter guess.
+The same exact syntax works for any configuration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit a ridge regression Poisson GLM</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ridge results"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"True weights:      "</span><span class="p">,</span> <span class="n">w_true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Recovered weights: "</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge results
+True weights:       [0.49429818 0.         0.         0.         0.32923678]
+Recovered weights:  [ 0.58121854  0.0082906   0.12080209 -0.03249488  0.253943  ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="k-fold-cross-validation-with-sklearn">
+<span id="k-fold-selection"></span><h2>K-fold Cross Validation with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code><a class="headerlink" href="#k-fold-cross-validation-with-sklearn" title="Link to this heading">#</a></h2>
+<p>Our implementation follows the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> api,  this enables us
+to take advantage of the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> tool-box seamlessly, while at the same time
+we take advantage of the <code class="docutils literal notranslate"><span class="pre">jax</span></code> GPU acceleration and auto-differentiation in the
+back-end.</p>
+<p>Here is an example of how we can perform 5-fold cross-validation via <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<p><strong>Ridge</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"regularizer_strength"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+<span class="c1"># in practice, you should use more folds than 2, but for the purposes of this</span>
+<span class="c1"># demo, 2 is sufficient.</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">parameter_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="bp">cls</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ridge results        "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best hyperparameter: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"True weights:      "</span><span class="p">,</span> <span class="n">w_true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Recovered weights: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge results        
+Best hyperparameter:  {'regularizer_strength': np.float64(0.03162277660168379)}
+True weights:       [0.49429818 0.         0.         0.         0.32923678]
+Recovered weights:  [7.2912592e-01 1.6413178e-02 1.4818655e-01 1.8600374e-05 3.2897869e-01]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compare the Ridge cross-validated results with other regularization schemes.</p>
+<p><strong>Lasso</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="n">nmo</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(),</span> <span class="n">solver_name</span><span class="o">=</span><span class="s2">"ProximalGradient"</span><span class="p">)</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">parameter_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="bp">cls</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lasso results        "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best hyperparameter: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"True weights:      "</span><span class="p">,</span> <span class="n">w_true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Recovered weights: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lasso results        
+Best hyperparameter:  {'regularizer_strength': np.float64(0.03162277660168379)}
+True weights:       [0.49429818 0.         0.         0.         0.32923678]
+Recovered weights:  [ 0.6955168   0.          0.02943178 -0.          0.23854369]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Group Lasso</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define groups by masking. Mask size (n_groups, n_features)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">regularizer</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">GroupLasso</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="n">regularizer</span><span class="p">,</span> <span class="n">solver_name</span><span class="o">=</span><span class="s2">"ProximalGradient"</span><span class="p">)</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">parameter_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="bp">cls</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Group Lasso results"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Group mask:          :"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best hyperparameter: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"True weights:      "</span><span class="p">,</span> <span class="n">w_true</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Recovered weights: "</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Group Lasso results
+Group mask:          :
+[[1. 0. 0. 0. 1.]
+ [0. 1. 1. 1. 0.]]
+Best hyperparameter:  {'regularizer_strength': np.float64(0.03162277660168379)}
+True weights:       [0.49429818 0.         0.         0.         0.32923678]
+Recovered weights:  [ 0.66614026  0.          0.         -0.          0.2843489 ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulate-spikes">
+<h2>Simulate Spikes<a class="headerlink" href="#simulate-spikes" title="Link to this heading">#</a></h2>
+<p>We can generate spikes in response to a feedforward-stimuli
+through the <code class="docutils literal notranslate"><span class="pre">model.simulate</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here we are creating a new data input, of 20 timepoints (arbitrary)</span>
+<span class="c1"># with the same number of features (mandatory)</span>
+<span class="n">Xnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="p">)</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="c1"># generate a random key given a seed</span>
+<span class="n">random_key</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">spikes</span><span class="p">,</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">random_key</span><span class="p">,</span> <span class="n">Xnew</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">eventplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">spikes</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.collections.EventCollection at 0x7f05e03a12e0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" src="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" />
+</div>
+</div>
+</section>
+<section id="simulate-a-recurrently-coupled-network">
+<h2>Simulate a Recurrently Coupled Network<a class="headerlink" href="#simulate-a-recurrently-coupled-network" title="Link to this heading">#</a></h2>
+<p>In this section, we will show you how to generate spikes from a population; We assume that the coupling
+filters are known or inferred.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Making sure that the dynamics of your recurrent neural network are stable is non-trivial<a class="reference internal" href="#ref-1"><span class="math notranslate nohighlight">\(^{[1]}\)</span></a>. In particular,
+coupling weights obtained by fitting a GLM by maximum-likelihood can generate unstable dynamics. If the
+dynamics of your recurrently coupled model are unstable, you can try a <code class="docutils literal notranslate"><span class="pre">soft-plus</span></code> non-linearity
+instead of an exponential, and you can “shrink” your weights until stability is reached.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Neural population parameters</span>
+<span class="n">n_neurons</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">coupling_filter_duration</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s define the coupling filters that we will use to simulate
+the pairwise interactions between the neurons. We will model the
+filters as a difference of two Gamma probability density function.
+The negative component will capture inhibitory effects such as the
+refractory period of a neuron, while the positive component will
+describe excitation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="c1"># Gamma parameter for the inhibitory component of the filter</span>
+<span class="n">inhib_a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">inhib_b</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Gamma parameters for the excitatory component of the filter</span>
+<span class="n">excit_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+<span class="n">excit_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+
+<span class="c1"># define 2x2 coupling filters of the specific with create_temporal_filter</span>
+<span class="n">coupling_filter_bank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">coupling_filter_duration</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">unit_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">unit_j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">):</span>
+        <span class="n">coupling_filter_bank</span><span class="p">[:,</span> <span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">]</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">difference_of_gammas</span><span class="p">(</span>
+            <span class="n">coupling_filter_duration</span><span class="p">,</span>
+            <span class="n">inhib_a</span><span class="o">=</span><span class="n">inhib_a</span><span class="p">,</span>
+            <span class="n">excit_a</span><span class="o">=</span><span class="n">excit_a</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">],</span>
+            <span class="n">inhib_b</span><span class="o">=</span><span class="n">inhib_b</span><span class="p">,</span>
+            <span class="n">excit_b</span><span class="o">=</span><span class="n">excit_b</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">],</span>
+        <span class="p">)</span>
+
+<span class="c1"># shrink the filters for simulation stability</span>
+<span class="n">coupling_filter_bank</span> <span class="o">*=</span> <span class="mf">0.8</span>
+
+<span class="c1"># define a basis function</span>
+<span class="n">n_basis_funcs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLogEval</span><span class="p">(</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+
+<span class="c1"># approximate the coupling filters in terms of the basis function</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">coupling_basis</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="n">coupling_filter_bank</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">coupling_coeff</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">regress_filter</span><span class="p">(</span><span class="n">coupling_filter_bank</span><span class="p">,</span> <span class="n">coupling_basis</span><span class="p">)</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check that our approximation worked by plotting the original filters
+and the basis expansion</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot coupling functions</span>
+<span class="n">n_basis_coupling</span> <span class="o">=</span> <span class="n">coupling_basis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Coupling filters"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">unit_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">unit_j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">):</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"unit </span><span class="si">{</span><span class="n">unit_j</span><span class="si">}</span><span class="s2"> -&gt; unit </span><span class="si">{</span><span class="n">unit_i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">coupling_coeff</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">]</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coupling_filter_bank</span><span class="p">[:,</span> <span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"gamma difference"</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">unit_i</span><span class="p">,</span> <span class="n">unit_j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coupling_basis</span><span class="p">,</span> <span class="n">coeff</span><span class="p">),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"basis function"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2c3aa796b64183b23c1009e6a17c159f7d261c4cee811d55708d73a54838b0e0.png" src="../_images/2c3aa796b64183b23c1009e6a17c159f7d261c4cee811d55708d73a54838b0e0.png" />
+</div>
+</div>
+<p>Define a squared stimulus current for the first neuron, and no stimulus for
+the second neuron</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a squared current parameters</span>
+<span class="n">simulation_duration</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">stimulus_onset</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">stimulus_offset</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">stimulus_intensity</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="c1"># create the input tensor of shape (n_samples, n_neurons, n_dimension_stimuli)</span>
+<span class="n">feedforward_input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">simulation_duration</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># inject square input to the first neuron only</span>
+<span class="n">feedforward_input</span><span class="p">[</span><span class="n">stimulus_onset</span><span class="p">:</span> <span class="n">stimulus_offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">stimulus_intensity</span>
+
+<span class="c1"># plot the input</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Feedforward inputs"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Input to neuron 0"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Input to neuron 1"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">())</span>
+
+
+<span class="c1"># the input for the simulation will be the dot product</span>
+<span class="c1"># of input_coeff with the feedforward_input</span>
+<span class="n">input_coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_neurons</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+
+<span class="c1"># initialize the spikes for the recurrent simulation</span>
+<span class="n">init_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">coupling_filter_duration</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8e84efefd751845110a6c097009f10c4dd747d8be5a3a97ad0b372b809e24bb3.png" src="../_images/8e84efefd751845110a6c097009f10c4dd747d8be5a3a97ad0b372b809e24bb3.png" />
+</div>
+</div>
+<p>We can now simulate spikes by calling the <code class="docutils literal notranslate"><span class="pre">simulate_recurrent</span></code> function for the <code class="docutils literal notranslate"><span class="pre">nemos.simulate</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call simulate, with both the recurrent coupling</span>
+<span class="c1"># and the input</span>
+<span class="n">spikes</span><span class="p">,</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">simulate_recurrent</span><span class="p">(</span>
+    <span class="n">coupling_coef</span><span class="o">=</span><span class="n">coupling_coeff</span><span class="p">,</span>
+    <span class="n">feedforward_coef</span><span class="o">=</span><span class="n">input_coeff</span><span class="p">,</span>
+    <span class="n">intercepts</span><span class="o">=</span><span class="n">intercept</span><span class="p">,</span>
+    <span class="n">random_key</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="mi">123</span><span class="p">),</span>
+    <span class="n">feedforward_input</span><span class="o">=</span><span class="n">feedforward_input</span><span class="p">,</span>
+    <span class="n">coupling_basis_matrix</span><span class="o">=</span><span class="n">coupling_basis</span><span class="p">,</span>
+    <span class="n">init_y</span><span class="o">=</span><span class="n">init_spikes</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And finally plot the results for both neurons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mkdocs_gallery_thumbnail_number = 4</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'top'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'right'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">patch</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.011</span><span class="p">),</span> <span class="mi">300</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span>  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">)</span>
+
+<span class="n">p0</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rates</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">p1</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rates</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">spikes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">p0</span><span class="o">.</span><span class="n">get_color</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"rate neuron 0"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">spikes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">p1</span><span class="o">.</span><span class="n">get_color</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"rate neuron 1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">input_coeff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">feedforward_input</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"stimulus"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.011</span><span class="p">,</span> <span class="mf">.13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"count/bin"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f05d50cf830&gt;
+</pre></div>
+</div>
+<img alt="../_images/0217d8c9199a8960b8a957aea5985f8ceafe96a60dbf74da00e5331d2f854b5b.png" src="../_images/0217d8c9199a8960b8a957aea5985f8ceafe96a60dbf74da00e5331d2f854b5b.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save image for thumbnail</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"READTHEDOCS_OUTPUT"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">root</span><span class="p">:</span>
+   <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"html/_static/thumbnails/how_to_guide"</span>
+<span class="c1"># if local store in ../_build/html/...</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"../_build/html/_static/thumbnails/how_to_guide"</span><span class="p">)</span>
+
+<span class="c1"># make sure the folder exists if run from build</span>
+<span class="k">if</span> <span class="n">root</span> <span class="ow">or</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"../assets/stylesheets"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+   <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+  <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">"plot_02_glm_demo.svg"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p id="ref-1">[1] <a class="reference external" href="https://arxiv.org/abs/2010.12362">Arribas, Diego, Yuan Zhao, and Il Memming Park. “Rescuing neural spike train models from bad MLE.” Advances in Neural Information Processing Systems 33 (2020): 2293-2303.</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="save_and_load.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Saving and Loading</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_03_population_glm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Population GLM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-feed-forward-glm">The Feed-Forward GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition">Model Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-configuration">Model Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit">Model Fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation-with-sklearn">K-fold Cross Validation with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-spikes">Simulate Spikes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-a-recurrently-coupled-network">Simulate a Recurrently Coupled Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/how_to_guide/plot_02_glm_demo.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

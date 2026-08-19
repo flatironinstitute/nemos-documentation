@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Identifiability utilities &#8212; nemos 0.2.10.dev378 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3a9cef1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/identifiability';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nemos.identifiability_constraints.apply_identifiability_constraints" href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints.html" />
+    <link rel="prev" title="nemos.simulation.regress_filter" href="generated/simulation/nemos.simulation.regress_filter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="glm.html">GLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/glm/nemos.glm.GLM.html">nemos.glm.GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/glm/nemos.glm.ClassifierGLM.html">nemos.glm.ClassifierGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/glm/nemos.glm.PopulationGLM.html">nemos.glm.PopulationGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/glm/nemos.glm.ClassifierPopulationGLM.html">nemos.glm.ClassifierPopulationGLM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="glm_hmm.html">GLM-HMM</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/glm_hmm/nemos.glm_hmm.GLMHMM.html">nemos.glm_hmm.GLMHMM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basis.html">Bases</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/_basis/nemos.basis._basis.Basis.html">nemos.basis._basis.Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/_basis/nemos.basis._spline_basis.SplineBasis.html">nemos.basis._spline_basis.SplineBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.MSplineConv.html">nemos.basis.MSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.BSplineConv.html">nemos.basis.BSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.CyclicBSplineConv.html">nemos.basis.CyclicBSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.RaisedCosineLinearConv.html">nemos.basis.RaisedCosineLinearConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.RaisedCosineLogConv.html">nemos.basis.RaisedCosineLogConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.OrthExponentialConv.html">nemos.basis.OrthExponentialConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.HistoryConv.html">nemos.basis.HistoryConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.MSplineEval.html">nemos.basis.MSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.BSplineEval.html">nemos.basis.BSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.CyclicBSplineEval.html">nemos.basis.CyclicBSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.RaisedCosineLinearEval.html">nemos.basis.RaisedCosineLinearEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.RaisedCosineLogEval.html">nemos.basis.RaisedCosineLogEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.FourierEval.html">nemos.basis.FourierEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.OrthExponentialEval.html">nemos.basis.OrthExponentialEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.Category.html">nemos.basis.Category</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.IdentityEval.html">nemos.basis.IdentityEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/basis/nemos.basis.Zero.html">nemos.basis.Zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/_basis/nemos.basis._basis.AdditiveBasis.html">nemos.basis._basis.AdditiveBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/_basis/nemos.basis._basis.MultiplicativeBasis.html">nemos.basis._basis.MultiplicativeBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html">nemos.basis._custom_basis.CustomBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html">nemos.basis._transformer_basis.TransformerBasis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="observation_models.html">Observation Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.Observations.html">nemos.observation_models.Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.PoissonObservations.html">nemos.observation_models.PoissonObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.GaussianObservations.html">nemos.observation_models.GaussianObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html">nemos.observation_models.NegativeBinomialObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.GammaObservations.html">nemos.observation_models.GammaObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.BernoulliObservations.html">nemos.observation_models.BernoulliObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/observation_models/nemos.observation_models.CategoricalObservations.html">nemos.observation_models.CategoricalObservations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regularizers.html">Regularizers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.Regularizer.html">nemos.regularizer.Regularizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.UnRegularized.html">nemos.regularizer.UnRegularized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.Ridge.html">nemos.regularizer.Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.Lasso.html">nemos.regularizer.Lasso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.ElasticNet.html">nemos.regularizer.ElasticNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.regularizer.GroupLasso.html">nemos.regularizer.GroupLasso</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="io.html">IO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/io/nemos.io.load_model.html">nemos.io.load_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/io/nemos.io.inspect_npz.html">nemos.io.inspect_npz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="solvers.html">Solvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.get_solver.html">nemos.solvers.get_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.get_solver_documentation.html">nemos.solvers.get_solver_documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.list_available_solvers.html">nemos.solvers.list_available_solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.list_available_algorithms.html">nemos.solvers.list_available_algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.list_algo_backends.html">nemos.solvers.list_algo_backends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.register.html">nemos.solvers.register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.set_default_backend.html">nemos.solvers.set_default_backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.list_stochastic_solvers.html">nemos.solvers.list_stochastic_solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.supports_stochastic.html">nemos.solvers.supports_stochastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.SolverSpec.html">nemos.solvers.SolverSpec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers._solver_adapter.SolverAdapter.html">nemos.solvers._solver_adapter.SolverAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers._jaxopt_solvers.JaxoptAdapter.html">nemos.solvers._jaxopt_solvers.JaxoptAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html">nemos.solvers._optimistix_solvers.OptimistixAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers._optax_optimistix_solvers.AbstractOptimistixOptaxSolver.html">nemos.solvers._optax_optimistix_solvers.AbstractOptimistixOptaxSolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.AbstractSolver.html">nemos.solvers.AbstractSolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.OptimizationInfo.html">nemos.solvers.OptimizationInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.SolverProtocol.html">nemos.solvers.SolverProtocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/solvers/nemos.solvers.validate_solver_class.html">nemos.solvers.validate_solver_class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stochastic_optimization.html">Stochastic optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.batching.DataLoader.html">nemos.batching.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.batching.ArrayDataLoader.html">nemos.batching.ArrayDataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.batching.LazyArrayDataLoader.html">nemos.batching.LazyArrayDataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.Callback.html">nemos.callbacks.Callback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.CallbackList.html">nemos.callbacks.CallbackList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.SolverConvergenceCallback.html">nemos.callbacks.SolverConvergenceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.TestLossLogger.html">nemos.callbacks.TestLossLogger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.TrainingContext.html">nemos.callbacks.TrainingContext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/stochastic_optimization/nemos.callbacks.StochasticFitSummary.html">nemos.callbacks.StochasticFitSummary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="convolve.html">Convolution utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/regularizer/nemos.convolve.create_convolutional_predictor.html">nemos.convolve.create_convolutional_predictor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="simulations.html">Simulations utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/simulation/nemos.simulation.simulate_recurrent.html">nemos.simulation.simulate_recurrent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/simulation/nemos.simulation.difference_of_gammas.html">nemos.simulation.difference_of_gammas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/simulation/nemos.simulation.regress_filter.html">nemos.simulation.regress_filter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Identifiability utilities</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints.html">nemos.identifiability_constraints.apply_identifiability_constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component.html">nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Identifiability utilities</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="identifiability-utilities">
+<h1>Identifiability utilities<a class="headerlink" href="#identifiability-utilities" title="Link to this heading">#</a></h1>
+<p>Functions to apply identifiability constraints to rank-deficient feature matrices, ensuring the uniqueness of model
+solutions.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints.html#nemos.identifiability_constraints.apply_identifiability_constraints" title="nemos.identifiability_constraints.apply_identifiability_constraints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_identifiability_constraints</span></code></a></p></td>
+<td><p>Apply identifiability constraints to a design matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component.html#nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component" title="nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_identifiability_constraints_by_basis_component</span></code></a></p></td>
+<td><p>Apply identifiability constraint to a design matrix for each component of an additive basis.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="generated/simulation/nemos.simulation.regress_filter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">nemos.simulation.regress_filter</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="generated/identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">nemos.identifiability_constraints.apply_identifiability_constraints</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

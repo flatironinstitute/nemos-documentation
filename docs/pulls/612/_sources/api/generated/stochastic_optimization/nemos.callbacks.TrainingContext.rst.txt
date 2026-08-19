@@ -1,0 +1,40 @@
+﻿nemos.callbacks.TrainingContext
+===============================
+
+.. currentmodule:: nemos.callbacks
+
+.. autoclass:: TrainingContext
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TrainingContext.aux
+      ~TrainingContext.batch_idx
+      ~TrainingContext.model
+      ~TrainingContext.n_passes
+      ~TrainingContext.params
+      ~TrainingContext.pass_idx
+      ~TrainingContext.should_stop
+      ~TrainingContext.solver
+      ~TrainingContext.state
+      ~TrainingContext.stop_reason
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TrainingContext.__init__
+      ~TrainingContext.request_stop
+      ~TrainingContext.to_summary
+   

@@ -1,0 +1,33 @@
+﻿nemos.callbacks.StochasticFitSummary
+====================================
+
+.. currentmodule:: nemos.callbacks
+
+.. autoclass:: StochasticFitSummary
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StochasticFitSummary.batch_idx
+      ~StochasticFitSummary.n_passes
+      ~StochasticFitSummary.pass_idx
+      ~StochasticFitSummary.should_stop
+      ~StochasticFitSummary.stop_reason
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~StochasticFitSummary.__init__
+   

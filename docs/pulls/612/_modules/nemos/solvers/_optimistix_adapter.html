@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.solvers._optimistix_adapter &#8212; nemos 0.2.10.dev378 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3a9cef1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/solvers/_optimistix_adapter';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.solvers._optimistix_adapter</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.solvers._optimistix_adapter</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">dataclasses</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeAlias</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">equinox</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">eqx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lazy_loader</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lazy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">optimistix</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Aux</span><span class="p">,</span> <span class="n">Params</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..regularizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Regularizer</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">._abstract_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationInfo</span><span class="p">,</span> <span class="n">SolverAdapterState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._aux_helpers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">convert_fn</span><span class="p">,</span>
+    <span class="n">drop_aux</span><span class="p">,</span>
+    <span class="n">pack_args</span><span class="p">,</span>
+    <span class="n">tree_map_inexact_asarray</span><span class="p">,</span>
+    <span class="n">wrap_aux</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._solver_adapter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolverAdapter</span>
+
+<span class="n">jax</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"jax"</span><span class="p">)</span>
+
+<span class="n">_OPTX_V_010</span> <span class="o">=</span> <span class="n">Version</span><span class="p">(</span><span class="n">optx</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Version</span><span class="p">(</span><span class="s2">"0.1.0"</span><span class="p">)</span>
+
+<span class="n">DEFAULT_ATOL</span> <span class="o">=</span> <span class="mf">1e-4</span>
+<span class="n">DEFAULT_RTOL</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">DEFAULT_MAX_STEPS</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">OptimistixSolverState</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">Module</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimistixAdapterState</span><span class="p">(</span><span class="n">SolverAdapterState</span><span class="p">[</span><span class="n">OptimistixSolverState</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">"""Solver state for Optimistix-based adapters."""</span>
+
+
+<span class="n">OptimistixStepResult</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Params</span><span class="p">,</span> <span class="n">OptimistixAdapterState</span><span class="p">,</span> <span class="n">Aux</span><span class="p">]</span>
+
+
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimistixConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Collection of arguments required by and cached for methods of Optimistix solvers.</span>
+
+<span class="sd">    They rarely need to be overwritten, and the defaults here should suffice.</span>
+<span class="sd">    The user has the ability to overwrite them with `solver_kwargs`, and on the solver's construction</span>
+<span class="sd">    they are saved in `OptimistixAdapter.config` for later use: passing them to `optimistix.optimise`, `init`, `step`.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># max number of steps</span>
+    <span class="n">maxiter</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="c1"># options dict passed around within optimistix</span>
+    <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="c1"># "Any Lineax tags describing the structure of the Jacobian matrix d(fn)/dy."</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">frozenset</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">()</span>
+    <span class="c1"># sets if the minimisation throws an error if an iterative solver runs out of steps</span>
+    <span class="n">throw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># norm used in the Cauchy convergence criterion. Required by all Optimistix solvers.</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">optx</span><span class="o">.</span><span class="n">two_norm</span>
+    <span class="c1"># way of autodifferentiation: https://docs.kidger.site/optimistix/api/adjoints/</span>
+    <span class="n">adjoint</span><span class="p">:</span> <span class="n">optx</span><span class="o">.</span><span class="n">AbstractAdjoint</span> <span class="o">=</span> <span class="n">optx</span><span class="o">.</span><span class="n">ImplicitAdjoint</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="OptimistixAdapter">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimistixAdapter</span><span class="p">(</span><span class="n">SolverAdapter</span><span class="p">[</span><span class="n">OptimistixAdapterState</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Base class for adapters wrapping Optimistix minimizers.</span>
+
+<span class="sd">    Subclasses must define the `_solver_cls` class attribute.</span>
+<span class="sd">    The `_solver` attribute is assumed to exist after construction,</span>
+<span class="sd">    so if a subclass is overwriting `__init__`, these must be created.</span>
+
+<span class="sd">    Note that for backward compatibility the `atol` parameter used in Optimistix</span>
+<span class="sd">    is referred to as `tol` in NeMoS.</span>
+
+<span class="sd">    The `maxiter` default is taken from `DEFAULT_MAXITER`, which subclasses may</span>
+<span class="sd">    override to set solver-specific defaults.</span>
+<span class="sd">    """</span>
+
+    <span class="n">_solver_cls</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Type</span><span class="p">]</span>
+    <span class="n">_solver</span><span class="p">:</span> <span class="n">optx</span><span class="o">.</span><span class="n">AbstractMinimiser</span>
+    <span class="n">DEFAULT_MAXITER</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_MAX_STEPS</span>
+
+    <span class="n">_proximal</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="OptimistixAdapter.__init__">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">unregularized_loss</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">regularizer</span><span class="p">:</span> <span class="n">Regularizer</span><span class="p">,</span>
+        <span class="n">regularizer_strength</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">has_aux</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">init_params</span><span class="p">:</span> <span class="n">Params</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ATOL</span><span class="p">,</span>
+        <span class="n">rtol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_RTOL</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">solver_init_kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="s2">"atol"</span> <span class="ow">in</span> <span class="n">solver_init_kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Please use tol instead of atol."</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">"max_steps"</span> <span class="ow">in</span> <span class="n">solver_init_kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Please use maxiter instead of max_steps."</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_proximal</span><span class="p">:</span>
+            <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">unregularized_loss</span>
+            <span class="n">solver_init_kwargs</span><span class="p">[</span><span class="s2">"prox"</span><span class="p">]</span> <span class="o">=</span> <span class="n">regularizer</span><span class="o">.</span><span class="n">get_proximal_operator</span><span class="p">(</span>
+                <span class="n">params</span><span class="o">=</span><span class="n">init_params</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="n">regularizer_strength</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">regularizer</span><span class="o">.</span><span class="n">penalized_loss</span><span class="p">(</span>
+                <span class="n">unregularized_loss</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">init_params</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="n">regularizer_strength</span>
+            <span class="p">)</span>
+
+        <span class="c1"># take out the arguments that go into minimise, init, terminate and so on</span>
+        <span class="c1"># and only pass the actually needed things to __init__</span>
+        <span class="n">user_args</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">OptimistixConfig</span><span class="p">):</span>
+            <span class="n">kw</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">solver_init_kwargs</span><span class="p">:</span>
+                <span class="n">user_args</span><span class="p">[</span><span class="n">kw</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver_init_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxiter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">maxiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_MAXITER</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">OptimistixConfig</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="o">**</span><span class="n">user_args</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">has_aux</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span> <span class="o">=</span> <span class="n">pack_args</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">drop_aux</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fun</span> <span class="o">=</span> <span class="n">pack_args</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span> <span class="o">=</span> <span class="n">wrap_aux</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+
+        <span class="c1"># make custom adjustments such as adding a derived "while_loop_kind" parameter for FISTA</span>
+        <span class="n">solver_init_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust_solver_init_kwargs</span><span class="p">(</span><span class="n">solver_init_kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver_cls</span><span class="p">(</span>
+            <span class="n">atol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span>
+            <span class="n">norm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">norm</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">solver_init_kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="OptimistixAdapter.init_state">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.init_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_params</span><span class="p">:</span> <span class="n">Params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimistixAdapterState</span><span class="p">:</span>
+        <span class="n">init_params</span> <span class="o">=</span> <span class="n">tree_map_inexact_asarray</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
+        <span class="n">fn</span> <span class="o">=</span> <span class="n">convert_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">init_params</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="n">f_struct</span><span class="p">,</span> <span class="n">aux_struct</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">out_struct</span>
+
+        <span class="n">solver_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+            <span class="n">fn</span><span class="p">,</span>
+            <span class="n">init_params</span><span class="p">,</span>
+            <span class="n">args</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+            <span class="n">f_struct</span><span class="p">,</span>
+            <span class="n">aux_struct</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">OptimizationInfo</span><span class="p">(</span>
+            <span class="n">function_val</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>  <span class="c1"># pyright: ignore</span>
+            <span class="n">num_steps</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">converged</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>  <span class="c1"># pyright: ignore</span>
+            <span class="n">reached_max_steps</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">OptimistixAdapterState</span><span class="p">(</span><span class="n">solver_state</span><span class="o">=</span><span class="n">solver_state</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">stats</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="OptimistixAdapter.update">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.update">[docs]</a>
+    <span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">Params</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">OptimistixAdapterState</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimistixStepResult</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">tree_map_inexact_asarray</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="n">fn</span> <span class="o">=</span> <span class="n">convert_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+        <span class="n">new_params</span><span class="p">,</span> <span class="n">solver_state</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+            <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">solver_state</span><span class="p">,</span>
+            <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">num_steps</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optim_info</span><span class="p">(</span><span class="n">solver_state</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">OptimistixAdapterState</span><span class="p">(</span><span class="n">solver_state</span><span class="o">=</span><span class="n">solver_state</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">stats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_params</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">aux</span></div>
+
+
+<div class="viewcode-block" id="OptimistixAdapter.run">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">init_params</span><span class="p">:</span> <span class="n">Params</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimistixStepResult</span><span class="p">:</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">optx</span><span class="o">.</span><span class="n">minimise</span><span class="p">(</span>
+            <span class="n">fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fun_with_aux</span><span class="p">,</span>
+            <span class="n">solver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="p">,</span>
+            <span class="n">y0</span><span class="o">=</span><span class="n">init_params</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+            <span class="n">has_aux</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">max_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">adjoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">adjoint</span><span class="p">,</span>
+            <span class="n">throw</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">throw</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_optim_info</span><span class="p">(</span>
+            <span class="n">solution</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="n">solution</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s2">"num_steps"</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">OptimistixAdapterState</span><span class="p">(</span><span class="n">solver_state</span><span class="o">=</span><span class="n">solution</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="n">stats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solution</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">solution</span><span class="o">.</span><span class="n">aux</span></div>
+
+
+<div class="viewcode-block" id="OptimistixAdapter.get_accepted_arguments">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.get_accepted_arguments">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_accepted_arguments</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">own_and_solver_args</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_accepted_arguments</span><span class="p">()</span>
+
+        <span class="c1"># atol is added from wrapped optimistix solvers</span>
+        <span class="c1"># but currently throughout nemos tol is used</span>
+        <span class="n">own_and_solver_args</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"atol"</span><span class="p">)</span>
+
+        <span class="n">common_optx_arguments</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">OptimistixConfig</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">all_arguments</span> <span class="o">=</span> <span class="n">own_and_solver_args</span> <span class="o">|</span> <span class="n">common_optx_arguments</span>
+
+        <span class="c1"># prox is read from the regularizer, not provided as a solver argument</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_proximal</span><span class="p">:</span>
+            <span class="n">all_arguments</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"prox"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">all_arguments</span></div>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_note_about_accepted_arguments</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"""</span>
+<span class="s2">        Note that for backward compatibility the `atol` parameter used in Optimistix</span>
+<span class="s2">        is referred to as `tol` in NeMoS.</span>
+<span class="s2">        """</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atol</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">maxiter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">maxiter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_optim_info</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">OptimistixSolverState</span><span class="p">,</span>
+        <span class="n">num_steps</span><span class="p">:</span> <span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimizationInfo</span><span class="p">:</span>
+        <span class="n">function_val</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">f</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">)</span> <span class="k">else</span> <span class="n">state</span><span class="o">.</span><span class="n">f_info</span><span class="o">.</span><span class="n">f</span>
+        <span class="p">)</span>  <span class="c1"># pyright: ignore</span>
+
+        <span class="k">return</span> <span class="n">OptimizationInfo</span><span class="p">(</span>
+            <span class="n">function_val</span><span class="o">=</span><span class="n">function_val</span><span class="p">,</span>
+            <span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span>
+            <span class="n">converged</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">terminate</span><span class="p">,</span>  <span class="c1"># pyright: ignore</span>
+            <span class="n">reached_max_steps</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">num_steps</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">),</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="OptimistixAdapter.adjust_solver_init_kwargs">
+<a class="viewcode-back" href="../../../api/generated/solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html#nemos.solvers._optimistix_solvers.OptimistixAdapter.adjust_solver_init_kwargs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">adjust_solver_init_kwargs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">solver_init_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Optionally adjust the parameters (e.g. derive from self.config) for instantiating the wrapped solver.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        solver_init_kwargs:</span>
+<span class="sd">            Original keyword arguments that would be passed to _solver_cls.__init__.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict with argument names of _solver_cls.__init__ as keys and</span>
+<span class="sd">        their corresponding values as values.</span>
+<span class="sd">        Default implementation just returns solver_init_kwargs.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">solver_init_kwargs</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
