@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.simulation &#8212; nemos 0.2.10.dev460 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=88068916"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/simulation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev460 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev460 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.simulation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.simulation</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Utility functions for coupling filter definition."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lazy_loader</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lazy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">validation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pytrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeaturePytree</span>
+
+<span class="c1"># Lazy load to avoid importing scipy.stats at module level</span>
+<span class="n">scipy</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"scipy"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="difference_of_gammas">
+<a class="viewcode-back" href="../../api/generated/simulation/nemos.simulation.difference_of_gammas.html#nemos.simulation.difference_of_gammas">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">difference_of_gammas</span><span class="p">(</span>
+    <span class="n">ws</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">upper_percentile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">,</span>
+    <span class="n">inhib_a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">excit_a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">inhib_b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">excit_b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">    Generate coupling filter as a Gamma pdf difference.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ws:</span>
+<span class="sd">        The window size of the filter.</span>
+<span class="sd">    upper_percentile:</span>
+<span class="sd">        Upper bound of the gamma range as a percentile. The gamma function</span>
+<span class="sd">        will be evaluated over the range [0, ppf(upper_percentile)].</span>
+<span class="sd">    inhib_a:</span>
+<span class="sd">        The ``a`` constant for the gamma pdf of the inhibitory part of the filter.</span>
+<span class="sd">    excit_a:</span>
+<span class="sd">        The ``a`` constant for the gamma pdf of the excitatory part of the filter.</span>
+<span class="sd">    inhib_b:</span>
+<span class="sd">        The ``b`` constant for the gamma pdf of the inhibitory part of the filter.</span>
+<span class="sd">    excit_b:</span>
+<span class="sd">        The ``a`` constant for the gamma pdf of the excitatory part of the filter.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The probability density function of a gamma distribution is parametrized as</span>
+<span class="sd">    follows [1]_ :,</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        p(x;\; a, b) = \frac{b^a x^{a-1} e^{-x}}{\Gamma(a)},</span>
+
+<span class="sd">    where :math:`\Gamma(a)` refers to the gamma function, see [1]_.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filter:</span>
+<span class="sd">        The coupling filter.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If any of the Gamma parameters is lesser or equal to 0.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If the upper_percentile is not in [0, 1).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] SciPy Docs - :obj:`scipy.stats.gamma`</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source: True</span>
+<span class="sd">        :caption: Difference of Gammas.</span>
+
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.simulation import difference_of_gammas</span>
+<span class="sd">        &gt;&gt;&gt; coupling_duration = 100</span>
+<span class="sd">        &gt;&gt;&gt; inhib_a, inhib_b = 1.0, 1.0</span>
+<span class="sd">        &gt;&gt;&gt; excit_a, excit_b = 2.0, 2.0</span>
+<span class="sd">        &gt;&gt;&gt; coupling_filter = difference_of_gammas(</span>
+<span class="sd">        ...     ws=coupling_duration,</span>
+<span class="sd">        ...     inhib_a=inhib_a,</span>
+<span class="sd">        ...     inhib_b=inhib_b,</span>
+<span class="sd">        ...     excit_a=excit_a,</span>
+<span class="sd">        ...     excit_b=excit_b</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(coupling_filter)</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.title("Coupling filter from difference of gammas")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.show()</span>
+
+<span class="sd">    """</span>
+    <span class="c1"># check that the gamma parameters are positive (scipy returns</span>
+    <span class="c1"># nans otherwise but no exception is raised)</span>
+    <span class="n">variables</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"excit_a"</span><span class="p">:</span> <span class="n">excit_a</span><span class="p">,</span>
+        <span class="s2">"inhib_a"</span><span class="p">:</span> <span class="n">inhib_a</span><span class="p">,</span>
+        <span class="s2">"excit_b"</span><span class="p">:</span> <span class="n">excit_b</span><span class="p">,</span>
+        <span class="s2">"inhib_b"</span><span class="p">:</span> <span class="n">inhib_b</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Gamma parameter </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> must be &gt;0."</span><span class="p">)</span>
+    <span class="c1"># check for valid percentile</span>
+    <span class="k">if</span> <span class="n">upper_percentile</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">upper_percentile</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"upper_percentile should lie in the [0, 1) interval. </span><span class="si">{</span><span class="n">upper_percentile</span><span class="si">}</span><span class="s2"> provided instead!"</span>
+        <span class="p">)</span>
+    <span class="n">sts</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span>
+    <span class="n">gm_inhibition</span> <span class="o">=</span> <span class="n">sts</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">inhib_a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">inhib_b</span><span class="p">)</span>
+    <span class="n">gm_excitation</span> <span class="o">=</span> <span class="n">sts</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">excit_a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">excit_b</span><span class="p">)</span>
+
+    <span class="c1"># calculate upper bound for the evaluation</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">gm_inhibition</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">upper_percentile</span><span class="p">),</span> <span class="n">gm_excitation</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">upper_percentile</span><span class="p">))</span>
+    <span class="c1"># equi-spaced sample covering the range</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
+
+    <span class="c1"># compute difference of gammas &amp; normalize</span>
+    <span class="n">gamma_diff</span> <span class="o">=</span> <span class="n">gm_excitation</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">gm_inhibition</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">gamma_diff</span> <span class="o">=</span> <span class="n">gamma_diff</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gamma_diff</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">gamma_diff</span></div>
+
+
+
+<div class="viewcode-block" id="regress_filter">
+<a class="viewcode-back" href="../../api/generated/simulation/nemos.simulation.regress_filter.html#nemos.simulation.regress_filter">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">regress_filter</span><span class="p">(</span><span class="n">coupling_filters</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Approximate scipy.stats.gamma based filters with basis function.</span>
+
+<span class="sd">    Find the Ordinary Least Squares weights for representing the filters in terms of basis functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    coupling_filters:</span>
+<span class="sd">        The coupling filters. Shape ``(window_size, n_neurons_receiver, n_neurons_sender)``</span>
+<span class="sd">    eval_basis:</span>
+<span class="sd">        The evaluated basis function, shape ``(window_size, n_basis_funcs)``</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    weights:</span>
+<span class="sd">        The weights for each neuron. Shape ``(n_basis_funcs, n_neurons_receiver, n_neurons_sender)``</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If eval_basis is not two-dimensional.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If coupling_filters is not three-dimensional.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If window_size differs between eval_basis and coupling_filters.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source: True</span>
+<span class="sd">        :caption: Least-squares approximate filter.</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.simulation import regress_filter, difference_of_gammas</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLogEval</span>
+<span class="sd">        &gt;&gt;&gt; filter_duration = 100</span>
+<span class="sd">        &gt;&gt;&gt; n_basis_funcs = 20</span>
+<span class="sd">        &gt;&gt;&gt; filter_bank = difference_of_gammas(filter_duration).reshape(filter_duration, 1, 1)</span>
+<span class="sd">        &gt;&gt;&gt; _, basis = RaisedCosineLogEval(10).evaluate_on_grid(filter_duration)</span>
+<span class="sd">        &gt;&gt;&gt; weights = regress_filter(filter_bank, basis)[0, 0]</span>
+<span class="sd">        &gt;&gt;&gt; print("Weights shape:", weights.shape)</span>
+<span class="sd">        Weights shape: (10,)</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(filter_bank[:, 0, 0], label=f"True filter")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(basis.dot(weights), "--", label=f"Approx. filter")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.legend()</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.title("True vs. Approximated Filters")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.show()</span>
+
+<span class="sd">    """</span>
+    <span class="c1"># check shapes</span>
+    <span class="k">if</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"eval_basis must be a 2 dimensional array, "</span>
+            <span class="s2">"shape (window_size, n_basis_funcs). "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">eval_basis</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> dimensional array provided instead!"</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">coupling_filters</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"coupling_filters must be a 3 dimensional array, "</span>
+            <span class="s2">"shape (window_size, n_neurons, n_neurons). "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">coupling_filters</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> dimensional array provided instead!"</span>
+        <span class="p">)</span>
+
+    <span class="n">ws</span><span class="p">,</span> <span class="n">n_neurons_receiver</span><span class="p">,</span> <span class="n">n_neurons_sender</span> <span class="o">=</span> <span class="n">coupling_filters</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># check that window size matches</span>
+    <span class="k">if</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ws</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"window_size mismatch. The window size of coupling_filters and eval_basis "</span>
+            <span class="sa">f</span><span class="s2">"does not match. coupling_filters has a window size of </span><span class="si">{</span><span class="n">ws</span><span class="si">}</span><span class="s2">; "</span>
+            <span class="sa">f</span><span class="s2">"eval_basis has a window size of </span><span class="si">{</span><span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Reshape the coupling_filters for vectorized least-squares</span>
+    <span class="n">filters_reshaped</span> <span class="o">=</span> <span class="n">coupling_filters</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Solve the least squares problem for all filters at once</span>
+    <span class="c1"># (vecotrizing the features)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">eval_basis</span><span class="p">,</span> <span class="n">filters_reshaped</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Reshape back to the original dimensions</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+        <span class="n">weights</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_neurons_receiver</span><span class="p">,</span> <span class="n">n_neurons_sender</span><span class="p">),</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">weights</span></div>
+
+
+
+<div class="viewcode-block" id="simulate_recurrent">
+<a class="viewcode-back" href="../../api/generated/simulation/nemos.simulation.simulate_recurrent.html#nemos.simulation.simulate_recurrent">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">simulate_recurrent</span><span class="p">(</span>
+    <span class="n">coupling_coef</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">feedforward_coef</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">intercepts</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">random_key</span><span class="p">:</span> <span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="n">feedforward_input</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">coupling_basis_matrix</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">init_y</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">inverse_link_function</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Simulate neural activity using the GLM as a recurrent network.</span>
+
+<span class="sd">    This function projects neural activity into the future, employing the fitted</span>
+<span class="sd">    parameters of the GLM. It is capable of simulating activity based on a combination</span>
+<span class="sd">    of historical activity and external feedforward inputs like convolved currents, light</span>
+<span class="sd">    intensities, etc.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    coupling_coef :</span>
+<span class="sd">        Coefficients for the coupling (recurrent connections) between neurons.</span>
+<span class="sd">        Expected shape: (n_neurons (receiver), n_neurons (sender), n_basis_coupling).</span>
+<span class="sd">    feedforward_coef :</span>
+<span class="sd">        Coefficients for the feedforward inputs to each neuron.</span>
+<span class="sd">        Expected shape: ``(n_neurons, n_basis_input)``.</span>
+<span class="sd">    intercepts :</span>
+<span class="sd">        Bias term for each neuron. Expected shape: ``(n_neurons,)``.</span>
+<span class="sd">    random_key :</span>
+<span class="sd">        jax.random.key for seeding the simulation.</span>
+<span class="sd">    feedforward_input :</span>
+<span class="sd">        External input matrix to the model, representing factors like convolved currents,</span>
+<span class="sd">        light intensities, etc. When not provided, the simulation is done with coupling-only.</span>
+<span class="sd">        Expected shape: ``(n_time_bins, n_neurons, n_basis_input)``.</span>
+<span class="sd">    init_y :</span>
+<span class="sd">        Initial observation (spike counts for PoissonGLM) matrix that kickstarts the simulation.</span>
+<span class="sd">        Expected shape: ``(window_size, n_neurons)``.</span>
+<span class="sd">    coupling_basis_matrix :</span>
+<span class="sd">        Basis matrix for coupling, representing between-neuron couplings</span>
+<span class="sd">        and auto-correlations. Expected shape: ``(window_size, n_basis_coupling)``.</span>
+<span class="sd">    inverse_link_function :</span>
+<span class="sd">        The inverse link function for the observation model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    simulated_activity :</span>
+<span class="sd">        Simulated activity (spike counts for PoissonGLMs) for each neuron over time.</span>
+<span class="sd">        Shape, ``(n_time_bins, n_neurons)``.</span>
+<span class="sd">    firing_rates :</span>
+<span class="sd">        Simulated rates for each neuron over time. Shape, ``(n_time_bins, n_neurons,)``.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If there's an inconsistency between the number of neurons in model parameters.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the number of neurons in input arguments doesn't match with model parameters.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source: True</span>
+<span class="sd">        :caption: Recurrently connected GLM simulations.</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import jax</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.simulation import simulate_recurrent</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(42)</span>
+<span class="sd">        &gt;&gt;&gt; n_neurons = 2</span>
+<span class="sd">        &gt;&gt;&gt; coupling_duration = 100</span>
+<span class="sd">        &gt;&gt;&gt; feedforward_input = np.random.normal(size=(1000, n_neurons, 1))</span>
+<span class="sd">        &gt;&gt;&gt; coupling_basis = np.random.normal(size=(coupling_duration, 10))</span>
+<span class="sd">        &gt;&gt;&gt; coupling_coef = 0.5*np.random.normal(size=(n_neurons, n_neurons, 10))</span>
+<span class="sd">        &gt;&gt;&gt; intercept = -9 * np.ones(n_neurons)</span>
+<span class="sd">        &gt;&gt;&gt; init_spikes = np.zeros((coupling_duration, n_neurons))</span>
+<span class="sd">        &gt;&gt;&gt; random_key = jax.random.key(123)</span>
+<span class="sd">        &gt;&gt;&gt; spikes, rates = simulate_recurrent(</span>
+<span class="sd">        ...     coupling_coef=coupling_coef,</span>
+<span class="sd">        ...     feedforward_coef=np.ones((n_neurons, 1)),</span>
+<span class="sd">        ...     intercepts=intercept,</span>
+<span class="sd">        ...     random_key=random_key,</span>
+<span class="sd">        ...     feedforward_input=feedforward_input,</span>
+<span class="sd">        ...     coupling_basis_matrix=coupling_basis,</span>
+<span class="sd">        ...     init_y=init_spikes</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.figure()</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(rates[:, 0], label="Neuron 0 rate")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(rates[:, 1], label="Neuron 1 rate")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.legend()</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.title("Simulated firing rates")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.show()</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">,</span> <span class="n">FeaturePytree</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"simulate_recurrent works only with arrays, not pytrees."</span><span class="p">)</span>
+    <span class="c1"># convert to jnp.ndarray of floats</span>
+    <span class="n">coupling_basis_matrix</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coupling_basis_matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">coupling_coef</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coupling_coef</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">feedforward_coef</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">feedforward_coef</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">intercepts</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">intercepts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">feedforward_input</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">feedforward_input</span>
+    <span class="p">)</span>
+    <span class="n">init_y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">init_y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="c1"># check that n_neurons is consistent</span>
+    <span class="n">n_neurons</span> <span class="o">=</span> <span class="n">intercepts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">feedforward_input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_neurons</span>
+        <span class="ow">or</span> <span class="n">feedforward_coef</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_neurons</span>
+        <span class="ow">or</span> <span class="n">init_y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_neurons</span>
+        <span class="ow">or</span> <span class="n">coupling_coef</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_neurons</span>
+        <span class="ow">or</span> <span class="n">coupling_coef</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_neurons</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"The number of neurons provided in the inputs is inconsistent!"</span>
+        <span class="p">)</span>
+
+    <span class="c1"># checks the input size</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">check_tree_leaves_dimensionality</span><span class="p">(</span>
+        <span class="n">feedforward_input</span><span class="p">,</span>
+        <span class="n">expected_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">err_message</span><span class="o">=</span><span class="s2">"`feedforward_input` must be three-dimensional, with shape "</span>
+        <span class="s2">"(n_timebins, n_neurons, n_features) or pytree of the same shape."</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">check_tree_axis_consistency</span><span class="p">(</span>
+        <span class="n">feedforward_coef</span><span class="p">,</span>
+        <span class="n">feedforward_input</span><span class="p">,</span>
+        <span class="n">axis_1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">axis_2</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">err_message</span><span class="o">=</span><span class="s2">"Inconsistent number of features. "</span>
+        <span class="sa">f</span><span class="s2">"spike basis coefficients has </span><span class="si">{</span><span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">feedforward_coef</span><span class="p">)</span><span class="si">}</span><span class="s2"> features, "</span>
+        <span class="sa">f</span><span class="s2">"X has </span><span class="si">{</span><span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">feedforward_input</span><span class="p">)</span><span class="si">}</span><span class="s2"> features instead!"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">validation</span><span class="o">.</span><span class="n">error_invalid_entry</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">)</span>
+
+    <span class="c1"># validate y</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">check_tree_leaves_dimensionality</span><span class="p">(</span>
+        <span class="n">init_y</span><span class="p">,</span>
+        <span class="n">expected_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">err_message</span><span class="o">=</span><span class="s2">"`init_y` must be two-dimensional, with shape (n_timebins, )."</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">n_basis</span> <span class="o">=</span> <span class="n">coupling_coef</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">coupling_coef</span> <span class="o">=</span> <span class="n">coupling_coef</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">coupling_basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_neurons</span> <span class="o">!=</span> <span class="n">coupling_coef</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Inconsistent number of features. `coupling_basis_matrix` assumes "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">coupling_basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> basis functions for the coupling filters, "</span>
+            <span class="sa">f</span><span class="s2">"`coupling_coef` assumes </span><span class="si">{</span><span class="n">n_basis</span><span class="si">}</span><span class="s2"> basis functions instead."</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">init_y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">coupling_basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"`init_y` and `coupling_basis_matrix`"</span>
+            <span class="s2">" should have the same window size! "</span>
+            <span class="sa">f</span><span class="s2">"`init_y` window size: </span><span class="si">{</span><span class="n">init_y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, "</span>
+            <span class="sa">f</span><span class="s2">"`coupling_basis_matrix` window size: </span><span class="si">{</span><span class="n">coupling_basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="n">subkeys</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">random_key</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">feedforward_input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># Pre-compute feedforward contribution: (n_samples, n_neurons)</span>
+    <span class="n">feed_forward_contrib</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ik,tik-&gt;ti"</span><span class="p">,</span> <span class="n">feedforward_coef</span><span class="p">,</span> <span class="n">feedforward_input</span><span class="p">)</span>
+
+    <span class="c1"># Pre-flip the basis to match convolution behavior (jnp.convolve flips the kernel)</span>
+    <span class="n">coupling_basis_flipped</span> <span class="o">=</span> <span class="n">coupling_basis_matrix</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">scan_fn</span><span class="p">(</span>
+        <span class="n">activity</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""Optimized scan over time steps.</span>
+
+<span class="sd">        Improvements over original:</span>
+<span class="sd">        - Direct iteration over feedforward input (no dynamic_slice)</span>
+<span class="sd">        - Simple einsum for convolution (no nested scan)</span>
+<span class="sd">        """</span>
+        <span class="n">key</span><span class="p">,</span> <span class="n">ff_input</span> <span class="o">=</span> <span class="n">inputs</span>
+
+        <span class="c1"># Simple einsum convolution: activity (window, n_neurons) @ basis_flipped (window, n_basis)</span>
+        <span class="c1"># Flipping matches jnp.convolve behavior used in _tensor_convolve</span>
+        <span class="c1"># Result: (n_neurons, n_basis) -&gt; flattened to (n_neurons * n_basis,)</span>
+        <span class="n">conv_act</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"wn,wb-&gt;nb"</span><span class="p">,</span> <span class="n">activity</span><span class="p">,</span> <span class="n">coupling_basis_flipped</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Predict firing rate</span>
+        <span class="n">firing_rate</span> <span class="o">=</span> <span class="n">inverse_link_function</span><span class="p">(</span>
+            <span class="n">coupling_coef</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">conv_act</span><span class="p">)</span> <span class="o">+</span> <span class="n">ff_input</span> <span class="o">+</span> <span class="n">intercepts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Simulate activity</span>
+        <span class="n">new_act</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">firing_rate</span><span class="p">)</span>
+
+        <span class="n">activity</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">activity</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">new_act</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">activity</span><span class="p">,</span> <span class="p">(</span><span class="n">new_act</span><span class="p">,</span> <span class="n">firing_rate</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over (subkeys, feed_forward_contrib) together</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">scan_fn</span><span class="p">,</span> <span class="n">init_y</span><span class="p">,</span> <span class="p">(</span><span class="n">subkeys</span><span class="p">,</span> <span class="n">feed_forward_contrib</span><span class="p">))</span>
+    <span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span> <span class="o">=</span> <span class="n">outputs</span>
+    <span class="k">return</span> <span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

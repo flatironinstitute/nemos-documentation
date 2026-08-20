@@ -1,0 +1,2250 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev460 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=88068916"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/glm_hmm/glm_hmm';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev460 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev460 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.glm_hmm.glm_hmm</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.glm_hmm.glm_hmm</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""API for the GLM-HMM model."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">equinox</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">eqx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation_models</span> <span class="k">as</span> <span class="n">obs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._observation_model_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">instantiate_observation_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.expectation_maximization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMState</span><span class="p">,</span> <span class="n">em_hmm</span><span class="p">,</span> <span class="n">em_step</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.hmm</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseHMM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HMM_INITIALIZATION_FN_DICT</span><span class="p">,</span> <span class="n">InitFunctionHMM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_state_format</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_inverse_link_function</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..observation_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Observations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..regularizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupLasso</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">,</span> <span class="n">Ridge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..tree_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">pytree_map_and_reduce</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+    <span class="n">ModelParamsT</span><span class="p">,</span>
+    <span class="n">SolverState</span><span class="p">,</span>
+    <span class="n">StepResult</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_repr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.algorithm_configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">prepare_estep_log_likelihood</span><span class="p">,</span> <span class="n">prepare_mstep_update_fn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DEFAULT_INIT_FUNCTIONS_GLMHMM</span><span class="p">,</span>
+    <span class="n">GLMHMM_INITIALIZATION_FN_DICT</span><span class="p">,</span>
+    <span class="n">InitFunctionGLM</span><span class="p">,</span>
+    <span class="n">KMeansInitializerGLM</span><span class="p">,</span>
+    <span class="n">generate_glm_hmm_initial_model_params</span><span class="p">,</span>
+    <span class="n">kmeans_glm_params_init</span><span class="p">,</span>
+    <span class="n">kmeans_scale_init</span><span class="p">,</span>
+    <span class="n">setup_glm_hmm_initialization</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLMHMMParams</span><span class="p">,</span> <span class="n">GLMHMMUserParams</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_rate_per_state</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLMHMMValidator</span>
+
+
+<div class="viewcode-block" id="GLMHMM">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GLMHMM</span><span class="p">(</span>
+    <span class="n">BaseHMM</span><span class="p">[</span>
+        <span class="n">GLMHMMUserParams</span><span class="p">,</span> <span class="n">GLMHMMParams</span><span class="p">,</span> <span class="n">GLMHMM_INITIALIZATION_FN_DICT</span><span class="p">,</span> <span class="n">GLMHMMValidator</span>
+    <span class="p">]</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""Generalized Linear Model with Hidden Markov Model (GLM-HMM).</span>
+
+<span class="sd">    This model combines a Generalized Linear Model (GLM) with a Hidden Markov Model (HMM) to capture</span>
+<span class="sd">    state-dependent relationships between predictors and neural or behavioral responses. The GLM-HMM</span>
+<span class="sd">    is suitable for modeling time series data where the relationship between inputs and outputs</span>
+<span class="sd">    varies according to an underlying latent state that evolves over time following Markovian dynamics.</span>
+
+<span class="sd">    The model assumes that at each time step, the system is in one of ``n_states`` discrete hidden states.</span>
+<span class="sd">    Each state has its own GLM parameters (coefficients and intercept), and transitions between states</span>
+<span class="sd">    are governed by a transition probability matrix. The model is fitted using the Expectation-Maximization</span>
+<span class="sd">    (EM) algorithm.</span>
+
+<span class="sd">    Below is a table of the default inverse link function for the available observation models.</span>
+
+<span class="sd">    +---------------------+---------------------------------+</span>
+<span class="sd">    | Observation Model   | Default Inverse Link Function   |</span>
+<span class="sd">    +=====================+=================================+</span>
+<span class="sd">    | Poisson             | :math:`e^x`                     |</span>
+<span class="sd">    +---------------------+---------------------------------+</span>
+<span class="sd">    | Gamma               | :math:`1/x`                     |</span>
+<span class="sd">    +---------------------+---------------------------------+</span>
+<span class="sd">    | Bernoulli           | :math:`1 / (1 + e^{-x})`        |</span>
+<span class="sd">    +---------------------+---------------------------------+</span>
+<span class="sd">    | NegativeBinomial    | :math:`e^x`                     |</span>
+<span class="sd">    +---------------------+---------------------------------+</span>
+<span class="sd">    | Gaussian            | :math:`x`                       |</span>
+<span class="sd">    +---------------------+---------------------------------+</span>
+
+<span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
+
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                           |</span>
+<span class="sd">    +===============+==================+=============================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient                                            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_states :</span>
+<span class="sd">        The number of hidden states in the HMM. Must be a positive integer.</span>
+<span class="sd">    observation_model :</span>
+<span class="sd">        Observation model to use. The model describes the distribution of the response variable.</span>
+<span class="sd">        Default is the Bernoulli model. Alternatives are "Poisson", "Gamma", "NegativeBinomial",</span>
+<span class="sd">        and "Gaussian".</span>
+<span class="sd">    inverse_link_function :</span>
+<span class="sd">        A function that maps the linear combination of predictors into a rate or probability.</span>
+<span class="sd">        The default depends on the observation model, see the table above.</span>
+<span class="sd">    regularizer :</span>
+<span class="sd">        Regularization scheme used in the M-step for the per-state GLM coefficients.</span>
+<span class="sd">        Default is ``"Ridge"``. Pass ``"UnRegularized"`` to disable regularization.</span>
+<span class="sd">    regularizer_strength :</span>
+<span class="sd">        Strength of the regularization applied to the GLM coefficients. Default is</span>
+<span class="sd">        ``1.0``. Ignored when ``regularizer="UnRegularized"``.</span>
+<span class="sd">    dirichlet_initial_proba :</span>
+<span class="sd">        Alpha parameters for the Dirichlet prior over the initial state probabilities.</span>
+<span class="sd">        Shape ``(n_states,)``. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">    dirichlet_transition_proba :</span>
+<span class="sd">        Alpha parameters for the Dirichlet prior over the transition probabilities.</span>
+<span class="sd">        Shape ``(n_states, n_states)``. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">    solver_name :</span>
+<span class="sd">        Solver used for the GLM M-step. The solver must be valid for the chosen</span>
+<span class="sd">        regularizer (see table above). Default is ``None``, in which case the</span>
+<span class="sd">        regularizer's default solver is selected (``"LBFGS"`` for Ridge /</span>
+<span class="sd">        UnRegularized, ``"ProximalGradient"`` for Lasso / ElasticNet /</span>
+<span class="sd">        GroupLasso).</span>
+<span class="sd">    solver_kwargs :</span>
+<span class="sd">        Optional dictionary for keyword arguments that are passed to the solver when instantiated.</span>
+<span class="sd">        E.g., stepsize, tol, acceleration, etc.</span>
+<span class="sd">    maxiter :</span>
+<span class="sd">        Maximum number of EM iterations. Default is 1000.</span>
+<span class="sd">    tol :</span>
+<span class="sd">        Convergence tolerance for the EM algorithm. The algorithm stops when the absolute change</span>
+<span class="sd">        in log-likelihood between consecutive iterations falls below this threshold. Default is 1e-8.</span>
+<span class="sd">    seed :</span>
+<span class="sd">        JAX PRNG key for random number generation during initialization. Default is</span>
+<span class="sd">        ``jax.random.PRNGKey(123)``.</span>
+<span class="sd">    hmm_initialization_funcs : dict, optional</span>
+<span class="sd">        Dictionary of initialization functions for HMM probabilities (initial and</span>
+<span class="sd">        transition). Included for scikit-learn compatibility; prefer configuring via the</span>
+<span class="sd">        :meth:`setup` method after construction. If ``None``, defaults from</span>
+<span class="sd">        ``DEFAULT_INIT_FUNCTIONS`` are used.</span>
+<span class="sd">    model_initialization_funcs : dict, optional</span>
+<span class="sd">        Dictionary of initialization functions for the GLM-specific parameters</span>
+<span class="sd">        (coefficients, intercept, and scale). Included for scikit-learn compatibility;</span>
+<span class="sd">        prefer configuring via the :meth:`setup` method after construction. If ``None``,</span>
+<span class="sd">        defaults from ``DEFAULT_INIT_FUNCTIONS_GLMHMM`` are used.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    transition_prob_ :</span>
+<span class="sd">        Transition probability matrix of shape ``(n_states, n_states)``. Entry ``[i, j]`` represents</span>
+<span class="sd">        the probability of transitioning from state ``i`` to state ``j``.</span>
+<span class="sd">    initial_prob_ :</span>
+<span class="sd">        Initial state probability vector of shape ``(n_states,)``. Entry ``[i]`` represents</span>
+<span class="sd">        the probability of starting in state ``i``.</span>
+<span class="sd">    coef_ :</span>
+<span class="sd">        GLM coefficients for each state, shape ``(n_features, n_states)``.</span>
+<span class="sd">    intercept_ :</span>
+<span class="sd">        GLM intercepts (bias terms) for each state, shape ``(n_states,)``.</span>
+<span class="sd">    solver_state_ :</span>
+<span class="sd">        State of the solver after fitting. May include details like optimization error.</span>
+<span class="sd">    scale_ :</span>
+<span class="sd">        Scale parameter for the observation model, shape ``(n_states,)``.</span>
+<span class="sd">    dof_resid_ :</span>
+<span class="sd">        Degrees of freedom for the residuals.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    To bypass the initialization functions entirely and provide parameter arrays</span>
+<span class="sd">    directly, pass them to the ``fit()`` method::</span>
+
+<span class="sd">        model.fit(X, y, init_params=my_params)</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If ``n_states`` is not a positive integer.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If provided ``regularizer`` or ``observation_model`` are not valid.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If ``seed`` is not a valid JAX PRNG key.</span>
+<span class="sd">    KeyError</span>
+<span class="sd">        If ``hmm_initialization_funcs`` or ``model_initialization_funcs`` contains keys</span>
+<span class="sd">        that are not valid for their respective default dictionary.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If any ``*_kwargs`` entry in either initialization-funcs dictionary contains</span>
+<span class="sd">        keyword arguments that don't match the signature of the corresponding</span>
+<span class="sd">        initialization function.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If ``maxiter`` is not a positive integer.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If ``tol`` is not a positive float.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    **Fit a GLM-HMM**</span>
+
+<span class="sd">    Basic model fitting with the default Bernoulli observation model. The number</span>
+<span class="sd">    of hidden states is the only required argument; ``coef_`` carries one column</span>
+<span class="sd">    per state, and the HMM transition matrix and initial distribution are exposed</span>
+<span class="sd">    as fitted attributes.</span>
+
+<span class="sd">    &gt;&gt;&gt; import jax</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">    &gt;&gt;&gt; np.random.seed(123)</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(200, 4))</span>
+<span class="sd">    &gt;&gt;&gt; y = np.random.binomial(n=1, p=0.5, size=200)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
+<span class="sd">    (4, 2)</span>
+<span class="sd">    &gt;&gt;&gt; model.transition_prob_.shape</span>
+<span class="sd">    (2, 2)</span>
+<span class="sd">    &gt;&gt;&gt; model.initial_prob_.shape</span>
+<span class="sd">    (2,)</span>
+
+<span class="sd">    **Customize the Observation Model**</span>
+
+<span class="sd">    Specify the observation model as a string:</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2, observation_model="Poisson")</span>
+<span class="sd">    &gt;&gt;&gt; model.observation_model</span>
+<span class="sd">    PoissonObservations()</span>
+
+<span class="sd">    Or pass the observation model object directly:</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(</span>
+<span class="sd">    ...     n_states=2, observation_model=nmo.observation_models.PoissonObservations()</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; model.observation_model</span>
+<span class="sd">    PoissonObservations()</span>
+
+<span class="sd">    **Customize the Inverse Link Function**</span>
+
+<span class="sd">    Use a soft-plus inverse link function instead of the observation-model default:</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2, inverse_link_function=jax.nn.softplus)</span>
+<span class="sd">    &gt;&gt;&gt; model.inverse_link_function.__name__</span>
+<span class="sd">    'softplus'</span>
+
+<span class="sd">    **Change the Regularization**</span>
+
+<span class="sd">    Regularization applies to the per-state GLM coefficients. The default is</span>
+<span class="sd">    Ridge with strength ``1.0``. Tune the strength:</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2, regularizer_strength=0.1).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model.regularizer, float(model.regularizer_strength)</span>
+<span class="sd">    (Ridge(), 0.1)</span>
+
+<span class="sd">    Or switch to Lasso for sparse per-state coefficients (Lasso requires a</span>
+<span class="sd">    proximal solver):</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(</span>
+<span class="sd">    ...     n_states=2,</span>
+<span class="sd">    ...     regularizer="Lasso",</span>
+<span class="sd">    ...     regularizer_strength=0.01,</span>
+<span class="sd">    ...     solver_name="ProximalGradient",</span>
+<span class="sd">    ... ).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model.regularizer</span>
+<span class="sd">    Lasso()</span>
+
+<span class="sd">    **Select a Solver**</span>
+
+<span class="sd">    The solver is used for the M-step inside EM. Pick LBFGS for potentially</span>
+<span class="sd">    faster convergence on smooth losses:</span>
+
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2, solver_name="LBFGS").fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model.solver_name</span>
+<span class="sd">    'LBFGS'</span>
+
+<span class="sd">    **Fit Across Multiple Sessions**</span>
+
+<span class="sd">    Mark session boundaries with ``session_starts`` so the HMM resets at each</span>
+<span class="sd">    new session start instead of treating the data as a single chain. Pass</span>
+<span class="sd">    either a boolean mask of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">    session start, or an integer array of session-start indices — the two</span>
+<span class="sd">    are equivalent:</span>
+
+<span class="sd">    &gt;&gt;&gt; is_new_mask = np.zeros(200, dtype=bool)</span>
+<span class="sd">    &gt;&gt;&gt; is_new_mask[0] = True</span>
+<span class="sd">    &gt;&gt;&gt; is_new_mask[100] = True</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=is_new_mask)</span>
+<span class="sd">    &gt;&gt;&gt; # Equivalent: pass the starts as integer indices.</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=np.array([0, 100]))</span>
+
+<span class="sd">    **Decode Hidden States**</span>
+
+<span class="sd">    Recover the most-likely state sequence (Viterbi-style) or the smoothed</span>
+<span class="sd">    posterior probabilities from the forward-backward pass:</span>
+
+<span class="sd">    &gt;&gt;&gt; states = model.decode_state(X, y, session_starts=is_new_mask)</span>
+<span class="sd">    &gt;&gt;&gt; states.shape</span>
+<span class="sd">    (200, 2)</span>
+<span class="sd">    &gt;&gt;&gt; post = model.smooth_proba(X, y, session_starts=is_new_mask)</span>
+<span class="sd">    &gt;&gt;&gt; post.shape</span>
+<span class="sd">    (200, 2)</span>
+
+<span class="sd">    **Simulate from the Fitted Model**</span>
+
+<span class="sd">    Sample a hidden-state trajectory and observations conditioned on inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; activity, rates, sim_states = model.simulate(</span>
+<span class="sd">    ...     jax.random.key(0), X, state_format="index"</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; activity.shape, sim_states.shape</span>
+<span class="sd">    ((200,), (200,))</span>
+
+
+<span class="sd">    **Use a Dict of Arrays as Input**</span>
+
+<span class="sd">    Features can be passed as any JAX pytree of 2-D arrays; the fitted ``coef_``</span>
+<span class="sd">    will share the same pytree structure, with the trailing axis indexing states:</span>
+
+<span class="sd">    &gt;&gt;&gt; X_dict = {"input_1": X[:, :2], "input_2": X[:, 2:]}</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X_dict, y)</span>
+<span class="sd">    &gt;&gt;&gt; type(model.coef_)</span>
+<span class="sd">    &lt;class 'dict'&gt;</span>
+<span class="sd">    """</span>
+
+    <span class="n">_validator_class</span> <span class="o">=</span> <span class="n">GLMHMMValidator</span>
+    <span class="n">_model_default_init_dict</span> <span class="o">=</span> <span class="n">DEFAULT_INIT_FUNCTIONS_GLMHMM</span>
+    <span class="n">_kmeans_init_class</span> <span class="o">=</span> <span class="n">KMeansInitializerGLM</span>
+
+<div class="viewcode-block" id="GLMHMM.__init__">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_states</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">observation_model</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Observations</span>
+            <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"Poisson"</span><span class="p">,</span> <span class="s2">"Gamma"</span><span class="p">,</span> <span class="s2">"Bernoulli"</span><span class="p">,</span> <span class="s2">"NegativeBinomial"</span><span class="p">,</span> <span class="s2">"Gaussian"</span><span class="p">]</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="s2">"Bernoulli"</span><span class="p">,</span>
+        <span class="n">inverse_link_function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">regularizer</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Ridge"</span><span class="p">,</span>
+        <span class="n">regularizer_strength</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># this is used to regularize GLM coef.</span>
+        <span class="c1"># prior to regularize init prob and transition</span>
+        <span class="n">dirichlet_initial_proba</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, )</span>
+        <span class="n">dirichlet_transition_proba</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+            <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, n_state)</span>
+        <span class="n">solver_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">solver_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">PRNGKey</span><span class="p">(</span><span class="mi">123</span><span class="p">),</span>
+        <span class="n">hmm_initialization_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HMM_INITIALIZATION_FN_DICT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model_initialization_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GLMHMM_INITIALIZATION_FN_DICT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">n_states</span><span class="o">=</span><span class="n">n_states</span><span class="p">,</span>
+            <span class="n">dirichlet_initial_proba</span><span class="o">=</span><span class="n">dirichlet_initial_proba</span><span class="p">,</span>
+            <span class="n">dirichlet_transition_proba</span><span class="o">=</span><span class="n">dirichlet_transition_proba</span><span class="p">,</span>
+            <span class="n">regularizer</span><span class="o">=</span><span class="n">regularizer</span><span class="p">,</span>
+            <span class="n">regularizer_strength</span><span class="o">=</span><span class="n">regularizer_strength</span><span class="p">,</span>
+            <span class="n">solver_name</span><span class="o">=</span><span class="n">solver_name</span><span class="p">,</span>
+            <span class="n">solver_kwargs</span><span class="o">=</span><span class="n">solver_kwargs</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+            <span class="n">hmm_initialization_funcs</span><span class="o">=</span><span class="n">hmm_initialization_funcs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span> <span class="o">=</span> <span class="n">observation_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inverse_link_function</span> <span class="o">=</span> <span class="n">inverse_link_function</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_initialization_funcs</span> <span class="o">=</span> <span class="n">model_initialization_funcs</span>
+
+        <span class="c1"># fit attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span><span class="p">:</span> <span class="n">NamedTuple</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dof_resid_</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># cache the log-like</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_like_cache</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_likelihood</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GLMHMMParams</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Compute the log-likelihood of the data given the model parameters.</span>
+
+<span class="sd">        Use cached values to avoid unnecessary computations.</span>
+<span class="sd">        """</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">ll_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_like_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ll_func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ll_func</span> <span class="o">=</span> <span class="n">prepare_estep_log_likelihood</span><span class="p">(</span>
+                <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_like_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ll_func</span>
+        <span class="k">return</span> <span class="n">ll_func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GLMHMM.setup">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.setup">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_proba_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Literal</span><span class="p">[</span><span class="s2">"uniform"</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">,</span> <span class="s2">"dirichlet"</span><span class="p">,</span> <span class="s2">"kmeans"</span><span class="p">]</span> <span class="o">|</span> <span class="n">InitFunctionHMM</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">initial_proba_init_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transition_proba_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Literal</span><span class="p">[</span><span class="s2">"sticky"</span><span class="p">,</span> <span class="s2">"uniform"</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">,</span> <span class="s2">"dirichlet"</span><span class="p">,</span> <span class="s2">"kmeans"</span><span class="p">]</span>
+            <span class="o">|</span> <span class="n">InitFunctionHMM</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transition_proba_init_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">glm_params_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">"random"</span><span class="p">,</span> <span class="s2">"kmeans"</span><span class="p">]</span> <span class="o">|</span> <span class="n">InitFunctionGLM</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">glm_params_init_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">"constant"</span><span class="p">,</span> <span class="s2">"kmeans"</span><span class="p">]</span> <span class="o">|</span> <span class="n">InitFunctionGLM</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_init_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Configure how :meth:`fit` initializes each model parameter.</span>
+
+<span class="sd">        Calling :meth:`setup` is optional: if it is never called, fitting starts from</span>
+<span class="sd">        the default initializers listed below. Use it to change the initialization</span>
+<span class="sd">        strategy by providing either the name of a built-in initialization function</span>
+<span class="sd">        or a custom callable. Each argument left as ``None`` keeps the previously</span>
+<span class="sd">        configured value; only the parameters you supply are updated.</span>
+
+<span class="sd">        Available built-in initialization functions:</span>
+
+<span class="sd">        - ``initial_proba_init``: ``"uniform"`` (default), ``"random"``,</span>
+<span class="sd">          ``"dirichlet"``, ``"kmeans"``.</span>
+<span class="sd">        - ``transition_proba_init``: ``"sticky"`` (default), ``"uniform"``,</span>
+<span class="sd">          ``"random"``, ``"dirichlet"``, ``"kmeans"``.</span>
+<span class="sd">        - ``glm_params_init``: ``"random"`` (default), ``"kmeans"``.</span>
+<span class="sd">        - ``scale_init``: ``"constant"`` (default), ``"kmeans"``.</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        initial_proba_init :</span>
+<span class="sd">            Built-in name or custom callable used to initialize the initial-state</span>
+<span class="sd">            probabilities (shape ``(n_states,)``).</span>
+<span class="sd">        initial_proba_init_kwargs :</span>
+<span class="sd">            Extra keyword arguments forwarded to ``initial_proba_init``.</span>
+<span class="sd">        transition_proba_init :</span>
+<span class="sd">            Built-in name or custom callable used to initialize the transition matrix</span>
+<span class="sd">            (shape ``(n_states, n_states)``).</span>
+<span class="sd">        transition_proba_init_kwargs :</span>
+<span class="sd">            Extra keyword arguments forwarded to ``transition_proba_init``.</span>
+<span class="sd">        glm_params_init :</span>
+<span class="sd">            Built-in name or custom callable used to initialize the per-state GLM</span>
+<span class="sd">            coefficients and intercepts.</span>
+<span class="sd">        glm_params_init_kwargs :</span>
+<span class="sd">            Extra keyword arguments forwarded to ``glm_params_init``.</span>
+<span class="sd">        scale_init :</span>
+<span class="sd">            Built-in name or custom callable used to initialize the scale parameter</span>
+<span class="sd">            of the observation model (e.g. variance for Gaussian, dispersion for</span>
+<span class="sd">            NegativeBinomial). Ignored by observation models without a scale.</span>
+<span class="sd">        scale_init_kwargs :</span>
+<span class="sd">            Extra keyword arguments forwarded to ``scale_init``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If a custom callable's signature is incompatible with the protocol</span>
+<span class="sd">            above, or if a ``*_kwargs`` entry contains keys that don't match the</span>
+<span class="sd">            corresponding initializer's signature.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Custom callables must satisfy one of two ``typing.Protocol`` classes:</span>
+
+<span class="sd">        - ``initial_proba_init`` and ``transition_proba_init`` must satisfy</span>
+<span class="sd">          :class:`~nemos.hmm.initialize_parameters.InitFunctionHMM` and return a</span>
+<span class="sd">          ``jnp.ndarray`` of shape ``(n_states,)`` or ``(n_states, n_states)``</span>
+<span class="sd">          respectively.</span>
+<span class="sd">        - ``glm_params_init`` and ``scale_init`` must satisfy</span>
+<span class="sd">          :class:`~nemos.glm_hmm.initialize_parameters.InitFunctionGLM`.</span>
+<span class="sd">          ``glm_params_init`` returns ``(coef, intercept)`` matched to the design</span>
+<span class="sd">          and ``n_states``; ``scale_init`` returns the scale array for the</span>
+<span class="sd">          observation model.</span>
+
+<span class="sd">        To inspect a protocol's signature, import and ``help()`` it::</span>
+
+<span class="sd">            from nemos.hmm.initialize_parameters import InitFunctionHMM</span>
+<span class="sd">            from nemos.glm_hmm.initialize_parameters import InitFunctionGLM</span>
+<span class="sd">            help(InitFunctionHMM)  # or help(InitFunctionGLM)</span>
+
+<span class="sd">        All arguments must appear in the function signature even when unused, so the</span>
+<span class="sd">        framework can supply them uniformly.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Switch a parameter to a different built-in scheme by passing its label:</span>
+
+<span class="sd">        &gt;&gt;&gt; from nemos.glm_hmm import GLMHMM</span>
+<span class="sd">        &gt;&gt;&gt; model = GLMHMM(n_states=3)</span>
+<span class="sd">        &gt;&gt;&gt; model.setup(initial_proba_init="random", glm_params_init="kmeans")</span>
+
+<span class="sd">        Plug in a custom callable matching the GLM-side protocol:</span>
+
+<span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
+<span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
+<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
+<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ... ):</span>
+<span class="sd">        ...     coef = jnp.zeros((X.shape[1], n_states))</span>
+<span class="sd">        ...     intercept = jnp.zeros((n_states,))</span>
+<span class="sd">        ...     return coef, intercept</span>
+<span class="sd">        &gt;&gt;&gt; model.setup(glm_params_init=my_glm_init)</span>
+<span class="sd">        """</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+            <span class="n">initial_proba_init</span><span class="o">=</span><span class="n">initial_proba_init</span><span class="p">,</span>
+            <span class="n">initial_proba_init_kwargs</span><span class="o">=</span><span class="n">initial_proba_init_kwargs</span><span class="p">,</span>
+            <span class="n">transition_proba_init</span><span class="o">=</span><span class="n">transition_proba_init</span><span class="p">,</span>
+            <span class="n">transition_proba_init_kwargs</span><span class="o">=</span><span class="n">transition_proba_init_kwargs</span><span class="p">,</span>
+            <span class="n">glm_params_init</span><span class="o">=</span><span class="n">glm_params_init</span><span class="p">,</span>
+            <span class="n">glm_params_init_kwargs</span><span class="o">=</span><span class="n">glm_params_init_kwargs</span><span class="p">,</span>
+            <span class="n">scale_init</span><span class="o">=</span><span class="n">scale_init</span><span class="p">,</span>
+            <span class="n">scale_init_kwargs</span><span class="o">=</span><span class="n">scale_init_kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_model_setup</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">glm_params_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">glm_params_init_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_init</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_init_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Validate and set GLM-side initialization functions.</span>
+
+<span class="sd">        Derives ``_model_use_kmeans`` from the identity of the stored callables so the</span>
+<span class="sd">        flag stays accurate regardless of whether the user passed the string ``"kmeans"``</span>
+<span class="sd">        or the kmeans callable directly (e.g. when set via the</span>
+<span class="sd">        ``model_initialization_funcs`` property).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span> <span class="o">=</span> <span class="n">setup_glm_hmm_initialization</span><span class="p">(</span>
+            <span class="n">glm_params_init</span><span class="o">=</span><span class="n">glm_params_init</span><span class="p">,</span>
+            <span class="n">glm_params_init_kwargs</span><span class="o">=</span><span class="n">glm_params_init_kwargs</span><span class="p">,</span>
+            <span class="n">scale_init</span><span class="o">=</span><span class="n">scale_init</span><span class="p">,</span>
+            <span class="n">scale_init_kwargs</span><span class="o">=</span><span class="n">scale_init_kwargs</span><span class="p">,</span>
+            <span class="n">init_funcs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_use_kmeans</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"glm_params_init"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span><span class="p">[</span><span class="s2">"glm_params_init"</span><span class="p">]</span>
+                <span class="ow">is</span> <span class="n">kmeans_glm_params_init</span>
+            <span class="p">),</span>
+            <span class="s2">"scale_init"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span><span class="p">[</span><span class="s2">"scale_init"</span><span class="p">]</span> <span class="ow">is</span> <span class="n">kmeans_scale_init</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">observation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">obs</span><span class="o">.</span><span class="n">Observations</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The observation model governing the emission distribution at each state.</span>
+
+<span class="sd">        Always an instance of an :class:`~nemos.observation_models.Observations`</span>
+<span class="sd">        subclass. The same distribution is used across all hidden states (per-state</span>
+<span class="sd">        differences come from the state-specific coefficients/intercept/scale, not</span>
+<span class="sd">        from the family). If a string alias was passed at construction time it is</span>
+<span class="sd">        resolved to the corresponding instance here.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span>
+
+    <span class="nd">@observation_model</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">observation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">:</span> <span class="n">obs</span><span class="o">.</span><span class="n">Observations</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Validate and set the observation model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation :</span>
+<span class="sd">            Either an :class:`~nemos.observation_models.Observations` instance,</span>
+<span class="sd">            or a string alias from</span>
+<span class="sd">            ``{"Poisson", "Gamma", "Bernoulli", "NegativeBinomial", "Gaussian"}``.</span>
+<span class="sd">            String aliases are instantiated via</span>
+<span class="sd">            :func:`nemos.observation_models.instantiate_observation_model`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AttributeError, TypeError</span>
+<span class="sd">            If the instance does not implement the</span>
+<span class="sd">            :class:`~nemos.observation_models.Observations` interface (checked</span>
+<span class="sd">            via :func:`nemos.observation_models.check_observation_model`).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span> <span class="o">=</span> <span class="n">instantiate_observation_model</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># check that the model has the required attributes</span>
+        <span class="c1"># and that the attribute can be called</span>
+        <span class="n">obs</span><span class="o">.</span><span class="n">check_observation_model</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span> <span class="o">=</span> <span class="n">observation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse_link_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Inverse link function mapping the linear predictor to the emission space.</span>
+
+<span class="sd">        Always a callable. If ``None`` was passed at construction time, this is</span>
+<span class="sd">        resolved to the observation model's default (e.g. ``jnp.exp`` for Poisson,</span>
+<span class="sd">        ``1 / x`` for Gamma, ``jax.nn.sigmoid`` for Bernoulli). Shared across all</span>
+<span class="sd">        hidden states.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span>
+
+    <span class="nd">@inverse_link_function</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse_link_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inverse_link_function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Validate and set the inverse link function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inverse_link_function :</span>
+<span class="sd">            One of:</span>
+
+<span class="sd">            - ``None`` — use the observation model's default inverse link.</span>
+<span class="sd">            - ``str`` — name of a built-in (e.g. ``"identity"``, ``"log"``,</span>
+<span class="sd">              ``"logit"``); resolved by</span>
+<span class="sd">              :func:`nemos.inverse_link_function_utils.resolve_inverse_link_function`.</span>
+<span class="sd">            - ``Callable`` — a custom function. Must be JAX-traceable</span>
+<span class="sd">              (differentiable) and return a ``jax.numpy.ndarray`` or scalar</span>
+<span class="sd">              when called on a JAX array.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If the value is neither callable nor a string.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If a callable is non-differentiable or returns an unsupported type.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span> <span class="o">=</span> <span class="n">resolve_inverse_link_function</span><span class="p">(</span>
+            <span class="n">inverse_link_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_model_is_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Ensure the instance has been fitted."""</span>
+        <span class="n">flat_params</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">is_missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flat_params</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_missing</span><span class="p">):</span>
+            <span class="n">param_labels</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">"coef_"</span><span class="p">,</span>
+                <span class="s2">"intercept_"</span><span class="p">,</span>
+                <span class="s2">"scale_"</span><span class="p">,</span>
+            <span class="p">]</span>
+            <span class="n">missing_params</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">p</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">missing</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">param_labels</span><span class="p">,</span> <span class="n">is_missing</span><span class="p">)</span> <span class="k">if</span> <span class="n">missing</span>
+            <span class="p">]</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"This GLMHMM instance is not fitted yet. The following attributes are not set:"</span>
+                <span class="sa">f</span><span class="s2">" </span><span class="si">{</span><span class="n">missing_params</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Please fit the GLM-HMM model first or "</span>
+                <span class="s2">"set the missing attributes."</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_kmeans_extra_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"inverse_link_function"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_link_function</span><span class="p">,</span>
+            <span class="s2">"observation_model"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_model_params_initialization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">random_key</span><span class="p">:</span> <span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">GLMHMMUserParams</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""GLM-HMM initialization."""</span>
+        <span class="n">user_params</span> <span class="o">=</span> <span class="n">generate_glm_hmm_initial_model_params</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">inverse_link_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span><span class="p">,</span>
+            <span class="n">observation_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="p">,</span>
+            <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">,</span>
+            <span class="n">random_key</span><span class="o">=</span><span class="n">random_key</span><span class="p">,</span>
+            <span class="n">init_funcs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">validate_params</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_model_initialization_funcs</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"glm_params_init_custom"</span><span class="p">,</span> <span class="s2">"scale_init_custom"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">user_params</span><span class="p">,</span> <span class="n">validate_params</span>
+
+<div class="viewcode-block" id="GLMHMM.fit">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nap</span><span class="o">.</span><span class="n">Tsd</span><span class="p">],</span>
+        <span class="n">init_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GLMHMMUserParams</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"GLMHMM"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Fit the GLM-HMM via Expectation-Maximization.</span>
+
+<span class="sd">        Runs the EM algorithm until the absolute change in log-likelihood between</span>
+<span class="sd">        consecutive iterations falls below ``tol`` or ``maxiter`` is reached.</span>
+<span class="sd">        Fitted parameters are exposed on the instance as ``coef_``, ``intercept_``,</span>
+<span class="sd">        ``scale_``, ``initial_prob_``, ``transition_prob_``, plus</span>
+<span class="sd">        ``solver_state_`` (EM trace) and ``dof_resid_``.</span>
+
+<span class="sd">        How parameters are initialized:</span>
+
+<span class="sd">        - If ``init_params`` is ``None`` (typical), the per-state GLM parameters</span>
+<span class="sd">          and HMM probabilities are produced by the initializers configured via</span>
+<span class="sd">          :meth:`setup` (or the package defaults when :meth:`setup` was never</span>
+<span class="sd">          called).</span>
+<span class="sd">        - If ``init_params`` is provided, it bypasses the initializers entirely.</span>
+<span class="sd">          It must be a 5-tuple ``(coef, intercept, scale, initial_prob,</span>
+<span class="sd">          transition_prob)`` whose shapes are consistent with ``X``, ``y``, and</span>
+<span class="sd">          ``n_states``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :</span>
+<span class="sd">            Predictors, shape ``(n_time_bins, n_features)``. A pytree of arrays</span>
+<span class="sd">            sharing leading dimension is also accepted; the fitted ``coef_``</span>
+<span class="sd">            mirrors the pytree structure (with a trailing state axis). A pynapple</span>
+<span class="sd">            ``TsdFrame`` is accepted.</span>
+<span class="sd">        y :</span>
+<span class="sd">            Observations, shape ``(n_time_bins,)`` for single neuron or</span>
+<span class="sd">            ``(n_time_bins, n_neurons)`` for population models. A pynapple</span>
+<span class="sd">            ``Tsd``/``TsdFrame`` is accepted.</span>
+<span class="sd">        init_params :</span>
+<span class="sd">            Optional explicit initial parameters as a 5-tuple</span>
+<span class="sd">            ``(coef, intercept, scale, initial_prob, transition_prob)``. When</span>
+<span class="sd">            ``None`` (default), the initializers configured by :meth:`setup`</span>
+<span class="sd">            (or the defaults) are used.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries for the HMM. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``X`` or ``y`` is a pynapple object and ``session_starts`` is</span>
+<span class="sd">            ``None``, the (unique, enforced) ``time_support`` of the pynapple</span>
+<span class="sd">            input determines the session starts. With no pynapple input and</span>
+<span class="sd">            ``session_starts=None``, the whole input is treated as a single</span>
+<span class="sd">            session.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self :</span>
+<span class="sd">            The fitted estimator.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If inputs fail dimensionality, shape, or consistency checks (e.g.</span>
+<span class="sd">            ``coef`` features do not match ``X.shape[1]``, or NaNs appear</span>
+<span class="sd">            mid-epoch).</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If ``init_params`` is not a 5-tuple or has incompatible leaf types.</span>
+
+<span class="sd">        Warns</span>
+<span class="sd">        -----</span>
+<span class="sd">        RuntimeWarning</span>
+<span class="sd">            Emitted when EM runs out of iterations without satisfying the ``tol``</span>
+<span class="sd">            criterion (``solver_state_.iterations == maxiter``). Consider</span>
+<span class="sd">            enabling float64, raising ``maxiter``, or loosening ``tol``.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Basic fit with default Bernoulli observations:</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(200, 4))</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.binomial(n=1, p=0.5, size=200)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model.coef_.shape, model.transition_prob_.shape</span>
+<span class="sd">        ((4, 2), (2, 2))</span>
+
+<span class="sd">        Multiple sessions via explicit ``session_starts``:</span>
+
+<span class="sd">        &gt;&gt;&gt; session_starts = np.array([0, 100])</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=session_starts)</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        setup : Configure the initializers used when ``init_params is None``.</span>
+<span class="sd">        update : Run a single EM iteration (advanced, manual loop).</span>
+<span class="sd">        """</span>
+        <span class="c1"># validate inputs, cast the session boundaries shifting markers off NaN samples,</span>
+        <span class="c1"># then check continuity within each session</span>
+        <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_and_cast_inputs</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># initialize solver</span>
+        <span class="c1"># initialize params if no params are provided</span>
+        <span class="k">if</span> <span class="n">init_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">init_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_specific_initialization</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">init_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_and_cast_params</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_consistency</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">feature_mask_consistency</span><span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_feature_mask"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">init_params</span>
+        <span class="p">)</span>
+
+        <span class="c1"># filter for non-nans, grab data if needed</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_inputs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
+
+        <span class="c1"># set up optimization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_optimizer_and_state</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># run EM</span>
+        <span class="p">(</span>
+            <span class="n">fit_params</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span><span class="o">.</span><span class="n">iterations</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">"The fit did not converge. "</span>
+                <span class="s2">"Consider the following:"</span>
+                <span class="s2">"</span><span class="se">\n</span><span class="s2">1) Enable float64 with ``jax.config.update('jax_enable_x64', True)``"</span>
+                <span class="s2">"</span><span class="se">\n</span><span class="s2">2) Increase the ``maxiter`` parameter (max number of iterations of the EM) "</span>
+                <span class="s2">"or increase the ``tol`` parameter (tolerance)."</span><span class="p">,</span>
+                <span class="ne">RuntimeWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># assign fit attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_model_params</span><span class="p">(</span><span class="n">fit_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dof_resid_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_resid_degrees_of_freedom</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_estimate_resid_degrees_of_freedom</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Estimate the degrees of freedom of the residuals.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self :</span>
+<span class="sd">            A fitted GLM model.</span>
+<span class="sd">        X :</span>
+<span class="sd">            The design matrix.</span>
+<span class="sd">        n_samples :</span>
+<span class="sd">            The number of samples observed. If not provided, n_samples is set to ``X.shape[0]``. If the fit is</span>
+<span class="sd">            batched, the n_samples could be larger than ``X.shape[0]``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            An estimate of the degrees of freedom of the residuals.</span>
+<span class="sd">        """</span>
+        <span class="c1"># Convert a pytree to a design-matrix with pytrees</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"`n_samples` must either `None` or of type `int`. Type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span><span class="si">}</span><span class="s2"> provided "</span>
+                    <span class="s2">"instead!"</span>
+                <span class="p">)</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_params</span><span class="p">()</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">coef</span>
+        <span class="n">coef_leaf</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">coef</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coef_leaf</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">n_neurons</span> <span class="o">=</span> <span class="n">coef_leaf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_neurons</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">dof_intercept_and_hmm</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span> <span class="o">*</span> <span class="n">n_neurons</span>  <span class="c1"># intercept</span>
+            <span class="o">+</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="p">)</span>  <span class="c1"># init prob (n values but sum to 1, so n-1 free values)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span>
+        <span class="p">)</span>  <span class="c1"># transition n n-dim vectors that sum to 1</span>
+
+        <span class="c1"># if the regularizer is lasso use the non-zero</span>
+        <span class="c1"># coef as an estimate of the dof</span>
+        <span class="c1"># see https://arxiv.org/abs/0712.0881</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="p">,</span> <span class="p">(</span><span class="n">GroupLasso</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">)):</span>
+            <span class="n">resid_dof</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">~</span><span class="n">jnp</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+                    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sum</span><span class="p">([</span><span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]),</span>
+                    <span class="n">coef</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="n">resid_dof</span> <span class="o">-</span> <span class="n">dof_intercept_and_hmm</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">):</span>
+            <span class="c1"># for Ridge, use the tot parameters (X.shape[1] + intercept)</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">n_samples</span> <span class="o">-</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_states</span><span class="p">)</span> <span class="o">-</span> <span class="n">dof_intercept_and_hmm</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># for UnRegularized, use the rank</span>
+            <span class="n">rank</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">rank</span> <span class="o">-</span> <span class="n">dof_intercept_and_hmm</span><span class="p">)</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_simulate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">random_key</span><span class="p">:</span> <span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">GLMHMMParams</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Simulate activity vis jax.lax.scan.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        random_key :</span>
+<span class="sd">            JAX random key.</span>
+<span class="sd">        params :</span>
+<span class="sd">            Model parameters.</span>
+<span class="sd">        X :</span>
+<span class="sd">            Design matrix of shape ``(n_time_bins, n_features)``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Boolean array marking session starts.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        simulated_activity :</span>
+<span class="sd">            Simulated observations.</span>
+<span class="sd">        firing_rates :</span>
+<span class="sd">            Predicted rates conditioned on simulated states.</span>
+<span class="sd">        simulated_states :</span>
+<span class="sd">            State indices at each time point.</span>
+<span class="sd">        """</span>
+        <span class="c1"># unpack log probabilities directly (avoid exp then log in categorical)</span>
+        <span class="n">log_initial_prob</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">hmm_params</span><span class="o">.</span><span class="n">log_initial_prob</span>
+        <span class="n">log_transition_prob</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">hmm_params</span><span class="o">.</span><span class="n">log_transition_prob</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">log_scale</span><span class="p">)</span>
+
+        <span class="c1"># pre-compute rates for all states: (n_time_bins, n_states) or (n_time_bins, n_neurons, n_states)</span>
+        <span class="n">all_rates</span> <span class="o">=</span> <span class="n">compute_rate_per_state</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">model_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span>
+        <span class="p">)</span>
+
+        <span class="c1"># pre-generate random keys for all time steps</span>
+        <span class="n">n_time_bins</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">all_keys</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">random_key</span><span class="p">,</span> <span class="n">n_time_bins</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">state_keys</span> <span class="o">=</span> <span class="n">all_keys</span><span class="p">[:</span><span class="n">n_time_bins</span><span class="p">]</span>
+        <span class="n">obs_keys</span> <span class="o">=</span> <span class="n">all_keys</span><span class="p">[</span><span class="n">n_time_bins</span><span class="p">:]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">simulate_step</span><span class="p">(</span><span class="n">carry</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">"""Single simulation step."""</span>
+            <span class="n">prev_state_idx</span> <span class="o">=</span> <span class="n">carry</span>
+            <span class="n">rates_t</span><span class="p">,</span> <span class="n">is_new_sess</span><span class="p">,</span> <span class="n">state_key</span><span class="p">,</span> <span class="n">obs_key</span> <span class="o">=</span> <span class="n">inputs</span>
+
+            <span class="c1"># sample state: log_initial_prob if new session, else log transition from prev</span>
+            <span class="n">log_state_probs</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
+                <span class="n">is_new_sess</span><span class="p">,</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="n">log_initial_prob</span><span class="p">,</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="n">log_transition_prob</span><span class="p">[</span><span class="n">prev_state_idx</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">state_idx</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">categorical</span><span class="p">(</span><span class="n">state_key</span><span class="p">,</span> <span class="n">log_state_probs</span><span class="p">)</span>
+
+            <span class="c1"># get rate and scale for sampled state</span>
+            <span class="c1"># handles both (n_states,) and (n_neurons, n_states)</span>
+            <span class="n">rate</span> <span class="o">=</span> <span class="n">rates_t</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">state_idx</span><span class="p">]</span>
+            <span class="n">state_scale</span> <span class="o">=</span> <span class="n">scale</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">state_idx</span><span class="p">]</span>
+
+            <span class="c1"># sample observation</span>
+            <span class="n">y_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="o">.</span><span class="n">sample_generator</span><span class="p">(</span>
+                <span class="n">key</span><span class="o">=</span><span class="n">obs_key</span><span class="p">,</span> <span class="n">predicted_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">state_scale</span>
+            <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">state_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">y_t</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">state_idx</span><span class="p">)</span>
+
+        <span class="c1"># initialize carry (state will be overwritten at first step since session_starts[0]=True)</span>
+        <span class="n">init_carry</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># run scan</span>
+        <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span><span class="p">,</span> <span class="n">simulated_states</span><span class="p">)</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span>
+            <span class="n">simulate_step</span><span class="p">,</span> <span class="n">init_carry</span><span class="p">,</span> <span class="p">(</span><span class="n">all_rates</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">,</span> <span class="n">state_keys</span><span class="p">,</span> <span class="n">obs_keys</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span><span class="p">,</span> <span class="n">simulated_states</span>
+
+<div class="viewcode-block" id="GLMHMM.simulate">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.simulate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">random_key</span><span class="p">:</span> <span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+        <span class="n">feedforward_input</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+        <span class="n">state_format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"one-hot"</span><span class="p">,</span> <span class="s2">"index"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"index"</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jax</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Simulate neural activity and hidden states from the model.</span>
+
+<span class="sd">        Simulates a trajectory through the hidden state space according to the</span>
+<span class="sd">        HMM dynamics, then generates observations from the GLM emission model</span>
+<span class="sd">        conditioned on each state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        random_key :</span>
+<span class="sd">            JAX random key for reproducible simulation.</span>
+<span class="sd">        feedforward_input :</span>
+<span class="sd">            Design matrix of shape ``(n_time_bins, n_features)``. If a pynapple</span>
+<span class="sd">            Tsd/TsdFrame is provided, session boundaries are detected from</span>
+<span class="sd">            ``time_support`` and the hidden state chain is reset at each session start.</span>
+<span class="sd">        state_format :</span>
+<span class="sd">            Format for the returned states:</span>
+
+<span class="sd">            - ``"index"``: Integer array of shape ``(n_time_bins,)`` with state indices.</span>
+<span class="sd">            - ``"one-hot"``: Binary array of shape ``(n_time_bins, n_states)``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``feedforward_input`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``feedforward_input`` is a pynapple object and ``session_starts``</span>
+<span class="sd">            is ``None``, the ``time_support`` determines the session starts. With</span>
+<span class="sd">            no pynapple input and ``session_starts=None``, the whole input is</span>
+<span class="sd">            treated as a single session.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        simulated_activity :</span>
+<span class="sd">            Simulated observations from the emission model. Shape ``(n_time_bins,)``</span>
+<span class="sd">            for single neuron or ``(n_time_bins, n_neurons)`` for population models.</span>
+<span class="sd">        firing_rates :</span>
+<span class="sd">            Predicted firing rates conditioned on the simulated states.</span>
+<span class="sd">            Shape ``(n_time_bins,)`` or ``(n_time_bins, n_neurons)``.</span>
+<span class="sd">        simulated_states :</span>
+<span class="sd">            Simulated hidden state trajectory. Shape depends on ``state_format``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the model has not been fit.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import jax</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 3)</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.binomial(1, 0.5, 100)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2, observation_model="Bernoulli")</span>
+<span class="sd">        &gt;&gt;&gt; model = model.fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; key = jax.random.key(0)</span>
+<span class="sd">        &gt;&gt;&gt; X_new = np.random.randn(50, 3)</span>
+<span class="sd">        &gt;&gt;&gt; activity, rates, states = model.simulate(key, X_new)</span>
+<span class="sd">        &gt;&gt;&gt; activity.shape</span>
+<span class="sd">        (50,)</span>
+<span class="sd">        &gt;&gt;&gt; states.shape</span>
+<span class="sd">        (50,)</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        decode_state : Infer most likely state sequence from observations.</span>
+<span class="sd">        smooth_proba : Compute posterior state probabilities.</span>
+<span class="sd">        """</span>
+        <span class="n">_check_state_format</span><span class="p">(</span><span class="n">state_format</span><span class="p">)</span>
+
+        <span class="n">params</span><span class="p">,</span> <span class="n">feedforward_input</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_and_prepare_inputs</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># preprocess inputs (drop nans, extract data)</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_inputs</span><span class="p">(</span>
+            <span class="n">feedforward_input</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">session_starts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># run simulation</span>
+        <span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span><span class="p">,</span> <span class="n">simulated_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulate</span><span class="p">(</span>
+            <span class="n">random_key</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">session_starts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># format state output</span>
+        <span class="k">if</span> <span class="n">state_format</span> <span class="o">==</span> <span class="s2">"one-hot"</span><span class="p">:</span>
+            <span class="n">simulated_states</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span>
+                <span class="n">simulated_states</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">int32</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">simulated_activity</span><span class="p">,</span> <span class="n">firing_rates</span><span class="p">,</span> <span class="n">simulated_states</span></div>
+
+
+<div class="viewcode-block" id="GLMHMM.smooth_proba">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.smooth_proba">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">smooth_proba</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">],</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nap</span><span class="o">.</span><span class="n">Tsd</span><span class="p">],</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Compute smoothing posterior probabilities over hidden states.</span>
+
+<span class="sd">        Computes the probability of being in each hidden state at each time bin,</span>
+<span class="sd">        conditioned on the entire observed sequence. Uses the forward-backward</span>
+<span class="sd">        algorithm to incorporate information from both past and future observations,</span>
+<span class="sd">        providing optimal state estimates given all available data.</span>
+
+<span class="sd">        The smoothing posteriors answer: "Given all observations, what is the</span>
+<span class="sd">        probability that the system was in state ``k`` at time ``t``?"</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :</span>
+<span class="sd">            Predictors, shape ``(n_time_bins, n_features)``. A pytree of 2-D</span>
+<span class="sd">            arrays sharing the leading time axis is also accepted.</span>
+<span class="sd">        y :</span>
+<span class="sd">            Observations, shape ``(n_time_bins,)`` for a single neuron or</span>
+<span class="sd">            ``(n_time_bins, n_neurons)`` for a population model. A pynapple</span>
+<span class="sd">            ``Tsd``/``TsdFrame`` is accepted; session boundaries are then</span>
+<span class="sd">            inferred from ``time_support``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``None``, the entire input is treated as a single session.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        posteriors :</span>
+<span class="sd">            Smoothing posterior probabilities, shape ``(n_time_bins, n_states)``.</span>
+<span class="sd">            Each row sums to 1. Returns a pynapple ``TsdFrame`` (with columns</span>
+<span class="sd">            named ``"state_0"``, ``"state_1"``, …) when the inputs are pynapple</span>
+<span class="sd">            objects; otherwise returns a JAX array.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the model has not been fitted (call :meth:`fit` first).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` or ``y`` contain NaN values in the interior of an epoch</span>
+<span class="sd">            (boundary NaNs are allowed and removed before inference).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` and ``y`` have inconsistent shapes or feature counts.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        filter_proba :</span>
+<span class="sd">            Compute filtering posteriors (conditioned on past observations only).</span>
+<span class="sd">        decode_state :</span>
+<span class="sd">            Compute the most likely state sequence via Viterbi decoding.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Smoothing uses all data (non-causal) and gives better state estimates than</span>
+<span class="sd">        filtering. For online or real-time applications use :meth:`filter_proba`</span>
+<span class="sd">        instead. Session boundaries reset the HMM chain so that no information</span>
+<span class="sd">        crosses session borders.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Fit a GLM-HMM and compute smoothing posteriors:</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; posteriors = model.smooth_proba(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; posteriors.shape</span>
+<span class="sd">        (100, 3)</span>
+<span class="sd">        &gt;&gt;&gt; bool(np.allclose(posteriors.sum(axis=1), 1.0))</span>
+<span class="sd">        True</span>
+
+<span class="sd">        With pynapple inputs the result is returned as a ``TsdFrame``:</span>
+
+<span class="sd">        &gt;&gt;&gt; import pynapple as nap</span>
+<span class="sd">        &gt;&gt;&gt; t = np.arange(100) * 0.01</span>
+<span class="sd">        &gt;&gt;&gt; X_tsd = nap.TsdFrame(t=t, d=X)</span>
+<span class="sd">        &gt;&gt;&gt; y_tsd = nap.Tsd(t=t, d=y.astype(float))</span>
+<span class="sd">        &gt;&gt;&gt; type(model.smooth_proba(X_tsd, y_tsd)).__name__</span>
+<span class="sd">        'TsdFrame'</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">smooth_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GLMHMM.filter_proba">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.filter_proba">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_proba</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">],</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">nap</span><span class="o">.</span><span class="n">Tsd</span><span class="p">],</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Compute filtering posterior probabilities over hidden states.</span>
+
+<span class="sd">        Computes the probability of being in each hidden state at each time bin,</span>
+<span class="sd">        conditioned only on observations up to that time bin. Uses the forward</span>
+<span class="sd">        pass of the forward-backward algorithm, providing causal (online) state</span>
+<span class="sd">        estimates that rely solely on past and current observations.</span>
+
+<span class="sd">        The filtering posteriors answer: "Given observations up to time ``t``,</span>
+<span class="sd">        what is the probability that the system is in state ``k`` at time ``t``?"</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :</span>
+<span class="sd">            Predictors, shape ``(n_time_bins, n_features)``. A pytree of 2-D</span>
+<span class="sd">            arrays sharing the leading time axis is also accepted.</span>
+<span class="sd">        y :</span>
+<span class="sd">            Observations, shape ``(n_time_bins,)`` for a single neuron or</span>
+<span class="sd">            ``(n_time_bins, n_neurons)`` for a population model. A pynapple</span>
+<span class="sd">            ``Tsd``/``TsdFrame`` is accepted; session boundaries are then</span>
+<span class="sd">            inferred from ``time_support``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``None``, the entire input is treated as a single session.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        posteriors :</span>
+<span class="sd">            Filtering posterior probabilities, shape ``(n_time_bins, n_states)``.</span>
+<span class="sd">            Each row sums to 1. Returns a pynapple ``TsdFrame`` (with columns</span>
+<span class="sd">            named ``"state_0"``, ``"state_1"``, …) when the inputs are pynapple</span>
+<span class="sd">            objects; otherwise returns a JAX array.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the model has not been fitted (call :meth:`fit` first).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` or ``y`` contain NaN values in the interior of an epoch</span>
+<span class="sd">            (boundary NaNs are allowed and removed before inference).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` and ``y`` have inconsistent shapes or feature counts.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        smooth_proba :</span>
+<span class="sd">            Compute smoothing posteriors (conditioned on all observations).</span>
+<span class="sd">        decode_state :</span>
+<span class="sd">            Compute the most likely state sequence via Viterbi decoding.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Filtering is causal: each posterior at time ``t`` uses only observations</span>
+<span class="sd">        up to ``t``, making it suitable for online or real-time applications.</span>
+<span class="sd">        For retrospective analysis where all data are available, :meth:`smooth_proba`</span>
+<span class="sd">        gives better state estimates. Session boundaries reset the HMM chain so</span>
+<span class="sd">        that no information crosses session borders.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Fit a GLM-HMM and compute filtering posteriors (causal/online):</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; filt = model.filter_proba(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; filt.shape</span>
+<span class="sd">        (100, 3)</span>
+<span class="sd">        &gt;&gt;&gt; bool(np.allclose(filt.sum(axis=1), 1.0))</span>
+<span class="sd">        True</span>
+
+<span class="sd">        With pynapple inputs the result is returned as a ``TsdFrame``:</span>
+
+<span class="sd">        &gt;&gt;&gt; import pynapple as nap</span>
+<span class="sd">        &gt;&gt;&gt; t = np.arange(100) * 0.01</span>
+<span class="sd">        &gt;&gt;&gt; X_tsd = nap.TsdFrame(t=t, d=X)</span>
+<span class="sd">        &gt;&gt;&gt; y_tsd = nap.Tsd(t=t, d=y.astype(float))</span>
+<span class="sd">        &gt;&gt;&gt; type(model.filter_proba(X_tsd, y_tsd)).__name__</span>
+<span class="sd">        'TsdFrame'</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">filter_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GLMHMM.decode_state">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.decode_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">],</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">state_format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"one-hot"</span><span class="p">,</span> <span class="s2">"index"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"one-hot"</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Compute the most likely hidden state sequence (Viterbi decoding).</span>
+
+<span class="sd">        Finds the single most likely sequence of hidden states that best explains</span>
+<span class="sd">        the observed data. Uses the Viterbi (max-sum) algorithm to compute the</span>
+<span class="sd">        state sequence that maximizes the joint probability of states and observations.</span>
+
+<span class="sd">        Unlike :meth:`smooth_proba` and :meth:`filter_proba`, which return a</span>
+<span class="sd">        probability distribution over states at each time bin, this method makes</span>
+<span class="sd">        a hard assignment to the single globally optimal state path.</span>
+
+<span class="sd">        The decoded states answer: "What is the most likely sequence of states</span>
+<span class="sd">        that generated the observed data?"</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X :</span>
+<span class="sd">            Predictors, shape ``(n_time_bins, n_features)``. A pytree of 2-D</span>
+<span class="sd">            arrays sharing the leading time axis is also accepted.</span>
+<span class="sd">        y :</span>
+<span class="sd">            Observations, shape ``(n_time_bins,)`` for a single neuron or</span>
+<span class="sd">            ``(n_time_bins, n_neurons)`` for a population model. A pynapple</span>
+<span class="sd">            ``Tsd``/``TsdFrame`` is accepted; session boundaries are then</span>
+<span class="sd">            inferred from ``time_support``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``None``, the entire input is treated as a single session.</span>
+<span class="sd">        state_format :</span>
+<span class="sd">            Format of the returned state sequence:</span>
+
+<span class="sd">            - ``"one-hot"`` (default): binary array of shape</span>
+<span class="sd">              ``(n_time_bins, n_states)`` with a single 1 per row.</span>
+<span class="sd">            - ``"index"``: integer array of shape ``(n_time_bins,)`` with</span>
+<span class="sd">              values in ``[0, n_states - 1]``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        decoded_states :</span>
+<span class="sd">            Most likely state sequence. Shape and dtype depend on</span>
+<span class="sd">            ``state_format`` (see above). Returns a pynapple ``TsdFrame``</span>
+<span class="sd">            (columns ``"state_0"``, ``"state_1"``, …) for ``"one-hot"`` format</span>
+<span class="sd">            or a pynapple ``Tsd`` for ``"index"`` format when the inputs are</span>
+<span class="sd">            pynapple objects; otherwise returns a JAX array.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the model has not been fitted (call :meth:`fit` first).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``state_format`` is not ``"one-hot"`` or ``"index"``.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` or ``y`` contain NaN values in the interior of an epoch</span>
+<span class="sd">            (boundary NaNs are allowed and removed before inference).</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``X`` and ``y`` have inconsistent shapes or feature counts.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        smooth_proba :</span>
+<span class="sd">            Compute smoothing posteriors (soft, probabilistic state assignments).</span>
+<span class="sd">        filter_proba :</span>
+<span class="sd">            Compute filtering posteriors (causal, conditioned on past observations).</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Viterbi decoding finds the globally optimal state *sequence*, which can</span>
+<span class="sd">        differ from the sequence of states that are individually most probable</span>
+<span class="sd">        at each time bin (as returned by :meth:`smooth_proba`). For uncertainty</span>
+<span class="sd">        estimates use :meth:`smooth_proba` instead. Session boundaries reset the</span>
+<span class="sd">        Viterbi recursion so that no path crosses session borders.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Decode the most likely state sequence as integer indices:</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; states = model.decode_state(X, y, state_format="index")</span>
+<span class="sd">        &gt;&gt;&gt; states.shape</span>
+<span class="sd">        (100,)</span>
+
+<span class="sd">        One-hot output (default):</span>
+
+<span class="sd">        &gt;&gt;&gt; states_onehot = model.decode_state(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; states_onehot.shape</span>
+<span class="sd">        (100, 3)</span>
+<span class="sd">        &gt;&gt;&gt; bool(np.all(states_onehot.sum(axis=1) == 1))</span>
+<span class="sd">        True</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">decode_state</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">,</span> <span class="n">state_format</span><span class="o">=</span><span class="n">state_format</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GLMHMM.save_params">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.save_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Save GLM-HMM model parameters and fit state to a .npz file.</span>
+
+<span class="sd">        Persists hyperparameters returned by :meth:`get_params` together with the</span>
+<span class="sd">        fitted attributes (``coef_``, ``intercept_``, ``scale_``, ``initial_prob_``,</span>
+<span class="sd">        ``transition_prob_``, ``dof_resid_``). The ``solver_state_`` is intentionally</span>
+<span class="sd">        excluded as it is solver-specific and not needed to reuse the fitted model.</span>
+<span class="sd">        The file can be reloaded with :func:`nemos.load_model`.</span>
+
+<span class="sd">        If the model was configured with custom initialization functions, pass them</span>
+<span class="sd">        back to :func:`nemos.load_model` via ``mapping_dict`` to restore them (see</span>
+<span class="sd">        example below). Built-in initializers are resolved automatically.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename :</span>
+<span class="sd">            Path of the output file (``.npz`` format).</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Default round-trip — built-in initializers are resolved automatically on</span>
+<span class="sd">        load:</span>
+
+<span class="sd">        &gt;&gt;&gt; import os, tempfile</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(80, 3))</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.binomial(n=1, p=0.5, size=80)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; with tempfile.TemporaryDirectory() as d:</span>
+<span class="sd">        ...     path = os.path.join(d, "glmhmm.npz")</span>
+<span class="sd">        ...     model.save_params(path)</span>
+<span class="sd">        ...     loaded = nmo.load_model(path)</span>
+<span class="sd">        &gt;&gt;&gt; bool(np.allclose(model.coef_, loaded.coef_))</span>
+<span class="sd">        True</span>
+
+<span class="sd">        Round-trip with a custom GLM-params initializer. Pass it back as a partial</span>
+<span class="sd">        dict under ``model_initialization_funcs``; remaining slots fall back to the</span>
+<span class="sd">        saved (built-in) names:</span>
+
+<span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
+<span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
+<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
+<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ... ):</span>
+<span class="sd">        ...     return jnp.zeros((X.shape[1], n_states)), jnp.zeros((n_states,))</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
+<span class="sd">        &gt;&gt;&gt; model.setup(glm_params_init=my_glm_init)</span>
+<span class="sd">        &gt;&gt;&gt; _ = model.fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; with tempfile.TemporaryDirectory() as d:</span>
+<span class="sd">        ...     path = os.path.join(d, "glmhmm.npz")</span>
+<span class="sd">        ...     model.save_params(path)</span>
+<span class="sd">        ...     loaded = nmo.load_model(</span>
+<span class="sd">        ...         path,</span>
+<span class="sd">        ...         mapping_dict={</span>
+<span class="sd">        ...             "model_initialization_funcs": {"glm_params_init": my_glm_init},</span>
+<span class="sd">        ...         },</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        &gt;&gt;&gt; loaded.model_initialization_funcs["glm_params_init"] is my_glm_init</span>
+<span class="sd">        True</span>
+<span class="sd">        """</span>
+        <span class="c1"># initialize saving dictionary</span>
+        <span class="n">fit_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fit_state</span><span class="p">()</span>
+        <span class="n">fit_attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"solver_state_"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">string_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"inverse_link_function"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_params</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fit_attrs</span><span class="p">,</span> <span class="n">string_attrs</span><span class="p">)</span></div>
+
+
+    <span class="c1"># SVRG specific optimization not available.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_optimal_solver_params_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""No optimal parameters known for SVRG in GLMHMM."""</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_model_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GLMHMMParams</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">to_model_params</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_prob_</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">transition_prob_</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_model_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GLMHMMParams</span><span class="p">):</span>
+        <span class="n">coef</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">initial_prob</span><span class="p">,</span> <span class="n">transition_prob</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">from_model_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">coef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="n">intercept</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_prob_</span> <span class="o">=</span> <span class="n">initial_prob</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transition_prob_</span> <span class="o">=</span> <span class="n">transition_prob</span>
+
+<div class="viewcode-block" id="GLMHMM.update">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.update">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">GLMHMMUserParams</span><span class="p">,</span>
+        <span class="n">opt_state</span><span class="p">:</span> <span class="n">NamedTuple</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">session_starts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_samples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StepResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Run a single EM iteration on the GLM-HMM.</span>
+
+<span class="sd">        Performs one E-step / M-step pair starting from the supplied parameters and</span>
+<span class="sd">        EM state, updates the model's fitted attributes (``coef_``, ``intercept_``,</span>
+<span class="sd">        ``scale_``, ``initial_prob_``, ``transition_prob_``, ``solver_state_``,</span>
+<span class="sd">        ``dof_resid_``) in place, and returns the updated parameter tuple and EM</span>
+<span class="sd">        state. Intended for callers that need fine-grained control over EM</span>
+<span class="sd">        iteration (e.g. checkpointing, custom convergence criteria) instead of the</span>
+<span class="sd">        bundled :meth:`fit` loop.</span>
+
+<span class="sd">        :meth:`initialize_optimizer_and_state` must be called first so that the EM</span>
+<span class="sd">        step function and initial ``opt_state`` are available.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params :</span>
+<span class="sd">            Current model parameters as a 5-tuple</span>
+<span class="sd">            ``(coef, intercept, scale, initial_prob, transition_prob)`` matching</span>
+<span class="sd">            the structure produced by :meth:`initialize_params`.</span>
+<span class="sd">        opt_state :</span>
+<span class="sd">            EM state returned by :meth:`initialize_optimizer_and_state` or by the</span>
+<span class="sd">            previous call to :meth:`update`.</span>
+<span class="sd">        X :</span>
+<span class="sd">            Predictors, shape ``(n_time_bins, n_features)`` (or a pytree of arrays</span>
+<span class="sd">            of the same shape).</span>
+<span class="sd">        y :</span>
+<span class="sd">            Observations, shape ``(n_time_bins,)`` or ``(n_time_bins, n_neurons)``.</span>
+<span class="sd">        session_starts :</span>
+<span class="sd">            Optional session boundaries. Accepts:</span>
+
+<span class="sd">            - a boolean array of shape ``(n_time_bins,)`` with ``True`` at each</span>
+<span class="sd">              session start,</span>
+<span class="sd">            - an integer array of session-start indices,</span>
+<span class="sd">            - a pynapple ``IntervalSet`` (requires ``X`` or ``y`` to be a</span>
+<span class="sd">              pynapple object to supply timestamps).</span>
+
+<span class="sd">            If ``None``, the entire input is treated as a single session.</span>
+<span class="sd">        n_samples :</span>
+<span class="sd">            Total sample count to use when estimating the residual degrees of</span>
+<span class="sd">            freedom. Defaults to ``X.shape[0]``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        params :</span>
+<span class="sd">            Updated user-facing parameter tuple.</span>
+<span class="sd">        state :</span>
+<span class="sd">            Updated EM state.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If inputs fail shape/consistency validation.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; np.random.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(80, 3))</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.binomial(n=1, p=0.5, size=80)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
+<span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(init_params, X, y)</span>
+<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(init_params, opt_state, X, y)</span>
+<span class="sd">        """</span>
+        <span class="c1"># validate inputs and session boundaries</span>
+        <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_and_cast_inputs</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># drop nans and pull pytree data</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_inputs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">)</span>
+
+        <span class="c1"># wrap into model params (assumes init was done via</span>
+        <span class="c1"># `initialize_optimizer_and_state` so the EM step function is in place)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">to_model_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c1"># one EM step</span>
+        <span class="n">updated_params</span><span class="p">,</span> <span class="n">updated_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_update</span><span class="p">(</span>
+            <span class="n">params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+        <span class="p">)</span>
+
+        <span class="c1"># persist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_model_params</span><span class="p">(</span><span class="n">updated_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span> <span class="o">=</span> <span class="n">updated_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dof_resid_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_resid_degrees_of_freedom</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">from_model_params</span><span class="p">(</span><span class="n">updated_params</span><span class="p">),</span> <span class="n">updated_state</span></div>
+
+
+<div class="viewcode-block" id="GLMHMM.__repr__">
+<a class="viewcode-back" href="../../../api/generated/glm_hmm/nemos.glm_hmm.GLMHMM.html#nemos.glm_hmm.GLMHMM.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Hierarchical repr for the GLMHMM class."""</span>
+        <span class="k">return</span> <span class="n">format_repr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">multiline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_name_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">"inverse_link_function"</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_optimizer_and_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">init_params</span><span class="p">:</span> <span class="n">ModelParamsT</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">:</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">frozen_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModelParamsT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SolverState</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Initialize the optimizer and state of the model.</span>
+
+<span class="sd">        ``frozen_params`` is accepted for signature compatibility with the base</span>
+<span class="sd">        entry points but ignored: the GLM-HMM does not support parameter freezing.</span>
+<span class="sd">        """</span>
+        <span class="c1"># glm params m-step setup</span>
+        <span class="n">is_population</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">m_step_update</span> <span class="o">=</span> <span class="n">prepare_mstep_update_fn</span><span class="p">(</span>
+            <span class="n">is_population_glm</span><span class="o">=</span><span class="n">is_population</span><span class="p">,</span>
+            <span class="n">observation_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="p">,</span>
+            <span class="n">inverse_link_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span><span class="p">,</span>
+            <span class="n">setup_solver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_solver</span><span class="p">,</span>
+            <span class="n">init_params</span><span class="o">=</span><span class="n">init_params</span><span class="o">.</span><span class="n">model_params</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># cannot wrap session_starts, that's to be calculated at each update form the provided X and y.</span>
+        <span class="c1"># for consistency, do not make a partial of that argument in run as well.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">Partial</span><span class="p">(</span>
+            <span class="n">em_hmm</span><span class="p">,</span>
+            <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
+            <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_update</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">Partial</span><span class="p">(</span>
+            <span class="n">em_step</span><span class="p">,</span>
+            <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
+            <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">init_state_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SolverState</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">EMState</span><span class="p">(</span>
+                <span class="n">data_log_likelihood</span><span class="o">=-</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">inf</span><span class="p">),</span>
+                <span class="n">previous_data_log_likelihood</span><span class="o">=-</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">inf</span><span class="p">),</span>
+                <span class="n">log_likelihood_history</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span>
+                <span class="n">iterations</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">converged</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">state</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_init_state</span> <span class="o">=</span> <span class="n">init_state_fn</span>
+        <span class="k">return</span> <span class="n">init_state_fn</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

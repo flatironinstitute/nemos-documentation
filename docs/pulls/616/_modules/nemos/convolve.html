@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.convolve &#8212; nemos 0.2.10.dev460 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=88068916"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/convolve';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev460 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev460 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.convolve</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.convolve</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Convolution utilities."""</span>
+
+<span class="c1"># required to get ArrayLike to render correctly</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">log2</span><span class="p">,</span> <span class="n">prod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.fft</span><span class="w"> </span><span class="kn">import</span> <span class="n">next_fast_len</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">type_casting</span><span class="p">,</span> <span class="n">utils</span><span class="p">,</span> <span class="n">validation</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_resolve_shift_default</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">predictor_causality</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">predictor_causality</span> <span class="o">!=</span> <span class="s2">"acausal"</span>
+    <span class="k">return</span> <span class="n">shift</span>
+
+
+<span class="n">_CORR_VEC_BASIS</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">convolve</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"valid"</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">_CORR_VEC</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">convolve</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"valid"</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">_CORR_VEC</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">_CORR_VEC</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fft_valid_conv</span><span class="p">(</span><span class="n">basis_col</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Valid-mode 1D convolution of ``signal`` with ``basis_col`` via FFT.</span>
+
+<span class="sd">    Reproduces ``jnp.convolve(basis_col, signal, mode="valid")``, but multiplies in the</span>
+<span class="sd">    frequency domain. The transform length is padded to the next 5-smooth integer</span>
+<span class="sd">    (:func:`scipy.fft.next_fast_len`) rather than the raw ``n_signal + n_kernel - 1``:</span>
+<span class="sd">    the latter can land on a large prime and be several times slower, while a 5-smooth</span>
+<span class="sd">    length is FFT-friendly at a negligible memory cost (typically &lt; 1%). The length is a</span>
+<span class="sd">    pure function of the (static) input shapes, so it is computed at trace time and this</span>
+<span class="sd">    stays ``jit``- and GPU-compatible.</span>
+<span class="sd">    """</span>
+    <span class="n">n_signal</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_kernel</span> <span class="o">=</span> <span class="n">basis_col</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_fft</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">next_fast_len</span><span class="p">(</span><span class="n">n_signal</span> <span class="o">+</span> <span class="n">n_kernel</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">full</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span>
+        <span class="n">jnp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">)</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">basis_col</span><span class="p">,</span> <span class="n">n_fft</span><span class="p">),</span> <span class="n">n_fft</span>
+    <span class="p">)</span>
+    <span class="c1"># "valid" region: only where the two fully overlap.</span>
+    <span class="k">return</span> <span class="n">full</span><span class="p">[</span><span class="n">n_kernel</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n_signal</span><span class="p">]</span>
+
+
+<span class="c1"># FFT counterpart of `_CORR_VEC`. The two-level vmap reduces each call to 1D operands (a</span>
+<span class="c1"># single basis column and a single input channel), and the input/output axis layout</span>
+<span class="c1"># mirrors `_CORR_VEC` exactly, so the batching helpers route to either primitive</span>
+<span class="c1"># transparently.</span>
+<span class="n">_CORR_VEC_FFT</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">_fft_valid_conv</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">_CORR_VEC_FFT</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">_CORR_VEC_FFT</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># FFT-based convolution is asymptotically cheaper once the kernel length grows large</span>
+<span class="c1"># relative to log2 of the convolution block size. This factor sets that crossover for the</span>
+<span class="c1"># CPU heuristic; it is calibrated on the measured direct-vs-FFT crossover of the full</span>
+<span class="c1"># pipeline (window ~ 64-128 on CPU, nearly independent of the number of samples).</span>
+<span class="n">_FFT_WINDOW_LOG_FACTOR</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_array_on_cpu</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return whether ``array`` lives on a CPU device.</span>
+
+<span class="sd">    Under ``jit`` the array is a tracer with no concrete device and ``.devices()`` raises;</span>
+<span class="sd">    in that case we return ``False`` so the caller falls back to the direct path.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">"cpu"</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">array</span><span class="o">.</span><span class="n">devices</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_resolve_use_fft</span><span class="p">(</span>
+    <span class="n">use_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Decide whether to run FFT-based convolution for a single input array.</span>
+
+<span class="sd">    ``use_fft=True``/``False`` forces the choice. When ``None``, the heuristic engages</span>
+<span class="sd">    only on CPU (comparing kernel length against ``log2`` of the block size); on other</span>
+<span class="sd">    devices it returns ``False``, deferring the algorithm choice to XLA.</span>
+
+<span class="sd">    The comparison uses ``batch_size_samples`` -- the length each FFT actually operates</span>
+<span class="sd">    on -- rather than the full sample-axis length, since with sample batching the FFT is</span>
+<span class="sd">    applied per block. The two coincide only when there is no sample batching.</span>
+
+<span class="sd">    Note: under ``jit`` the array is a tracer with no concrete device, so it is treated as</span>
+<span class="sd">    non-CPU and the direct path is used. To use FFT while tracing, pass an explicit</span>
+<span class="sd">    ``use_fft=True``.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">use_fft</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">use_fft</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_array_on_cpu</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">block_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">window_size</span> <span class="o">=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">window_size</span> <span class="o">&gt;</span> <span class="n">_FFT_WINDOW_LOG_FACTOR</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">log2</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">block_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_unbatched_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">corr_vec</span><span class="p">:</span> <span class="n">Callable</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Convolve the full array in ``"valid"`` mode, without the batching machinery.</span>
+
+<span class="sd">    Fast path for the default case where no ``batch_size_*`` is requested: the</span>
+<span class="sd">    vectorized primitive is applied to the whole array in one call. A single-batch</span>
+<span class="sd">    scan produces the same result at the same runtime cost, but tracing and compiling</span>
+<span class="sd">    the batching machinery roughly doubles the compilation time per input shape,</span>
+<span class="sd">    which adds up when many shapes are convolved (e.g. pynapple epochs of different</span>
+<span class="sd">    lengths).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    array :</span>
+<span class="sd">        Input array, shape ``(n_samples, ...)``; trailing axes are flattened to</span>
+<span class="sd">        channels and restored on the output.</span>
+<span class="sd">    eval_basis :</span>
+<span class="sd">        Basis matrix, shape ``(window_size, n_basis_funcs)``.</span>
+<span class="sd">    corr_vec :</span>
+<span class="sd">        The vectorized 1D convolution primitive (``_CORR_VEC`` or ``_CORR_VEC_FFT``).</span>
+<span class="sd">    """</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">window_size</span><span class="p">,</span> <span class="n">n_basis</span> <span class="o">=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">corr_vec</span><span class="p">(</span><span class="n">eval_basis</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># (valid_len, n_basis, n_channels) -&gt; (valid_len, n_channels, n_basis)</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_reorganize_scan_out</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+        <span class="n">out</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">axis</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">ndim</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="n">axis</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">:])</span>
+
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_batch_binary_func</span><span class="p">(</span>
+    <span class="n">batched_array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">other_array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">binary_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">],</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">out_axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">pad_final_batch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Apply a binary function in memory-efficient batches along a specified axis.</span>
+
+<span class="sd">    This function slices `batched_array` along the given `axis` into batches of size `batch_size`,</span>
+<span class="sd">    and applies `binary_func(chunk, other_array)` to each batch. Results are concatenated</span>
+<span class="sd">    along the same axis.</span>
+
+<span class="sd">    Optionally, the final batch can be padded to avoid recompilation due to varying shapes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    batched_array :</span>
+<span class="sd">        The array to be processed in chunks along the specified axis.</span>
+<span class="sd">        This is typically the larger array in a binary operation.</span>
+<span class="sd">    other_array :</span>
+<span class="sd">        The second operand passed to `binary_func` (not batched).</span>
+<span class="sd">        This is typically shared across batches (e.g. convolution kernel).</span>
+<span class="sd">    binary_func :</span>
+<span class="sd">        A function accepting two arrays (batch_chunk, other_array) and returning an array of the same shape</span>
+<span class="sd">        as a batch result. Must be JAX-compatible and support broadcasting across batch dimensions.</span>
+<span class="sd">    batch_size :</span>
+<span class="sd">        Number of elements to process per batch along the batching axis.</span>
+<span class="sd">    axis :</span>
+<span class="sd">        The axis along which to batch `batched_array`.</span>
+<span class="sd">    out_axis :</span>
+<span class="sd">        The axis over which concatenating the scan output.</span>
+<span class="sd">    pad_final_batch :</span>
+<span class="sd">        If True, pads the final batch to `batch_size` with zeros (and slices off the padded output),</span>
+<span class="sd">        ensuring uniform shape for all batches and preventing JAX recompilation.</span>
+<span class="sd">        If False, the leftover portion is processed separately, which may incur compilation overhead.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    batched_out :</span>
+<span class="sd">        The output of applying `binary_func` to all slices of `batched_array`, concatenated along `out_axis`.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - This function is useful when applying memory-intensive operations (e.g., convolutions) on large arrays.</span>
+<span class="sd">    - If `pad_final_batch` is False, JAX may compile multiple versions of `binary_func`, affecting performance.</span>
+<span class="sd">    - If both operands must be batched, a separate batching loop should be implemented externally.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import jax.numpy as jnp</span>
+<span class="sd">    &gt;&gt;&gt; import jax</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; jax.config.update("jax_enable_x64", True)</span>
+<span class="sd">    &gt;&gt;&gt; def func(x, y):</span>
+<span class="sd">    ...     return x + y</span>
+<span class="sd">    &gt;&gt;&gt; x, y = jax.random.normal(jax.random.PRNGKey(123), (10, 11, 12)), jnp.array(1)</span>
+<span class="sd">    &gt;&gt;&gt; result = _batch_binary_func(x, y, func, batch_size=3, axis=1)</span>
+<span class="sd">    &gt;&gt;&gt; jnp.allclose(result, x + y)</span>
+<span class="sd">    Array(True, dtype=bool)</span>
+<span class="sd">    """</span>
+    <span class="n">n_batched_features</span> <span class="o">=</span> <span class="n">batched_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+    <span class="n">leftover</span> <span class="o">=</span> <span class="n">n_batched_features</span> <span class="o">%</span> <span class="n">batch_size</span>
+    <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">n_batched_features</span> <span class="o">+</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+        <span class="k">if</span> <span class="n">pad_final_batch</span>
+        <span class="k">else</span> <span class="n">n_batched_features</span> <span class="o">//</span> <span class="n">batch_size</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pad_final_batch</span> <span class="ow">and</span> <span class="n">leftover</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pad_width</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="n">batched_array</span><span class="o">.</span><span class="n">ndim</span>
+        <span class="n">pad_width</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="n">leftover</span><span class="p">)</span>
+        <span class="n">batched_array</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">batched_array</span><span class="p">,</span> <span class="n">pad_width</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">scan_fn</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">batch_idx</span> <span class="o">*</span> <span class="n">batch_size</span>
+        <span class="c1"># define slices</span>
+        <span class="n">start_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">axis</span> <span class="o">+</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">batched_array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="n">axis</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">slice_sizes</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="o">*</span><span class="n">batched_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="n">axis</span><span class="p">],</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">batched_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:],</span>
+        <span class="p">)</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">dynamic_slice</span><span class="p">(</span><span class="n">batched_array</span><span class="p">,</span> <span class="n">start_indices</span><span class="p">,</span> <span class="n">slice_sizes</span><span class="p">)</span>
+        <span class="n">conv_out</span> <span class="o">=</span> <span class="n">binary_func</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">other_array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">conv_out</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">batched_out</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">scan_fn</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_batches</span><span class="p">))</span>
+
+    <span class="c1"># Reshape</span>
+    <span class="n">batched_out</span> <span class="o">=</span> <span class="n">_reorganize_scan_out</span><span class="p">(</span><span class="n">batched_out</span><span class="p">,</span> <span class="n">out_axis</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pad_final_batch</span> <span class="ow">and</span> <span class="n">leftover</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">batched_out</span> <span class="o">=</span> <span class="n">batched_out</span><span class="p">[</span>
+            <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span> <span class="o">*</span> <span class="n">out_axis</span>
+            <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_batched_features</span><span class="p">),)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span> <span class="o">*</span> <span class="p">(</span><span class="n">batched_out</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="n">out_axis</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">pad_final_batch</span> <span class="ow">and</span> <span class="n">leftover</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># process the leftover batch manually</span>
+        <span class="n">slices</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">axis</span><span class="p">,</span>
+            <span class="nb">slice</span><span class="p">(</span><span class="n">n_batches</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">n_batched_features</span><span class="p">),</span>
+            <span class="o">*</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">batched_array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="n">axis</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">leftover_out</span> <span class="o">=</span> <span class="n">binary_func</span><span class="p">(</span><span class="n">batched_array</span><span class="p">[</span><span class="n">slices</span><span class="p">],</span> <span class="n">other_array</span><span class="p">)</span>
+        <span class="n">batched_out</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">batched_out</span><span class="p">,</span> <span class="n">leftover_out</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="n">out_axis</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">batched_out</span>
+
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_tensor_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Memory-efficient convolution using scan over batches of input channels.</span>
+
+<span class="sd">    This function first flattens the input array across dimensions other than the first one, then</span>
+<span class="sd">    performs a vectorized convolution with the evaluation basis. The result is reshaped back to the</span>
+<span class="sd">    original array's shape (except for the first dimension, which is adjusted based on the convolution).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    array :</span>
+<span class="sd">        The input array to convolve. It is expected to be at least 1D. The first axis is expected to be</span>
+<span class="sd">        the sample axis, i.e. the shape of array is ``(num_samples, ...)``.</span>
+<span class="sd">    eval_basis :</span>
+<span class="sd">        The evaluation basis array for convolution. It should be 2D, where the first dimension</span>
+<span class="sd">        represents the window size for convolution. Shape ``(window_size, n_basis_funcs)``.</span>
+<span class="sd">    batch_size_samples :</span>
+<span class="sd">        The batch size for convolution as number of samples. Must be larger than ``eval_basis.shape[1]``.</span>
+<span class="sd">    batch_size_channels :</span>
+<span class="sd">        Batch size over time series channels.</span>
+<span class="sd">    batch_size_basis :</span>
+<span class="sd">        Batch size over basis filters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        The convolved array, reshaped to maintain the original dimensions except for the first one,</span>
+<span class="sd">        which is adjusted based on the window size of ``eval_basis``.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The convolution implemented here is in mode ``"valid"``. This implies that the time axis shrinks</span>
+<span class="sd">    ``num_samples - window_size + 1``, where num_samples is the first size of the first axis of ``array``</span>
+<span class="sd">    and ``window_size`` is the size of the first axis in ``eval_basis``.</span>
+<span class="sd">    """</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">window_size</span><span class="p">,</span> <span class="n">n_basis</span> <span class="o">=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_features</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="n">batch_size_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">n_samples_padded</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">((</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">step</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span> <span class="o">+</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">step</span>
+
+    <span class="n">pad_len</span> <span class="o">=</span> <span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">n_samples</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_len</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">constant_values</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">conv_batch</span><span class="p">(</span><span class="n">concat_conv</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="n">start_chunk</span> <span class="o">=</span> <span class="n">batch_idx</span> <span class="o">*</span> <span class="n">step</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">dynamic_slice</span><span class="p">(</span>
+            <span class="n">array</span><span class="p">,</span> <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">concat_conv</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">dynamic_update_slice</span><span class="p">(</span>
+            <span class="n">concat_conv</span><span class="p">,</span>
+            <span class="n">_batch_convolve_over_channels</span><span class="p">(</span>
+                <span class="n">chunk</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">batch_size_channels</span><span class="p">,</span> <span class="n">batch_size_basis</span>
+            <span class="p">),</span>
+            <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">concat_conv</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="c1"># initialize output of valid convolution</span>
+    <span class="n">conv_output</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span>
+    <span class="p">)</span>
+    <span class="n">conv_output</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">conv_batch</span><span class="p">,</span> <span class="n">conv_output</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_batches</span><span class="p">))</span>
+    <span class="n">conv_output</span> <span class="o">=</span> <span class="n">conv_output</span><span class="p">[:</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">conv_output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">)</span>
+
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_batch_convolve_over_channels</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">corr_vec</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">_CORR_VEC</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># The jit boundary also guarantees `conv_over_basis` is created once per trace:</span>
+    <span class="c1"># `binary_func` is a static argument of the jitted `_batch_binary_func`, so a</span>
+    <span class="c1"># fresh closure on every eager call would change its cache key and force a</span>
+    <span class="c1"># retrace + recompile each time.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">conv_over_basis</span><span class="p">(</span><span class="n">array_chunk</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_batch_over_basis_convolve</span><span class="p">(</span>
+            <span class="n">array_chunk</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="p">,</span> <span class="n">batch_size_basis</span><span class="p">,</span> <span class="n">corr_vec</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_batch_binary_func</span><span class="p">(</span>
+        <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">conv_over_basis</span><span class="p">,</span> <span class="n">batch_size_channels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_batch_over_basis_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">corr_vec</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">_CORR_VEC</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">_batch_binary_func</span><span class="p">(</span>
+        <span class="n">eval_basis</span><span class="p">,</span>
+        <span class="n">array</span><span class="p">,</span>
+        <span class="n">corr_vec</span><span class="p">,</span>
+        <span class="n">batch_size_basis</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">out_axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># move basis axis.</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span> <span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_fft_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""FFT-based counterpart of :func:`_tensor_convolve`, without sample batching.</span>
+
+<span class="sd">    Produces the same ``"valid"`` convolution and output shape as ``_tensor_convolve``,</span>
+<span class="sd">    but replaces the direct correlation primitive with an FFT one. The full sample axis</span>
+<span class="sd">    is transformed at once (a single FFT), so this variant does not batch over samples;</span>
+<span class="sd">    memory is still batched over channels and basis filters. Use</span>
+<span class="sd">    :func:`_fft_overlap_save_convolve` when the sample axis must be batched.</span>
+<span class="sd">    """</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">window_size</span><span class="p">,</span> <span class="n">n_basis</span> <span class="o">=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">conv_output</span> <span class="o">=</span> <span class="n">_batch_convolve_over_channels</span><span class="p">(</span>
+        <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">batch_size_channels</span><span class="p">,</span> <span class="n">batch_size_basis</span><span class="p">,</span> <span class="n">corr_vec</span><span class="o">=</span><span class="n">_CORR_VEC_FFT</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv_output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">)</span>
+
+
+<span class="c1"># WORKAROUND (https://github.com/jax-ml/jax/issues/39120): jitting this function is</span>
+<span class="c1"># safe only together with the pad-row re-zeroing inside ``conv_batch`` below. XLA:CPU</span>
+<span class="c1"># (float32, jax&lt;=0.9.0) miscompiles the pad -&gt; nested-scan -&gt; dynamic_slice</span>
+<span class="c1"># composition, reading the zero-pad rows back as uninitialized memory instead of</span>
+<span class="c1"># zeros. When the upstream fix ships, delete the marked block in ``conv_batch``;</span>
+<span class="c1"># the jit stays.</span>
+<span class="nd">@partial</span><span class="p">(</span>
+    <span class="n">jax</span><span class="o">.</span><span class="n">jit</span><span class="p">,</span>
+    <span class="n">static_argnames</span><span class="o">=</span><span class="p">(</span><span class="s2">"batch_size_samples"</span><span class="p">,</span> <span class="s2">"batch_size_channels"</span><span class="p">,</span> <span class="s2">"batch_size_basis"</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_fft_overlap_save_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Overlap-save FFT convolution over a batched sample axis.</span>
+
+<span class="sd">    Long inputs are convolved in blocks of ``batch_size_samples`` rather than with a</span>
+<span class="sd">    single full-length FFT. Consecutive blocks overlap by ``window_size - 1`` samples,</span>
+<span class="sd">    and each block's ``"valid"`` FFT convolution contributes</span>
+<span class="sd">    ``batch_size_samples - window_size + 1`` outputs that tile the result contiguously</span>
+<span class="sd">    (the overlap-save method). The blocking (pad/step/scan) mirrors</span>
+<span class="sd">    :func:`_tensor_convolve` exactly, so the output is identical to the direct path up to</span>
+<span class="sd">    floating-point round-off; only the per-block primitive differs (FFT vs. direct).</span>
+
+<span class="sd">    This function is used only when the sample axis is actually batched</span>
+<span class="sd">    (``batch_size_samples &lt; n_samples``); the non-batched case goes through</span>
+<span class="sd">    :func:`_fft_convolve` (a single FFT).</span>
+<span class="sd">    """</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">window_size</span><span class="p">,</span> <span class="n">n_basis</span> <span class="o">=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_features</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="n">batch_size_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">n_samples_padded</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">((</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">step</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span> <span class="o">+</span> <span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">step</span>
+
+    <span class="n">pad_len</span> <span class="o">=</span> <span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">n_samples</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_len</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">constant_values</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">conv_batch</span><span class="p">(</span><span class="n">concat_conv</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+        <span class="n">start_chunk</span> <span class="o">=</span> <span class="n">batch_idx</span> <span class="o">*</span> <span class="n">step</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">dynamic_slice</span><span class="p">(</span>
+            <span class="n">array</span><span class="p">,</span> <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># WORKAROUND (https://github.com/jax-ml/jax/issues/39120): under jit the</span>
+        <span class="c1"># zero-pad rows of the final block can be read back as garbage (including</span>
+        <span class="c1"># NaN); re-zero the statically-known pad rows. ``jnp.where`` is a select,</span>
+        <span class="c1"># so NaN garbage is discarded (a multiplicative mask would propagate it).</span>
+        <span class="c1"># Delete this block once the upstream fix ships.</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">start_chunk</span> <span class="o">+</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">batch_size_samples</span><span class="p">)</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">rows</span> <span class="o">&lt;</span> <span class="n">n_samples</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">chunk</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># END WORKAROUND</span>
+        <span class="n">concat_conv</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">dynamic_update_slice</span><span class="p">(</span>
+            <span class="n">concat_conv</span><span class="p">,</span>
+            <span class="n">_batch_convolve_over_channels</span><span class="p">(</span>
+                <span class="n">chunk</span><span class="p">,</span>
+                <span class="n">eval_basis</span><span class="p">,</span>
+                <span class="n">batch_size_channels</span><span class="p">,</span>
+                <span class="n">batch_size_basis</span><span class="p">,</span>
+                <span class="n">corr_vec</span><span class="o">=</span><span class="n">_CORR_VEC_FFT</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">concat_conv</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="c1"># initialize output of valid convolution</span>
+    <span class="n">conv_output</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">n_samples_padded</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span>
+    <span class="p">)</span>
+    <span class="n">conv_output</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">conv_batch</span><span class="p">,</span> <span class="n">conv_output</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_batches</span><span class="p">))</span>
+    <span class="n">conv_output</span> <span class="o">=</span> <span class="n">conv_output</span><span class="p">[:</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">conv_output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">feat_shape</span><span class="p">,</span> <span class="n">n_basis</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_shift_time_axis_and_convolve</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">eval_basis</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">use_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Shifts the specified axis to the first position, applies convolution, and then reverses the shift.</span>
+
+<span class="sd">    This applies a convolution along a specific axis of a multi-dimensional array. The process involves</span>
+<span class="sd">    three steps: shifting the axis, convolving, and then reversing the shift to maintain the original</span>
+<span class="sd">    axis order.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    array :</span>
+<span class="sd">        The input array for convolution.</span>
+<span class="sd">    eval_basis :</span>
+<span class="sd">        The evaluation basis array for convolution, should be 2D.</span>
+<span class="sd">    axis :</span>
+<span class="sd">        The axis along which the convolution is applied. This axis is temporarily shifted</span>
+<span class="sd">        to the first position for the convolution operation.</span>
+<span class="sd">    batch_size_samples :</span>
+<span class="sd">        Size of the batches in samples.</span>
+<span class="sd">    batch_size_channels :</span>
+<span class="sd">        Size of the batches in number of input channels.</span>
+<span class="sd">    batch_size_basis :</span>
+<span class="sd">        Size of the batches in number of basis filters.</span>
+<span class="sd">    use_fft :</span>
+<span class="sd">        Whether to convolve via FFT. If ``None``, the choice is resolved per array by</span>
+<span class="sd">        :func:`_resolve_use_fft`. When FFT is used and ``batch_size_samples`` is smaller</span>
+<span class="sd">        than the sample-axis length, the convolution is batched over samples via</span>
+<span class="sd">        overlap-save (:func:`_fft_overlap_save_convolve`); otherwise a single FFT is used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    conv :</span>
+<span class="sd">        The array after applying the convolution along the specified axis, with the original</span>
+<span class="sd">        axis order restored.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function supports arrays of any dimensionality greater or equal than 1.</span>
+<span class="sd">    When no effective memory batching is requested (all batch sizes cover their full</span>
+<span class="sd">    axis), the batching machinery is skipped entirely and the whole array is convolved</span>
+<span class="sd">    in a single vectorized call (:func:`_unbatched_convolve`).</span>
+<span class="sd">    """</span>
+    <span class="c1"># convert axis</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">axis</span> <span class="k">if</span> <span class="n">axis</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">+</span> <span class="n">axis</span>
+    <span class="c1"># move time axis to first</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">use_fft</span> <span class="o">=</span> <span class="n">_resolve_use_fft</span><span class="p">(</span><span class="n">use_fft</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">batch_size_samples</span><span class="p">)</span>
+
+    <span class="c1"># convolve</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">batch_size_samples</span> <span class="o">&gt;=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="ow">and</span> <span class="n">batch_size_channels</span> <span class="o">&gt;=</span> <span class="n">prod</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="ow">and</span> <span class="n">batch_size_basis</span> <span class="o">&gt;=</span> <span class="n">eval_basis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="c1"># no memory batching: convolve the full array in one vectorized call</span>
+        <span class="n">conv</span> <span class="o">=</span> <span class="n">_unbatched_convolve</span><span class="p">(</span>
+            <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">_CORR_VEC_FFT</span> <span class="k">if</span> <span class="n">use_fft</span> <span class="k">else</span> <span class="n">_CORR_VEC</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">use_fft</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">batch_size_samples</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="c1"># sample axis is batched: overlap-save FFT over blocks of batch_size_samples</span>
+            <span class="n">conv</span> <span class="o">=</span> <span class="n">_fft_overlap_save_convolve</span><span class="p">(</span>
+                <span class="n">array</span><span class="p">,</span>
+                <span class="n">eval_basis</span><span class="p">,</span>
+                <span class="n">batch_size_samples</span><span class="p">,</span>
+                <span class="n">batch_size_channels</span><span class="p">,</span>
+                <span class="n">batch_size_basis</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># whole sample axis at once: a single FFT</span>
+            <span class="n">conv</span> <span class="o">=</span> <span class="n">_fft_convolve</span><span class="p">(</span>
+                <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">batch_size_channels</span><span class="p">,</span> <span class="n">batch_size_basis</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">conv</span> <span class="o">=</span> <span class="n">_tensor_convolve</span><span class="p">(</span>
+            <span class="n">array</span><span class="p">,</span> <span class="n">eval_basis</span><span class="p">,</span> <span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">batch_size_channels</span><span class="p">,</span> <span class="n">batch_size_basis</span>
+        <span class="p">)</span>
+
+    <span class="c1"># reverse transposition</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">conv</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conv</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_list_epochs</span><span class="p">(</span><span class="n">tsd</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    List epochs from a time series with data object, supporting 'pynapple' Tsd formats.</span>
+
+<span class="sd">    If the input is recognized as a 'pynapple' TSD, it extracts epochs based on the TSD's</span>
+<span class="sd">    time support. Otherwise, it returns the input as is, assuming it's a single epoch.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tsd :</span>
+<span class="sd">        The time series data, potentially in Pynapple TSD format or a generic data structure.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        A list of epochs extracted from the TSD. If the input is not a Pynapple TSD, returns</span>
+<span class="sd">        a list containing the input itself.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">type_casting</span><span class="o">.</span><span class="n">is_pynapple_tsd</span><span class="p">(</span><span class="n">tsd</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">tsd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">tsd</span><span class="o">.</span><span class="n">time_support</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">tsd</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_convolve_pad_and_shift</span><span class="p">(</span>
+    <span class="n">basis_matrix</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+    <span class="n">time_series</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">predictor_causality</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"causal"</span><span class="p">,</span> <span class="s2">"acausal"</span><span class="p">,</span> <span class="s2">"anti-causal"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"causal"</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">shift</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create predictor by convolving basis_matrix with time_series.</span>
+
+<span class="sd">    To create the convolutional predictor, three steps are taken, each of</span>
+<span class="sd">    calls a single function. See their docstrings for more details about</span>
+<span class="sd">    each step. This function **preserves** the number of samples by</span>
+<span class="sd">    NaN-padding appropriately.</span>
+
+<span class="sd">    - Convolve `basis_matrix` with `time_series` (function: `convolve_1d_trials`)</span>
+<span class="sd">    - Pad output with `basis_matrix.shape[0]-1` NaNs, with location based on</span>
+<span class="sd">      causality of intended predictor (function: `nan_pad`).</span>
+<span class="sd">    - (Optional) Shift predictor based on causality (function: `shift_time_series`)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    basis_matrix :</span>
+<span class="sd">        The basis matrix with which to convolve the trials. Shape</span>
+<span class="sd">        `(window_size, n_basis_funcs)`.</span>
+<span class="sd">    time_series :</span>
+<span class="sd">        The time series to convolve with the basis matrix. This variable should</span>
+<span class="sd">        be an array of at least one-dimension.</span>
+<span class="sd">    batch_size_samples:</span>
+<span class="sd">        Size of the batches in samples.</span>
+<span class="sd">    batch_size_channels :</span>
+<span class="sd">        Pytree of batch sizes. The number of batched channels for the convolution.</span>
+<span class="sd">    batch_size_basis :</span>
+<span class="sd">        Number of batched basis filters for the convolution.</span>
+<span class="sd">    predictor_causality:</span>
+<span class="sd">        Causality of this predictor, which determines where padded values are</span>
+<span class="sd">        added and how the predictor is shifted.</span>
+<span class="sd">    axis:</span>
+<span class="sd">        Axis containing samples.</span>
+<span class="sd">    shift :</span>
+<span class="sd">        Whether to shift predictor based on causality (only valid if</span>
+<span class="sd">        `predictor_causality != 'acausal'`). Default is True for `causal` and</span>
+<span class="sd">        `anti-causal`, False for `acausal`.</span>
+<span class="sd">    use_fft :</span>
+<span class="sd">        Whether to convolve via FFT. If ``None``, the choice is resolved per array</span>
+<span class="sd">        by :func:`_resolve_use_fft`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    predictor :</span>
+<span class="sd">        Predictor of with same shape and structure as `time_series`</span>
+<span class="sd">    """</span>
+    <span class="c1"># apply convolution</span>
+    <span class="n">predictor</span> <span class="o">=</span> <span class="n">_shift_time_axis_and_convolve</span><span class="p">(</span>
+        <span class="n">time_series</span><span class="p">,</span>
+        <span class="n">basis_matrix</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+        <span class="n">batch_size_samples</span><span class="o">=</span><span class="n">batch_size_samples</span><span class="p">,</span>
+        <span class="n">batch_size_channels</span><span class="o">=</span><span class="n">batch_size_channels</span><span class="p">,</span>
+        <span class="n">batch_size_basis</span><span class="o">=</span><span class="n">batch_size_basis</span><span class="p">,</span>
+        <span class="n">use_fft</span><span class="o">=</span><span class="n">use_fft</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">warns</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">"always"</span><span class="p">)</span>
+        <span class="n">predictor</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">nan_pad</span><span class="p">(</span>
+            <span class="n">predictor</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">predictor_causality</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span>
+        <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">warns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">"^With acausal filter"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">"With `acausal` filter, `basis_matrix.shape[0] "</span>
+                <span class="s2">"should probably be odd, so that we can place an equal number of NaNs on "</span>
+                <span class="s2">"either side of input."</span><span class="p">,</span>
+                <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">category</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shift</span><span class="p">:</span>
+        <span class="n">predictor</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">shift_time_series</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">predictor_causality</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">predictor</span>
+
+
+<div class="viewcode-block" id="create_convolutional_predictor">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.convolve.create_convolutional_predictor.html#nemos.convolve.create_convolutional_predictor">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_convolutional_predictor</span><span class="p">(</span>
+    <span class="n">basis_matrix</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span>
+    <span class="n">time_series</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">predictor_causality</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"causal"</span><span class="p">,</span> <span class="s2">"acausal"</span><span class="p">,</span> <span class="s2">"anti-causal"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"causal"</span><span class="p">,</span>
+    <span class="n">shift</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create a convolutional predictor by convolving a basis matrix with a time series.</span>
+
+<span class="sd">    To create the convolutional predictor, three steps are taken, convolve, pad and shift.</span>
+
+<span class="sd">    - Convolve `basis_matrix` with `time_series` (function: `_convolve_1d_trials`)</span>
+<span class="sd">    - Pad output with `basis_matrix.shape[0]-1` NaNs, with location based on</span>
+<span class="sd">      causality of intended predictor (function: `nemos.utils.nan_pad`).</span>
+<span class="sd">    - (Optional) Shift predictor based on causality (function: `nemos.utils.shift_time_series`)</span>
+
+<span class="sd">    The function is designed to handle both single arrays and pynapple time series with data</span>
+<span class="sd">     (across multiple epochs), as well as their combinations. For pynapple time series, it</span>
+<span class="sd">    treats each epoch separately, applies the convolution process, and then reassembles the time series.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    basis_matrix :</span>
+<span class="sd">        A 2D array representing the basis matrix to convolve with the time series.</span>
+<span class="sd">        The first dimension should represent the window size for the convolution.</span>
+<span class="sd">    time_series :</span>
+<span class="sd">        The time series data to convolve with the basis matrix. Can be single arrays, pytree of arrays,</span>
+<span class="sd">        pynapple time series, pytree of pynapple time series or a mix.</span>
+<span class="sd">        In case of Pynapple time series data, each epoch will be convolved separately.</span>
+<span class="sd">    predictor_causality :</span>
+<span class="sd">        The causality of the predictor, determining how the padding and shifting</span>
+<span class="sd">        should be applied to the convolution result.</span>
+<span class="sd">        - 'causal': Pads and/or shifts the result to be causal with respect to the input.</span>
+<span class="sd">        - 'acausal': Applies padding equally on both sides without shifting.</span>
+<span class="sd">        - 'anti-causal': Pads and/or shifts the result to be anti-causal with respect to the input.</span>
+<span class="sd">    shift :</span>
+<span class="sd">        Determines whether to shift the convolution result based on the causality.</span>
+<span class="sd">        If None, it defaults to True for 'causal' and 'anti-causal' and to False for 'acausal'.</span>
+<span class="sd">    axis :</span>
+<span class="sd">        The axis along which the convolution is applied.</span>
+<span class="sd">    batch_size_samples :</span>
+<span class="sd">        Batch size for the convolution in terms of number of sample points.</span>
+<span class="sd">        If this parameter is set, the convolution will be applied sequentially</span>
+<span class="sd">        over a fixed-length chunks of the time_series.</span>
+<span class="sd">    batch_size_channels :</span>
+<span class="sd">        Batch size for the convolution in terms of number of input channels.</span>
+<span class="sd">        If this parameter is set, the convolution will be vectorized over batches</span>
+<span class="sd">        of input channels. Default vectorizes over all channels.</span>
+<span class="sd">    batch_size_basis :</span>
+<span class="sd">        Batch size for the convolution in terms of number of basis kernels.</span>
+<span class="sd">        If this parameter is set, the convolution will be vectorized over batches</span>
+<span class="sd">        of kernels. Default vectorizes over all basis kernels.</span>
+<span class="sd">    use_fft :</span>
+<span class="sd">        Whether to compute the convolution in the frequency domain (real FFTs padded to</span>
+<span class="sd">        a 5-smooth length). ``True`` or ``False`` forces the choice, while ``None`` (the</span>
+<span class="sd">        default) resolves it per input array with a heuristic that selects FFT for long</span>
+<span class="sd">        kernels on CPU and otherwise falls back to the direct convolution</span>
+<span class="sd">        (``jnp.convolve``). At jit-compilation time the device is unavailable, so the</span>
+<span class="sd">        default direct path is dispatched; set ``use_fft=True`` to force the FFT</span>
+<span class="sd">        convolution under jit. When FFT is used and ``batch_size_samples`` is smaller</span>
+<span class="sd">        than the sample-axis length, the convolution is batched over samples via</span>
+<span class="sd">        overlap-save; otherwise the full axis is transformed at once.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        The convolutional predictor, structured similarly to the input `time_series`, appropriately</span>
+<span class="sd">        padded and shifted according to the specified causality.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If `basis_matrix` is not a 2-dimensional array or has a singleton first dimension.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If `time_series` does not contain arrays of at least one dimension or contains</span>
+<span class="sd">        arrays with a dimensionality less than `axis`.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If any array within `time_series` or `basis_matrix` is empty.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If the number of elements along the convolution axis in any array within `time_series`</span>
+<span class="sd">        is less than the window size of the `basis_matrix`.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If shifting is attempted with 'acausal' causality.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        Raised if any explicitly provided batch sizes—``batch_size_samples``,</span>
+<span class="sd">        ``batch_size_channels``, or ``batch_size_basis``—are not positive integers.</span>
+<span class="sd">        A value of ``None`` is allowed and treated as unspecified.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Under ``jax.jit`` the inputs are tracers with no concrete device, so the automatic</span>
+<span class="sd">    backend selection (``use_fft=None``) cannot inspect device placement and falls back</span>
+<span class="sd">    to the direct convolution. If you need the FFT path while tracing, do not rely on the</span>
+<span class="sd">    auto-detection: pass ``use_fft=True`` explicitly.</span>
+
+<span class="sd">    """</span>
+    <span class="c1"># apply checks</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_basis_matrix_shape</span><span class="p">(</span><span class="n">basis_matrix</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_non_empty_inputs</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_time_series_ndim</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">_resolve_shift_default</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">predictor_causality</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_shift_causality_consistency</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">predictor_causality</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_batch_size</span><span class="p">(</span><span class="n">batch_size_samples</span><span class="p">,</span> <span class="s2">"batch_size_samples"</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_batch_size</span><span class="p">(</span><span class="n">batch_size_channels</span><span class="p">,</span> <span class="s2">"batch_size_channels"</span><span class="p">)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_batch_size</span><span class="p">(</span><span class="n">batch_size_basis</span><span class="p">,</span> <span class="s2">"batch_size_basis"</span><span class="p">)</span>
+
+    <span class="c1"># flatten and grab tree struct</span>
+    <span class="n">time_series</span><span class="p">,</span> <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_flatten</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+
+    <span class="c1"># run a single conv if batches provided, otherwise make sure batch size is smaller than</span>
+    <span class="c1"># array shape.</span>
+    <span class="k">if</span> <span class="n">batch_size_samples</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">batch_size_samples</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">],</span> <span class="n">time_series</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">batch_size_samples</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">min</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">],</span> <span class="n">batch_size_samples</span><span class="p">]),</span> <span class="n">time_series</span>
+        <span class="p">)</span>
+
+        <span class="c1"># check that the batch size is big enough</span>
+        <span class="n">validation</span><span class="o">.</span><span class="n">_check_batch_size_larger_than_convolution_window</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">batch_size_channels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">batch_size_channels</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="n">axis</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]),</span> <span class="n">time_series</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">batch_size_channels</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="n">axis</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]),</span> <span class="n">batch_size_channels</span><span class="p">]</span>
+            <span class="p">),</span>
+            <span class="n">time_series</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># basis is always a 2D array, no tree-map needed for the same logic</span>
+    <span class="k">if</span> <span class="n">batch_size_basis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">batch_size_basis</span> <span class="o">=</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">batch_size_basis</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">batch_size_basis</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="c1"># find pynapple</span>
+    <span class="n">is_nap</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">type_casting</span><span class="o">.</span><span class="n">is_pynapple_tsd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">time_series</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_nap</span><span class="p">):</span>
+        <span class="c1"># no pynapple, validate shape and run convolutions</span>
+        <span class="n">validation</span><span class="o">.</span><span class="n">_check_trials_longer_than_time_window</span><span class="p">(</span>
+            <span class="n">time_series</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">apply_convolution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">bc</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">_convolve_pad_and_shift</span><span class="p">(</span>
+                <span class="n">basis_matrix</span><span class="p">,</span>
+                <span class="n">x</span><span class="p">,</span>
+                <span class="n">batch_size_samples</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span>
+                <span class="n">batch_size_channels</span><span class="o">=</span><span class="n">bc</span><span class="p">,</span>
+                <span class="n">batch_size_basis</span><span class="o">=</span><span class="n">batch_size_basis</span><span class="p">,</span>
+                <span class="n">predictor_causality</span><span class="o">=</span><span class="n">predictor_causality</span><span class="p">,</span>
+                <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+                <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+                <span class="n">use_fft</span><span class="o">=</span><span class="n">use_fft</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">flat_stack</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="n">apply_convolution</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">batch_size_channels</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">flat_stack</span> <span class="o">=</span> <span class="n">_convolve_pynapple</span><span class="p">(</span>
+            <span class="n">basis_matrix</span><span class="p">,</span>
+            <span class="n">time_series</span><span class="p">,</span>
+            <span class="n">is_nap</span><span class="p">,</span>
+            <span class="n">axis</span><span class="p">,</span>
+            <span class="n">shift</span><span class="p">,</span>
+            <span class="n">predictor_causality</span><span class="p">,</span>
+            <span class="n">batch_size_channels</span><span class="p">,</span>
+            <span class="n">batch_size_samples</span><span class="p">,</span>
+            <span class="n">batch_size_basis</span><span class="p">,</span>
+            <span class="n">use_fft</span><span class="o">=</span><span class="n">use_fft</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">flat_stack</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_convolve_pynapple</span><span class="p">(</span>
+    <span class="n">basis_matrix</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">time_series</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">is_nap</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">shift</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">predictor_causality</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"causal"</span><span class="p">,</span> <span class="s2">"acausal"</span><span class="p">,</span> <span class="s2">"anti-causal"</span><span class="p">],</span>
+    <span class="n">batch_size_channels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">batch_size_samples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">batch_size_basis</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">use_fft</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Convolve a PyTree containing pynapple time series.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    basis_matrix:</span>
+<span class="sd">        The basis matrix for the convolution as a 2D array.</span>
+<span class="sd">    time_series :</span>
+<span class="sd">        The time series data to convolve with the basis matrix, after tree-flattening (i.e. it is a list of arrays).</span>
+<span class="sd">    is_nap :</span>
+<span class="sd">        A list of the same length of time_series of boolean, marking which time series is a pynapple object.</span>
+<span class="sd">    axis :</span>
+<span class="sd">        The axis along which the convolution is applied.</span>
+<span class="sd">    shift :</span>
+<span class="sd">        Determines whether to shift the convolution result based on the causality.</span>
+<span class="sd">        If None, it defaults to True for 'causal' and 'anti-causal' and to False for 'acausal'.</span>
+<span class="sd">    predictor_causality :</span>
+<span class="sd">        The causality of the predictor, determining how the padding and shifting</span>
+<span class="sd">        should be applied to the convolution result.</span>
+<span class="sd">        - 'causal': Pads and/or shifts the result to be causal with respect to the input.</span>
+<span class="sd">        - 'acausal': Applies padding equally on both sides without shifting.</span>
+<span class="sd">        - 'anti-causal': Pads and/or shifts the result to be anti-causal with respect to the input.</span>
+<span class="sd">    batch_size_samples :</span>
+<span class="sd">        Batch size for the convolution in terms of number of sample points.</span>
+<span class="sd">        If this parameter is set, the convolution will be applied sequentially</span>
+<span class="sd">        over a fixed-length chunks of the time_series.</span>
+<span class="sd">    batch_size_channels :</span>
+<span class="sd">        Batch size for the convolution in terms of number of input channels.</span>
+<span class="sd">        If this parameter is set, the convolution will be vectorized over batches</span>
+<span class="sd">        of input channels. Default vectorizes over all channels.</span>
+<span class="sd">    batch_size_basis :</span>
+<span class="sd">        Batch size for the convolution in terms of number of basis kernels.</span>
+<span class="sd">        If this parameter is set, the convolution will be vectorized over batches</span>
+<span class="sd">        of kernels. Default vectorizes over all basis kernels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        A list with the convolved time series.</span>
+<span class="sd">    """</span>
+    <span class="c1"># retrieve time info</span>
+    <span class="n">time_info</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">type_casting</span><span class="o">.</span><span class="n">get_time_info</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_nap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># split epochs (adds one layer to pytree)</span>
+    <span class="c1"># if pynapple one batch size per epoch to match tree-struct</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_tree_level</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">time_support</span><span class="p">)</span> <span class="k">if</span> <span class="n">type_casting</span><span class="o">.</span><span class="n">is_pynapple_tsd</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="n">batch_size_channels</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+        <span class="n">add_tree_level</span><span class="p">,</span>
+        <span class="n">batch_size_channels</span><span class="p">,</span>
+        <span class="n">time_series</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">batch_size_samples</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+        <span class="n">add_tree_level</span><span class="p">,</span>
+        <span class="n">batch_size_samples</span><span class="p">,</span>
+        <span class="n">time_series</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="n">_list_epochs</span><span class="p">,</span> <span class="n">time_series</span><span class="p">)</span>
+
+    <span class="c1"># convert to array</span>
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">time_series</span><span class="p">)</span>
+
+    <span class="c1"># check trial size (after splitting)</span>
+    <span class="n">validation</span><span class="o">.</span><span class="n">_check_trials_longer_than_time_window</span><span class="p">(</span>
+        <span class="n">time_series</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_convolution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">bc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">basis_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_convolve_pad_and_shift</span><span class="p">(</span>
+                <span class="n">basis_matrix</span><span class="p">,</span>
+                <span class="n">x</span><span class="p">,</span>
+                <span class="n">batch_size_samples</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span>
+                <span class="n">batch_size_channels</span><span class="o">=</span><span class="n">bc</span><span class="p">,</span>
+                <span class="n">batch_size_basis</span><span class="o">=</span><span class="n">batch_size_basis</span><span class="p">,</span>
+                <span class="n">predictor_causality</span><span class="o">=</span><span class="n">predictor_causality</span><span class="p">,</span>
+                <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+                <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+                <span class="n">use_fft</span><span class="o">=</span><span class="n">use_fft</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+        <span class="n">apply_convolution</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">batch_size_samples</span><span class="p">,</span> <span class="n">batch_size_channels</span>
+    <span class="p">)</span>
+
+    <span class="c1">#  concatenate back</span>
+    <span class="n">flat_stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">conv</span><span class="p">]</span>
+
+    <span class="c1"># re-attach time axis</span>
+    <span class="n">flat_stack</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">type_casting</span><span class="o">.</span><span class="n">cast_to_pynapple</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">time_info</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">if</span> <span class="n">is_nap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">flat_stack</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># recreate tree</span>
+    <span class="k">return</span> <span class="n">flat_stack</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

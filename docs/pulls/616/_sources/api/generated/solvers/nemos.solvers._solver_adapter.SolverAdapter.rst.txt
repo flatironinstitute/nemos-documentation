@@ -1,0 +1,29 @@
+﻿nemos.solvers.\_solver\_adapter.SolverAdapter
+=============================================
+
+.. currentmodule:: nemos.solvers._solver_adapter
+
+.. autoclass:: SolverAdapter
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SolverAdapter.__init__
+      ~SolverAdapter.get_accepted_arguments
+      ~SolverAdapter.init_state
+      ~SolverAdapter.run
+      ~SolverAdapter.stochastic_convergence_criterion
+      ~SolverAdapter.stochastic_run
+      ~SolverAdapter.update
+   

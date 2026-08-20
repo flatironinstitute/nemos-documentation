@@ -1,0 +1,54 @@
+﻿nemos.glm.PopulationGLM
+=======================
+
+.. currentmodule:: nemos.glm
+
+.. autoclass:: PopulationGLM
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PopulationGLM.feature_mask
+      ~PopulationGLM.fit_intercept
+      ~PopulationGLM.inverse_link_function
+      ~PopulationGLM.observation_model
+      ~PopulationGLM.optimizer_init_state
+      ~PopulationGLM.optimizer_run
+      ~PopulationGLM.optimizer_update
+      ~PopulationGLM.regularizer
+      ~PopulationGLM.regularizer_strength
+      ~PopulationGLM.solver
+      ~PopulationGLM.solver_kwargs
+      ~PopulationGLM.solver_name
+      ~PopulationGLM.solver_spec
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PopulationGLM.__init__
+      ~PopulationGLM.compute_loss
+      ~PopulationGLM.fit
+      ~PopulationGLM.get_model_params
+      ~PopulationGLM.get_params
+      ~PopulationGLM.initialize_optimizer_and_state
+      ~PopulationGLM.initialize_params
+      ~PopulationGLM.predict
+      ~PopulationGLM.save_params
+      ~PopulationGLM.score
+      ~PopulationGLM.set_params
+      ~PopulationGLM.simulate
+      ~PopulationGLM.stochastic_fit
+      ~PopulationGLM.update
+   
