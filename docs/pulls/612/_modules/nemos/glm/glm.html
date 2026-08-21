@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev378 documentation</title>
+    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev379 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../../../_static/documentation_options.js?v=e5791f8a"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev379 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev379 documentation - Home"/>
   
   
 </a></div>
@@ -682,21 +682,21 @@
 <span class="sd">    +===============+==================+================================+</span>
 <span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS,  |</span>
 <span class="sd">    |               |                  | NonlinearCG, ProximalGradient, |</span>
-<span class="sd">    |               |                  | NewtonCholesky                 |</span>
+<span class="sd">    |               |                  |                                |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
-<span class="sd">    | Ridge         | NewtonCholesky   | GradientDescent, BFGS, LBFGS,  |</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS,  |</span>
 <span class="sd">    |               |                  | NonlinearCG, ProximalGradient, |</span>
-<span class="sd">    |               |                  | NewtonCholesky                 |</span>
+<span class="sd">    |               |                  |                                |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 <span class="sd">    | Lasso         | ProximalGradient | ProximalGradient               |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 <span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient               |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 
-<span class="sd">    The default solver for ``Ridge`` is ``NewtonCholesky``: the ridge penalty makes the Hessian positive</span>
+<span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
-<span class="sd">    feature counts typical of neural GLMs. ``NewtonCholesky`` is also available for ``UnRegularized`` problems</span>
-<span class="sd">    but is not the default there, since the unpenalized Hessian can be singular. A NewtonCholesky step solves a</span>
+<span class="sd">    feature counts typical of neural GLMs. ``Newton`` is also available for ``UnRegularized`` problems</span>
+<span class="sd">    but is not the default there, since the unpenalized Hessian can be singular. A Newton step solves a</span>
 <span class="sd">    Hessian system, costing ``O(d**2)`` memory and ``O(d**3)`` compute in the number of features ``d``,</span>
 <span class="sd">    so for models with many features ``LBFGS`` is preferable: it is memory-light and more robust on</span>
 <span class="sd">    noisy objective landscapes. Switch solver by passing ``solver_name=...`` at initialization.</span>
@@ -865,14 +865,14 @@
     <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">Full</span><span class="p">,</span> <span class="nb">property</span><span class="o">=</span><span class="n">PositiveSemiDefinite</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_default_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="c1"># NewtonCholesky is the default for Ridge: the ridge penalty makes the penalized</span>
-        <span class="c1"># Hessian positive definite, so the Cholesky-based NewtonCholesky step is stable.</span>
+        <span class="c1"># Newton is the default for Ridge: the ridge penalty makes the penalized</span>
+        <span class="c1"># Hessian positive definite, so the Cholesky-based Newton step is stable.</span>
         <span class="c1"># For other regularizers (e.g. UnRegularized, whose Hessian can be only</span>
         <span class="c1"># positive semidefinite) defer to the regularizer's own default.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
-            <span class="s2">"NewtonCholesky"</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">allowed_solvers</span>
+            <span class="s2">"Newton"</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">allowed_solvers</span>
         <span class="p">):</span>
-            <span class="k">return</span> <span class="s2">"NewtonCholesky"</span>
+            <span class="k">return</span> <span class="s2">"Newton"</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_resolve_default_solver</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_hess_property_override</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -2238,21 +2238,21 @@
 <span class="sd">    +===============+==================+================================+</span>
 <span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS,  |</span>
 <span class="sd">    |               |                  | NonlinearCG, ProximalGradient, |</span>
-<span class="sd">    |               |                  | NewtonCholesky                 |</span>
+<span class="sd">    |               |                  | Newton                 |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
-<span class="sd">    | Ridge         | NewtonCholesky   | GradientDescent, BFGS, LBFGS,  |</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS,  |</span>
 <span class="sd">    |               |                  | NonlinearCG, ProximalGradient, |</span>
-<span class="sd">    |               |                  | NewtonCholesky                 |</span>
+<span class="sd">    |               |                  | Newton                 |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 <span class="sd">    | Lasso         | ProximalGradient | ProximalGradient               |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 <span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient               |</span>
 <span class="sd">    +---------------+------------------+--------------------------------+</span>
 
-<span class="sd">    The default solver for ``Ridge`` is ``NewtonCholesky``: the ridge penalty makes the Hessian positive</span>
+<span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
-<span class="sd">    feature counts typical of neural GLMs. ``NewtonCholesky`` is also available for ``UnRegularized`` problems</span>
-<span class="sd">    but is not the default there, since the unpenalized Hessian can be singular. A NewtonCholesky step solves a</span>
+<span class="sd">    feature counts typical of neural GLMs. ``Newton`` is also available for ``UnRegularized`` problems</span>
+<span class="sd">    but is not the default there, since the unpenalized Hessian can be singular. A Newton step solves a</span>
 <span class="sd">    Hessian system, costing ``O(d**2)`` memory and ``O(d**3)`` compute in the number of features ``d``,</span>
 <span class="sd">    so for models with many features ``LBFGS`` is preferable: it is memory-light and more robust on</span>
 <span class="sd">    noisy objective landscapes. Switch solver by passing ``solver_name=...`` at initialization.</span>

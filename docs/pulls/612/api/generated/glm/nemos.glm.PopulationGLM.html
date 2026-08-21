@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.PopulationGLM &#8212; nemos 0.2.10.dev378 documentation</title>
+    <title>nemos.glm.PopulationGLM &#8212; nemos 0.2.10.dev379 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../../../_static/documentation_options.js?v=e5791f8a"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev379 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev379 documentation - Home"/>
   
   
 </a></div>
@@ -672,41 +672,10 @@ It is suitable for scenarios where the relationship between predictors and the r
 variable might be non-linear, and the residuals  don’t follow a normal distribution. The predictors must be
 stored in tabular format, shape (n_timebins, num_features) or as a pytree of arrays of the same shape.
 Below is a table listing the default and available solvers for each regularizer.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Regularizer</p></th>
-<th class="head"><p>Default Solver</p></th>
-<th class="head"><p>Available Solvers</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>UnRegularized</p></td>
-<td><p>LBFGS</p></td>
-<td><p>GradientDescent, BFGS, LBFGS,
-NonlinearCG, ProximalGradient,
-NewtonCholesky</p></td>
-</tr>
-<tr class="row-odd"><td><p>Ridge</p></td>
-<td><p>NewtonCholesky</p></td>
-<td><p>GradientDescent, BFGS, LBFGS,
-NonlinearCG, ProximalGradient,
-NewtonCholesky</p></td>
-</tr>
-<tr class="row-even"><td><p>Lasso</p></td>
-<td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
-</tr>
-<tr class="row-odd"><td><p>GroupLasso</p></td>
-<td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>The default solver for <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> is <code class="docutils literal notranslate"><span class="pre">NewtonCholesky</span></code>: the ridge penalty makes the Hessian positive
+<p>The default solver for <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> is <code class="docutils literal notranslate"><span class="pre">Newton</span></code>: the ridge penalty makes the Hessian positive
 definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the
-feature counts typical of neural GLMs. <code class="docutils literal notranslate"><span class="pre">NewtonCholesky</span></code> is also available for <code class="docutils literal notranslate"><span class="pre">UnRegularized</span></code> problems
-but is not the default there, since the unpenalized Hessian can be singular. A NewtonCholesky step solves a
+feature counts typical of neural GLMs. <code class="docutils literal notranslate"><span class="pre">Newton</span></code> is also available for <code class="docutils literal notranslate"><span class="pre">UnRegularized</span></code> problems
+but is not the default there, since the unpenalized Hessian can be singular. A Newton step solves a
 Hessian system, costing <code class="docutils literal notranslate"><span class="pre">O(d**2)</span></code> memory and <code class="docutils literal notranslate"><span class="pre">O(d**3)</span></code> compute in the number of features <code class="docutils literal notranslate"><span class="pre">d</span></code>,
 so for models with many features <code class="docutils literal notranslate"><span class="pre">LBFGS</span></code> is preferable: it is memory-light and more robust on
 noisy objective landscapes. Switch solver by passing <code class="docutils literal notranslate"><span class="pre">solver_name=...</span></code> at initialization.</p>

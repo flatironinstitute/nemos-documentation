@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev378 documentation</title>
+    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev379 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=41019b93"></script>
+    <script src="../../../_static/documentation_options.js?v=e5791f8a"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev378 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev378 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev379 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev379 documentation - Home"/>
   
   
 </a></div>
@@ -543,7 +543,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">._abstract_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolverProtocol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._fista</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimistixFISTA</span><span class="p">,</span> <span class="n">OptimistixNAG</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._newton_cholesky</span><span class="w"> </span><span class="kn">import</span> <span class="n">NewtonCholesky</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._newton</span><span class="w"> </span><span class="kn">import</span> <span class="n">Newton</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._optax_optimistix_solvers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">OptimistixOptaxGradientDescent</span><span class="p">,</span>
     <span class="n">OptimistixOptaxLBFGS</span><span class="p">,</span>
@@ -959,7 +959,7 @@
 <span class="n">register</span><span class="p">(</span><span class="s2">"NonlinearCG"</span><span class="p">,</span> <span class="n">OptimistixNonlinearCG</span><span class="p">,</span> <span class="s2">"optimistix"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span><span class="s2">"SVRG"</span><span class="p">,</span> <span class="n">WrappedSVRG</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span><span class="s2">"ProxSVRG"</span><span class="p">,</span> <span class="n">WrappedProxSVRG</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">register</span><span class="p">(</span><span class="s2">"NewtonCholesky"</span><span class="p">,</span> <span class="n">NewtonCholesky</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"Newton"</span><span class="p">,</span> <span class="n">Newton</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span>
     <span class="s2">"GradientDescent"</span><span class="p">,</span> <span class="n">OptimistixOptaxGradientDescent</span><span class="p">,</span> <span class="s2">"optax+optimistix"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
