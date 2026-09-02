@@ -1,0 +1,38 @@
+﻿nemos.regularizer.ElasticNet
+============================
+
+.. currentmodule:: nemos.regularizer
+
+.. autoclass:: ElasticNet
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ElasticNet.allowed_solvers
+      ~ElasticNet.default_solver
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ElasticNet.__init__
+      ~ElasticNet.allow_solver
+      ~ElasticNet.check_solver
+      ~ElasticNet.get_params
+      ~ElasticNet.get_proximal_operator
+      ~ElasticNet.penalized_loss
+      ~ElasticNet.penalty_fn
+      ~ElasticNet.resolve_hess_tag
+      ~ElasticNet.set_params
+   

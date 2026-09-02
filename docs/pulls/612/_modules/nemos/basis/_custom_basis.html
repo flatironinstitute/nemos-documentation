@@ -1,0 +1,1400 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.basis._custom_basis &#8212; nemos 0.2.10.dev506 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=17f33042"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/basis/_custom_basis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev506 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev506 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.basis._custom_basis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.basis._custom_basis</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Custom Basis Class.</span>
+
+<span class="sd">Facilitate the construction of a custom basis class.</span>
+<span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lazy_loader</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lazy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">support_pynapple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeatureMatrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_repr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdditiveBasis</span><span class="p">,</span> <span class="n">MultiplicativeBasis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._basis_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">BasisTransformerMixin</span><span class="p">,</span> <span class="n">set_input_shape_state</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._check_basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_transform_input</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._composition_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_unique_shapes</span><span class="p">,</span>
+    <span class="n">_check_valid_shape_tuple</span><span class="p">,</span>
+    <span class="n">add_docstring</span><span class="p">,</span>
+    <span class="n">count_positional_and_var_args</span><span class="p">,</span>
+    <span class="n">infer_input_dimensionality</span><span class="p">,</span>
+    <span class="n">is_basis_like</span><span class="p">,</span>
+    <span class="n">multiply_basis_by_integer</span><span class="p">,</span>
+    <span class="n">promote_to_transformer</span><span class="p">,</span>
+    <span class="n">raise_basis_to_power</span><span class="p">,</span>
+    <span class="n">set_input_shape</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Lazy load pynapple to improve import times</span>
+<span class="n">nap</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"pynapple"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nap</span>  <span class="c1"># noqa: F811</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tsd</span><span class="p">,</span> <span class="n">TsdFrame</span><span class="p">,</span> <span class="n">TsdTensor</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformerBasis</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">simplify_func_repr</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Simplify function repr.</span>
+
+<span class="sd">    Simplify function repr by dropping the address and replace "functools.partial" with "partial".</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    string:</span>
+<span class="sd">        The string repr of a parameter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        A simplified version of the string.</span>
+
+<span class="sd">    """</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"&lt;function (.+) at 0x[0-9a-fA-F]+&gt;"</span>
+    <span class="n">new_string</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="n">func_name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">orig_repr</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">orig_repr</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">new_string</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"functools\.partial"</span><span class="p">,</span> <span class="s2">"partial"</span><span class="p">,</span> <span class="n">new_string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_string</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FunctionList</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"b"</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>  <span class="c1"># store as list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># optional label prefix</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_unwrap</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="o">.</span><span class="n">__wrapped__</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s2">"__wrapped__"</span><span class="p">)</span> <span class="k">else</span> <span class="n">func</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">unwrap</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_unwrap</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unwrap</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">simplify_func_repr</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">unwrap</span><span class="p">))</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">simplify_func_repr</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">unwrap</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="si">}</span><span class="s2">, ..., </span><span class="si">{</span><span class="n">simplify_func_repr</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">unwrap</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="si">}</span><span class="s2">]"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_f_vectorized</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">],</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">ndim_input</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Iterate over the output dim and apply the function to all input combination."""</span>
+
+    <span class="c1"># check if no dimension needs vectorization</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="n">ndim_input</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="c1"># Get the vectorized shape (should be the same for all inputs)</span>
+    <span class="n">vec_shape</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">ndim_input</span><span class="p">:]</span>
+
+    <span class="c1"># Generate all combinations of vectorized indices in the correct order</span>
+    <span class="n">vec_indices</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">vec_shape</span><span class="p">])</span>
+
+    <span class="c1"># Collect results for each vectorized index combination</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">indices</span> <span class="ow">in</span> <span class="n">vec_indices</span><span class="p">:</span>
+        <span class="c1"># Extract slices for this combination of indices</span>
+        <span class="n">slices</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),)</span> <span class="o">*</span> <span class="n">ndim_input</span> <span class="o">+</span> <span class="n">indices</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span><span class="p">]</span>
+
+        <span class="c1"># Apply function to the slices</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">slices</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+
+    <span class="c1"># Concatenate along the last axis</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_valid_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="n">is_numeric</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">)</span>
+    <span class="n">is_int</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_numeric</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_numeric</span> <span class="ow">and</span> <span class="n">is_int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"`output_shape` must be an iterable of integers."</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CustomBasis">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomBasis</span><span class="p">(</span><span class="n">BasisMixin</span><span class="p">,</span> <span class="n">BasisTransformerMixin</span><span class="p">,</span> <span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Custom basis class.</span>
+
+<span class="sd">    Create a custom basis class from a list of callables (the basis functions).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    funcs:</span>
+<span class="sd">        List of basis functions.</span>
+<span class="sd">    ndim_input:</span>
+<span class="sd">        Dimensionality of the input for each sample, i.e. if your time series is of shape ``(n_samples, n, m)``,</span>
+<span class="sd">        ``ndim_input`` is two.</span>
+<span class="sd">    output_shape:</span>
+<span class="sd">        Shape of the output excluding the number of samples. Set automatically when `compute_features` is called.</span>
+<span class="sd">    basis_kwargs:</span>
+<span class="sd">        Additional keyword arguments to pass to the basis function.</span>
+<span class="sd">    pynapple_support:</span>
+<span class="sd">        Enable pynapple support if True.</span>
+<span class="sd">    label:</span>
+<span class="sd">        The label of the basis function.</span>
+<span class="sd">    is_complex : bool, optional</span>
+<span class="sd">        Whether the basis should be treated as complex. This flag ensures that</span>
+<span class="sd">        multiplication with other bases behaves correctly: two real bases, or a real</span>
+<span class="sd">        and a complex basis, can be multiplied, but two complex bases cannot. This</span>
+<span class="sd">        restriction exists because after multiplication, ``basis.compute_features``</span>
+<span class="sd">        does not distinguish between real and imaginary components, which would lead</span>
+<span class="sd">        to incorrect outputs.</span>
+<span class="sd">    bounds :</span>
+<span class="sd">        Interval ``(low, high)`` outside which samples are replaced by ``fill_value``; ``None`` (default)</span>
+<span class="sd">        applies no filling. Unlike the ``Eval`` bases, ``bounds`` here does not define or rescale the</span>
+<span class="sd">        domain, it only masks out-of-range samples.</span>
+<span class="sd">    fill_value :</span>
+<span class="sd">        Value assigned to samples falling outside ``bounds``. Defaults to ``jnp.nan``.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    ``CustomBasis`` does not derive any state from the data: each function in ``self.funcs`` is applied</span>
+<span class="sd">    to the raw input, and ``bounds`` only controls which samples are replaced by ``fill_value`` when they</span>
+<span class="sd">    fall outside the given interval. The transformation is therefore identical across inputs whenever each</span>
+<span class="sd">    output row depends only on the corresponding input row.</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        Functions that normalize by a quantity computed from the input are unsafe here, because that</span>
+<span class="sd">        quantity — and so the transformation — changes from one input to the next, whereas across</span>
+<span class="sd">        cross-validation folds it must stay identical.</span>
+
+<span class="sd">        Thus, you should precompute any such quantity once (e.g. on the training set) and pass it in</span>
+<span class="sd">        as a constant, so the output depends only on each sample. When z-scoring, for example, this</span>
+<span class="sd">        means precomputing the centering and scaling instead of recomputing them from each input:</span>
+<span class="sd">        replace ``lambda x: (x - x.mean()) / x.std()`` with ``lambda x: (x - mean) / std``, where ``mean``</span>
+<span class="sd">        and ``std`` are fixed. See Examples below for an example of this.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">    &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">    &gt;&gt;&gt; # Define a function</span>
+<span class="sd">    &gt;&gt;&gt; def decay_exp(x, rate, shift=0):</span>
+<span class="sd">    ...     return np.exp(-rate * (x + shift)**2)</span>
+<span class="sd">    &gt;&gt;&gt; # Define a list of basis functions</span>
+<span class="sd">    &gt;&gt;&gt; funcs = [partial(decay_exp, rate=r) for r in np.linspace(0, 1, 10)]</span>
+<span class="sd">    &gt;&gt;&gt; bas = nmo.basis.CustomBasis(funcs=funcs, basis_kwargs=dict(shift=1))</span>
+<span class="sd">    &gt;&gt;&gt; bas</span>
+<span class="sd">    CustomBasis(</span>
+<span class="sd">        funcs=[partial(decay_exp, rate=np.float64(0.0)), ..., partial(decay_exp, rate=np.float64(1.0))],</span>
+<span class="sd">        ndim_input=1,</span>
+<span class="sd">        basis_kwargs={'shift': 1},</span>
+<span class="sd">        pynapple_support=True,</span>
+<span class="sd">        is_complex=False</span>
+<span class="sd">    )</span>
+<span class="sd">    &gt;&gt;&gt; samples = np.linspace(0, 1, 50)</span>
+<span class="sd">    &gt;&gt;&gt; X = bas.compute_features(samples)</span>
+<span class="sd">    &gt;&gt;&gt; X.shape</span>
+<span class="sd">    (50, 10)</span>
+<span class="sd">    &gt;&gt;&gt; # Can be composed with other basis (including other custom basis)</span>
+<span class="sd">    &gt;&gt;&gt; add = bas + bas</span>
+<span class="sd">    &gt;&gt;&gt; X = add.compute_features(samples, samples)</span>
+<span class="sd">    &gt;&gt;&gt; X.shape</span>
+<span class="sd">    (50, 20)</span>
+
+<span class="sd">    **Use CustomBasis as Transformer**</span>
+
+<span class="sd">    Whether a ``CustomBasis`` is safe as a transformer depends on the functions you pass. A</span>
+<span class="sd">    sample-wise function transforms a given row the same way regardless of the other rows:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = np.array([1.0, 2.0, 3.0])</span>
+<span class="sd">    &gt;&gt;&gt; safe = nmo.basis.CustomBasis([lambda x: x ** 2])</span>
+<span class="sd">    &gt;&gt;&gt; np.array_equal(safe.compute_features(x)[0], safe.compute_features(x[:1])[0])</span>
+<span class="sd">    True</span>
+
+<span class="sd">    A data-dependent function (here, centering by the input mean) transforms the same row</span>
+<span class="sd">    differently depending on the rest of the input, so it is unsafe across cross-validation folds:</span>
+
+<span class="sd">    &gt;&gt;&gt; unsafe = nmo.basis.CustomBasis([lambda x: x - x.mean()])</span>
+<span class="sd">    &gt;&gt;&gt; np.array_equal(unsafe.compute_features(x)[0], unsafe.compute_features(x[:1])[0])</span>
+<span class="sd">    False</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allow_inputs_of_different_shape</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="CustomBasis.__init__">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">funcs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">],</span>
+        <span class="n">ndim_input</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">output_shape</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">basis_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pynapple_support</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_complex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fill_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pynapple_support</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">pynapple_support</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span> <span class="o">=</span> <span class="n">funcs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ndim_input</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">output_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_shape</span> <span class="o">=</span> <span class="n">output_shape</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">=</span> <span class="n">infer_input_dimensionality</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">basis_kwargs</span> <span class="o">=</span> <span class="n">basis_kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_complex</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">is_complex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span> <span class="o">=</span> <span class="n">fill_value</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_complex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># custom classes could be complex or real, so the attribute</span>
+        <span class="c1"># is an instance attribute not a class attribute</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_complex</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pynapple_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Support pynapple Tsd/TsdFrame/TsdTensor as inputs."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pynapple_support</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""User defined list of basis functions."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_funcs</span>
+
+    <span class="nd">@funcs</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]]):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="p">]</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">FunctionList</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">val</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"User must provide an iterable of callable."</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_n_inputs"</span><span class="p">):</span>
+            <span class="n">inp_dim</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">count_positional_and_var_args</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">inp_dim</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"The number of input time series required by the CustomBasis must be consistent. "</span>
+                    <span class="s2">"Redefine a CustomBasis for a different number of inputs."</span>
+                <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_funcs</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The number of basis."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""The shape of the output excluding the number of samples and the number of basis functions."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span>
+
+    <span class="nd">@output_shape</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_shape</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">output_shape</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">elif</span> <span class="n">output_shape</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">output_shape</span><span class="p">,)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Output shape must be strictly positive (&gt; 0), </span><span class="si">{</span><span class="n">output_shape</span><span class="si">}</span><span class="s2"> provided instead."</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">output_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">"`output_shape` must be an iterable of positive integers or a positive integer."</span>
+                <span class="p">)</span>
+            <span class="n">_check_valid_shape_tuple</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">=</span> <span class="n">output_shape</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">basis_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Additional keyword arguments to pass to the basis functions."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis_kwargs</span>
+
+    <span class="nd">@basis_kwargs</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">basis_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># store args and kwargs</span>
+        <span class="n">basis_kwargs</span> <span class="o">=</span> <span class="n">basis_kwargs</span> <span class="k">if</span> <span class="n">basis_kwargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basis_kwargs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"`basis_kwargs` must be a dictionary."</span><span class="p">)</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">apply_f_vectorized</span><span class="p">)</span>
+        <span class="n">invalid_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">kind</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">KEYWORD_ONLY</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">invalid_kwargs</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">basis_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Invalid kwargs name in ``basis_kwargs``: </span><span class="si">{</span><span class="n">invalid_kwargs</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">basis_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">. "</span>
+                <span class="s2">"Change parameter name in your function definition."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_basis_kwargs</span> <span class="o">=</span> <span class="n">basis_kwargs</span>
+
+    <span class="nd">@support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"jax"</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_fill_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Apply fill value to out-of-bounds samples."""</span>
+        <span class="c1"># Compute mask for out-of-bounds samples</span>
+        <span class="n">to_fill</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">any</span><span class="p">(</span>
+            <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">jnp</span><span class="o">.</span><span class="n">any</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="o">|</span> <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span>
+                <span class="p">]</span>
+            <span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Reshape to_fill to broadcast correctly: (n_samples,) -&gt; (n_samples, 1, 1, ...)</span>
+        <span class="n">to_fill_broadcast</span> <span class="o">=</span> <span class="n">to_fill</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">to_fill</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">to_fill_broadcast</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_value</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomBasis.compute_features">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.compute_features">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply the basis transformation to the input data.</span>
+
+<span class="sd">        This method applies each function in ``self.funcs`` to the input arrays ``*xi``.</span>
+<span class="sd">        These functions are called with the arguments ``(*xi, **self.basis_kwargs)`` and must return</span>
+<span class="sd">        an array of shape ``(n_samples, ...)``, where the first dimension corresponds to the number of samples,</span>
+<span class="sd">        and the output must have at least one dimension (i.e., ``ndim &gt;= 1``).</span>
+
+<span class="sd">        The outputs of all function calls are reshaped into 2D arrays with shape ``(n_samples, n_output)``, and</span>
+<span class="sd">        then concatenated along the feature axis (second dimension) to form the full design matrix.</span>
+
+<span class="sd">        If the input arrays have more dimensions than ``self.ndim_input``, the function calls are automatically</span>
+<span class="sd">        vectorized over the additional axes. This is done using Python loops, which may be slow. For better</span>
+<span class="sd">        performance, users are encouraged to provide fully vectorized functions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            Input arrays. Each must have at least ``self.ndim_input`` dimensions. If extra dimensions are present,</span>
+<span class="sd">            they are interpreted as batch or window dimensions over which the basis functions are applied.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The resulting design matrix, with one row per sample and one column per output feature.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        See the class docstring for when the transformation is safe to use as a transformer.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
+<span class="sd">        ...     return x ** n</span>
+<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis([partial(power_func, 1), partial(power_func, 2)])</span>
+<span class="sd">        &gt;&gt;&gt; bas.compute_features(np.arange(1, 4))</span>
+<span class="sd">        array([[1., 1.],</span>
+<span class="sd">               [2., 4.],</span>
+<span class="sd">               [3., 9.]])</span>
+<span class="sd">        """</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">_check_transform_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span><span class="p">):</span>
+            <span class="n">invalid_dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span><span class="p">]</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Each input must have at least </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span><span class="si">}</span><span class="s2"> dimensions, as required by this basis. "</span>
+                <span class="sa">f</span><span class="s2">"However, some inputs have fewer dimensions: </span><span class="si">{</span><span class="n">invalid_dims</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
+        <span class="n">_check_unique_shapes</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># no samples</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pynapple_support</span><span class="p">:</span>
+                <span class="n">conv_type</span> <span class="o">=</span> <span class="s2">"numpy"</span> <span class="k">if</span> <span class="n">nap</span><span class="o">.</span><span class="n">nap_config</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">"numba"</span> <span class="k">else</span> <span class="s2">"jax"</span>
+                <span class="n">apply_func</span> <span class="o">=</span> <span class="n">support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="p">)(</span>
+                    <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_output_features</span><span class="p">))</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">apply_func</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_output_features</span><span class="p">))</span>
+
+        <span class="n">design_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">xi</span>
+        <span class="p">)</span>  <span class="c1"># (n_samples, *n_output_shape, n_vec_dim, n_basis)</span>
+        <span class="c1"># Apply fill_value to out-of-bounds samples</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">design_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_fill_value</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+        <span class="c1"># return a model design</span>
+        <span class="k">return</span> <span class="n">design_matrix</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CustomBasis.evaluate">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.evaluate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Evaluate the basis functions in a vectorized form at the given sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            The samples at which the basis functions are evaluated. Each element in `xi` corresponds</span>
+<span class="sd">            to an input dimension, and must be broadcastable to a common shape along the sample axis.</span>
+<span class="sd">            The shape of each input array should be (n_samples, ...) where the first axis indexes samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        basis_funcs :</span>
+<span class="sd">            The basis functions evaluated at the given input points, with shape</span>
+<span class="sd">            (n_samples, n_vect_input * n_basis_funcs), n_vect_input is the number of inputs that are</span>
+<span class="sd">            vectorized.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This method supports both NumPy and pynapple inputs. If pynapple support is enabled,</span>
+<span class="sd">        the inputs and outputs are automatically cast using the configured backend (e.g., JAX or NumPy).</span>
+<span class="sd">        Evaluation is performed by applying a vectorized function over each basis function and</span>
+<span class="sd">        concatenating the results along the last axis.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import CustomBasis</span>
+<span class="sd">        &gt;&gt;&gt; basis = CustomBasis(funcs=[lambda x: x, lambda x: x**2])</span>
+<span class="sd">        &gt;&gt;&gt; x = np.linspace(0, 1, 10)</span>
+<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(x)</span>
+<span class="sd">        &gt;&gt;&gt; out.shape</span>
+<span class="sd">        (10, 2)</span>
+<span class="sd">        &gt;&gt;&gt; # vectorize over 3 inputs</span>
+<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(np.random.randn(10, 3))</span>
+<span class="sd">        &gt;&gt;&gt; out.shape</span>
+<span class="sd">        (10, 3, 2)</span>
+
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pynapple_support</span><span class="p">:</span>
+            <span class="n">conv_type</span> <span class="o">=</span> <span class="s2">"numpy"</span> <span class="k">if</span> <span class="n">nap</span><span class="o">.</span><span class="n">nap_config</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">"numba"</span> <span class="k">else</span> <span class="s2">"jax"</span>
+            <span class="n">apply_func</span> <span class="o">=</span> <span class="n">support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="p">)(</span><span class="n">apply_f_vectorized</span><span class="p">)</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">apply_func</span> <span class="o">=</span> <span class="n">apply_f_vectorized</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span>
+
+        <span class="c1"># Get individual function results</span>
+        <span class="n">func_results</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">apply_func</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">basis_kwargs</span><span class="p">,</span> <span class="n">ndim_input</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Stack functions first, then reorder</span>
+        <span class="n">stacked</span> <span class="o">=</span> <span class="n">stack</span><span class="p">(</span>
+            <span class="n">func_results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+        <span class="p">)</span>  <span class="c1"># (n_samples, *out_shape, n_vec_features, n_funcs)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_shape</span> <span class="o">=</span> <span class="n">stacked</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="c1"># no vectorization</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span><span class="p">):</span>
+            <span class="n">stacked</span> <span class="o">=</span> <span class="n">stacked</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">return</span> <span class="n">stacked</span></div>
+
+
+<div class="viewcode-block" id="CustomBasis.__sklearn_clone__">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.__sklearn_clone__">[docs]</a>
+    <span class="nd">@set_input_shape_state</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">(</span><span class="s2">"_input_shape_product"</span><span class="p">,</span> <span class="s2">"_input_shape_"</span><span class="p">,</span> <span class="s2">"_label"</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__sklearn_clone__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomBasis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Clone the basis while preserving attributes related to input shapes.</span>
+
+<span class="sd">        This method ensures that input shape attributes (e.g., `_input_shape_product`,</span>
+<span class="sd">        `_input_shape_`) are preserved during cloning. Reinitializing the class</span>
+<span class="sd">        as in the regular sklearn clone would drop these attributes, rendering</span>
+<span class="sd">        cross-validation unusable.</span>
+<span class="sd">        """</span>
+        <span class="n">klass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">klass</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_output_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The number of output features, i.e. the number of columns of the design matrix."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># Computation for number of output features:</span>
+        <span class="c1"># 1. Compute the number of vectorized dimensions:</span>
+        <span class="c1">#    - discard axis corresponding to input dimensionality</span>
+        <span class="c1">#    - multiply the shape of the remaining axis</span>
+        <span class="c1"># 2. multiply by the number of basis and the shape of the output</span>
+
+        <span class="c1"># Note that self._input_shape_ could be:</span>
+        <span class="c1">#   1. A list of tuple, if the funcs require &gt; 1 input.</span>
+        <span class="c1">#   2. A single tuple, if the funcs require 1 input.</span>
+        <span class="n">ishape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span>
+        <span class="p">)</span>
+        <span class="n">vec_inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">ishape</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim_input</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:]])</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">vec_inp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_shape</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reshape_concatenated_arrays</span><span class="p">(</span>
+        <span class="n">array</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">bas</span><span class="p">:</span> <span class="n">CustomBasis</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+        <span class="c1"># reshape the arrays to match input shapes</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="n">shape</span><span class="p">[:</span><span class="n">axis</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span>
+                <span class="o">*</span><span class="n">bas</span><span class="o">.</span><span class="n">output_shape</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">(</span>
+                    <span class="n">i</span>
+                    <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">bas</span><span class="o">.</span><span class="n">_input_shape_</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">[</span><span class="n">bas</span><span class="o">.</span><span class="n">ndim_input</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:]</span>
+                <span class="p">),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">bas</span><span class="o">.</span><span class="n">funcs</span><span class="p">),</span>
+            <span class="p">]</span>
+            <span class="o">+</span> <span class="n">shape</span><span class="p">[</span><span class="n">axis</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">array</span>
+
+<div class="viewcode-block" id="CustomBasis.__add__">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.__add__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdditiveBasis</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">AdditiveBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BasisMixin</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomBasis.__mul__">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.__mul__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BasisMixin</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">multiply_basis_by_integer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_basis_like</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">"Basis multiplicative factor should be a Basis object or a positive integer!"</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">MultiplicativeBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomBasis.__pow__">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.__pow__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BasisMixin</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">raise_basis_to_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">exclude_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">"fill_value"</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">rep</span> <span class="o">=</span> <span class="n">format_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">multiline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">tab</span> <span class="o">=</span> <span class="s2">"    "</span>
+        <span class="k">return</span> <span class="n">rep</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">tab</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="CustomBasis.split_by_feature">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.split_by_feature">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"split_by_feature"</span><span class="p">,</span> <span class="n">BasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
+<span class="sd">        ...     return x ** n</span>
+<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis([partial(power_func, 1), partial(power_func, 2)])</span>
+<span class="sd">        &gt;&gt;&gt; # define a 3 x 2 input</span>
+<span class="sd">        &gt;&gt;&gt; inp = np.arange(1, 7).reshape(3, 2)</span>
+<span class="sd">        &gt;&gt;&gt; X = bas.compute_features(inp)</span>
+<span class="sd">        &gt;&gt;&gt; X.shape  # (3, 2 * 2)</span>
+<span class="sd">        (3, 4)</span>
+<span class="sd">        &gt;&gt;&gt; bas.split_by_feature(X)["CustomBasis"]  # spilt to (3, 2, 2)</span>
+<span class="sd">        array([[[ 1.,  1.],</span>
+<span class="sd">                [ 2.,  4.]],</span>
+<span class="sd">        ...</span>
+<span class="sd">               [[ 3.,  9.],</span>
+<span class="sd">                [ 4., 16.]],</span>
+<span class="sd">        ...</span>
+<span class="sd">               [[ 5., 25.],</span>
+<span class="sd">                [ 6., 36.]]], dtype=float32)</span>
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomBasis.set_input_shape">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.set_input_shape">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="s2">"int | tuple[int, ...] | NDArray"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Set the expected input shape for the basis object.</span>
+
+<span class="sd">        This method sets the input shape for each input required by the funcs in the CustomBasis.</span>
+<span class="sd">        One ``xi`` must be provided for each input, specified as an integer,</span>
+<span class="sd">        a tuple of integers, or an array. The method calculates and stores the total number of output features</span>
+<span class="sd">        based on the number of basis functions, the number of input per function, and the provided input shapes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            The input shape specifications. For every k,``xi[k]`` can be:</span>
+<span class="sd">            - An integer: Represents the dimensionality of the input. A value of ``1`` is treated as scalar input.</span>
+<span class="sd">            - A tuple: Represents the exact input shape excluding the first axis (sample axis).</span>
+<span class="sd">              All elements must be integers.</span>
+<span class="sd">            - An array: The shape is extracted, excluding the first axis (assumed to be the sample axis).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If a tuple is provided, and it contains non-integer elements.</span>
+<span class="sd">            If not enough inputs are provided.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self :</span>
+<span class="sd">            Returns the instance itself to allow method chaining.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">        &gt;&gt;&gt; # Basis with one input only</span>
+<span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
+<span class="sd">        ...     return x ** n</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis([partial(power_func, n) for n in range(1, 6)])</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        15</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with a tuple:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape((4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        100</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an array:</span>
+<span class="sd">        &gt;&gt;&gt; x = np.ones((10, 4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(x)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        100</span>
+<span class="sd">        &gt;&gt;&gt; # basis with 2 inputs</span>
+<span class="sd">        &gt;&gt;&gt; def power_add_func(n, x, y):</span>
+<span class="sd">        ...     return x ** n + y ** n</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis([partial(power_add_func, n) for n in range(1, 6)])</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3, 3)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        15</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape((3, 2), (3, 2))</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        30</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(np.ones((10, 3, 2)), (3, 2))</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        30</span>
+<span class="sd">        """</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="c1"># CustomBasis acts as a multiplicative basis in n-dimension</span>
+        <span class="c1"># i.e. multiple inputs must have the same shape and are</span>
+        <span class="c1"># treated in a paired-way in vectorization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="CustomBasis.to_transformer">
+<a class="viewcode-back" href="../../../api/generated/_custom_basis/nemos.basis._custom_basis.CustomBasis.html#nemos.basis._custom_basis.CustomBasis.to_transformer">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_transformer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformerBasis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Turn the Basis into a TransformerBasis for use with scikit-learn.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A transformer basis.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.model_selection import GridSearchCV</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.pipeline import Pipeline</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; # load some data</span>
+<span class="sd">        &gt;&gt;&gt; x = 0.1 * np.random.normal(size=(100, 1))</span>
+<span class="sd">        &gt;&gt;&gt; y = np.random.poisson(np.exp(x[:, 0]), size=100)</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; def power_func(n, x, bias=0):</span>
+<span class="sd">        ...     return (x + bias) ** n</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis([partial(power_func, n) for n in range(1, 6)])</span>
+<span class="sd">        &gt;&gt;&gt; basis = basis.to_transformer()</span>
+<span class="sd">        &gt;&gt;&gt; glm = nmo.glm.GLM(regularizer="Ridge", regularizer_strength=1.0)</span>
+<span class="sd">        &gt;&gt;&gt; pipeline = Pipeline([("basis", basis), ("glm", glm)])</span>
+<span class="sd">        &gt;&gt;&gt; param_grid = dict(</span>
+<span class="sd">        ...     glm__regularizer_strength=(0.1, 0.01, 0.001, 1e-6),</span>
+<span class="sd">        ...     basis__basis_kwargs=(dict(bias=0), dict(bias=1)),</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; gridsearch = GridSearchCV(</span>
+<span class="sd">        ...     pipeline,</span>
+<span class="sd">        ...     param_grid=param_grid,</span>
+<span class="sd">        ...     cv=2,</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; gridsearch = gridsearch.fit(x, y)</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">input_shape</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""Input shape as a tuple or list of tuple.</span>
+
+<span class="sd">        The property mimics the behavior of atomic bases, and uses the</span>
+<span class="sd">        assumption that _input_shape_ for custom bases is a list of</span>
+<span class="sd">        length one.</span>
+<span class="sd">        """</span>
+        <span class="n">input_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span>
+        <span class="k">if</span> <span class="n">input_shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">input_shape</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

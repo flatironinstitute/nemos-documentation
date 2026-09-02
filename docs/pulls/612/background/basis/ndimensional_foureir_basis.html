@@ -1,0 +1,2432 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fourier Basis &#8212; nemos 0.2.10.dev506 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=17f33042"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background/basis/ndimensional_foureir_basis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="JAX Pytrees for Structuring Multiple Predictors" href="../plot_07_glm_pytree.html" />
+    <link rel="prev" title="Composing Basis Functions" href="plot_02_ND_basis_function.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev506 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev506 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_00_conceptual_intro.html">Generalized Linear Models: An Introduction</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Basis Function</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html">Simple Basis Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html">Composing Basis Functions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fourier Basis</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_07_glm_pytree.html">JAX Pytrees for Structuring Multiple Predictors</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_03_1D_convolution.html">Convolution</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../README.html" class="nav-link">Background</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">Basis Function</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Fourier Basis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="important admonition">
+<p class="admonition-title">Download</p>
+<p>Download this notebook: <strong><a class="reference download internal" download="" href="../../_downloads/2a3fc1f6d2473c676cfdf05b97b420ce/ndimensional_foureir_basis.ipynb"><code class="xref download myst-nb docutils literal notranslate"><span class="pre">ndimensional_foureir_basis.ipynb</span></code></a></strong>!</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Ignore the first specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"plotting functions contained within `_documentation_utils` are intended for nemos's documentation."</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Ignore the second specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"Ignoring cached namespace 'core'"</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">"invalid value encountered in div "</span>
+    <span class="p">),</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="fourier-basis">
+<span id="fourier-basis-doc"></span><h1>Fourier Basis<a class="headerlink" href="#fourier-basis" title="Link to this heading">#</a></h1>
+<p>The Fourier basis uses a slightly different API from other bases in NeMoS. This page covers everything you need to use it.</p>
+<section id="one-dimensional-fourier-basis">
+<h2>One-Dimensional Fourier Basis<a class="headerlink" href="#one-dimensional-fourier-basis" title="Link to this heading">#</a></h2>
+<p>A one-dimensional Fourier basis is a complex basis whose elements are</p>
+<div class="math notranslate nohighlight">
+\[
+a_n(x) \;=\; \cos\!\Bigl(2\pi \frac{n}{P}\,x\Bigr) \;+\; i\,\sin\!\Bigl(2\pi \frac{n}{P}\,x\Bigr),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(P&gt;0\)</span> is the period, <span class="math notranslate nohighlight">\(x\)</span> is the input variable, and <span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span> is the frequency index.</p>
+<section id="fourier-basis-in-nemos">
+<h3>Fourier Basis in NeMoS<a class="headerlink" href="#fourier-basis-in-nemos" title="Link to this heading">#</a></h3>
+<p>In NeMoS, you can define a <code class="docutils literal notranslate"><span class="pre">FourierEval</span></code> basis object with the following syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">FourierEval</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 5 frequencies, from 0 to 4, no masking</span>
+<span class="c1"># (the default behavior is masking-out frequency 0, see below)</span>
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"frequencies:"</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"design matrix shape:"</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (n_samples, n_features)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frequencies: [0.0, 1.0, 2.0, 3.0, 4.0]
+design matrix shape: (400, 9)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">compute_features</span></code> method of the basis returns a <strong>real</strong> design matrix that splits real and imaginary parts into separate columns, first the cosine columns then the sine.</p>
+<div class="info admonition">
+<p class="admonition-title">How did we get this number of columns in the design matrix?</p>
+<p>Let the selected frequencies be the sorted set <span class="math notranslate nohighlight">\(\mathcal F=\{n_1&lt;\cdots&lt;n_K\}\)</span>.</p>
+<p>Each frequency contributes a cosine and a sine, so with <span class="math notranslate nohighlight">\(K\)</span> frequencies you’d expect <span class="math notranslate nohighlight">\(2K\)</span> columns. This is the case when the 0 frequency - DC term - is not included. If the DC term is included, we have that the corresponding sine column is null, since <span class="math notranslate nohighlight">\(\sin(0)=0\)</span>. For this reason, the column is omitted — giving <span class="math notranslate nohighlight">\(2K-1\)</span>. In our example <span class="math notranslate nohighlight">\(K=5\)</span> and the DC term is included, therefore we obtain <span class="math notranslate nohighlight">\(2*5-1=9\)</span> columns. Summarizing,</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(n_1=0\)</span> (with DC):</p>
+<div class="math notranslate nohighlight">
+\[
+  \bigl[\;1,\,\cos(2\pi \frac{n_2}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_2}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],
+  \]</div>
+<p>total columns <span class="math notranslate nohighlight">\(=2K-1\)</span>.</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(n_1&gt;0\)</span> (without DC):</p>
+<div class="math notranslate nohighlight">
+\[
+  \bigl[\;\cos(2\pi \frac{n_1}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_1}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],
+  \]</div>
+<p>total columns <span class="math notranslate nohighlight">\(=2K\)</span>.</p>
+</li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: here and below, '5' = number of frequencies (K in the math)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"5 frequencies including the DC term:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"frequencies:"</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"output features: 5 * 2 - 1 = "</span><span class="p">,</span>  <span class="n">fourier_1d</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+
+<span class="c1"># `evaluate_on_grid` calls `compute_features` on a grid of point</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">axs</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"frequency = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"cosine"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">freq</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># to get the corresponding sin column</span>
+        <span class="c1"># add the num of frequencies (5), minus dc term (1)</span>
+        <span class="n">idx_sin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">axs</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">idx_sin</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"sine"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 frequencies including the DC term:
+frequencies: [0. 1. 2. 3. 4.]
+output features: 5 * 2 - 1 =  9
+</pre></div>
+</div>
+<img alt="../../_images/e1171205225bf626b9244c7315ad0af70b51c3dc263b448e9cc6faff890b8de0.png" src="../../_images/e1171205225bf626b9244c7315ad0af70b51c3dc263b448e9cc6faff890b8de0.png" />
+</div>
+</div>
+<p><strong>Without DC (1..5): same pair</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop the DC term (5 frequencies)</span>
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">5 frequencies without the DC term:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"frequencies:"</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"output features: 5 * 2 = "</span><span class="p">,</span>  <span class="n">fourier_1d</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># `evaluate_on_grid` calls `compute_features` on a grid of point</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">idx_freq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">idx_freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"frequency = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">idx_freq</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">idx_freq</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"cosine"</span><span class="p">)</span>
+    <span class="c1"># to get the corresponding sin column</span>
+    <span class="c1"># add the num of frequencies (5), no dc term to subtract</span>
+    <span class="n">idx_sin</span> <span class="o">=</span> <span class="n">idx_freq</span> <span class="o">+</span> <span class="mi">5</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">idx_freq</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">idx_sin</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"sine"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 frequencies without the DC term:
+frequencies: [1. 2. 3. 4. 5.]
+output features: 5 * 2 =  10
+</pre></div>
+</div>
+<img alt="../../_images/ab0f8e66202ae6be09831f7e10ebfbb3829ec3e6a6d15bc6ae7fdabe32e7c49d.png" src="../../_images/ab0f8e66202ae6be09831f7e10ebfbb3829ec3e6a6d15bc6ae7fdabe32e7c49d.png" />
+</div>
+</div>
+</section>
+<section id="selecting-frequencies">
+<h3>Selecting frequencies<a class="headerlink" href="#selecting-frequencies" title="Link to this heading">#</a></h3>
+<p>You can provide <code class="docutils literal notranslate"><span class="pre">frequencies</span></code> as:</p>
+<ul class="simple">
+<li><p>An integer <span class="math notranslate nohighlight">\(n\)</span>, that will result in frequencies <span class="math notranslate nohighlight">\(0, \ldots, n-1\)</span>.</p></li>
+<li><p>A range <span class="math notranslate nohighlight">\((n, m)\)</span>, that will result in frequencies <span class="math notranslate nohighlight">\(n, \ldots, m-1\)</span>.</p></li>
+<li><p>An array of integers.</p></li>
+<li><p>A list of length <code class="docutils literal notranslate"><span class="pre">ndim</span></code> of any of the above.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Important distinction between lists and arrays:</strong></p>
+<ul class="simple">
+<li><p>An <strong>array</strong> (<code class="docutils literal notranslate"><span class="pre">np.array([4,</span> <span class="pre">5])</span></code>): Specifies the exact frequencies <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">5]</span></code> (sorted) for <strong>all dimensions</strong></p></li>
+<li><p>A <strong>list</strong> (<code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">5]</span></code>): Specifies different frequency specifications <strong>per dimension</strong> - 4 frequencies <code class="docutils literal notranslate"><span class="pre">[0,1,2,3]</span></code> for dimension 1, and 5 frequencies <code class="docutils literal notranslate"><span class="pre">[0,1,2,3,4]</span></code> for dimension 2</p></li>
+</ul>
+<p>This difference allows flexible specification: use arrays when you want the same custom frequencies across all dimensions, use lists when you want different frequency specifications per dimension.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- frequencies=5: "</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">)</span>
+
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- frequencies=(5, 10): "</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">)</span>
+
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"- frequencies=np.array([1, 3, 5]): "</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- frequencies=5:  [Array([0., 1., 2., 3., 4.], dtype=float32)]
+- frequencies=(5, 10):  [Array([5., 6., 7., 8., 9.], dtype=float32)]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- frequencies=np.array([1, 3, 5]):  [Array([1., 3., 5.], dtype=float32)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, NeMoS <strong>masks out</strong> the intercept (the DC term at frequency <code class="docutils literal notranslate"><span class="pre">0</span></code>). This is because NeMoS bases are most often used to build design matrices for GLMs, and NeMoS GLMs already include an intercept; adding another would be redundant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># default masking</span>
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># masked frequencies are 1..4</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"masked frequencies: "</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># number of output features: (4 frequencies) * 2 = 8  (cos &amp; sin)</span>
+<span class="n">fourier_1d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked frequencies:  [1. 2. 3. 4.]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can override this behavior by setting <code class="docutils literal notranslate"><span class="pre">frequency_mask</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code> to keep the DC term.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># keep all frequencies, including 0 (DC)</span>
+<span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># masked frequencies are 0..4</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"masked frequencies: "</span><span class="p">,</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># number of output features: (5 frequencies)*2 - 1 = 9</span>
+<span class="c1"># (DC contributes only a cosine term; no sine at 0)</span>
+<span class="n">fourier_1d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked frequencies:  [0. 1. 2. 3. 4.]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 9)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-the-period-of-the-basis">
+<span id="fourier-period"></span><h3>Setting the Period of the Basis<a class="headerlink" href="#setting-the-period-of-the-basis" title="Link to this heading">#</a></h3>
+<p>When evaluating the basis at some values <span class="math notranslate nohighlight">\(\boldsymbol{x} = \{x_1,...,x_t\}\)</span>, NeMoS assumes that the period of the basis is <span class="math notranslate nohighlight">\(P = \max(\boldsymbol{x}) - \min(\boldsymbol{x})\)</span>. The basis element with frequency equal to <span class="math notranslate nohighlight">\(n\)</span> will therefore oscillate <span class="math notranslate nohighlight">\(n\)</span> times over the range of values covered by <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-info sd-bg-text-info">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg></span><span class="sd-summary-text">More on the Fourier Mapping</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">More precisely, let <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,\ldots,x_T)\)</span>. For an integer <span class="math notranslate nohighlight">\(n\ge 0\)</span>, the <span class="math notranslate nohighlight">\(n\)</span>-th Fourier basis element maps each <span class="math notranslate nohighlight">\(x_j\)</span> to</p>
+<div class="math notranslate nohighlight">
+\[
+a_n(x_j)
+= \cos\!\left(2\pi n\,\frac{x_j-\min(\boldsymbol{x})}{\max(\boldsymbol{x})-\min(\boldsymbol{x})}\right)
+\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-\min(\boldsymbol{x})}{\max(\boldsymbol{x})-\min(\boldsymbol{x})}\right).
+\]</div>
+<p class="sd-card-text">for <span class="math notranslate nohighlight">\(j=1,\ldots,T\)</span>.</p>
+<ul class="simple">
+<li><p class="sd-card-text">The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=\max(\boldsymbol{x})-\min(\boldsymbol{x})\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(\max(\boldsymbol{x})\)</span>.</p></li>
+<li><p class="sd-card-text">The phase is zero at <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span>: <span class="math notranslate nohighlight">\(a_n(\min(\boldsymbol{x}))=1+0i\)</span>.</p></li>
+</ul>
+</div>
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency_mask</span><span class="o">=</span><span class="s2">"all"</span><span class="p">)</span>
+
+<span class="c1"># generate an input ranging [-2, 2]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># evaluate the basis</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"frequency = </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">freq</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">"$a_</span><span class="se">{{</span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="se">}}</span><span class="s2">(x)$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ccac9d9f31eaa29ab041dfbadf4b25a08b522f50a5ebfc0c18a06cc742b2c1df.png" src="../../_images/ccac9d9f31eaa29ab041dfbadf4b25a08b522f50a5ebfc0c18a06cc742b2c1df.png" />
+</div>
+</div>
+<p>To fix a domain for the basis, for example <span class="math notranslate nohighlight">\([0, 2 \pi]\)</span>, you can provide the <code class="docutils literal notranslate"><span class="pre">bounds</span></code> parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fix bounds for the range of the input</span>
+<span class="n">fourier_1d</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># generate an input not covering the whole range</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># evaluate the basis</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fourier_1d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"frequency = </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">freq</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">"$a_</span><span class="se">{{</span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="se">}}</span><span class="s2">(x)$"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/35a52fab737a2fe5f78b46c4be9d9ac9e965648b3ea4abf8f28bfaa7624926ab.png" src="../../_images/35a52fab737a2fe5f78b46c4be9d9ac9e965648b3ea4abf8f28bfaa7624926ab.png" />
+</div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">bounds=(0,</span> <span class="pre">2π)</span></code> fixed but <span class="math notranslate nohighlight">\(\boldsymbol{x} \in [0, \pi]\)</span>, each frequency <span class="math notranslate nohighlight">\(n\)</span> is defined to complete <span class="math notranslate nohighlight">\(n\)</span> cycles over the full domain <span class="math notranslate nohighlight">\([0,2\pi]\)</span>. Since we are only sampling <strong>half</strong> the domain, each curve shows only the <strong>first half</strong> of those <span class="math notranslate nohighlight">\(n\)</span> cycles (e.g., for <span class="math notranslate nohighlight">\(n=2\)</span> you see one full cycle).</p>
+<p>The bounds can be provided at initialization as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_1d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">fourier_1d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>.sk-global {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+}
+
+.sk-global.light {
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: black;
+  --sklearn-color-background: white;
+  --sklearn-color-border-box: black;
+  --sklearn-color-icon: #696969;
+}
+
+.sk-global.dark {
+  --sklearn-color-text-on-default-background: white;
+  --sklearn-color-background: #111;
+  --sklearn-color-border-box: white;
+  --sklearn-color-icon: #878787;
+}
+
+.sk-global {
+  color: var(--sklearn-color-text);
+}
+
+.sk-global pre {
+  padding: 0;
+}
+
+.sk-global input.sk-hidden--visually {
+  border: 0;
+  clip-path: inset(100%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sk-global div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+.sk-global div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+.sk-global div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+.sk-global div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+.sk-global div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+.sk-global div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.sk-global div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+.sk-global div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+.sk-global div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+.sk-global label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.sk-global label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+.sk-global label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+.sk-global label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+.sk-global div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.sk-global input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+.sk-global div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+.sk-global div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.sk-global div.sk-label label.sk-toggleable__label,
+.sk-global div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+.sk-global div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+.sk-global div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+.sk-global div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+.sk-global div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+.sk-global div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+.sk-global div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-3) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3) 1pt solid;
+  color: var(--sklearn-color-fitted-level-3);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-0);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-fitted-level-0);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+.sk-global a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+.sk-global a.estimator_doc_link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+.sk-global a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+.sk-global a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-top-container.sk-global {
+  /* pydata-sphinx-theme hides overflow, so scrolling is disabled.
+   We need to set it to !important and add tabindex="0" in the HTML
+   to allow keyboard-only users to navigate the display. */
+  overflow-x: scroll !important;
+  max-width: 100%;
+}
+
+.estimator-table {
+    font-family: monospace;
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.estimator-table summary::marker {
+    font-size: 0.7rem;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover td {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table :is(td, th) {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+/*
+    `table td`is set in notebook with right text-align.
+    We need to overwrite it.
+*/
+.estimator-table table td.param {
+    text-align: left;
+    position: relative;
+    padding: 0;
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left !important;
+}
+
+.user-set td.value {
+    color:rgb(255, 94, 0);
+    background-color: transparent;
+}
+
+.default td, .estimator-table th {
+    color: black;
+    text-align: left !important;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+td.fitted-att-type {
+    white-space: preserve nowrap;
+}
+
+/*
+    Styles for parameter documentation links
+    We need styling for visited so jupyter doesn't overwrite it
+*/
+a.param-doc-link,
+a.param-doc-link:link,
+a.param-doc-link:visited {
+    text-decoration: underline dashed;
+    text-underline-offset: .3em;
+    color: inherit;
+    display: block;
+    padding: .5em;
+}
+
+@supports(anchor-name: --doc-link) {
+    a.param-doc-link,
+    a.param-doc-link:link,
+    a.param-doc-link:visited {
+    anchor-name: --doc-link;
+    }
+}
+
+/* "hack" to make the entire area of the cell containing the link clickable */
+a.param-doc-link::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
+.param-doc-description {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    padding: .5ex;
+    margin-left: 1.5em;
+    color: var(--sklearn-color-text);
+    box-shadow: .3em .3em .4em #999;
+    width: max-content;
+    text-align: left;
+    max-height: 10em;
+    overflow-y: auto;
+
+    /* unfitted */
+    background: var(--sklearn-color-unfitted-level-0);
+    border: thin solid var(--sklearn-color-unfitted-level-3);
+}
+
+@supports(position-area: center right) {
+    .param-doc-description {
+    position-area: center right;
+    position: fixed;
+    margin-left: 0;
+    }
+}
+
+/* Fitted state for parameter tooltips */
+.fitted .param-doc-description {
+    /* fitted */
+    background: var(--sklearn-color-fitted-level-0);
+    border: thin solid var(--sklearn-color-fitted-level-3);
+}
+
+.param-doc-link:hover .param-doc-description {
+    display: block;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+
+.features {
+  font-family: monospace;
+  cursor: pointer;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: .20em;
+  margin-bottom: 0.5em;
+  font-size: inherit; /* Needed for jupyter */
+}
+
+.features.fitted {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features summary {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: .25em;
+}
+
+.features details[open] > summary {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features.fitted details[open] > summary {
+  background-color: var(--sklearn-color-fitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features details > summary .arrow::before {
+  content: "▸";
+  color: grey;
+}
+
+.features details[open] > summary .arrow::before {
+  content: "▾";
+}
+
+.features details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.features.fitted details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.features .features-container {
+  max-width: 15em;
+  max-height: 10em;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: .25em 0.1rem;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 0 0 .5em .5em;
+}
+
+.features.fitted .features-container {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features .image-container {
+  block-size: 1em;
+  inline-size: 1em;
+  padding: 0;
+  margin: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features .copy-paste-icon {
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  filter: grayscale(100%) opacity(60%);
+}
+
+.features .features-container table {
+  width: 100%;
+  margin: 0.01em;
+}
+
+.features .features-container table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.features .features-container table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.features .features-container table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.features .features-container table {
+  table-layout: inherit;
+}
+
+.features .features-container table td {
+  text-align: left;
+  padding: 0 0.5em;
+  border: 1px solid rgba(106, 105, 104, 0.232);
+  white-space: nowrap;
+  color: var(--sklearn-color-text);
+}
+
+.total_features {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+</style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32)], ndim=1, bounds=(0.0, 6.283185307179586), frequency_mask=&#x27;no-intercept&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>FourierEval</div></div><div><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></div></label><div class="sk-toggleable__content " data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('frequencies',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">frequencies</td>
+            <td class="value">[Array([0., 1....dtype=float32)]</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('bounds',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">bounds</td>
+            <td class="value">(0.0, ...)</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('ndim',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">ndim</td>
+            <td class="value">1</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('frequency_mask',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">frequency_mask</td>
+            <td class="value">&#x27;no-intercept&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('label',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">label</td>
+            <td class="value">&#x27;FourierEval&#x27;</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>/*  Authors: The scikit-learn developers
+ SPDX-License-Identifier: BSD-3-Clause
+*/
+
+function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.copy-paste-icon').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+
+    const parent = element.parentElement;
+    if (!parent || !parent.nextElementSibling) {
+        console.warn('Expected copy-paste icon is missing from the DOM structure');
+        return;
+    }
+
+    const paramName = element.parentElement.nextElementSibling
+        .textContent.trim().split(' ')[0];
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+
+/**
+ * Copy the list of feature names formatted as a Python list.
+ *
+ * @param {HTMLElement} element - The copy button inside a `.features` block; its siblings
+ *   contain a `details` element and a table containing feature named.
+ * @returns {boolean} Always returns `false` so callers can prevent the default click behavior.
+ */
+function copyFeatureNamesToClipboard(element) {
+    var detailsElem = element.closest('.features').querySelector('details');
+    var wasOpen = detailsElem.open;
+    detailsElem.open = true;
+    var content = element.closest('.features').querySelector('tbody')
+                  .innerText.trim();
+    if (!wasOpen) detailsElem.open = false;
+    const rows = content.split('\n').map(row => `    "${row}"`);
+    const formattedText = `[\n${rows.join(',\n')},\n]`;
+    const originalHTML = element.innerHTML.replace('✔', '');
+    const originalStyle = element.style;
+    const copyMark = document.createElement('span');
+    copyMark.innerHTML = '✔';
+    copyMark.style.color = 'blue';
+    copyMark.style.fontSize = '1em';
+
+    navigator.clipboard.writeText(formattedText)
+        .then(() => {
+            element.style.display = 'none';
+            element.parentElement.appendChild(copyMark);
+
+            setTimeout(() => {
+                copyMark.remove();
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'orange';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        });
+    return false;
+}
+/**
+ * Adapted from Skrub
+ * https://github.com/skrub-data/skrub/blob/403466d1d5d4dc76a7ef569b3f8228db59a31dc3/skrub/_reporting/_data/templates/report.js#L789
+ * @returns "light" or "dark"
+ */
+function detectTheme(element) {
+    const body = document.querySelector('body');
+
+    // Check VSCode theme
+    const themeKindAttr = body.getAttribute('data-vscode-theme-kind');
+    const themeNameAttr = body.getAttribute('data-vscode-theme-name');
+
+    if (themeKindAttr && themeNameAttr) {
+        const themeKind = themeKindAttr.toLowerCase();
+        const themeName = themeNameAttr.toLowerCase();
+
+        if (themeKind.includes("dark") || themeName.includes("dark")) {
+            return "dark";
+        }
+        if (themeKind.includes("light") || themeName.includes("light")) {
+            return "light";
+        }
+    }
+
+    // Check Jupyter theme
+    if (body.getAttribute('data-jp-theme-light') === 'false') {
+        return 'dark';
+    } else if (body.getAttribute('data-jp-theme-light') === 'true') {
+        return 'light';
+    }
+
+    // Guess based on a parent element's color
+    const color = window.getComputedStyle(element.parentNode, null).getPropertyValue('color');
+    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$/i);
+    if (match) {
+        const [r, g, b] = [
+            parseFloat(match[1]),
+            parseFloat(match[2]),
+            parseFloat(match[3])
+        ];
+
+        // https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+        const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+
+        if (luma > 180) {
+            // If the text is very bright we have a dark theme
+            return 'dark';
+        }
+        if (luma < 75) {
+            // If the text is very dark we have a light theme
+            return 'light';
+        }
+        // Otherwise fall back to the next heuristic.
+    }
+
+    // Fallback to system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+
+function forceTheme(elementId) {
+    const estimatorElement = document.querySelector(`#${elementId}`);
+    if (estimatorElement === null) {
+        console.error(`Element with id ${elementId} not found.`);
+    } else {
+        const theme = detectTheme(estimatorElement);
+        estimatorElement.classList.add(theme);
+    }
+}
+
+forceTheme('sk-container-id-1');</script></body></div></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-info sd-bg-text-info">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg></span><span class="sd-summary-text">More on the Bounds</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">When bounds <span class="math notranslate nohighlight">\(b_{\min} &lt; b_{\max}\)</span>, are provided, the mapping from input <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,\ldots,x_T)\)</span> to the <span class="math notranslate nohighlight">\(n\text{-th}\)</span> basis element works as follows.,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+a_n(x_j)
+=
+\begin{cases}
+\cos\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right)
+\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right) &amp;&amp; \text{if } x_j \in [b_{\min}, b_{\max}] \\
+\text{NaN} &amp;&amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<p class="sd-card-text">for <span class="math notranslate nohighlight">\(j=1,\ldots,T\)</span>.</p>
+<p class="sd-card-text">In other words,</p>
+<ul class="simple">
+<li><p class="sd-card-text">The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=b_{\max} - b_{\min}\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(b_{\min}\)</span> to <span class="math notranslate nohighlight">\(b_{\max}\)</span>.</p></li>
+<li><p class="sd-card-text">The phase is zero at <span class="math notranslate nohighlight">\(b_{\min}\)</span>: <span class="math notranslate nohighlight">\(\;a_n(b_{\min})=1+0i\)</span>.</p></li>
+<li><p class="sd-card-text">The basis evaluated at samples lying outside the bounds will return a NaN.</p></li>
+</ul>
+</div>
+</details></section>
+</section>
+<section id="multi-dimensional-fourier-basis">
+<h2>Multi-Dimensional Fourier Basis<a class="headerlink" href="#multi-dimensional-fourier-basis" title="Link to this heading">#</a></h2>
+<p>Fourier bases extend to <span class="math notranslate nohighlight">\(D\)</span> dimensions. Let <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,\dots,x_D)\)</span>, per-axis periods <span class="math notranslate nohighlight">\(\mathbf{P}=(P_1,\dots,P_D)\)</span>, and multi-index <span class="math notranslate nohighlight">\(\mathbf{n}=(n_1,\dots,n_D)\)</span> (the set of multi-indices actually retained is described in <a class="reference internal" href="#redundant-fourier-freqs"><span class="std std-ref">Avoiding redundant frequencies</span></a> below).</p>
+<p>A <span class="math notranslate nohighlight">\(D\)</span>-dimensional <strong>basis element</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+a_{\mathbf{n}}(\mathbf{x}) \;=\; \cos\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right)
+\;+\; i\,\sin\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right).
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For simplicity, in the rest of the session we will focus on a 2D example, but everything holds true for a general D-dimensional basis.</p>
+</div>
+<section id="avoiding-redundant-frequencies">
+<span id="redundant-fourier-freqs"></span><h3>Avoiding redundant frequencies<a class="headerlink" href="#avoiding-redundant-frequencies" title="Link to this heading">#</a></h3>
+<p>In one dimension only non-negative frequencies are needed: <span class="math notranslate nohighlight">\(a_{-n}\)</span> adds nothing to <span class="math notranslate nohighlight">\(a_n\)</span>, since the cosine is even and the sine is odd. The same redundancy holds for the multi-index when <span class="math notranslate nohighlight">\(D \ge 2\)</span> — <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> and <span class="math notranslate nohighlight">\(-\mathbf{n}\)</span> give the same cosine and a sign-flipped sine, so their feature pairs are linearly dependent. NeMoS therefore keeps one representative of each <span class="math notranslate nohighlight">\(\{\mathbf{n},-\mathbf{n}\}\)</span> pair: the all-zero index (DC), or the index whose <strong>first non-zero coordinate is positive</strong>.</p>
+<p>You still pass <strong>non-negative</strong> frequencies per axis; NeMoS mirrors the trailing axes to add their negative frequencies and keeps that half-space. In practice:</p>
+<ul class="simple">
+<li><p>the <strong>leading axis stays non-negative</strong>;</p></li>
+<li><p>on the trailing axes both signs are kept whenever a preceding coordinate is already positive — e.g. <span class="math notranslate nohighlight">\((1, m)\)</span> is kept for <span class="math notranslate nohighlight">\(m\)</span> of either sign, because <span class="math notranslate nohighlight">\((1, m)\)</span> and <span class="math notranslate nohighlight">\((1, -m)\)</span> are genuinely different functions;</p></li>
+<li><p>but an index that is zero up to some axis <span class="math notranslate nohighlight">\(i\)</span> is kept only if its first non-zero entry is positive — e.g. of <span class="math notranslate nohighlight">\((0, m)\)</span> and <span class="math notranslate nohighlight">\((0, -m)\)</span> only the one with <span class="math notranslate nohighlight">\(m&gt;0\)</span> is kept.</p></li>
+</ul>
+</section>
+<section id="definition-in-nemos">
+<h3>Definition in NeMoS<a class="headerlink" href="#definition-in-nemos" title="Link to this heading">#</a></h3>
+<p>First, let’s specify the notation to the 2D case used in the examples. We can write <span class="math notranslate nohighlight">\(\mathbf{x}=(x,y)\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{n}=(n,m)\)</span>; we’ll use <span class="math notranslate nohighlight">\(n\)</span> for the <span class="math notranslate nohighlight">\(x\)</span>-axis frequency and <span class="math notranslate nohighlight">\(m\)</span> for the <span class="math notranslate nohighlight">\(y\)</span>-axis frequency.</p>
+<p>Defining a two-dimensional Fourier basis follows the syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2D basis with n=0,...,4 (x-axis) and m=0,...,3 (y-axis) frequencies</span>
+<span class="n">fourier_2d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Equvalent definitons</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pass a list of tuple:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pass a list of arrays:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass a list of tuple:
+ FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32), Array([0., 1., 2., 3.], dtype=float32)], ndim=2, frequency_mask='no-intercept')
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pass a list of arrays:
+ FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32), Array([0., 1., 2., 3.], dtype=float32)], ndim=2, frequency_mask='no-intercept')
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(y\)</span>-axis is mirrored internally to <span class="math notranslate nohighlight">\(7\)</span> signed frequencies, so the half-space of this <span class="math notranslate nohighlight">\(5\times 4\)</span> grid has <span class="math notranslate nohighlight">\(32\)</span> pairs (including the DC). The DC pair <span class="math notranslate nohighlight">\(\mathbf{n}=(0,0)\)</span> is dropped by default, leaving <span class="math notranslate nohighlight">\(31\)</span> pairs, each contributing a cosine and a sine: <span class="math notranslate nohighlight">\(2\cdot 31 = 62\)</span> features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">n_basis_funcs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62
+</pre></div>
+</div>
+</div>
+</div>
+<p>All the frequency pairs are stored in the <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code> array of shape <code class="docutils literal notranslate"><span class="pre">(ndim,</span> <span class="pre">n_frequency_pairs)</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code> lists the frequency pairs that are currently active in the basis. If you later mask out some pairs, this array will update to include only the kept ones. Details follow in the <a class="reference internal" href="#select-fourier-freqs-ndim"><span class="std std-ref">frequency selection section</span></a>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"frequency pairs:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"shape of the `masked_frequencies` array:"</span><span class="p">,</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frequency pairs:
+ [[ 0.  0.  0.  1.  1.  1.  1.  1.  1.  1.  2.  2.  2.  2.  2.  2.  2.  3.
+   3.  3.  3.  3.  3.  3.  4.  4.  4.  4.  4.  4.  4.]
+ [ 1.  2.  3. -3. -2. -1.  0.  1.  2.  3. -3. -2. -1.  0.  1.  2.  3. -3.
+  -2. -1.  0.  1.  2.  3. -3. -2. -1.  0.  1.  2.  3.]]
+shape of the `masked_frequencies` array: (2, 31)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can check for the presence of the DC term by assessing if <code class="docutils literal notranslate"><span class="pre">fourier_2d.masked_frequencies[:,</span> <span class="pre">0]</span></code> is all zeros.</p>
+</div>
+</section>
+<section id="selecting-the-frequencies">
+<span id="select-fourier-freqs-ndim"></span><h3>Selecting The Frequencies<a class="headerlink" href="#selecting-the-frequencies" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">frequencies</span></code> argument specifies, <strong>per axis</strong>, which <strong>non-negative</strong> integer frequencies to use. NeMoS mirrors the trailing axes to add negative frequencies and keeps the half-space (see <a class="reference internal" href="#redundant-fourier-freqs"><span class="std std-ref">Avoiding redundant frequencies</span></a>); the retained multi-indices <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> are listed in <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_2d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  1.  1.  2.  2.  2.  2.  3.  3.  3.  3.]
+ [-5. -4.  4.  5. -5. -4.  4.  5. -5. -4.  4.  5.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here you pass <span class="math notranslate nohighlight">\(n \in \{1,2,3\}\)</span> and <span class="math notranslate nohighlight">\(m \in \{4,5\}\)</span>. The <span class="math notranslate nohighlight">\(y\)</span>-axis is mirrored to <span class="math notranslate nohighlight">\(m \in \{-5,-4,4,5\}\)</span>. Because every <span class="math notranslate nohighlight">\(n \ge 1\)</span> is already positive, the leading coordinate fixes the half-space and <strong>all</strong> sign combinations of <span class="math notranslate nohighlight">\(m\)</span> are kept — <span class="math notranslate nohighlight">\(3 \times 4 = 12\)</span> pairs <span class="math notranslate nohighlight">\((n,m)\)</span>, including the negative <span class="math notranslate nohighlight">\(y\)</span>-frequencies printed above.</p>
+<p>You can subselect specific pairs by <strong>masking</strong>. The mask can be:</p>
+<ol class="arabic simple">
+<li><p>A 1-D boolean array with one entry per retained pair, i.e. per column of <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>.</p></li>
+<li><p>A function <code class="docutils literal notranslate"><span class="pre">f(n,</span> <span class="pre">m)</span> <span class="pre">-&gt;</span> <span class="pre">True/False</span></code>.</p></li>
+</ol>
+<section id="mask-with-a-boolean-array">
+<h4>Mask With a Boolean Array<a class="headerlink" href="#mask-with-a-boolean-array" title="Link to this heading">#</a></h4>
+<p>Entry <span class="math notranslate nohighlight">\(i\)</span> of the mask keeps (<code class="docutils literal notranslate"><span class="pre">True</span></code>/1) or drops (<code class="docutils literal notranslate"><span class="pre">False</span></code>/0) the pair <code class="docutils literal notranslate"><span class="pre">masked_frequencies[:,</span> <span class="pre">i]</span></code>. The workflow is to inspect <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code> and build the mask from its columns, by hand or with vectorized comparisons. For example, let’s keep the pairs <span class="math notranslate nohighlight">\((1,4), (2,4), (2,5)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span>
+<span class="n">frequency_mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"frequency mask"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frequency_mask</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+
+<span class="n">fourier_2d</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="n">frequency_mask</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">masked frequencies"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frequency mask
+[0 0 1 0 0 0 1 1 0 0 0 0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked frequencies
+[[1. 2. 2.]
+ [4. 4. 5.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>An array mask always filters the <strong>current</strong> <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>: assigning a second array mask filters the already-filtered pairs, and it must have one entry per remaining pair. To start over from the full half-space, reset the mask to <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code> (or <code class="docutils literal notranslate"><span class="pre">&quot;no-intercept&quot;</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="s2">"all"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  1.  1.  2.  2.  2.  2.  3.  3.  3.  3.]
+ [-5. -4.  4.  5. -5. -4.  4.  5. -5. -4.  4.  5.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The mask can address the DC pair whenever it is among the current pairs: for example, construct with <code class="docutils literal notranslate"><span class="pre">frequency_mask=&quot;all&quot;</span></code> and frequencies that include 0 (as an integer specification like <code class="docutils literal notranslate"><span class="pre">frequencies=5</span></code> does), then assign the array mask.</p>
+<p>A mask whose length does not match the number of retained pairs raises an error pointing you back to <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:164,</span> in <span class="ni">BasisMixin.__setattr__</span><span class="nt">(self, name, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"bounds"</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_discrete</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> has no bounds."</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">164</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:564,</span> in <span class="ni">FourierBasis.frequency_mask</span><span class="nt">(self, values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">564</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_array_frequency_mask</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="c1"># used to drop or not the zero phase</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span> <span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:594,</span> in <span class="ni">FourierBasis._set_array_frequency_mask</span><span class="nt">(self, values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span> <span class="n">expected_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">593</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">expected_len</span><span class="p">,):</span>
+<span class="ne">--&gt; </span><span class="mi">594</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span>         <span class="sa">f</span><span class="s2">"Mis-shaped ``frequency_mask``. An array mask must have shape "</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>         <span class="sa">f</span><span class="s2">"``(</span><span class="si">{</span><span class="n">expected_len</span><span class="si">}</span><span class="s2">,)``, one entry per frequency combination: "</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="sa">f</span><span class="s2">"entry ``i`` keeps (1/True) or drops (0/False) the combination "</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span>         <span class="sa">f</span><span class="s2">"``masked_frequencies[:, i]``. Print the ``masked_frequencies`` "</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>         <span class="s2">"attribute to see the combinations currently included."</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="n">values</span><span class="p">]</span>
+
+<span class="ne">ValueError</span>: Mis-shaped ``frequency_mask``. An array mask must have shape ``(12,)``, one entry per frequency combination: entry ``i`` keeps (1/True) or drops (0/False) the combination ``masked_frequencies[:, i]``. Print the ``masked_frequencies`` attribute to see the combinations currently included.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mask-with-a-callable">
+<h4>Mask With a Callable<a class="headerlink" href="#mask-with-a-callable" title="Link to this heading">#</a></h4>
+<p>Alternatively, we can specify complex masking rules by defining a mask function. For example, let’s filter for the frequency pairs that lies inside a circle of radius of 4.5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">4.5</span>
+<span class="n">fourier_2d</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="n">frequency_mask</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">masked frequencies"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked frequencies
+[[ 1.  1.  2.  2.]
+ [-4.  4. -4.  4.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-more-on-masking-with-callables admonition">
+<p class="admonition-title">More on Masking with Callables</p>
+<ul class="simple">
+<li><p>Write the function as <code class="docutils literal notranslate"><span class="pre">f(n,</span> <span class="pre">m)</span></code> for 2D. The first argument maps to <code class="docutils literal notranslate"><span class="pre">masked_frequencies[0]</span></code> (x-axis, <span class="math notranslate nohighlight">\(n\)</span>), the second to <code class="docutils literal notranslate"><span class="pre">masked_frequencies[1]</span></code> (y-axis, <span class="math notranslate nohighlight">\(m\)</span>). In <span class="math notranslate nohighlight">\(D\)</span> dimensions use <code class="docutils literal notranslate"><span class="pre">f(n1,</span> <span class="pre">...,</span> <span class="pre">nD)</span></code> in the same row order as <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>.</p></li>
+<li><p>NeMoS evaluates the function once per half-space combination, passing the frequencies as <strong>scalars</strong> (the signed <span class="math notranslate nohighlight">\(\mathbf{n}\)</span>, so <span class="math notranslate nohighlight">\(m\)</span> may be negative). It must return a single boolean or 0/1 — <code class="docutils literal notranslate"><span class="pre">True</span></code> keeps that <span class="math notranslate nohighlight">\((n,m)\)</span>, <code class="docutils literal notranslate"><span class="pre">False</span></code> drops it.</p></li>
+<li><p>Unlike an array mask, a callable is always applied to the <strong>full</strong> half-space (including the DC pair), regardless of the mask currently in place.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="setting-the-periodicities">
+<h3>Setting the Periodicities<a class="headerlink" href="#setting-the-periodicities" title="Link to this heading">#</a></h3>
+<p>By default, each axis uses its own input span as the period, reusing the 1D rule per axis:
+<span class="math notranslate nohighlight">\(P_d=\max(\boldsymbol{x}_d)-\min(\boldsymbol{x}_d)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fourier_2d</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="c1"># reshape to match the (100, 100) grid</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+
+<span class="c1"># select frequencies n=2, m=1</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># plot the output</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># 2-dimensional basis</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">shading</span><span class="o">=</span><span class="s1">'gouraud'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"two-dimensional basis"</span><span class="p">)</span>
+
+<span class="c1"># 1-dimensional projections</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">idx</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"x projection</span><span class="se">\n</span><span class="s2">frequency = 2"</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"y projection</span><span class="se">\n</span><span class="s2">frequency = 1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/78c2393ce240291f91d689254d26f0cf5158d70d12d1edb594c31fe83163443d.png" src="../../_images/78c2393ce240291f91d689254d26f0cf5158d70d12d1edb594c31fe83163443d.png" />
+</div>
+</div>
+<p>As we can see, the <span class="math notranslate nohighlight">\(x\)</span>-projection, the basis element with <span class="math notranslate nohighlight">\(n=2\)</span> completes two cycles across the sampled <span class="math notranslate nohighlight">\(x\)</span> range, and on the <span class="math notranslate nohighlight">\(y\)</span> projection, the basis element with <span class="math notranslate nohighlight">\(m=1\)</span> completes one cycle.</p>
+<p>One can set the period by providing a single <code class="docutils literal notranslate"><span class="pre">bounds</span></code> tuple that applies to all dimensions, or one tuple per dimension.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a different domain per dimension</span>
+<span class="n">fourier_2d</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>  <span class="c1"># x spans the half of the domain</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="c1"># y spans the whole domain</span>
+<span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="c1"># reshape to match the (100, 100) grid</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">fourier_2d</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+
+<span class="c1"># select frequencies n=2, m=2</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">fourier_2d</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># plot the values</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">shading</span><span class="o">=</span><span class="s1">'gouraud'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"two-dimensional bases"</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">idx</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"x projection</span><span class="se">\n</span><span class="s2">frequency = 2"</span><span class="p">)</span>
+<span class="c1"># x domain [0, 2 pi]</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"y projection</span><span class="se">\n</span><span class="s2">frequency = 2"</span><span class="p">)</span>
+<span class="c1"># y domain [0, pi]</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/939cecc54ac5dcfe538ed8c96eb631dfcefda4e0c5da165408dabf2be34ce2ac.png" src="../../_images/939cecc54ac5dcfe538ed8c96eb631dfcefda4e0c5da165408dabf2be34ce2ac.png" />
+</div>
+</div>
+<p>With bounds <span class="math notranslate nohighlight">\([(0, 2\pi), (0, \pi)]\)</span> and samples on <span class="math notranslate nohighlight">\(x \in [0, \pi]\)</span>, the <span class="math notranslate nohighlight">\(x\)</span>-projection for <span class="math notranslate nohighlight">\(n=2\)</span> shows only the first half of its defined period (one full cycle over <span class="math notranslate nohighlight">\([0,\pi]\)</span>). The <span class="math notranslate nohighlight">\(y\)</span>-projection covers its full domain <span class="math notranslate nohighlight">\([0,\pi]\)</span>, so for <span class="math notranslate nohighlight">\(m=2\)</span> it shows two cycles.</p>
+</section>
+</section>
+<section id="composing-with-the-fourier-basis">
+<h2>Composing with the Fourier basis<a class="headerlink" href="#composing-with-the-fourier-basis" title="Link to this heading">#</a></h2>
+<p>Like other bases, the Fourier basis composes with NeMoS bases—with one important caveat.</p>
+<ul>
+<li><p><strong>Addition</strong></p>
+<p>Unrestricted: you can add a Fourier basis to any other basis (including another Fourier).</p>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">BSplineEval</span>
+
+<span class="n">fourier</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">bspline</span> <span class="o">=</span> <span class="n">BSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># adding two fourier is valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier</span> <span class="o">+</span> <span class="n">fourier</span><span class="p">)</span>
+
+<span class="c1"># adding a fourier and any other basis works too</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fourier</span> <span class="o">+</span> <span class="n">bspline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'(FourierEval + FourierEval_1)': AdditiveBasis(
+    basis1=FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32)], ndim=1, frequency_mask='no-intercept'),
+    basis2='FourierEval_1': FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32)], ndim=1, frequency_mask='no-intercept'),
+)
+'(FourierEval + BSplineEval)': AdditiveBasis(
+    basis1=FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32)], ndim=1, frequency_mask='no-intercept'),
+    basis2=BSplineEval(n_basis_funcs=5, order=4),
+)
+</pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Multiplication:</strong></p>
+<p>A Fourier basis stores <strong>one frequency</strong> as <strong>two columns</strong>: a cosine column and a sine column. Those two together act like <strong>one feature</strong>.</p>
+<p>When you multiply two bases, NeMoS multiplies <strong>every column with every other column</strong>. If both sides are Fourier bases, that means you mix <strong>cos parts with sin parts from different frequencies</strong>. You don’t end up with “one new frequency” — you get <strong>several unrelated columns</strong>, and the cosine/sine pairing is <strong>broken</strong>. The result looks valid but <strong>isn’t the Fourier feature you intended</strong>, so we block it to avoid silent mistakes.</p>
+<p><strong>Rule:</strong> a product can contain <strong>at most one</strong> Fourier basis.</p>
+<p><strong>What can be done:</strong></p>
+<ul class="simple">
+<li><p>Need multi-dimensional Fourier features? Use <strong>one</strong> <code class="docutils literal notranslate"><span class="pre">FourierEval</span></code> with <code class="docutils literal notranslate"><span class="pre">ndim</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>.</p></li>
+<li><p>Want to modulate Fourier by something else (splines, raised cosines, etc.)? Multiply <strong>one</strong> Fourier basis by any <strong>real</strong> basis.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">BSplineEval</span><span class="p">,</span> <span class="n">FourierEval</span>
+
+<span class="n">fourier</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">bspline</span> <span class="o">=</span> <span class="n">BSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># multiplying a fourier basis with a real basis works</span>
+<span class="n">mul</span> <span class="o">=</span> <span class="n">fourier</span> <span class="o">*</span> <span class="n">bspline</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mul</span><span class="p">)</span>
+
+<span class="c1"># multiplying two objects that both contain a Fourier basis raises:</span>
+<span class="c1">#   - fourier * fourier</span>
+<span class="c1">#   - fourier * mul</span>
+<span class="c1">#   - mul * mul</span>
+<span class="c1">#   - (fourier + bspline) * fourier</span>
+<span class="n">mul</span> <span class="o">*</span> <span class="n">mul</span>  <span class="c1"># raises by design</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'(FourierEval * BSplineEval)': MultiplicativeBasis(
+    basis1=FourierEval(frequencies=[Array([0., 1., 2., 3., 4.], dtype=float32)], ndim=1, frequency_mask='no-intercept'),
+    basis2=BSplineEval(n_basis_funcs=5, order=4),
+)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1">#   - fourier * fourier</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1">#   - fourier * mul</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1">#   - mul * mul</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1">#   - (fourier + bspline) * fourier</span>
+<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">mul</span> <span class="o">*</span> <span class="n">mul</span>  <span class="c1"># raises by design</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_composition_utils.py:657,</span> in <span class="ni">promote_to_transformer.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span> <span class="n">args_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="n">kwargs_bas</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="ne">--&gt; </span><span class="mi">657</span> <span class="n">out</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args_bas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_bas</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="n">any_transformer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>     <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">664</span> <span class="k">if</span> <span class="n">any_transformer</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="s2">"to_transformer"</span><span class="p">):</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:464,</span> in <span class="ni">Basis.__mul__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">is_basis_like</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="s2">"Basis multiplicative factor should be a Basis object or a positive integer!"</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">464</span> <span class="k">return</span> <span class="n">MultiplicativeBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:1005,</span> in <span class="ni">MultiplicativeBasis.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
+<span class="g g-Whitespace">    </span><span class="mi">999</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1000</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1003</span>         <span class="n">basis2</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span>     <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1005</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span>             <span class="s2">"Invalid multiplication between two complex bases.</span><span class="se">\n</span><span class="s2">"</span>
+<span class="g g-Whitespace">   </span><span class="mi">1007</span>             <span class="s2">"Fourier basis are complex bases, and "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1008</span>             <span class="s2">"the multiplication of a real basis with a Fourier bases results in a complex basis as well. "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span>             <span class="s2">"Multiplication between two complex bases is not allowed in NeMoS as it would treat "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>             <span class="s2">"real and imaginary columns alike."</span>
+<span class="g g-Whitespace">   </span><span class="mi">1011</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span>     <span class="n">input_shape1</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis1</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span>     <span class="n">input_shape2</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Invalid multiplication between two complex bases.
+<span class="n">Fourier</span> <span class="n">basis</span> <span class="n">are</span> <span class="nb">complex</span> <span class="n">bases</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">multiplication</span> <span class="n">of</span> <span class="n">a</span> <span class="n">real</span> <span class="n">basis</span> <span class="k">with</span> <span class="n">a</span> <span class="n">Fourier</span> <span class="n">bases</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">basis</span> <span class="k">as</span> <span class="n">well</span><span class="o">.</span> <span class="n">Multiplication</span> <span class="n">between</span> <span class="n">two</span> <span class="nb">complex</span> <span class="n">bases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">NeMoS</span> <span class="k">as</span> <span class="n">it</span> <span class="n">would</span> <span class="n">treat</span> <span class="n">real</span> <span class="ow">and</span> <span class="n">imaginary</span> <span class="n">columns</span> <span class="n">alike</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_02_ND_basis_function.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Composing Basis Functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../plot_07_glm_pytree.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">JAX Pytrees for Structuring Multiple Predictors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-dimensional-fourier-basis">One-Dimensional Fourier Basis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-basis-in-nemos">Fourier Basis in NeMoS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-frequencies">Selecting frequencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-period-of-the-basis">Setting the Period of the Basis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-dimensional-fourier-basis">Multi-Dimensional Fourier Basis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-redundant-frequencies">Avoiding redundant frequencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-in-nemos">Definition in NeMoS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-frequencies">Selecting The Frequencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-with-a-boolean-array">Mask With a Boolean Array</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-with-a-callable">Mask With a Callable</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-periodicities">Setting the Periodicities</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composing-with-the-fourier-basis">Composing with the Fourier basis</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/background/basis/ndimensional_foureir_basis.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+﻿nemos.regularizer.Ridge
+=======================
+
+.. currentmodule:: nemos.regularizer
+
+.. autoclass:: Ridge
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Ridge.allowed_solvers
+      ~Ridge.default_solver
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Ridge.__init__
+      ~Ridge.allow_solver
+      ~Ridge.check_solver
+      ~Ridge.get_params
+      ~Ridge.get_proximal_operator
+      ~Ridge.penalized_loss
+      ~Ridge.penalty_fn
+      ~Ridge.resolve_hess_tag
+      ~Ridge.set_params
+   
