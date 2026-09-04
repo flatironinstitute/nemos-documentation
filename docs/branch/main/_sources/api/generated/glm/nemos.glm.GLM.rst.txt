@@ -1,0 +1,54 @@
+﻿nemos.glm.GLM
+=============
+
+.. currentmodule:: nemos.glm
+
+.. autoclass:: GLM
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GLM.fit_intercept
+      ~GLM.fix_params
+      ~GLM.inverse_link_function
+      ~GLM.observation_model
+      ~GLM.optimizer_init_state
+      ~GLM.optimizer_run
+      ~GLM.optimizer_update
+      ~GLM.regularizer
+      ~GLM.regularizer_strength
+      ~GLM.solver
+      ~GLM.solver_kwargs
+      ~GLM.solver_name
+      ~GLM.solver_spec
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GLM.__init__
+      ~GLM.compute_loss
+      ~GLM.fit
+      ~GLM.get_model_params
+      ~GLM.get_params
+      ~GLM.initialize_optimizer_and_state
+      ~GLM.initialize_params
+      ~GLM.predict
+      ~GLM.save_params
+      ~GLM.score
+      ~GLM.set_params
+      ~GLM.simulate
+      ~GLM.stochastic_fit
+      ~GLM.update
+   
