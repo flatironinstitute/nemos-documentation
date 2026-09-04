@@ -1,0 +1,36 @@
+﻿nemos.regularizer.UnRegularized
+===============================
+
+.. currentmodule:: nemos.regularizer
+
+.. autoclass:: UnRegularized
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~UnRegularized.allowed_solvers
+      ~UnRegularized.default_solver
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~UnRegularized.__init__
+      ~UnRegularized.allow_solver
+      ~UnRegularized.check_solver
+      ~UnRegularized.get_params
+      ~UnRegularized.get_proximal_operator
+      ~UnRegularized.penalized_loss
+      ~UnRegularized.set_params
+   

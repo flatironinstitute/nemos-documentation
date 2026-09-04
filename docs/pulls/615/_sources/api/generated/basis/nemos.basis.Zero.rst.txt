@@ -1,0 +1,42 @@
+﻿nemos.basis.Zero
+================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: Zero
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Zero.input_shape
+      ~Zero.is_complex
+      ~Zero.label
+      ~Zero.n_basis_funcs
+      ~Zero.n_output_features
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Zero.__init__
+      ~Zero.compute_features
+      ~Zero.evaluate
+      ~Zero.evaluate_on_grid
+      ~Zero.get_params
+      ~Zero.set_input_shape
+      ~Zero.set_params
+      ~Zero.setup_basis
+      ~Zero.split_by_feature
+      ~Zero.to_transformer
+   

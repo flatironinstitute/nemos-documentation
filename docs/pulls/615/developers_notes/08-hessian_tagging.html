@@ -1,0 +1,1188 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hessian tagging &#8212; nemos 0.2.10.dev509 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=ffe99380"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'developers_notes/08-hessian_tagging';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="The solvers Module" href="07-solvers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev509 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev509 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-base_class.html">The <code class="docutils literal notranslate"><span class="pre">base_class</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-base_regressor.html">The Abstract Class <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-glm.html">The <code class="docutils literal notranslate"><span class="pre">glm</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-basis_module.html">The <code class="docutils literal notranslate"><span class="pre">basis</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-observation_models.html">The <code class="docutils literal notranslate"><span class="pre">observation_models</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-solvers.html">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hessian tagging</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">For Developers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Hessian tagging</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hessian-tagging">
+<span id="developers-hessian-tagging"></span><h1>Hessian tagging<a class="headerlink" href="#hessian-tagging" title="Link to this heading">#</a></h1>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<p>A Newton step solves <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">d</span> <span class="pre">=</span> <span class="pre">-g</span></code>, and how that linear system is best solved depends on what is known about <code class="docutils literal notranslate"><span class="pre">H</span></code> beforehand. A Cholesky factorization is the cheapest option but needs a positive definite matrix and fails on a singular one. A pseudo-inverse handles a singular matrix but costs more. A diagonal Hessian can be solved in time linear in the number of parameters. And if <code class="docutils literal notranslate"><span class="pre">H</span></code> has no sign guarantee at all, <code class="docutils literal notranslate"><span class="pre">-H^{-1}</span> <span class="pre">g</span></code> need not even point downhill, in which case a Newton step is the wrong thing to take and a first-order or quasi-Newton solver is a better choice.</p>
+<p>Checking any of this at run time means factorizing the matrix, which costs as much as the Newton solve itself. Under <code class="docutils literal notranslate"><span class="pre">jit</span></code> a failed Cholesky cannot be caught and retried either. So the information is carried alongside the Hessian instead, as a <code class="docutils literal notranslate"><span class="pre">HessianTag</span></code> that each model and each regularizer declares about the term it contributes. The tags are combined when the terms are added, and the result picks the linear solver.</p>
+<p>What the tag has to distinguish follows from what the decisions turn on:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>decision</p></th>
+<th class="head"><p>turns on</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Newton step versus a first-order solver</p></td>
+<td><p>whether <code class="docutils literal notranslate"><span class="pre">H</span></code> is positive semidefinite (PSD); otherwise the step can point uphill</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cholesky versus a pseudo-inverse</p></td>
+<td><p>whether <code class="docutils literal notranslate"><span class="pre">H</span></code> is invertible, i.e. definite (D) rather than merely semidefinite (SD)</p></td>
+</tr>
+<tr class="row-even"><td><p>a diagonal solve, linear in the number of parameters</p></td>
+<td><p>whether <code class="docutils literal notranslate"><span class="pre">H</span></code> is diagonal</p></td>
+</tr>
+<tr class="row-odd"><td><p>one factorization per neuron</p></td>
+<td><p>whether <code class="docutils literal notranslate"><span class="pre">H</span></code> is block diagonal, one block per neuron</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This note derives a tagging system that requires only structural properties of a symmetric hessian matrix, and a decision rule that assigns a coherent sign (none, PSD or PD) to the sum of the hessians based exclusively on their tags. The discussion will proceed as follows:</p>
+<ol class="arabic simple">
+<li><p>We will prove that no tag-based rule can be complete: the sum of two matrices with identical spectrum can differ in sign.</p></li>
+<li><p>We will propose a sound tagging system based on: the guaranteed sign of the hessian (example: a GLM with canonical link is guaranteed PSD); the largest PD principal block of the hessian (could be empty or the whole hessian); the largest flat principal block. Here a block corresponds to a union of parameter leaves.</p></li>
+<li><p>We will derive an optimal, sound rule for the chosen tagging system.</p></li>
+<li><p>We will discuss why the proposed tagging system has the desired granularity (leaf based), and why any finer tag would require (at least for GLMs) computationally heavy characterizations of the design matrix.</p></li>
+</ol>
+</section>
+<section id="problem-setting-combining-two-hessians">
+<h2>Problem Setting: combining two Hessians<a class="headerlink" href="#problem-setting-combining-two-hessians" title="Link to this heading">#</a></h2>
+<p>In nemos a model is fit by minimizing a loss with an additive penalty,</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\beta) = \ell(\beta) + p_\lambda(\beta),\]</div>
+<p>so what the solver actually differentiates twice is a sum, and its Hessian is the sum of the two Hessians,</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 \mathcal{L}(\beta) = \nabla^2 \ell(\beta) + \nabla^2 p_\lambda(\beta).\]</div>
+<p>The two terms are declared by different objects. A model knows the curvature of its likelihood, a regularizer knows the curvature of its penalty, and neither has seen the other. The decisions in the table above are about the sum, which no single object is in a position to describe.</p>
+<p>If the definiteness of the sum followed from the definiteness of the two terms, this would be a small problem: each term would carry one label, and putting them together would be a lookup table. It does not follow, and the case that breaks it is the most ordinary one nemos has.</p>
+<p>Take a GLM whose parameters split into <span class="math notranslate nohighlight">\(p\)</span> coefficients and an intercept, <span class="math notranslate nohighlight">\(\beta = (\beta_{\text{coef}}, \beta_{\text{int}}) \in \mathbb{R}^{p+1}\)</span>, penalized by a ridge term that leaves the intercept alone,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}p_\lambda(\beta) = \frac{\lambda}{2} \lVert \beta_{\text{coef}} \rVert^2, \qquad \nabla^2 p_\lambda = \begin{pmatrix} \lambda I &amp; 0 \\ 0 &amp; 0 \end{pmatrix}.\end{split}\]</div>
+<p>That Hessian is positive semidefinite and singular: the penalty does not depend on the intercept, so it has no curvature there at all. The loss Hessian is</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 \ell(\beta) = \tilde{X}^\top W(\beta) \tilde{X}, \qquad \tilde{X} = \begin{pmatrix} X &amp; \mathbf{1}\end{pmatrix}, \qquad W(\beta) = \operatorname{diag}\big(w_1(\beta), \dots, w_T(\beta)\big),\]</div>
+<p>with <span class="math notranslate nohighlight">\(w_t(\beta) \ge 0\)</span> the curvature contributed by sample <span class="math notranslate nohighlight">\(t\)</span>, which depends on the parameters through the linear predictor. It is positive semidefinite as well, and singular whenever the design is rank deficient, which a basis summing to one plus an intercept column already is.</p>
+<p>So both terms are labelled positive semidefinite and both are singular, and from those two labels nothing whatsoever follows about the sum. The sum is nevertheless positive definite, and the reason is a statement about null spaces. For positive semidefinite <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(v^\top (A + B) v = 0\)</span> forces each quadratic form to vanish separately, so</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{null}(A + B) = \operatorname{null}(A) \cap \operatorname{null}(B).\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\operatorname{null}(\nabla^2 p_\lambda) = \operatorname{span}\{e_{p+1}\}\)</span>, the intercept axis, whereas <span class="math notranslate nohighlight">\(e_{p+1} \notin \operatorname{null}(\nabla^2 \ell(\beta))\)</span>, because <span class="math notranslate nohighlight">\(e_{p+1}^\top \nabla^2 \ell(\beta) \, e_{p+1} = \mathbf{1}^\top W(\beta) \mathbf{1} = \sum_t w_t(\beta) &gt; 0\)</span>. The two null spaces are subspaces of <span class="math notranslate nohighlight">\(\mathbb{R}^{p+1}\)</span> intersecting only at the origin, so the sum has trivial null space and is positive definite.</p>
+<p>What a tag has to carry, beyond its own definiteness, is therefore enough to locate those two subspaces and decide whether they meet. It cannot locate an arbitrary subspace: the fields defined below are sets of leaves, so the only subspaces they can identify are those spanned by whole leaves. That is enough for this example, where the penalty’s null space is exactly the intercept leaf, and it is what the next section makes precise; the example comes back once the fields are defined.</p>
+</section>
+<section id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Link to this heading">#</a></h2>
+<p>Everything from here on uses these symbols.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>symbol</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\beta \in \mathbb{R}^N\)</span></p></td>
+<td><p>the parameters: a pytree with <span class="math notranslate nohighlight">\(n\)</span> leaves, <span class="math notranslate nohighlight">\(N\)</span> scalar entries in total</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ell\)</span>, <span class="math notranslate nohighlight">\(p_\lambda\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L} = \ell + p_\lambda\)</span></p></td>
+<td><p>loss, penalty, and the objective that is minimized</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\lambda\)</span></p></td>
+<td><p>the regularization strength: a scalar, or an array with one entry per parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(H = \nabla^2 \mathcal{L}(\beta)\)</span></p></td>
+<td><p>the Hessian a tag describes, itself a function of <span class="math notranslate nohighlight">\(\beta\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(I_i\)</span></p></td>
+<td><p>a leaf, and the coordinates it occupies; the <span class="math notranslate nohighlight">\(I_i\)</span> partition <span class="math notranslate nohighlight">\(\{1, \dots, N\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\beta^{(S)}\)</span></p></td>
+<td><p>the parameters of the leaves in a set <span class="math notranslate nohighlight">\(S\)</span>, concatenated into one vector</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(H[S]\)</span></p></td>
+<td><p>the block <span class="math notranslate nohighlight">\(\partial^2 \mathcal{L} / \partial \beta^{(S)} \partial \beta^{(S)\top}\)</span>, the principal submatrix of <span class="math notranslate nohighlight">\(H\)</span> on those coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_i\)</span>, <span class="math notranslate nohighlight">\(V_S\)</span></p></td>
+<td><p>the coordinate subspace <span class="math notranslate nohighlight">\(\operatorname{span}\{e_j : j \in I_i\}\)</span> of leaf <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(\bigoplus_{i \in S} V_i\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\operatorname{Sym}(N)\)</span></p></td>
+<td><p>the real symmetric <span class="math notranslate nohighlight">\(N \times N\)</span> matrices</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\operatorname{null}(A)\)</span></p></td>
+<td><p>the null space <span class="math notranslate nohighlight">\(\{v : Av = 0\}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A \succeq 0\)</span>, <span class="math notranslate nohighlight">\(A \succ 0\)</span></p></td>
+<td><p>positive semidefinite, positive definite</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every matrix here is symmetric. The Hessian of a twice continuously differentiable objective is, by Schwarz’s theorem, and the Fisher and Gauss-Newton approximations are by construction, so <span class="math notranslate nohighlight">\(\operatorname{Sym}(N)\)</span> is the right ambient set and symmetry is used without further comment.</p>
+<p><span class="math notranslate nohighlight">\(H[S]\)</span> is the curvature seen when only the parameters of <span class="math notranslate nohighlight">\(S\)</span> move, everything else held fixed. Reordering the parameters so that <span class="math notranslate nohighlight">\(S\)</span> comes first turns it into a diagonal block, and a permutation changes no eigenvalue, so picturing these sets as diagonal blocks is exact rather than a convenient approximation.</p>
+<p>Restriction preserves the quadratic form on vectors that live in the block. Writing <span class="math notranslate nohighlight">\(v[S]\)</span> for the restriction of <span class="math notranslate nohighlight">\(v\)</span> to the coordinates of <span class="math notranslate nohighlight">\(S\)</span>, if <span class="math notranslate nohighlight">\(v \in V_S\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[v^\top H v = \sum_{j, k \in I_S} v_j H_{jk} v_k = v[S]^\top H[S] \, v[S] ,\]</div>
+<p>since every term the restriction drops carries a zero entry of <span class="math notranslate nohighlight">\(v\)</span>. In particular <span class="math notranslate nohighlight">\(e_j[S]\)</span> is a standard basis vector of <span class="math notranslate nohighlight">\(\mathbb{R}^{d(S)}\)</span> and <span class="math notranslate nohighlight">\(e_j[S]^\top H[S] \, e_j[S] = H_{jj}\)</span>.</p>
+</section>
+<section id="what-a-block-spectral-description-can-decide">
+<h2>What a block-spectral description can decide<a class="headerlink" href="#what-a-block-spectral-description-can-decide" title="Link to this heading">#</a></h2>
+<p>The decision table has to be answered without looking at the matrix, so the only thing available about each term is a description of it, fixed in advance. Before designing one it is worth knowing the ceiling.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition (block-spectral description, sound and complete rules)</p>
+<p>Let <span class="math notranslate nohighlight">\(\Sigma = \{\text{none}, \ {\succeq}\,0, \ {\succ}\,0\}\)</span>, each element a predicate on <span class="math notranslate nohighlight">\(\operatorname{Sym}(N)\)</span>, and write <span class="math notranslate nohighlight">\(M \models \sigma\)</span> when <span class="math notranslate nohighlight">\(M\)</span> satisfies it. Order <span class="math notranslate nohighlight">\(\Sigma\)</span> by implication,</p>
+<div class="math notranslate nohighlight">
+\[\sigma' \sqsubseteq \sigma \iff \big(M \models \sigma \implies M \models \sigma'\big) \quad \text{for all } M \in \operatorname{Sym}(N) ,\]</div>
+<p>which totally orders it as <span class="math notranslate nohighlight">\(\text{none} \sqsubset {\succeq}\,0 \sqsubset {\succ}\,0\)</span>. Only the positive signs are carried: a claim that <span class="math notranslate nohighlight">\(H\)</span> is negative (semi)definite is the same claim about <span class="math notranslate nohighlight">\(-H\)</span>, and <span class="math notranslate nohighlight">\(\nabla^2 \mathcal{L}\)</span> is the Hessian of something being minimized. The order gives a unique strongest true sign</p>
+<div class="math notranslate nohighlight">
+\[\sigma : \operatorname{Sym}(N) \to \Sigma, \qquad \sigma(M) = \max_{\sqsubseteq} \, \{ s \in \Sigma : M \models s \} .\]</div>
+<p>For <span class="math notranslate nohighlight">\(M\)</span> symmetric of size <span class="math notranslate nohighlight">\(k\)</span> let <span class="math notranslate nohighlight">\(\operatorname{spec} M \in \mathbb{R}^k\)</span> be its eigenvalues in non-decreasing order, multiplicities included. The <em>block-spectral description</em> of <span class="math notranslate nohighlight">\(H \in \operatorname{Sym}(N)\)</span> is the function on sets of leaves</p>
+<div class="math notranslate nohighlight">
+\[\tau(H)(S) = \operatorname{spec} H[S] \in \mathbb{R}^{d(S)}, \qquad S \subseteq \{1, \dots, n\} ,\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[d(S) = \sum_{i \in S} \lvert I_i \rvert\]</div>
+<p>counts the scalar parameters those leaves hold, not the leaves. Put</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{T} = \{ \tau(H) : H \in \operatorname{Sym}(N) \} .\]</div>
+<p>A <em>combination rule</em> is a map <span class="math notranslate nohighlight">\(R : \mathcal{T} \times \mathcal{T} \to \Sigma\)</span>. It is <strong>sound</strong> if</p>
+<div class="math notranslate nohighlight">
+\[R\big(\tau(H_1), \tau(H_2)\big) \sqsubseteq \sigma(H_1 + H_2) \qquad \text{for all } H_1, H_2 \in \operatorname{Sym}(N),\]</div>
+<p>and <strong>complete</strong> if equality holds for all <span class="math notranslate nohighlight">\(H_1, H_2 \in \operatorname{Sym}(N)\)</span>.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Theorem 1 (no combination rule is complete)</p>
+<p>Let <span class="math notranslate nohighlight">\(N \ge 2\)</span>. Then there is no <span class="math notranslate nohighlight">\(R : \mathcal{T} \times \mathcal{T} \to \Sigma\)</span> with <span class="math notranslate nohighlight">\(R\big(\tau(H_1), \tau(H_2)\big) = \sigma(H_1 + H_2)\)</span> for all <span class="math notranslate nohighlight">\(H_1, H_2 \in \operatorname{Sym}(N)\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Fix two coordinates <span class="math notranslate nohighlight">\(j_1 \neq j_2\)</span>, which exist because <span class="math notranslate nohighlight">\(N \ge 2\)</span>, and let <span class="math notranslate nohighlight">\(P = \operatorname{span}\{e_{j_1}, e_{j_2}\}\)</span>. Set</p>
+<div class="math notranslate nohighlight">
+\[u = \tfrac{1}{\sqrt{2}}\big(e_{j_1} - e_{j_2}\big), \qquad v = \tfrac{1}{\sqrt{2}}\big(e_{j_1} + e_{j_2}\big) ,\]</div>
+<p>so <span class="math notranslate nohighlight">\(\lVert u \rVert = \lVert v \rVert = 1\)</span> and <span class="math notranslate nohighlight">\(u^\top v = \tfrac{1}{2}(1 - 1) = 0\)</span>: the pair is an orthonormal basis of <span class="math notranslate nohighlight">\(P\)</span>, hence <span class="math notranslate nohighlight">\(u u^\top + v v^\top = I_P\)</span>. Put</p>
+<div class="math notranslate nohighlight">
+\[A = I - u u^\top, \qquad B = I - v v^\top, \qquad A' = B' = A .\]</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are symmetric, and <span class="math notranslate nohighlight">\(u^\top u = v^\top v = 1\)</span> with <span class="math notranslate nohighlight">\(u^\top v = 0\)</span> give</p>
+<div class="math notranslate nohighlight">
+\[A u = 0, \quad A v = v, \qquad B v = 0, \quad B u = u .\]</div>
+<p>So <span class="math notranslate nohighlight">\(A\)</span> kills <span class="math notranslate nohighlight">\(u\)</span> and is the identity on <span class="math notranslate nohighlight">\(u^\perp\)</span>, while <span class="math notranslate nohighlight">\(B\)</span> kills <span class="math notranslate nohighlight">\(v\)</span> and is the identity on <span class="math notranslate nohighlight">\(v^\perp\)</span>: each is positive semidefinite with a one-dimensional null space, hence singular. Since <span class="math notranslate nohighlight">\(u u^\top + v v^\top\)</span> acts as the identity on <span class="math notranslate nohighlight">\(P\)</span> and as zero on <span class="math notranslate nohighlight">\(P^\perp\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[A + B = 2I - \big(u u^\top + v v^\top\big) = I_P \oplus 2 I_{P^\perp} \succ 0 ,\]</div>
+<p>so <span class="math notranslate nohighlight">\(\sigma(A + B) = {\succ}\,0\)</span>, while <span class="math notranslate nohighlight">\(A' + B' = 2A\)</span> is positive semidefinite and singular, so <span class="math notranslate nohighlight">\(\sigma(A' + B') = {\succeq}\,0\)</span>.</p>
+<p>The two have the same block-spectral description, because <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(A\)</span> conjugated by a coordinate sign flip. Let <span class="math notranslate nohighlight">\(R\)</span> be the diagonal matrix with <span class="math notranslate nohighlight">\(-1\)</span> in position <span class="math notranslate nohighlight">\(j_2\)</span> and <span class="math notranslate nohighlight">\(1\)</span> elsewhere. Then <span class="math notranslate nohighlight">\(R u = v\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[B = I - (Ru)(Ru)^\top = R \big(I - u u^\top\big) R^\top = R A R^\top .\]</div>
+<p><span class="math notranslate nohighlight">\(R\)</span> is diagonal, so it scales coordinates without mixing them and restriction commutes with the conjugation: <span class="math notranslate nohighlight">\(B[S] = R[S] \, A[S] \, R[S]^\top\)</span> for every <span class="math notranslate nohighlight">\(S\)</span>. Each <span class="math notranslate nohighlight">\(R[S]\)</span> is again diagonal with entries <span class="math notranslate nohighlight">\(\pm 1\)</span>, hence orthogonal, and orthogonal similarity preserves spectra. So <span class="math notranslate nohighlight">\(\operatorname{spec} B[S] = \operatorname{spec} A[S]\)</span> for every <span class="math notranslate nohighlight">\(S\)</span>, that is <span class="math notranslate nohighlight">\(\tau(A) = \tau(B)\)</span>, hence <span class="math notranslate nohighlight">\(\tau(A) = \tau(A')\)</span> and <span class="math notranslate nohighlight">\(\tau(B) = \tau(B')\)</span>.</p>
+<p>A complete <span class="math notranslate nohighlight">\(R\)</span> would satisfy <span class="math notranslate nohighlight">\(R(\tau(A), \tau(B)) = \sigma(A + B) = {\succ}\,0\)</span> and <span class="math notranslate nohighlight">\(R(\tau(A'), \tau(B')) = \sigma(A' + B') = {\succeq}\,0\)</span>. The two left-hand sides are the value of <span class="math notranslate nohighlight">\(R\)</span> at the same argument, and <span class="math notranslate nohighlight">\({\succ}\,0 \neq {\succeq}\,0\)</span>.</p>
+</div>
+<p>The hypothesis <span class="math notranslate nohighlight">\(N \ge 2\)</span> is sharp. For <span class="math notranslate nohighlight">\(N = 1\)</span> every <span class="math notranslate nohighlight">\(H = (h)\)</span> has <span class="math notranslate nohighlight">\(\tau(H)\)</span> recording <span class="math notranslate nohighlight">\(\operatorname{spec} H[S] = (h)\)</span> on the leaf holding that coordinate, so <span class="math notranslate nohighlight">\(\tau\)</span> is injective and <span class="math notranslate nohighlight">\(R\big(\tau(h_1), \tau(h_2)\big) = \sigma(h_1 + h_2)\)</span> is a well defined complete rule.</p>
+<p>The two configurations differ only in the relative position of the two null spaces, <span class="math notranslate nohighlight">\(\operatorname{span}\{u\}\)</span> against <span class="math notranslate nohighlight">\(\operatorname{span}\{v\}\)</span>, and no description built from sets of leaves records that. Recovering it means locating null spaces. That is spectral information, and computing it costs a factorization of the same order as the Newton solve.</p>
+<p>What Theorem 1 rules out is a complete rule: no map from two descriptions to a sign returns <span class="math notranslate nohighlight">\(\sigma(H_1 + H_2)\)</span> in every case. A sound rule is still possible. Its answer is always true of the sum, and sometimes weaker than the truth. The rest of this note builds one that reads only structural properties of the two terms and holds at every <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>The two mistakes do not cost the same. Refusing to certify a matrix that is definite only makes the linear solve slower. Certifying one that is not gives a wrong step or a NaN, silently and under <code class="docutils literal notranslate"><span class="pre">jit</span></code>.</p>
+</section>
+<section id="assumptions-the-tagging-system-rests-on">
+<h2>Assumptions the tagging system rests on<a class="headerlink" href="#assumptions-the-tagging-system-rests-on" title="Link to this heading">#</a></h2>
+<p>Everything below is derived under five assumptions, collected here before any of the machinery and stated without reference to it. Each is used later, and together they are what makes the combination rule sound: whatever a combined tag claims is true of the sum it describes.</p>
+<div class="note admonition">
+<p class="admonition-title">Assumption 1 (additive objective)</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\beta) = \ell(\beta) + p_\lambda(\beta), \qquad \nabla^2 \mathcal{L}(\beta) = \nabla^2 \ell(\beta) + \nabla^2 p_\lambda(\beta).\]</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Assumption 2 (the strength multiplies the penalty, index by index)</p>
+<div class="math notranslate nohighlight">
+\[p_\lambda(\beta) = \sum_i \lambda_i \, p^{(i)}\big(\beta^{(i)}\big), \qquad \nabla^2 p_\lambda(\beta) = \bigoplus_i \lambda_i \nabla^2 p^{(i)}\big(\beta^{(i)}\big),\]</div>
+<p>with each <span class="math notranslate nohighlight">\(p^{(i)}\)</span> convex and depending only on <span class="math notranslate nohighlight">\(\beta^{(i)}\)</span>.</p>
+</div>
+<p>A single scalar strength is the case <span class="math notranslate nohighlight">\(\lambda_i = \lambda\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>. An array strength has to be contracted against the index it is indexed by, which is what this sum is; nothing else would leave <span class="math notranslate nohighlight">\(p_\lambda\)</span> a scalar.</p>
+<div class="note admonition">
+<p class="admonition-title">Assumption 3 (non-negative strength)</p>
+<div class="math notranslate nohighlight">
+\[\lambda_i \ge 0 \quad \text{for every } i.\]</div>
+</div>
+<p>A negative entry makes the penalty curve downwards there, and a positive semidefinite matrix plus a negative semidefinite one carries no sign at all.</p>
+<div class="note admonition">
+<p class="admonition-title">Assumption 4 (statements are quantified over all <span class="math notranslate nohighlight">\(\beta\)</span>)</p>
+<p>Every statement made below about <span class="math notranslate nohighlight">\(\nabla^2 \mathcal{L}\)</span> holds at every <span class="math notranslate nohighlight">\(\beta\)</span> in the parameter space, not at the optimum <span class="math notranslate nohighlight">\(\hat\beta\)</span> alone.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(\nabla^2 \mathcal{L}\)</span> is a matrix-valued function of the parameters, and a description of it is fixed once, before the fit, then relied on at every step; one that held only near the solution would be wrong where the solver starts. For the GLM loss of the previous section this is the difference between <span class="math notranslate nohighlight">\(\sum_t w_t(\beta) &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(\beta\)</span>, which is true for a link that keeps the likelihood convex, and the same inequality at the solution alone, which would be worth nothing.</p>
+<div class="note admonition">
+<p class="admonition-title">Assumption 5 (leaf resolution)</p>
+<p>Every statement a tag makes about <span class="math notranslate nohighlight">\(H\)</span> is evaluated on the block of a whole set of leaves,</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{flat}(S) \iff H[S] = 0, \qquad \operatorname{definite}(S) \iff H[S] \succ 0,\]</div>
+<p>and a tag says nothing about a proper subspace of a leaf.</p>
+</div>
+<p>A leaf whose block is neither zero nor definite is therefore left out of both sets. What the two sets then say about <span class="math notranslate nohighlight">\(\operatorname{null}(H)\)</span> is the following.</p>
+<div class="important admonition">
+<p class="admonition-title">Proposition 1 (a tag bounds the null space, and bounds it exactly only when the null space is leaf-aligned)</p>
+<p>Let <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(D\)</span> be the sets of leaves a tag records as flat and as definite, so that <span class="math notranslate nohighlight">\(H[F] = 0\)</span> and <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span>. If <span class="math notranslate nohighlight">\(H\)</span> is symmetric with <span class="math notranslate nohighlight">\(H \succeq 0\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[V_F \subseteq \operatorname{null}(H), \qquad V_D \cap \operatorname{null}(H) = \{0\}.\]</div>
+<p>If moreover <span class="math notranslate nohighlight">\(F\)</span> is the largest set of leaves whose block vanishes, then <span class="math notranslate nohighlight">\(V_F = \operatorname{null}(H)\)</span> if and only if <span class="math notranslate nohighlight">\(\operatorname{null}(H) = V_S\)</span> for some set of leaves <span class="math notranslate nohighlight">\(S\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="math notranslate nohighlight">\(j \in I_F\)</span>, let <span class="math notranslate nohighlight">\(k \in \{1, \dots, N\}\)</span> and let <span class="math notranslate nohighlight">\(t \in \mathbb{R}\)</span>. Since <span class="math notranslate nohighlight">\(H[F] = 0\)</span>, in particular <span class="math notranslate nohighlight">\(H_{jj} = 0\)</span>, and since <span class="math notranslate nohighlight">\(H \succeq 0\)</span> the quadratic form <span class="math notranslate nohighlight">\(x^\top H x\)</span> is non-negative at every <span class="math notranslate nohighlight">\(x\)</span>. Evaluating it at <span class="math notranslate nohighlight">\(x = e_j + t e_k\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[0 \le (e_j + t e_k)^\top H (e_j + t e_k) = H_{jj} + t \, (H_{jk} + H_{kj}) + t^2 H_{kk} = t \, (2 H_{jk} + t H_{kk}) ,\]</div>
+<p>the last step by symmetry. This holds for every <span class="math notranslate nohighlight">\(t\)</span>. Dividing by <span class="math notranslate nohighlight">\(t &gt; 0\)</span> and letting <span class="math notranslate nohighlight">\(t \to 0^+\)</span> gives <span class="math notranslate nohighlight">\(H_{jk} \ge 0\)</span>; dividing by <span class="math notranslate nohighlight">\(t &lt; 0\)</span>, which reverses the inequality, and letting <span class="math notranslate nohighlight">\(t \to 0^-\)</span> gives <span class="math notranslate nohighlight">\(H_{jk} \le 0\)</span>. Hence <span class="math notranslate nohighlight">\(H_{jk} = 0\)</span>, and by symmetry of the Hessian <span class="math notranslate nohighlight">\(0 = H_{jk} = H_{kj}\)</span>. As <span class="math notranslate nohighlight">\(k\)</span> was arbitrary, <span class="math notranslate nohighlight">\(H e_j = 0\)</span>, and as <span class="math notranslate nohighlight">\(j \in I_F\)</span> was arbitrary this holds for every basis vector of <span class="math notranslate nohighlight">\(V_F\)</span>; by linearity every <span class="math notranslate nohighlight">\(v = \sum_{j \in I_F} v_j e_j\)</span> satisfies</p>
+<div class="math notranslate nohighlight">
+\[H v = \sum_{j \in I_F} v_j \, H e_j = 0 ,\]</div>
+<p>so <span class="math notranslate nohighlight">\(V_F \subseteq \operatorname{null}(H)\)</span>.</p>
+<p>To prove the second claim, let <span class="math notranslate nohighlight">\(v \in V_D \cap \operatorname{null}(H)\)</span>. From <span class="math notranslate nohighlight">\(Hv = 0\)</span> we get <span class="math notranslate nohighlight">\(v^\top H v = 0\)</span>, and the same expansion, now with <span class="math notranslate nohighlight">\(v\)</span> supported on <span class="math notranslate nohighlight">\(I_D\)</span>, leaves <span class="math notranslate nohighlight">\(v^\top H v = v_D^\top H[D] \, v_D\)</span>. Since <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span> this forces <span class="math notranslate nohighlight">\(v_D = 0\)</span>, hence <span class="math notranslate nohighlight">\(v = 0\)</span>. No assumption on the sign of <span class="math notranslate nohighlight">\(H\)</span> is used here.</p>
+<p>To prove the last claim, suppose <span class="math notranslate nohighlight">\(\operatorname{null}(H) = V_S\)</span> for a set of leaves <span class="math notranslate nohighlight">\(S\)</span>. Every <span class="math notranslate nohighlight">\(v \in V_S\)</span> has <span class="math notranslate nohighlight">\(H v = 0\)</span>, so <span class="math notranslate nohighlight">\(u^\top H v = 0\)</span> for all <span class="math notranslate nohighlight">\(u, v \in V_S\)</span>. Taking <span class="math notranslate nohighlight">\(u = e_i\)</span> and <span class="math notranslate nohighlight">\(v = e_j\)</span> with <span class="math notranslate nohighlight">\(i, j \in I_S\)</span> gives <span class="math notranslate nohighlight">\(H[S]_{ij} = e_i^\top H e_j = 0\)</span>, so <span class="math notranslate nohighlight">\(H[S] = 0\)</span>. By maximality <span class="math notranslate nohighlight">\(S \subseteq F\)</span>, hence <span class="math notranslate nohighlight">\(V_S \subseteq V_F\)</span>, and combining with the first inclusion, <span class="math notranslate nohighlight">\(V_S \subseteq V_F \subseteq \operatorname{null}(H) = V_S\)</span>. Hence <span class="math notranslate nohighlight">\(V_F = \operatorname{null}(H)\)</span>. The converse is immediate, since <span class="math notranslate nohighlight">\(V_F\)</span> is by construction spanned by whole leaves.</p>
+</div>
+<p>The sign hypothesis cannot be dropped from the first inclusion. Take two leaves of one coordinate each and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix},\end{split}\]</div>
+<p>which is symmetric with eigenvalues <span class="math notranslate nohighlight">\(\pm 1\)</span>, so <span class="math notranslate nohighlight">\(H \not\succeq 0\)</span>. Its block on the first leaf vanishes, <span class="math notranslate nohighlight">\(H[\{1\}] = 0\)</span>, so that leaf is flat and <span class="math notranslate nohighlight">\(V_F = \operatorname{span}\{e_1\}\)</span>. But <span class="math notranslate nohighlight">\(H e_1 = e_2 \neq 0\)</span>, so <span class="math notranslate nohighlight">\(e_1 \notin \operatorname{null}(H)\)</span> and <span class="math notranslate nohighlight">\(V_F \not\subseteq \operatorname{null}(H)\)</span>.</p>
+<p>So a tag never claims more about the null space than is true. It is weaker than the truth when the null space cuts across a leaf.</p>
+<p>That is what a mixed strength array does. Ridge has one term per coordinate, <span class="math notranslate nohighlight">\(p_\lambda(\beta) = \tfrac{1}{2}\sum_j \lambda_j \beta_j^2\)</span> with <span class="math notranslate nohighlight">\(\nabla^2 p_\lambda = \operatorname{diag}(\lambda)\)</span>, so a leaf’s block is zero when every <span class="math notranslate nohighlight">\(\lambda_j\)</span> on it is zero, positive definite when every <span class="math notranslate nohighlight">\(\lambda_j\)</span> is strictly positive, and singular without being zero when they are mixed. Take coefficients on one leaf of three with <span class="math notranslate nohighlight">\(\lambda = (0, 2, 0)\)</span> and an unpenalized intercept: <span class="math notranslate nohighlight">\(\operatorname{null}(\nabla^2 p_\lambda)\)</span> has dimension three, while the only leaf that can be recorded as flat is the intercept, so <span class="math notranslate nohighlight">\(V_F\)</span> has dimension one. The containment is strict, and no set of leaves names the missing directions. A uniformly positive array behaves exactly like a positive scalar, and a negative one is excluded by Assumption 3, so the mixed case is the only one where anything is lost.</p>
+<p>Assumption 5 is about the description, while Assumption 2 is about the penalty, and their indices need not agree: a penalty may be written coordinate by coordinate even though only leaf-level statements are recorded about its Hessian. Restricting to leaves is what keeps the checks cheap, since they are then set operations over leaves rather than over parameters.</p>
+<p>One caveat on reading Assumption 5. Both predicates are evaluated on a block, not coordinate by coordinate. For ridge the two coincide, because <span class="math notranslate nohighlight">\(\nabla^2 p_\lambda\)</span> is diagonal and <span class="math notranslate nohighlight">\(\operatorname{definite}(\{i\})\)</span> reduces to <span class="math notranslate nohighlight">\(\lambda_j &gt; 0\)</span> for every <span class="math notranslate nohighlight">\(j \in I_i\)</span>. In general it does not: <span class="math notranslate nohighlight">\([[1, 1], [1, 1]]\)</span> has both diagonal entries positive and is singular, so definiteness of a block is not definiteness of its parts.</p>
+<p>Under these five, the rule given below returns a property that is true of the sum, which is what Theorem 2 states and proves. Every check it performs is set arithmetic over leaves and comparison of integers; no matrix is ever inspected.</p>
+<p>One thing is deliberately out of scope. These are statements in exact arithmetic, and a claim true of <span class="math notranslate nohighlight">\(\nabla^2 \mathcal{L}(\beta)\)</span> can still fail in floating point, as it does when the per-sample curvatures of a saturated Bernoulli GLM underflow and <span class="math notranslate nohighlight">\(\sum_t w_t(\beta)\)</span> becomes exactly zero. No tag prevents that, and none is meant to; guarding against it belongs to how the solver accepts a step.</p>
+</section>
+<section id="tag-definition">
+<h2>Tag definition<a class="headerlink" href="#tag-definition" title="Link to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Definition (tag, satisfaction)</p>
+<p>A <em>tag</em> is a triple</p>
+<div class="math notranslate nohighlight">
+\[t = (\sigma, F, D) \in \mathbb{T} = \Sigma \times \mathcal{P}\big(\{1, \dots, n\}\big) \times \mathcal{P}\big(\{1, \dots, n\}\big) .\]</div>
+<p>A matrix <span class="math notranslate nohighlight">\(H \in \operatorname{Sym}(N)\)</span> <em>satisfies</em> <span class="math notranslate nohighlight">\(t\)</span>, written <span class="math notranslate nohighlight">\(H \models t\)</span>, when</p>
+<div class="math notranslate nohighlight">
+\[H \models \sigma, \qquad H[F] = 0, \qquad H[D] \succ 0 .\]</div>
+<p>A tag is <em>realizable</em> if <span class="math notranslate nohighlight">\(H \models t\)</span> for some <span class="math notranslate nohighlight">\(H\)</span>, and <em>covering</em> if <span class="math notranslate nohighlight">\(F \cup D = \{1, \dots, n\}\)</span>.</p>
+</div>
+<p>A tag is declared by the object that contributes the term; nothing computes it from the matrix. Many matrices satisfy the same tag, and one matrix satisfies many tags: <code class="docutils literal notranslate"><span class="pre">none</span></code> with <span class="math notranslate nohighlight">\(F = D = \varnothing\)</span> is satisfied by everything. So the field <span class="math notranslate nohighlight">\(\sigma\)</span> need not be the strongest true sign, and <span class="math notranslate nohighlight">\(F, D\)</span> need not be the largest sets available. Under-claiming is always allowed, which is why a model can declare a tag without inspecting its own Hessian.</p>
+<div class="important admonition">
+<p class="admonition-title">Proposition 2 (satisfaction is determined by the block spectra)</p>
+<p>If <span class="math notranslate nohighlight">\(\tau(H) = \tau(H')\)</span> then <span class="math notranslate nohighlight">\(H \models t \iff H' \models t\)</span> for every tag <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Each of the three conditions in <span class="math notranslate nohighlight">\(H \models t\)</span> is a function of <span class="math notranslate nohighlight">\(\tau(H)\)</span>.</p>
+<p>The sign: <span class="math notranslate nohighlight">\(H \models \text{none}\)</span> always; <span class="math notranslate nohighlight">\(H \models {\succeq}\,0\)</span> iff <span class="math notranslate nohighlight">\(\min \tau(H)(\{1, \dots, n\}) \ge 0\)</span>; <span class="math notranslate nohighlight">\(H \models {\succ}\,0\)</span> iff that minimum is <span class="math notranslate nohighlight">\(&gt; 0\)</span>.</p>
+<p>Flatness: <span class="math notranslate nohighlight">\(H[F]\)</span> is symmetric, so it is diagonalisable and vanishes iff all its eigenvalues do, that is iff <span class="math notranslate nohighlight">\(\tau(H)(F) = 0\)</span>.</p>
+<p>Definiteness: <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span> iff <span class="math notranslate nohighlight">\(\min \tau(H)(D) &gt; 0\)</span>.</p>
+<p>Each right-hand side depends on <span class="math notranslate nohighlight">\(H\)</span> only through <span class="math notranslate nohighlight">\(\tau(H)\)</span>, so equal descriptions give equal answers.</p>
+</div>
+<p>So a tag is a coarsening of <span class="math notranslate nohighlight">\(\tau\)</span>: whatever <span class="math notranslate nohighlight">\(\tau\)</span> cannot separate, no tag separates either. In particular the two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> built in the proof of Theorem 1 satisfy exactly the same tags, while <span class="math notranslate nohighlight">\(A + B \succ 0\)</span> and <span class="math notranslate nohighlight">\(A + A\)</span> is singular. Any tagging scheme that assigns tags on the basis of block spectra therefore inherits the ceiling: it hands the same pair of tags to two configurations whose sums differ in sign.</p>
+<p>Here is what the three fields do, stated in terms of the null space that Theorem 1 showed to be the difficulty. <span class="math notranslate nohighlight">\(\sigma\)</span> answers the first two rows of the decision table by itself. <span class="math notranslate nohighlight">\(F\)</span> bounds the null space from below: <span class="math notranslate nohighlight">\(V_F \subseteq \operatorname{null}(H)\)</span> when <span class="math notranslate nohighlight">\(H \succeq 0\)</span>, which is Proposition 1. <span class="math notranslate nohighlight">\(D\)</span> bounds it from above: <span class="math notranslate nohighlight">\(V_D \cap \operatorname{null}(H) = \{0\}\)</span>. Each is only a bound on its own. A covering tag turns the pair into an equality.</p>
+<div class="important admonition">
+<p class="admonition-title">Corollary 1 (a covering tag pins the null space)</p>
+<p>Let <span class="math notranslate nohighlight">\(H \succeq 0\)</span> with <span class="math notranslate nohighlight">\(H \models t\)</span>, and let <span class="math notranslate nohighlight">\(t\)</span> be covering. Then <span class="math notranslate nohighlight">\(\operatorname{null}(H) = V_F\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p><span class="math notranslate nohighlight">\(V_F \subseteq \operatorname{null}(H)\)</span> is the first part of Proposition 1. For the reverse, let <span class="math notranslate nohighlight">\(v \in \operatorname{null}(H)\)</span>. Since <span class="math notranslate nohighlight">\(F \cup D = \{1, \dots, n\}\)</span>, the coordinates of <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(D\)</span> together are all of them, so <span class="math notranslate nohighlight">\(v = f + d\)</span> with <span class="math notranslate nohighlight">\(f \in V_F\)</span> and <span class="math notranslate nohighlight">\(d \in V_D\)</span>. Then <span class="math notranslate nohighlight">\(f \in \operatorname{null}(H)\)</span>, hence <span class="math notranslate nohighlight">\(d = v - f \in \operatorname{null}(H)\)</span>, so <span class="math notranslate nohighlight">\(d \in V_D \cap \operatorname{null}(H) = \{0\}\)</span> by the second part of Proposition 1. Therefore <span class="math notranslate nohighlight">\(v = f \in V_F\)</span>.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Example (the ridge penalty of a GLM)</p>
+<p>Take the model of the problem setting: two leaves, <code class="docutils literal notranslate"><span class="pre">coef</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept</span></code>, and a ridge penalty of strength <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> that does not reach the intercept, so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\nabla^2 p_\lambda = \begin{pmatrix} \lambda I &amp; 0 \\ 0 &amp; 0 \end{pmatrix} .\end{split}\]</div>
+<p>It satisfies the tag <span class="math notranslate nohighlight">\(t = ({\succeq}\,0, \ F, \ D)\)</span> with <span class="math notranslate nohighlight">\(F = \{\texttt{intercept}\}\)</span> and <span class="math notranslate nohighlight">\(D = \{\texttt{coef}\}\)</span>: the matrix is positive semidefinite, the intercept block is <span class="math notranslate nohighlight">\(0\)</span>, and the coefficient block is <span class="math notranslate nohighlight">\(\lambda I \succ 0\)</span>. The two sets cover the tree, so <span class="math notranslate nohighlight">\(t\)</span> is covering and Corollary 1 applies:</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{null}(\nabla^2 p_\lambda) = V_{\{\texttt{intercept}\}} = \operatorname{span}\{e_{p+1}\} ,\]</div>
+<p>which is the null space read off by inspection in the problem setting, now obtained from the tag alone.</p>
+</div>
+<p>The structure of the matrix — <code class="docutils literal notranslate"><span class="pre">Full</span></code>, <code class="docutils literal notranslate"><span class="pre">BlockDiagonal</span></code>, <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code> — is deliberately not part of <span class="math notranslate nohighlight">\(t\)</span>. It answers the last two rows of the decision table on its own and never interacts with the sign or the null space, so it is treated separately, at the end of this note.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition (sound rule, best rule)</p>
+<p>A rule <span class="math notranslate nohighlight">\(R : \mathbb{T} \times \mathbb{T} \to \Sigma\)</span> is <em>sound</em> if</p>
+<div class="math notranslate nohighlight">
+\[H_1 + H_2 \models R(t_1, t_2) \qquad \text{whenever } H_1 \models t_1 \text{ and } H_2 \models t_2 .\]</div>
+<p>The <em>best rule</em> is</p>
+<div class="math notranslate nohighlight">
+\[R^*(t_1, t_2) = \max_{\sqsubseteq} \, \big\{ s \in \Sigma : H_1 + H_2 \models s \text{ for all } H_1 \models t_1, \ H_2 \models t_2 \big\} .\]</div>
+</div>
+<p><span class="math notranslate nohighlight">\(R^*\)</span> is well defined: the set is non-empty, since <code class="docutils literal notranslate"><span class="pre">none</span></code> holds of everything, and <span class="math notranslate nohighlight">\(\Sigma\)</span> is a finite chain. It is sound by construction, and every sound rule <span class="math notranslate nohighlight">\(R\)</span> satisfies <span class="math notranslate nohighlight">\(R(t_1, t_2) \sqsubseteq R^*(t_1, t_2)\)</span> pointwise, so it is the strongest sound rule there is. What remains is to compute it, and to check that the rule the package implements agrees.</p>
+<p>Three statements do that, in order:</p>
+<ul class="simple">
+<li><p><strong>Proposition 3</strong>: exactly which tags are realizable.</p></li>
+<li><p><strong>Theorem 2</strong>: a closed form for <span class="math notranslate nohighlight">\(R^*\)</span>.</p></li>
+<li><p><strong>Theorem 3</strong>: the implemented rule equals <span class="math notranslate nohighlight">\(R^*\)</span> on realizable tags.</p></li>
+</ul>
+</section>
+<section id="which-tags-are-realizable">
+<h2>Which tags are realizable<a class="headerlink" href="#which-tags-are-realizable" title="Link to this heading">#</a></h2>
+<p>A tag is realizable when <span class="math notranslate nohighlight">\(H \models t\)</span> for some <span class="math notranslate nohighlight">\(H \in \operatorname{Sym}(N)\)</span>. Two conditions settle which ones are.</p>
+<div class="important admonition">
+<p class="admonition-title">Proposition 3 (realizability)</p>
+<p>A tag <span class="math notranslate nohighlight">\(t = (\sigma, F, D)\)</span> is realizable if and only if</p>
+<div class="math notranslate nohighlight">
+\[\text{(i)} \quad F \cap D = \varnothing , \qquad\qquad \text{(ii)} \quad \sigma = {\succ}\,0 \implies F = \varnothing .\]</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p><em>Necessity.</em> Let <span class="math notranslate nohighlight">\(H \models t\)</span> and let <span class="math notranslate nohighlight">\(i \in F\)</span>. The leaves are non-empty, so pick a coordinate <span class="math notranslate nohighlight">\(j \in I_i\)</span>. It is a coordinate of <span class="math notranslate nohighlight">\(F\)</span>, so <span class="math notranslate nohighlight">\(H[F] = 0\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[H_{jj} = 0 .\]</div>
+<p>Each of the two conditions now follows from a different positivity assumption contradicting this.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(i \in D\)</span> as well. Then <span class="math notranslate nohighlight">\(j\)</span> is a coordinate of <span class="math notranslate nohighlight">\(D\)</span>, so <span class="math notranslate nohighlight">\(e_j \in V_D\)</span> and the restriction identity from the notation section applies:</p>
+<div class="math notranslate nohighlight">
+\[H_{jj} = e_j[D]^\top \, H[D] \, e_j[D] &gt; 0 ,\]</div>
+<p>the inequality because <span class="math notranslate nohighlight">\(e_j[D]\)</span> is a non-zero vector and <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span>. This contradicts <span class="math notranslate nohighlight">\(H_{jj} = 0\)</span>, so no leaf lies in both sets, that is <span class="math notranslate nohighlight">\(F \cap D = \varnothing\)</span>.</p>
+<p>Suppose instead <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span>, so <span class="math notranslate nohighlight">\(H \succ 0\)</span>. Then <span class="math notranslate nohighlight">\(H_{jj} = e_j^\top H e_j &gt; 0\)</span>. Hence <span class="math notranslate nohighlight">\(F\)</span> contains no leaf at all, that is <span class="math notranslate nohighlight">\(F = \varnothing\)</span>.</p>
+<p><em>Sufficiency.</em> Let <span class="math notranslate nohighlight">\(t = (\sigma, F, D)\)</span> satisfy (i) and (ii). We exhibit an <span class="math notranslate nohighlight">\(H\)</span> with <span class="math notranslate nohighlight">\(H \models t\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span>, then (ii) gives <span class="math notranslate nohighlight">\(F = \varnothing\)</span>, and <span class="math notranslate nohighlight">\(H = I\)</span> works: it is positive definite, the requirement on <span class="math notranslate nohighlight">\(F\)</span> is vacuous, and <span class="math notranslate nohighlight">\(I[D] = I \succ 0\)</span>.</p>
+<p>Otherwise <span class="math notranslate nohighlight">\(\sigma\)</span> is <span class="math notranslate nohighlight">\({\succeq}\,0\)</span> or <code class="docutils literal notranslate"><span class="pre">none</span></code>. Take <span class="math notranslate nohighlight">\(P\)</span>, the orthogonal projector onto <span class="math notranslate nohighlight">\(V_F^{\perp}\)</span>: it is symmetric, satisfies <span class="math notranslate nohighlight">\(P = P^2\)</span> and <span class="math notranslate nohighlight">\(\operatorname{null}(P) = V_F\)</span>, and is positive semidefinite, so <span class="math notranslate nohighlight">\(P \models \sigma\)</span>, since <span class="math notranslate nohighlight">\({\succeq}\,0\)</span> implies <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p>
+<p>If <span class="math notranslate nohighlight">\(F = \varnothing\)</span>, then <span class="math notranslate nohighlight">\(V_F = \{0\}\)</span> and <span class="math notranslate nohighlight">\(P = I\)</span>, and the requirement on <span class="math notranslate nohighlight">\(F\)</span> is vacuous, <span class="math notranslate nohighlight">\(P[F]\)</span> being the empty matrix.</p>
+<p>If <span class="math notranslate nohighlight">\(F \neq \varnothing\)</span>, pick <span class="math notranslate nohighlight">\(j \in I_F\)</span>. The basis vector <span class="math notranslate nohighlight">\(e_j\)</span> lies in <span class="math notranslate nohighlight">\(V_F = \operatorname{null}(P)\)</span>, so <span class="math notranslate nohighlight">\(P e_j = 0\)</span> and the <span class="math notranslate nohighlight">\(j\)</span>-th column of <span class="math notranslate nohighlight">\(P\)</span> vanishes. Taking <span class="math notranslate nohighlight">\(k, j \in I_F\)</span> gives <span class="math notranslate nohighlight">\(P_{kj} = 0\)</span> throughout, that is <span class="math notranslate nohighlight">\(P[F] = 0\)</span>.</p>
+<p>There remains <span class="math notranslate nohighlight">\(P[D] \succ 0\)</span>. Let <span class="math notranslate nohighlight">\(v \in V_D\)</span> be non-zero. Using the restriction identity, and then <span class="math notranslate nohighlight">\(P = P^\top = P^2\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[v[D]^\top P[D] \, v[D] = v^\top P v = v^\top P^\top P v = \lVert P v \rVert^2 ,\]</div>
+<p>which vanishes only when <span class="math notranslate nohighlight">\(v \in \operatorname{null}(P) = V_F\)</span>. But <span class="math notranslate nohighlight">\(v \in V_D\)</span>, and condition (i) gives <span class="math notranslate nohighlight">\(V_F \cap V_D = \{0\}\)</span>, so <span class="math notranslate nohighlight">\(v \in V_F\)</span> would force <span class="math notranslate nohighlight">\(v = 0\)</span>, contrary to assumption. Hence <span class="math notranslate nohighlight">\(\lVert P v \rVert^2 &gt; 0\)</span>.</p>
+<p>As <span class="math notranslate nohighlight">\(v\)</span> ranges over the non-zero vectors of <span class="math notranslate nohighlight">\(V_D\)</span>, its restriction <span class="math notranslate nohighlight">\(v[D]\)</span> ranges over all non-zero vectors of <span class="math notranslate nohighlight">\(\mathbb{R}^{d(D)}\)</span>, so what has just been shown is exactly <span class="math notranslate nohighlight">\(P[D] \succ 0\)</span>.</p>
+</div>
+<p>Two consequences. In a realizable covering tag, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(D\)</span> partition the leaves: condition (i) makes them disjoint, and covering means their union is everything.</p>
+<p>And nothing constrains <span class="math notranslate nohighlight">\(D\)</span> against <span class="math notranslate nohighlight">\(\sigma\)</span>. Take <span class="math notranslate nohighlight">\(t = ({\succeq}\,0, \varnothing, \{1, \dots, n\})\)</span>. It is realizable, since <span class="math notranslate nohighlight">\(I \models t\)</span>. It is also covering, so Corollary 1 applies to every <span class="math notranslate nohighlight">\(H \models t\)</span> and gives <span class="math notranslate nohighlight">\(\operatorname{null}(H) = V_\varnothing = \{0\}\)</span>; together with <span class="math notranslate nohighlight">\(H \succeq 0\)</span> that makes <span class="math notranslate nohighlight">\(H\)</span> positive definite. So <span class="math notranslate nohighlight">\(t\)</span> is satisfied by exactly the positive definite matrices while claiming only <span class="math notranslate nohighlight">\({\succeq}\,0\)</span>. That is under-claiming, not inconsistency — a tag states what its declarer is prepared to guarantee, not the strongest truth available.</p>
+</section>
+<section id="normalizing-a-tag">
+<h2>Normalizing a tag<a class="headerlink" href="#normalizing-a-tag" title="Link to this heading">#</a></h2>
+<p>Two tags with the same satisfying set are interchangeable, because <span class="math notranslate nohighlight">\(R^*\)</span> is defined by quantifying over the matrices that satisfy each argument and so cannot tell them apart. Two kinds of declaration are weaker than they need to be, and each can be strengthened without changing the matrices it describes.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition (normalization)</p>
+<p>For a realizable <span class="math notranslate nohighlight">\(t = (\sigma, F, D)\)</span> put</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{nf}(t) = \begin{cases}
+({\succ}\,0, \ \varnothing, \ \{1, \dots, n\}) &amp; D = \{1, \dots, n\}, \\[2pt]
+({\succeq}\,0, \ \{1, \dots, n\}, \ \varnothing) &amp; F = \{1, \dots, n\}, \\[2pt]
+t &amp; \text{otherwise.}
+\end{cases}\end{split}\]</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Proposition 4 (normalization preserves the satisfying set)</p>
+<p><span class="math notranslate nohighlight">\(H \models t \iff H \models \mathrm{nf}(t)\)</span> for every realizable <span class="math notranslate nohighlight">\(t\)</span> and every <span class="math notranslate nohighlight">\(H \in \operatorname{Sym}(N)\)</span>. Consequently <span class="math notranslate nohighlight">\(R^*(t_1, t_2) = R^*\big(\mathrm{nf}(t_1), \mathrm{nf}(t_2)\big)\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>In each of the first two branches we show that <span class="math notranslate nohighlight">\(H \models t\)</span> and <span class="math notranslate nohighlight">\(H \models \mathrm{nf}(t)\)</span> are equivalent to one and the same explicit condition on <span class="math notranslate nohighlight">\(H\)</span>, hence to each other.</p>
+<p><em>Branch <span class="math notranslate nohighlight">\(D = \{1, \dots, n\}\)</span></em>, where <span class="math notranslate nohighlight">\(\mathrm{nf}(t) = ({\succ}\,0, \varnothing, \{1, \dots, n\})\)</span>. Condition (i) gives <span class="math notranslate nohighlight">\(F \cap D = \varnothing\)</span>, so <span class="math notranslate nohighlight">\(F = \varnothing\)</span> and the requirement <span class="math notranslate nohighlight">\(H[F] = 0\)</span> is vacuous for <span class="math notranslate nohighlight">\(t\)</span>; it is vacuous for <span class="math notranslate nohighlight">\(\mathrm{nf}(t)\)</span> as well. For <span class="math notranslate nohighlight">\(t\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[H \models t \iff H \models \sigma \ \text{ and } \ H[D] = H \succ 0 \iff H \succ 0 ,\]</div>
+<p>the second equivalence because <span class="math notranslate nohighlight">\(H \succ 0\)</span> implies <span class="math notranslate nohighlight">\(H \models \sigma\)</span> for every <span class="math notranslate nohighlight">\(\sigma \in \Sigma\)</span>, <span class="math notranslate nohighlight">\({\succ}\,0\)</span> being the greatest element. For <span class="math notranslate nohighlight">\(\mathrm{nf}(t)\)</span> the two requirements are <span class="math notranslate nohighlight">\(H \succ 0\)</span> and <span class="math notranslate nohighlight">\(H[\{1, \dots, n\}] = H \succ 0\)</span>, which is the same condition twice. So both sides are <span class="math notranslate nohighlight">\(H \succ 0\)</span>.</p>
+<p><em>Branch <span class="math notranslate nohighlight">\(F = \{1, \dots, n\}\)</span></em>, where <span class="math notranslate nohighlight">\(\mathrm{nf}(t) = ({\succeq}\,0, \{1, \dots, n\}, \varnothing)\)</span>. Condition (i) gives <span class="math notranslate nohighlight">\(D = \varnothing\)</span>, so the requirement on <span class="math notranslate nohighlight">\(D\)</span> is vacuous on both sides, and (ii) excludes <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span>, leaving <span class="math notranslate nohighlight">\(\sigma \in \{\text{none}, {\succeq}\,0\}\)</span>. For <span class="math notranslate nohighlight">\(t\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[H \models t \iff H \models \sigma \ \text{ and } \ H[F] = H = 0 \iff H = 0 ,\]</div>
+<p>the second equivalence because <span class="math notranslate nohighlight">\(0 \models \text{none}\)</span> and <span class="math notranslate nohighlight">\(0 \models {\succeq}\,0\)</span>. For <span class="math notranslate nohighlight">\(\mathrm{nf}(t)\)</span> the requirements are <span class="math notranslate nohighlight">\(H \succeq 0\)</span> and <span class="math notranslate nohighlight">\(H = 0\)</span>, again <span class="math notranslate nohighlight">\(H = 0\)</span>. So both sides are <span class="math notranslate nohighlight">\(H = 0\)</span>.</p>
+<p>The third branch sets <span class="math notranslate nohighlight">\(\mathrm{nf}(t) = t\)</span> and needs no argument. The statement about <span class="math notranslate nohighlight">\(R^*\)</span> then follows because <span class="math notranslate nohighlight">\(R^*\)</span> depends on its arguments only through the sets <span class="math notranslate nohighlight">\(\{H : H \models t_i\}\)</span>, which the first two branches leave unchanged.</p>
+</div>
+<p>Both rewrites replace an under-claiming declaration with a stronger one that the tag already implies, so neither adds information the tag did not have. A model may declare <code class="docutils literal notranslate"><span class="pre">none</span></code> and get a positive definite tag back from the normalizer, because of its own <span class="math notranslate nohighlight">\(D\)</span>.</p>
+</section>
+<section id="combining-two-tags-the-rule-and-why-it-is-sound">
+<h2>Combining two tags: the rule, and why it is sound<a class="headerlink" href="#combining-two-tags-the-rule-and-why-it-is-sound" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(R^*\)</span> quantifies over every pair of matrices satisfying the two tags, which is not something a rule can evaluate. The quantifier is removed in two steps: first the sum’s sign is expressed through null spaces, then the achievable null spaces are read off the tag.</p>
+<p>The first step is the identity already used in the problem setting. For <span class="math notranslate nohighlight">\(A, B \succeq 0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[A + B \succ 0 \iff \operatorname{null}(A) \cap \operatorname{null}(B) = \{0\} ,\]</div>
+<p>since <span class="math notranslate nohighlight">\(\operatorname{null}(A + B) = \operatorname{null}(A) \cap \operatorname{null}(B)\)</span> and a positive semidefinite matrix is definite exactly when its null space is trivial. The second step is the following.</p>
+<div class="important admonition">
+<p class="admonition-title">Proposition 5 (achievable null spaces)</p>
+<p>Let <span class="math notranslate nohighlight">\(t = (\sigma, F, D)\)</span> be realizable. If <span class="math notranslate nohighlight">\(\sigma = {\succeq}\,0\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[\big\{ \operatorname{null}(H) : H \models t \big\} = \big\{ L \ \text{a subspace of } \mathbb{R}^N \ : \ V_F \subseteq L, \ L \cap V_D = \{0\} \big\} ,\]</div>
+<p>and if <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span> then <span class="math notranslate nohighlight">\(\{ \operatorname{null}(H) : H \models t \} = \{\{0\}\}\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p><em>Case <span class="math notranslate nohighlight">\(\sigma = {\succeq}\,0\)</span>.</em> Write <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> for the set on the left and <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> for the family on the right; we prove both inclusions.</p>
+<p><em>(<span class="math notranslate nohighlight">\(\mathcal{N} \subseteq \mathcal{L}\)</span>).</em> Let <span class="math notranslate nohighlight">\(H \models t\)</span>, so <span class="math notranslate nohighlight">\(H \succeq 0\)</span>, <span class="math notranslate nohighlight">\(H[F] = 0\)</span> and <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span>. Proposition 1 gives <span class="math notranslate nohighlight">\(V_F \subseteq \operatorname{null}(H)\)</span> and <span class="math notranslate nohighlight">\(V_D \cap \operatorname{null}(H) = \{0\}\)</span>, which are the two defining conditions of <span class="math notranslate nohighlight">\(\mathcal{L}\)</span>. So <span class="math notranslate nohighlight">\(\operatorname{null}(H) \in \mathcal{L}\)</span>.</p>
+<p><em>(<span class="math notranslate nohighlight">\(\mathcal{L} \subseteq \mathcal{N}\)</span>).</em> Let <span class="math notranslate nohighlight">\(L \in \mathcal{L}\)</span> and let <span class="math notranslate nohighlight">\(P\)</span> be the orthogonal projector onto <span class="math notranslate nohighlight">\(L^{\perp}\)</span>. Being an orthogonal projector, <span class="math notranslate nohighlight">\(P\)</span> is symmetric with <span class="math notranslate nohighlight">\(P = P^2\)</span> and <span class="math notranslate nohighlight">\(v^\top P v = \lVert P v \rVert^2 \ge 0\)</span>, so <span class="math notranslate nohighlight">\(P \succeq 0\)</span>, and <span class="math notranslate nohighlight">\(\operatorname{null}(P) = L\)</span>. For <span class="math notranslate nohighlight">\(j \in I_F\)</span> we have <span class="math notranslate nohighlight">\(e_j \in V_F \subseteq L = \operatorname{null}(P)\)</span>, so <span class="math notranslate nohighlight">\(P e_j = 0\)</span>, the <span class="math notranslate nohighlight">\(j\)</span>-th column vanishes, and taking <span class="math notranslate nohighlight">\(k, j \in I_F\)</span> gives <span class="math notranslate nohighlight">\(P[F] = 0\)</span>. For non-zero <span class="math notranslate nohighlight">\(v \in V_D\)</span> the restriction identity gives <span class="math notranslate nohighlight">\(v[D]^\top P[D] \, v[D] = \lVert P v \rVert^2\)</span>, non-zero because <span class="math notranslate nohighlight">\(v \notin L\)</span>; so <span class="math notranslate nohighlight">\(P[D] \succ 0\)</span>. Hence <span class="math notranslate nohighlight">\(P \models t\)</span> with <span class="math notranslate nohighlight">\(\operatorname{null}(P) = L\)</span>, that is <span class="math notranslate nohighlight">\(L \in \mathcal{N}\)</span>. This is the construction of Proposition 3 with <span class="math notranslate nohighlight">\(L\)</span> in place of <span class="math notranslate nohighlight">\(V_F\)</span>.</p>
+<p><em>Case <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span>.</em> Every <span class="math notranslate nohighlight">\(H \models t\)</span> is positive definite, hence non-singular, so the only achievable null space is <span class="math notranslate nohighlight">\(\{0\}\)</span>.</p>
+</div>
+<p>The two cases must be kept apart. For <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span> the subspace family on the right can be strictly larger than what is achievable: with two leaves, <span class="math notranslate nohighlight">\(t = ({\succ}\,0, \varnothing, \{1\})\)</span> admits <span class="math notranslate nohighlight">\(L = V_{\{2\}}\)</span> into the family, while every <span class="math notranslate nohighlight">\(H \models t\)</span> is non-singular.</p>
+<section id="optimal-closed-form-combination-rule">
+<h3>Optimal closed form combination rule<a class="headerlink" href="#optimal-closed-form-combination-rule" title="Link to this heading">#</a></h3>
+<div class="important admonition">
+<p class="admonition-title">Theorem 2 (the best rule)</p>
+<p>Let <span class="math notranslate nohighlight">\(t_1, t_2\)</span> be realizable and normalized. Say the pair is <em>linked</em> when</p>
+<div class="math notranslate nohighlight">
+\[\text{$t_1$ is covering and } F_1 \subseteq D_2, \qquad\text{or}\qquad \text{$t_2$ is covering and } F_2 \subseteq D_1 .\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R^*(t_1, t_2) = \begin{cases}
+\text{none} &amp; \sigma_1 = \text{none or } \sigma_2 = \text{none}, \\[2pt]
+{\succ}\,0 &amp; \text{both signed, and } \sigma_1 = {\succ}\,0 \text{ or } \sigma_2 = {\succ}\,0 \text{ or the pair is linked}, \\[2pt]
+{\succeq}\,0 &amp; \text{otherwise.}
+\end{cases}\end{split}\]</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">none</span></code> case.</em> Say <span class="math notranslate nohighlight">\(\sigma_1 = \text{none}\)</span>. Normalization gives <span class="math notranslate nohighlight">\(D_1 \neq \{1, \dots, n\}\)</span> and <span class="math notranslate nohighlight">\(F_1 \neq \{1, \dots, n\}\)</span>. Fix any <span class="math notranslate nohighlight">\(H_2 \models t_2\)</span>, take <span class="math notranslate nohighlight">\(P \models t_1\)</span> from Proposition 3, and perturb it.</p>
+<p>If <span class="math notranslate nohighlight">\(t_1\)</span> is not covering, pick a leaf <span class="math notranslate nohighlight">\(i \notin F_1 \cup D_1\)</span> and <span class="math notranslate nohighlight">\(j \in I_i\)</span>, and put <span class="math notranslate nohighlight">\(H_1 = P - c\, e_j e_j^\top\)</span>. Neither <span class="math notranslate nohighlight">\(H_1[F_1]\)</span> nor <span class="math notranslate nohighlight">\(H_1[D_1]\)</span> sees the perturbation, since <span class="math notranslate nohighlight">\(j\)</span> belongs to neither, so <span class="math notranslate nohighlight">\(H_1 \models t_1\)</span> for every <span class="math notranslate nohighlight">\(c\)</span>, while <span class="math notranslate nohighlight">\(e_j^\top (H_1 + H_2) e_j \to -\infty\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(t_1\)</span> is covering, then <span class="math notranslate nohighlight">\(F_1\)</span> and <span class="math notranslate nohighlight">\(D_1\)</span> are both non-empty, by normalization again, so pick <span class="math notranslate nohighlight">\(j \in I_{F_1}\)</span> and <span class="math notranslate nohighlight">\(k \in I_{D_1}\)</span> and put <span class="math notranslate nohighlight">\(H_1 = P + c\,(e_j e_k^\top + e_k e_j^\top)\)</span>. The perturbation touches only the entries <span class="math notranslate nohighlight">\((j,k)\)</span> and <span class="math notranslate nohighlight">\((k,j)\)</span>, which lie in neither <span class="math notranslate nohighlight">\(F_1 \times F_1\)</span> nor <span class="math notranslate nohighlight">\(D_1 \times D_1\)</span>, so again <span class="math notranslate nohighlight">\(H_1 \models t_1\)</span> for every <span class="math notranslate nohighlight">\(c\)</span>. The block of <span class="math notranslate nohighlight">\(H_1 + H_2\)</span> on <span class="math notranslate nohighlight">\(\{j, k\}\)</span> has determinant <span class="math notranslate nohighlight">\((H_2)_{jj} (H_1 + H_2)_{kk} - (c + x)^2\)</span> for a constant <span class="math notranslate nohighlight">\(x\)</span>, which tends to <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
+<p>Either way <span class="math notranslate nohighlight">\(H_1 + H_2\)</span> is indefinite for large <span class="math notranslate nohighlight">\(c\)</span>, so no sign holds of every pair and <span class="math notranslate nohighlight">\(R^* = \text{none}\)</span>.</p>
+<p><em>Both signed.</em> Every <span class="math notranslate nohighlight">\(H_i \models t_i\)</span> is positive semidefinite, so every sum is, and <span class="math notranslate nohighlight">\(R^* \sqsupseteq {\succeq}\,0\)</span>. By the null space identity, <span class="math notranslate nohighlight">\(R^* = {\succ}\,0\)</span> exactly when <span class="math notranslate nohighlight">\(\operatorname{null}(H_1) \cap \operatorname{null}(H_2) = \{0\}\)</span> for all admissible pairs, which by Proposition 5 is a condition on the families <span class="math notranslate nohighlight">\(\mathcal{L}_i\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\sigma_1 = {\succ}\,0\)</span> then <span class="math notranslate nohighlight">\(\operatorname{null}(H_1) = \{0\}\)</span> always and the intersection is trivial; likewise for <span class="math notranslate nohighlight">\(\sigma_2\)</span>. So assume both signs are <span class="math notranslate nohighlight">\({\succeq}\,0\)</span>.</p>
+<p><em>Linked implies definite.</em> Say <span class="math notranslate nohighlight">\(t_1\)</span> is covering with <span class="math notranslate nohighlight">\(F_1 \subseteq D_2\)</span>. Covering and disjointness give <span class="math notranslate nohighlight">\(V_{F_1} \oplus V_{D_1} = \mathbb{R}^N\)</span>, so for <span class="math notranslate nohighlight">\(L_1 \in \mathcal{L}_1\)</span> and <span class="math notranslate nohighlight">\(w \in L_1\)</span>, writing <span class="math notranslate nohighlight">\(w = f + d\)</span> with <span class="math notranslate nohighlight">\(f \in V_{F_1} \subseteq L_1\)</span> leaves <span class="math notranslate nohighlight">\(d = w - f \in L_1 \cap V_{D_1} = \{0\}\)</span>; hence <span class="math notranslate nohighlight">\(L_1 = V_{F_1}\)</span> is the only member. Then for any <span class="math notranslate nohighlight">\(L_2 \in \mathcal{L}_2\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[L_1 \cap L_2 = V_{F_1} \cap L_2 \subseteq V_{D_2} \cap L_2 = \{0\} ,\]</div>
+<p>using <span class="math notranslate nohighlight">\(F_1 \subseteq D_2\)</span>. So every admissible pair meets trivially.</p>
+<p><em>Not linked implies not definite.</em> Suppose neither disjunct holds; we exhibit <span class="math notranslate nohighlight">\(L_1, L_2\)</span> meeting non-trivially.</p>
+<p>If neither tag is covering, then <span class="math notranslate nohighlight">\(V_{F_1 \cup D_1}\)</span> and <span class="math notranslate nohighlight">\(V_{F_2 \cup D_2}\)</span> are proper subspaces of <span class="math notranslate nohighlight">\(\mathbb{R}^N\)</span>. A vector space is never the union of two proper subspaces: given <span class="math notranslate nohighlight">\(a \notin A\)</span> and <span class="math notranslate nohighlight">\(b \notin B\)</span> with <span class="math notranslate nohighlight">\(a \in B\)</span>, <span class="math notranslate nohighlight">\(b \in A\)</span>, the vector <span class="math notranslate nohighlight">\(a + b\)</span> lies in neither. So pick <span class="math notranslate nohighlight">\(v\)</span> outside both and set <span class="math notranslate nohighlight">\(L_i = V_{F_i} + \operatorname{span}\{v\}\)</span>. Each is admissible: if <span class="math notranslate nohighlight">\(f + \alpha v \in V_{D_i}\)</span> with <span class="math notranslate nohighlight">\(f \in V_{F_i}\)</span>, then <span class="math notranslate nohighlight">\(\alpha v \in V_{F_i \cup D_i}\)</span>, forcing <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, and then <span class="math notranslate nohighlight">\(f \in V_{F_i} \cap V_{D_i} = \{0\}\)</span>. And <span class="math notranslate nohighlight">\(v\)</span> lies in both.</p>
+<p>Otherwise some tag is covering, say <span class="math notranslate nohighlight">\(t_1\)</span>, and <span class="math notranslate nohighlight">\(F_1 \not\subseteq D_2\)</span>. Pick a leaf <span class="math notranslate nohighlight">\(i \in F_1 \setminus D_2\)</span> and <span class="math notranslate nohighlight">\(j \in I_i\)</span>, and put <span class="math notranslate nohighlight">\(v = e_j \in V_{F_1} = L_1\)</span>. If <span class="math notranslate nohighlight">\(i \in F_2\)</span>, take <span class="math notranslate nohighlight">\(L_2 = V_{F_2}\)</span>, which is admissible and contains <span class="math notranslate nohighlight">\(v\)</span>. If <span class="math notranslate nohighlight">\(i \notin F_2 \cup D_2\)</span>, take <span class="math notranslate nohighlight">\(L_2 = V_{F_2} + \operatorname{span}\{v\}\)</span>, admissible by the computation just given since <span class="math notranslate nohighlight">\(v \notin V_{F_2 \cup D_2}\)</span>. Either way <span class="math notranslate nohighlight">\(v \in L_1 \cap L_2\)</span> is non-zero.</p>
+<p>So <span class="math notranslate nohighlight">\(R^* = {\succ}\,0\)</span> exactly when the pair is linked, and <span class="math notranslate nohighlight">\({\succeq}\,0\)</span> otherwise.</p>
+</div>
+<p>The clause on <span class="math notranslate nohighlight">\(\sigma_i = {\succ}\,0\)</span> can be absorbed. A tag with <span class="math notranslate nohighlight">\(\sigma = {\succ}\,0\)</span> has satisfying set <span class="math notranslate nohighlight">\(\{H : H \succ 0\}\)</span>, since realizability forces <span class="math notranslate nohighlight">\(F = \varnothing\)</span> and <span class="math notranslate nohighlight">\(H \succ 0\)</span> implies <span class="math notranslate nohighlight">\(H[D] \succ 0\)</span>; so it has the same satisfying set as <span class="math notranslate nohighlight">\(({\succ}\,0, \varnothing, \{1, \dots, n\})\)</span>, which is covering with <span class="math notranslate nohighlight">\(F = \varnothing \subseteq D_2\)</span>. Extending <span class="math notranslate nohighlight">\(\mathrm{nf}\)</span> with that rewrite would leave <em>linked</em> as the only condition to test.</p>
+</section>
+</section>
+<section id="is-this-the-right-tagging-system">
+<h2>Is this the right tagging system?<a class="headerlink" href="#is-this-the-right-tagging-system" title="Link to this heading">#</a></h2>
+<p>Theorem 2 says the rule is the best one <em>for this tag</em>, and says nothing about the tag. A description that recorded more could support a finer rule, so it is worth asking whether ours leaves anything behind. It does not, but for two different reasons on the two sides of the sum.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition (refinement)</p>
+<p>A <em>tagging system</em> is a map <span class="math notranslate nohighlight">\(\delta : \operatorname{Sym}(N) \to \Delta\)</span> assigning to each matrix a description drawn from some set <span class="math notranslate nohighlight">\(\Delta\)</span>. A system <span class="math notranslate nohighlight">\(\delta' : \operatorname{Sym}(N) \to \Delta'\)</span> <em>refines</em> <span class="math notranslate nohighlight">\(\delta\)</span> if there is a map <span class="math notranslate nohighlight">\(g : \Delta' \to \Delta\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[\delta = g \circ \delta' ,\]</div>
+<p>that is, if <span class="math notranslate nohighlight">\(\delta'\)</span> determines <span class="math notranslate nohighlight">\(\delta\)</span> and so records at least as much about <span class="math notranslate nohighlight">\(H\)</span>.</p>
+</div>
+<p>If <span class="math notranslate nohighlight">\(\delta'\)</span> refines <span class="math notranslate nohighlight">\(\delta\)</span> then <span class="math notranslate nohighlight">\(R^*_{\delta'} \sqsupseteq R^*_{\delta}\)</span> pointwise, since a finer description cuts down the set of consistent pairs the maximum ranges over. The candidate refinement is to record, instead of one flat set and one definite set, the whole families</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}(H) = \{F : H[F] = 0\}, \qquad \mathcal{D}(H) = \{D : H[D] \succ 0\} ,\]</div>
+<p>which is what <span class="math notranslate nohighlight">\(\tau\)</span> does. A single set can be weaker than a family, because <span class="math notranslate nohighlight">\(\mathcal{D}(H)\)</span> need not be closed under union: a matrix can be definite on two sets of leaves and singular on the union, in which case one set cannot carry both facts.</p>
+<section id="for-a-penalty-the-single-set-is-already-the-family">
+<h3>For a penalty the single set is already the family<a class="headerlink" href="#for-a-penalty-the-single-set-is-already-the-family" title="Link to this heading">#</a></h3>
+<p>Assumption 2 rules that case out. A penalty is a sum of terms, one per leaf, so its Hessian has no coupling between leaves.</p>
+<div class="important admonition">
+<p class="admonition-title">Proposition 6 (no coupling makes the definite family union-closed)</p>
+<p>Let <span class="math notranslate nohighlight">\(H\)</span> be block diagonal with respect to the leaf partition. Then <span class="math notranslate nohighlight">\(H[S] \succ 0\)</span> if and only if <span class="math notranslate nohighlight">\(H[\{i\}] \succ 0\)</span> for every <span class="math notranslate nohighlight">\(i \in S\)</span>. Consequently <span class="math notranslate nohighlight">\(\mathcal{D}(H)\)</span> is closed under union and has a greatest element, the set of all leaves whose own block is definite.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>No coupling between leaves means <span class="math notranslate nohighlight">\(H[S] = \bigoplus_{i \in S} H[\{i\}]\)</span> for every set <span class="math notranslate nohighlight">\(S\)</span> of leaves. A direct sum of symmetric matrices is positive definite exactly when every summand is, which is the stated equivalence. If <span class="math notranslate nohighlight">\(H[S_1] \succ 0\)</span> and <span class="math notranslate nohighlight">\(H[S_2] \succ 0\)</span> then every leaf of <span class="math notranslate nohighlight">\(S_1 \cup S_2\)</span> has a definite block, so <span class="math notranslate nohighlight">\(H[S_1 \cup S_2] \succ 0\)</span>; and the union of all definite leaves is itself definite, hence greatest.</p>
+</div>
+<p>So for any term satisfying Assumption 2, the single set <span class="math notranslate nohighlight">\(D\)</span> can be taken to be the greatest element of <span class="math notranslate nohighlight">\(\mathcal{D}(H)\)</span>, and it then carries exactly as much as the family. This holds for more than the regularizers nemos has today: any penalty that is a strength-weighted sum over leaves has the property, whatever its shape, so the refinement would buy nothing for it.</p>
+</section>
+<section id="for-a-model-the-refinement-is-possible-and-is-what-we-are-avoiding">
+<h3>For a model the refinement is possible, and is what we are avoiding<a class="headerlink" href="#for-a-model-the-refinement-is-possible-and-is-what-we-are-avoiding" title="Link to this heading">#</a></h3>
+<p>The loss Hessian does couple leaves, <span class="math notranslate nohighlight">\(\nabla^2 \ell = \tilde{X}^\top W \tilde{X}\)</span> being dense in general, so its definite family need not be union-closed and a single set can genuinely lose.</p>
+<p>Concretely, take a design built from two blocks, <span class="math notranslate nohighlight">\(X = \begin{pmatrix} X_1 &amp; X_2 \end{pmatrix}\)</span>, each a <code class="docutils literal notranslate"><span class="pre">BSplineEval</span></code> basis, so that the parameters have leaves <span class="math notranslate nohighlight">\(\texttt{coef}_1\)</span> and <span class="math notranslate nohighlight">\(\texttt{coef}_2\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 \ell [\{\texttt{coef}_1\}] = X_1^\top W X_1, \qquad \nabla^2 \ell [\{\texttt{coef}_2\}] = X_2^\top W X_2 ,\]</div>
+<p>both definite, since each basis is of full column rank. Their union is not. The features of each block sum to one across columns at every sample, <span class="math notranslate nohighlight">\(X_1 \mathbf{1} = X_2 \mathbf{1} = \mathbf{1}\)</span>, so the coefficient vector <span class="math notranslate nohighlight">\(v = (\mathbf{1}, -\mathbf{1})\)</span>, ones on the first leaf and minus ones on the second, has</p>
+<div class="math notranslate nohighlight">
+\[X v = X_1 \mathbf{1} - X_2 \mathbf{1} = 0, \qquad v^\top \nabla^2 \ell \, v = \lVert W^{1/2} X v \rVert^2 = 0 .\]</div>
+<p>So <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> contains <span class="math notranslate nohighlight">\(\{\texttt{coef}_1\}\)</span> and <span class="math notranslate nohighlight">\(\{\texttt{coef}_2\}\)</span> and not <span class="math notranslate nohighlight">\(\{\texttt{coef}_1, \texttt{coef}_2\}\)</span>: exactly the failure of union-closure that Proposition 6 rules out for penalties, arising here from an ordinary additive model.</p>
+<p>But the loss cannot exploit a richer tag, and the obstruction is not the tag’s shape. Deciding whether <span class="math notranslate nohighlight">\(\tilde{X}^\top W \tilde{X}\)</span> is definite on a group of columns is deciding whether those columns are independent under the weights, and every route to that answer — a Cholesky attempt, a rank computation by QR or SVD — costs <span class="math notranslate nohighlight">\(O(d^3)\)</span>, the same order as the Newton solve the tag exists to route. A design-aware tag would require a factorization in order to choose a factorization.</p>
+<p>Nor could the information arrive from elsewhere. A model receives <span class="math notranslate nohighlight">\(X\)</span> as an array, not the basis that produced it, so the fact that a design sums to one across columns is known to <code class="docutils literal notranslate"><span class="pre">BSplineEval</span></code> and unavailable to the <code class="docutils literal notranslate"><span class="pre">GLM</span></code>.</p>
+<p>What remains derivable before looking at any array is exactly what the class-level tag carries: the Hessian is positive semidefinite, from convexity of the link, and it is definite on the intercept, because <span class="math notranslate nohighlight">\(\mathbf{1}^\top W \mathbf{1} = \sum_t w_t(\beta) &gt; 0\)</span> is a sum of non-negative terms and needs no factorization. Every other entry of <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is a rank question about the data.</p>
+<p>The refinement is sound mathematics, and this note does not adopt it. For penalties, Proposition 6 shows the single set already carries everything the family carries, so a finer tag would say no more. For models, the extra information can only be obtained by computing a factorization, which is <span class="math notranslate nohighlight">\(O(d^3)\)</span>, the same order as the Newton solve the tag selects a method for.</p>
+</section>
+<section id="the-ridge-penalized-glm-end-to-end">
+<h3>The ridge-penalized GLM, end to end<a class="headerlink" href="#the-ridge-penalized-glm-end-to-end" title="Link to this heading">#</a></h3>
+<p>Two leaves, <code class="docutils literal notranslate"><span class="pre">coef</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept</span></code>. The loss and the penalty declare</p>
+<div class="math notranslate nohighlight">
+\[t_\ell = \big({\succeq}\,0, \ \varnothing, \ \{\texttt{intercept}\}\big), \qquad
+t_p = \big({\succeq}\,0, \ \{\texttt{intercept}\}, \ \{\texttt{coef}\}\big) .\]</div>
+<p>For <span class="math notranslate nohighlight">\(t_\ell\)</span>: the sign is Assumption 4 applied to a convexity-preserving link, <span class="math notranslate nohighlight">\(F\)</span> is empty because the loss is zero on no leaf, and <span class="math notranslate nohighlight">\(\texttt{intercept} \in D\)</span> by the sum of weights. For <span class="math notranslate nohighlight">\(t_p\)</span>: the sign holds because <span class="math notranslate nohighlight">\(\lambda \ge 0\)</span>, <span class="math notranslate nohighlight">\(\texttt{intercept} \in F\)</span> because the penalty does not reach it, and <span class="math notranslate nohighlight">\(\texttt{coef} \in D\)</span> because every <span class="math notranslate nohighlight">\(\lambda_j\)</span> on that leaf is strictly positive.</p>
+<p>Both tags are signed, so Theorem 2 asks whether the pair is linked. It is: <span class="math notranslate nohighlight">\(t_p\)</span> is covering, since <span class="math notranslate nohighlight">\(\{\texttt{intercept}\} \cup \{\texttt{coef}\}\)</span> is every leaf, and</p>
+<div class="math notranslate nohighlight">
+\[F_p = \{\texttt{intercept}\} \subseteq \{\texttt{intercept}\} = D_\ell .\]</div>
+<p>Hence <span class="math notranslate nohighlight">\(R^*(t_\ell, t_p) = {\succ}\,0\)</span>: the penalized Hessian is positive definite, and Cholesky is safe. Neither term is definite on its own, and this is the conclusion the opening example reached by hand.</p>
+<p>Two of the hypotheses are visible in that computation. A zero strength on any coefficient would remove <span class="math notranslate nohighlight">\(\texttt{coef}\)</span> from <span class="math notranslate nohighlight">\(D_p\)</span>, leaving <span class="math notranslate nohighlight">\(t_p\)</span> non-covering and the verdict <span class="math notranslate nohighlight">\({\succeq}\,0\)</span>. A link that does not keep the likelihood convex would leave <span class="math notranslate nohighlight">\(\sigma_\ell = \text{none}\)</span>, and the verdict would be <code class="docutils literal notranslate"><span class="pre">none</span></code> whatever the penalty.</p>
+</section>
+</section>
+<section id="structure-composes-on-its-own">
+<h2>Structure composes on its own<a class="headerlink" href="#structure-composes-on-its-own" title="Link to this heading">#</a></h2>
+<p>Say <span class="math notranslate nohighlight">\(H\)</span> is <em>block diagonal with respect to a partition <span class="math notranslate nohighlight">\(\mathcal{P}\)</span> of the coordinates</em> when <span class="math notranslate nohighlight">\(H_{jk} = 0\)</span> whenever <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> lie in different blocks of <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>. If <span class="math notranslate nohighlight">\(H_1\)</span> is block diagonal with respect to <span class="math notranslate nohighlight">\(\mathcal{P}_1\)</span> and <span class="math notranslate nohighlight">\(H_2\)</span> with respect to <span class="math notranslate nohighlight">\(\mathcal{P}_2\)</span>, then <span class="math notranslate nohighlight">\(H_1 + H_2\)</span> is block diagonal with respect to the join <span class="math notranslate nohighlight">\(\mathcal{P}_1 \vee \mathcal{P}_2\)</span>, whose blocks are the connected components of the union of the two patterns. Nothing finer holds in general.</p>
+<p>Two cases are easy, because the diagonal partition refines every other: diagonal plus diagonal is diagonal, and diagonal plus block diagonal is block diagonal with the same partition. The third is not. With <span class="math notranslate nohighlight">\(\mathcal{P}_1 = \{\{1,2\},\{3,4\}\}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{P}_2 = \{\{1\},\{2,3\},\{4\}\}\)</span> the join is the single block <span class="math notranslate nohighlight">\(\{1,2,3,4\}\)</span>: the sum is tridiagonal and has no non-trivial block structure at all.</p>
+<p>In nemos the case that arises is narrower. Block structure only ever comes from vmapping over a batch axis, so the partition is that axis by construction and is the same for the model term and the penalty term: <span class="math notranslate nohighlight">\(\mathcal{P}_1 = \mathcal{P}_2\)</span>, and the join is that partition again. Under that hypothesis the ordering <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code> <span class="math notranslate nohighlight">\(&lt;\)</span> <code class="docutils literal notranslate"><span class="pre">BlockDiagonal</span></code> <span class="math notranslate nohighlight">\(&lt;\)</span> <code class="docutils literal notranslate"><span class="pre">Full</span></code>, combined by taking the larger, is correct. Without it, two block diagonal terms can sum to something the ordering would call <code class="docutils literal notranslate"><span class="pre">BlockDiagonal</span></code> and that is in fact <code class="docutils literal notranslate"><span class="pre">Full</span></code>.</p>
+</section>
+<section id="where-each-piece-lives">
+<h2>Where each piece lives<a class="headerlink" href="#where-each-piece-lives" title="Link to this heading">#</a></h2>
+<p>Everything in the table is in <code class="docutils literal notranslate"><span class="pre">src/nemos/_hess.py</span></code> unless another module is named.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>in this note</p></th>
+<th class="head"><p>in the code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\sigma \in \Sigma\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MatrixProperty</span></code>, where <span class="math notranslate nohighlight">\(\text{none}\)</span> is spelled <code class="docutils literal notranslate"><span class="pre">SYMMETRIC</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(F\)</span>, <span class="math notranslate nohighlight">\(D\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HessianTag.flat_on</span></code>, <code class="docutils literal notranslate"><span class="pre">HessianTag.definite_on</span></code>: trees shaped like the parameters holding one boolean per leaf, so a set of leaves is a mask and the set operations of the combination rule are <code class="docutils literal notranslate"><span class="pre">tree_map</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>the per-leaf verdict the two sets are read off</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LeafClaim.FLAT</span></code>, <code class="docutils literal notranslate"><span class="pre">LeafClaim.DEFINITE</span></code>, <code class="docutils literal notranslate"><span class="pre">LeafClaim.UNCLAIMED</span></code>, one per leaf, split into the two masks by <code class="docutils literal notranslate"><span class="pre">mask_of_claim</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\sigma_\ell\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BaseRegressor._resolve_hess_property</span></code>, overridden by <code class="docutils literal notranslate"><span class="pre">GLM</span></code> to look the inverse link up in the observation model’s convexity-preserving list</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(D_\ell\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BaseRegressor._hess_leaf_claims</span></code>, where <code class="docutils literal notranslate"><span class="pre">GLM</span></code> claims the intercept and the classifiers claim nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_p\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Regularizer._resolve_hess_tag</span></code>, with <code class="docutils literal notranslate"><span class="pre">_leaf_claim</span></code> turning the strength on one leaf into that leaf’s claim</p></td>
+</tr>
+<tr class="row-even"><td><p>the normalizing map</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">normalize</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R^*\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">combine_hessian_tags</span></code>, which is <code class="docutils literal notranslate"><span class="pre">combine_property</span></code> applied over <code class="docutils literal notranslate"><span class="pre">combine_definite_on</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>the structure ordering</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MatrixStructure</span></code>, an <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> whose value is how general the structure is, so “take the larger” is <code class="docutils literal notranslate"><span class="pre">max</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>the decision the tag is for</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Newton.init_state</span></code> in <code class="docutils literal notranslate"><span class="pre">nemos/solvers/_newton.py</span></code>: <code class="docutils literal notranslate"><span class="pre">POSITIVE_DEFINITE</span></code> selects <code class="docutils literal notranslate"><span class="pre">lx.Cholesky</span></code> and tags the operator semidefinite, anything weaker selects <code class="docutils literal notranslate"><span class="pre">lx.AutoLinearSolver(well_posed=False)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The tag is built when the solver is set up, in <code class="docutils literal notranslate"><span class="pre">BaseRegressor._instantiate_solver</span></code>, against the parameters actually being fitted. A parameter held fixed is <code class="docutils literal notranslate"><span class="pre">None</span></code> in that tree, and every <code class="docutils literal notranslate"><span class="pre">tree_map</span></code> above drops it together with whatever was claimed about it. A claim about a pinned leaf therefore disappears with the leaf; it does not become an unclaimed leaf.</p>
+<p>Two places where the code carries more than the derivation above needs. <code class="docutils literal notranslate"><span class="pre">MatrixProperty</span></code> also has <code class="docutils literal notranslate"><span class="pre">NEGATIVE_SEMI_DEFINITE</span></code> and <code class="docutils literal notranslate"><span class="pre">NEGATIVE_DEFINITE</span></code>, handled by the <span class="math notranslate nohighlight">\(-H\)</span> symmetry the definition of <span class="math notranslate nohighlight">\(\Sigma\)</span> already invokes; no loss or penalty in the package declares one. And a leaf carries <code class="docutils literal notranslate"><span class="pre">UNCLAIMED</span></code> rather than being absent from both masks, which is the same statement as lying in neither <span class="math notranslate nohighlight">\(F\)</span> nor <span class="math notranslate nohighlight">\(D\)</span>, with the enum making it impossible to claim a leaf both flat and definite.</p>
+<p>Assumption 3 is enforced rather than assumed: <code class="docutils literal notranslate"><span class="pre">Regularizer._validate_strength</span></code> rejects a negative strength leaf by leaf, so <code class="docutils literal notranslate"><span class="pre">_leaf_claim</span></code> only ever compares non-negative entries.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-solvers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-setting-combining-two-hessians">Problem Setting: combining two Hessians</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-a-block-spectral-description-can-decide">What a block-spectral description can decide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-the-tagging-system-rests-on">Assumptions the tagging system rests on</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tag-definition">Tag definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-tags-are-realizable">Which tags are realizable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-a-tag">Normalizing a tag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-two-tags-the-rule-and-why-it-is-sound">Combining two tags: the rule, and why it is sound</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-closed-form-combination-rule">Optimal closed form combination rule</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-this-the-right-tagging-system">Is this the right tagging system?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-a-penalty-the-single-set-is-already-the-family">For a penalty the single set is already the family</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-a-model-the-refinement-is-possible-and-is-what-we-are-avoiding">For a model the refinement is possible, and is what we are avoiding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ridge-penalized-glm-end-to-end">The ridge-penalized GLM, end to end</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-composes-on-its-own">Structure composes on its own</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-each-piece-lives">Where each piece lives</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/developers_notes/08-hessian_tagging.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

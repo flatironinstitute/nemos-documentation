@@ -1,0 +1,1980 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.basis._basis &#8212; nemos 0.2.10.dev509 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=ffe99380"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/basis/_basis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev509 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev509 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.basis._basis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.basis._basis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># required to get ArrayLike to render correctly</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span><span class="p">,</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tsd</span><span class="p">,</span> <span class="n">TsdFrame</span><span class="p">,</span> <span class="n">TsdTensor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..tree_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_traced</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">support_pynapple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeatureMatrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">row_wise_kron</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._basis_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">BasisTransformerMixin</span><span class="p">,</span> <span class="n">CompositeBasisMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._check_basis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_input_dimensionality</span><span class="p">,</span>
+    <span class="n">_check_transform_input</span><span class="p">,</span>
+    <span class="n">_check_zero_samples</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._composition_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_unique_shapes</span><span class="p">,</span>
+    <span class="n">_have_unique_shapes</span><span class="p">,</span>
+    <span class="n">add_docstring</span><span class="p">,</span>
+    <span class="n">get_input_shape</span><span class="p">,</span>
+    <span class="n">infer_input_dimensionality</span><span class="p">,</span>
+    <span class="n">is_basis_like</span><span class="p">,</span>
+    <span class="n">multiply_basis_by_integer</span><span class="p">,</span>
+    <span class="n">promote_to_transformer</span><span class="p">,</span>
+    <span class="n">raise_basis_to_power</span><span class="p">,</span>
+    <span class="n">set_input_shape</span><span class="p">,</span>
+    <span class="n">shallow_construction</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_transform_input</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">flat_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Check input before calling basis.</span>
+
+<span class="sd">    This decorator allows to raise an exception that is more readable</span>
+<span class="sd">    when the wrong number of input is provided to evaluate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func :</span>
+<span class="sd">        The callable being decorated. ``None`` when the decorator is used</span>
+<span class="sd">        with arguments (e.g. ``@check_transform_input(flat_output=True)``),</span>
+<span class="sd">        in which case a partial is returned and applied to the function in a</span>
+<span class="sd">        second call.</span>
+<span class="sd">    flat_output :</span>
+<span class="sd">        Controls the shape of the zeros returned when the input is empty.</span>
+<span class="sd">        Set to ``True`` for ``compute_features``, which flattens all input</span>
+<span class="sd">        dimensions into a 2-D matrix ``(n_samples, n_output_features)``.</span>
+<span class="sd">        Set to ``False`` (default) for ``evaluate``, which preserves the full</span>
+<span class="sd">        input shape and appends the basis dimension, yielding</span>
+<span class="sd">        ``(*input_shape, n_basis_funcs)``.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">check_transform_input</span><span class="p">,</span> <span class="n">flat_output</span><span class="o">=</span><span class="n">flat_output</span><span class="p">)</span>
+
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Basis</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_transform_input</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># do not evaluate if empty</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setup_basis</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">flat_output</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_output_features</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+                <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Call the basis</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">min_max_rescale_samples</span><span class="p">(</span>
+    <span class="n">sample_pts</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_jax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Rescale samples to [0,1].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sample_pts:</span>
+<span class="sd">        The original samples.</span>
+<span class="sd">    bounds:</span>
+<span class="sd">        Sample bounds. `bounds[0]` and `bounds[1]` are mapped to 0 and 1, respectively.</span>
+<span class="sd">        Default are `min(sample_pts), max(sample_pts)`.</span>
+
+<span class="sd">    Warns</span>
+<span class="sd">    -----</span>
+<span class="sd">    UserWarning</span>
+<span class="sd">        If more than 90% of the sample points contain NaNs or Infs.</span>
+<span class="sd">    """</span>
+    <span class="n">sample_pts</span> <span class="o">=</span> <span class="n">sample_pts</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="c1"># get function from correct library</span>
+    <span class="k">if</span> <span class="n">use_jax</span><span class="p">:</span>
+        <span class="n">nanmin</span><span class="p">,</span> <span class="n">nanmax</span><span class="p">,</span> <span class="n">asarray</span><span class="p">,</span> <span class="n">where</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nanmin</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">nanmax</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nanmin</span><span class="p">,</span> <span class="n">nanmax</span><span class="p">,</span> <span class="n">asarray</span><span class="p">,</span> <span class="n">where</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span>
+
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">nanmin</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">nanmax</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">])</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">scaling</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span>
+    <span class="n">scaling</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">scaling</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">scaling</span><span class="p">)</span>
+    <span class="n">sample_pts</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling</span>
+    <span class="k">return</span> <span class="n">sample_pts</span><span class="p">,</span> <span class="n">scaling</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_single_bound</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Check if bounds represents a single (min, max) pair vs multiple bounds."""</span>
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="c1"># Single bound has numeric elements; multiple bounds have tuple/None elements</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">))</span> <span class="ow">or</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fill_bounds</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Fill None values in bound tuples with 0 or 1."""</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mi">0</span> <span class="k">if</span> <span class="n">lo</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">lo</span><span class="p">,</span>
+            <span class="mi">1</span> <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">hi</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_equi_spaced_samples</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">n_samples</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Get equi-spaced samples for all the input dimensions.</span>
+
+<span class="sd">    This will be used to evaluate the basis on a grid of</span>
+<span class="sd">    points derived by the samples.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_samples[0],...,n_samples[n]</span>
+<span class="sd">        The number of samples in each axis of the grid.</span>
+<span class="sd">    bounds:</span>
+<span class="sd">        The bounds for the linspace, if provided. Can be:</span>
+<span class="sd">        - None: use (0, 1) for all dimensions</span>
+<span class="sd">        - A single tuple (min, max): use for all dimensions</span>
+<span class="sd">        - A list/tuple of tuples/None: one per dimension</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        A generator yielding numpy arrays of linspaces from 0 (or specified min)</span>
+<span class="sd">        to 1 (or specified max) of sizes specified by ``n_samples``.</span>
+<span class="sd">    """</span>
+
+    <span class="k">if</span> <span class="n">_is_single_bound</span><span class="p">(</span><span class="n">bounds</span><span class="p">):</span>
+        <span class="c1"># bounds is None or a single (min, max) tuple - expand to match n_samples length</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">_fill_bounds</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="Basis">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Basis</span><span class="p">(</span><span class="n">Base</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">BasisTransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Abstract base class for defining basis functions for feature transformation.</span>
+
+<span class="sd">    Basis functions are mathematical constructs that can represent data in alternative,</span>
+<span class="sd">    often more compact or interpretable forms. This class provides a template for such</span>
+<span class="sd">    transformations, with specific implementations defining the actual behavior.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If ``kwargs`` include parameters not recognized or do not have</span>
+<span class="sd">        default values in ``create_convolutional_predictor``.</span>
+<span class="sd">    ValueError:</span>
+<span class="sd">        If ``axis`` different from 0 is provided as a keyword argument (samples must always be in the first axis).</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Basis.__init__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_n_inputs"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># specified only after inputs/input shapes are provided</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_input_shape_product"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Number of basis functions."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span>
+
+    <span class="nd">@n_basis_funcs</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">orig_n_basis</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_n_basis_funcs"</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_n_basis_min</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span> <span class="o">=</span> <span class="n">orig_n_basis</span>
+            <span class="k">raise</span> <span class="n">e</span>
+
+<div class="viewcode-block" id="Basis.compute_features">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.compute_features">[docs]</a>
+    <span class="nd">@check_transform_input</span><span class="p">(</span><span class="n">flat_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply the basis transformation to the input data.</span>
+
+<span class="sd">        This method is designed to be a high-level interface for transforming input</span>
+<span class="sd">        data using the basis functions defined by the subclass. Depending on the basis'</span>
+<span class="sd">        mode ('Eval' or 'Conv'), it either evaluates the basis functions at the sample</span>
+<span class="sd">        points or performs a convolution operation between the input data and the</span>
+<span class="sd">        basis functions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            Input data arrays to be transformed. The shape and content requirements</span>
+<span class="sd">            depend on the subclass and mode of operation ('Eval' or 'Conv').</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            Transformed features. In 'Eval' mode, it corresponds to the basis functions</span>
+<span class="sd">            evaluated at the input samples. In 'Conv' mode, it consists of convolved</span>
+<span class="sd">            input samples with the basis functions. The output shape varies based on</span>
+<span class="sd">            the subclass and mode.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Subclasses should implement how to handle the transformation specific to their</span>
+<span class="sd">        basis function types and operation modes.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_basis</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Convolve or evaluate the basis.</span>
+
+<span class="sd">        This method is intended to be equivalent to the sklearn transformer ``transform`` method.</span>
+<span class="sd">        As the latter, it computes the transformation assuming that all the states are already</span>
+<span class="sd">        pre-computed by ``_fit_basis``, a method corresponding to ``fit``.</span>
+
+<span class="sd">        The method differs from  transformer's ``transform`` for the structure of the input that it accepts.</span>
+<span class="sd">        In particular, ``_compute_features`` accepts a number of different time series, one per 1D basis component,</span>
+<span class="sd">        while ``transform`` requires all inputs to be concatenated in a single array.</span>
+<span class="sd">        """</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="Basis.setup_basis">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.setup_basis">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Pre-compute all basis state variables.</span>
+
+<span class="sd">        This method is intended to be equivalent to the sklearn transformer ``fit`` method.</span>
+<span class="sd">        As the latter, it computes all the state attributes, and store it with the convention</span>
+<span class="sd">        that the attribute name **must** end with "_", for example ``self.kernel_``,</span>
+<span class="sd">        ``self._input_shape_``.</span>
+
+<span class="sd">        The method differs from  transformer's ``fit`` for the structure of the input that it accepts.</span>
+<span class="sd">        In particular, ``_fit_basis`` accepts a number of different time series, one per 1D basis component,</span>
+<span class="sd">        while ``fit`` requires all inputs to be concatenated in a single array.</span>
+<span class="sd">        """</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Basis.set_input_shape">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.set_input_shape">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Set the expected input shape for the basis object.</span>
+
+<span class="sd">        This method configures the shape of the input data that the basis object expects.</span>
+<span class="sd">        ``xi`` can be specified as an integer, a tuple of integers, or derived</span>
+<span class="sd">        from an array. The method also calculates the total number of input</span>
+<span class="sd">        features and output features based on the number of basis functions.</span>
+
+<span class="sd">        """</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Basis.evaluate">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.evaluate">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Abstract method to evaluate the basis functions at given points.</span>
+
+<span class="sd">        This method must be implemented by subclasses to define the specific behavior</span>
+<span class="sd">        of the basis transformation. The implementation depends on the type of basis</span>
+<span class="sd">        (e.g., spline, raised cosine), and it should evaluate the basis functions at</span>
+<span class="sd">        the specified points in the domain.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            Variable number of arguments, each representing an array of points at which</span>
+<span class="sd">            to evaluate the basis functions. The dimensions and requirements of these</span>
+<span class="sd">            inputs vary depending on the specific basis implementation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            An array containing the evaluated values of the basis functions at the input</span>
+<span class="sd">            points. The shape and structure of this array are specific to the subclass</span>
+<span class="sd">            implementation.</span>
+<span class="sd">        """</span>
+        <span class="k">pass</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Get equi-spaced samples for all the input dimensions.</span>
+
+<span class="sd">        This will be used to evaluate the basis on a grid of</span>
+<span class="sd">        points derived by the samples.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_samples[0],...,n_samples[n]</span>
+<span class="sd">            The number of samples in each axis of the grid.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A generator yielding numpy arrays of linspaces from 0 to 1 of sizes specified by ``n_samples``.</span>
+<span class="sd">        """</span>
+        <span class="c1"># handling of defaults when evaluating on a grid</span>
+        <span class="c1"># (i.e. when we cannot use max and min of samples)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"bounds"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_equi_spaced_samples</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_transform_input</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">Tsd</span><span class="p">,</span> <span class="n">TsdFrame</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""Check transform input.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xi[0],...,xi[n] :</span>
+<span class="sd">            The input samples, each  with shape (number of samples, ).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            - If the time point number is inconsistent between inputs.</span>
+<span class="sd">            - If the number of inputs doesn't match what the Basis object requires.</span>
+<span class="sd">            - At least one of the samples is empty.</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># standard checks and transform to array</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">_check_transform_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="n">input_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="c1"># check if exact shape matching for multiplicative bases</span>
+            <span class="n">n_input</span> <span class="o">=</span> <span class="n">infer_input_dimensionality</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">MultiplicativeBasis</span><span class="p">):</span>
+                <span class="n">b_input</span> <span class="o">=</span> <span class="n">inp</span><span class="p">[</span><span class="n">input_idx</span> <span class="p">:</span> <span class="n">input_idx</span> <span class="o">+</span> <span class="n">n_input</span><span class="p">]</span>
+                <span class="n">_check_unique_shapes</span><span class="p">(</span><span class="n">b_input</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">input_idx</span> <span class="o">+=</span> <span class="n">n_input</span>
+        <span class="k">return</span> <span class="n">inp</span>
+
+<div class="viewcode-block" id="Basis.evaluate_on_grid">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.evaluate_on_grid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Evaluate the basis set on a grid of equi-spaced sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_samples :</span>
+<span class="sd">           The number of samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X :</span>
+<span class="sd">           Array of shape ``(n_samples,)`` containing the equi-spaced sample</span>
+<span class="sd">           points where we've evaluated the basis.</span>
+<span class="sd">        basis_funcs :</span>
+<span class="sd">           Evaluated exponentially decaying basis functions, numerically</span>
+<span class="sd">           orthogonalized, shape ``(n_samples, n_basis_funcs)``</span>
+<span class="sd">        """</span>
+        <span class="n">_check_input_dimensionality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+        <span class="n">_check_zero_samples</span><span class="p">(</span>
+            <span class="n">n_samples</span><span class="p">,</span>
+            <span class="n">err_message</span><span class="o">=</span><span class="s2">"All sample counts provided must be greater than zero."</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># get the samples (can be re-implemented, by providing a _get_samples)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"bounds"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">get_samples</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s2">"_get_samples"</span><span class="p">,</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">get_equi_spaced_samples</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sample_tuple</span> <span class="o">=</span> <span class="n">get_samples</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="n">sample_tuple</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">"ij"</span><span class="p">)</span>
+
+        <span class="c1"># evaluates the basis on a flat NDArray and reshape to match meshgrid output</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">grid_axis</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="k">for</span> <span class="n">grid_axis</span> <span class="ow">in</span> <span class="n">Xs</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="o">*</span><span class="n">Xs</span><span class="p">,</span> <span class="n">Y</span></div>
+
+
+<div class="viewcode-block" id="Basis.__add__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__add__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdditiveBasis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Add two Basis objects together.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other</span>
+<span class="sd">            The other Basis object to add.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        : AdditiveBasis</span>
+<span class="sd">            The resulting Basis object.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">AdditiveBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Basis.__rmul__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__rmul__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span> <span class="o">|</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Right multiplication operator for basis."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Basis.__mul__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__mul__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Basis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Multiply two Basis objects together.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other</span>
+<span class="sd">            The other Basis object to multiply.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The resulting Basis object.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">multiply_basis_by_integer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_basis_like</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">"Basis multiplicative factor should be a Basis object or a positive integer!"</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">MultiplicativeBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Basis.__pow__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__pow__">[docs]</a>
+    <span class="nd">@promote_to_transformer</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BasisMixin</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Exponentiation of a Basis object.</span>
+
+<span class="sd">        Define the power of a basis by repeatedly applying the method __multiply__.</span>
+<span class="sd">        The exponent must be a positive integer.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        exponent :</span>
+<span class="sd">            Positive integer exponent</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The product of the basis with itself "exponent" times. Equivalent to ``self * self * ... * self``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If the provided exponent is not an integer.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the integer is zero or negative.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">raise_basis_to_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Basis.__len__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.__len__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return the number of additive basis."""</span>
+        <span class="k">return</span> <span class="mi">1</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="AdditiveBasis">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdditiveBasis</span><span class="p">(</span><span class="n">CompositeBasisMixin</span><span class="p">,</span> <span class="n">Basis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Class representing the addition of two Basis objects.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    basis1 :</span>
+<span class="sd">        First basis object to add.</span>
+<span class="sd">    basis2 :</span>
+<span class="sd">        Second basis object to add.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; # Generate sample data</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(30, 2))</span>
+
+<span class="sd">    &gt;&gt;&gt; # define two basis objects and add them</span>
+<span class="sd">    &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(10)</span>
+<span class="sd">    &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(15)</span>
+<span class="sd">    &gt;&gt;&gt; additive_basis = basis_1 + basis_2</span>
+<span class="sd">    &gt;&gt;&gt; additive_basis</span>
+<span class="sd">    '(BSplineEval + RaisedCosineLinearEval)': AdditiveBasis(</span>
+<span class="sd">        ...</span>
+<span class="sd">    )</span>
+<span class="sd">    &gt;&gt;&gt; # can add another basis to the AdditiveBasis object</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(30, 3))</span>
+<span class="sd">    &gt;&gt;&gt; basis_3 = nmo.basis.RaisedCosineLogEval(100)</span>
+<span class="sd">    &gt;&gt;&gt; additive_basis_2 = additive_basis + basis_3</span>
+<span class="sd">    &gt;&gt;&gt; additive_basis_2</span>
+<span class="sd">    '((BSplineEval + RaisedCosineLinearEval) + RaisedCosineLogEval)': AdditiveBasis(</span>
+<span class="sd">        ...</span>
+<span class="sd">    )</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="AdditiveBasis.__init__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">CompositeBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">Basis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"("</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s2">" + "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s2">")"</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Compute the n-basis function runtime.</span>
+
+<span class="sd">        This plays well with cross-validation where the number of basis function of the</span>
+<span class="sd">        underlying bases can be changed. It must be read-only since the number of basis</span>
+<span class="sd">        is determined by the two basis elements and the type of composition.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">n_basis_funcs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">n_basis_funcs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_output_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return the number of output features."""</span>
+        <span class="n">out1</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"n_output_features"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">out2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">,</span> <span class="s2">"n_output_features"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">out2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">out1</span> <span class="o">+</span> <span class="n">out2</span>
+
+<div class="viewcode-block" id="AdditiveBasis.set_input_shape">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.set_input_shape">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Basis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Set the expected input shape for the basis object.</span>
+
+<span class="sd">        This method sets the input shape for each component basis in the basis.</span>
+<span class="sd">        One ``xi`` must be provided for each basis component, specified as an integer,</span>
+<span class="sd">        a tuple of integers, or an array. The method calculates and stores the total number of output features</span>
+<span class="sd">        based on the number of basis functions in each component and the provided input shapes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            The input shape specifications. For every k,``xi[k]`` can be:</span>
+<span class="sd">            - An integer: Represents the dimensionality of the input. A value of ``1`` is treated as scalar input.</span>
+<span class="sd">            - A tuple: Represents the exact input shape excluding the first axis (sample axis).</span>
+<span class="sd">              All elements must be integers.</span>
+<span class="sd">            - An array: The shape is extracted, excluding the first axis (assumed to be the sample axis).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If a tuple is provided, and it contains non-integer elements.</span>
+<span class="sd">            If not enough inputs are provided.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self :</span>
+<span class="sd">            Returns the instance itself to allow method chaining.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; # Generate sample data</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+
+<span class="sd">        &gt;&gt;&gt; # define an additive basis</span>
+<span class="sd">        &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(5)</span>
+<span class="sd">        &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(6)</span>
+<span class="sd">        &gt;&gt;&gt; basis_3 = nmo.basis.RaisedCosineLinearEval(7)</span>
+<span class="sd">        &gt;&gt;&gt; additive_basis = basis_1 + basis_2 + basis_3</span>
+
+<span class="sd">        Specify the input shape using all 3 allowed ways: integer, tuple, array</span>
+<span class="sd">        &gt;&gt;&gt; _ = additive_basis.set_input_shape(1, (2, 3), np.ones((10, 4, 5)))</span>
+
+<span class="sd">        Expected output features are:</span>
+<span class="sd">        (5 bases * 1 input) + (6 bases * 6 inputs) + (7 bases * 20 inputs) = 181</span>
+<span class="sd">        &gt;&gt;&gt; additive_basis.n_output_features</span>
+<span class="sd">        181</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdditiveBasis.evaluate">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.evaluate">[docs]</a>
+    <span class="nd">@support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)</span>
+    <span class="nd">@check_transform_input</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Evaluate the basis at the sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xi[0], ..., xi[n] : (n_samples,)</span>
+<span class="sd">            Tuple of input samples, each with the same number of samples. The</span>
+<span class="sd">            number of input arrays must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The basis function evaluated at the samples, shape (n_samples, n_basis_funcs)</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">            Each additive component can process inputs of different shapes, as long as the</span>
+<span class="sd">            sample axis matches. Input of mis-matched shape cannot be concatenated, therefore</span>
+<span class="sd">            we enforce 1-dimensional input only for evaluate.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; # Generate sample data</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; x, y = np.random.normal(size=(2, 30))</span>
+
+<span class="sd">        &gt;&gt;&gt; # define two basis objects and add them</span>
+<span class="sd">        &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(10)</span>
+<span class="sd">        &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(15)</span>
+<span class="sd">        &gt;&gt;&gt; additive_basis = basis_1 + basis_2</span>
+
+<span class="sd">        &gt;&gt;&gt; # call the basis.</span>
+<span class="sd">        &gt;&gt;&gt; out = additive_basis.evaluate(x, y)</span>
+
+<span class="sd">        """</span>
+        <span class="n">have_same_shape</span><span class="p">,</span> <span class="n">shapes</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_have_unique_shapes</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">have_same_shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"``AdditiveBasis.evaluate`` requires all inputs to have the same shape. "</span>
+                <span class="sa">f</span><span class="s2">"Got shapes: </span><span class="si">{</span><span class="n">shapes</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
+        <span class="c1"># numpy cannot concatenate tracers, jax.numpy handles both</span>
+        <span class="n">concatenate</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span> <span class="k">if</span> <span class="n">is_traced</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">]),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="p">:]),</span>
+            <span class="p">),</span>
+            <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span></div>
+
+
+<div class="viewcode-block" id="AdditiveBasis.compute_features">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.compute_features">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"compute_features"</span><span class="p">,</span> <span class="n">Basis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis_add = basis1 + basis2</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_add.compute_features(np.random.randn(20), np.random.randn(20, 2))</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 17 = 5 + 2*6</span>
+<span class="sd">        (20, 17)</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute features for added bases and concatenate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xi[0], ..., xi[n] : (n_samples,)</span>
+<span class="sd">            Tuple of input samples, each with the same number of samples. The</span>
+<span class="sd">            number of input arrays must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The features, shape (n_samples, n_basis_funcs)</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># the numpy conversion is important, there is some in-place</span>
+        <span class="c1"># array modification in basis. Under a jax transformation the</span>
+        <span class="c1"># inputs are tracers, which numpy cannot convert (and which cannot</span>
+        <span class="c1"># be modified in-place anyway), so stack them with jax.numpy.</span>
+        <span class="k">if</span> <span class="n">is_traced</span><span class="p">(</span><span class="n">xi</span><span class="p">):</span>
+            <span class="n">hstack_pynapple</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">hstack</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hstack_pynapple</span> <span class="o">=</span> <span class="n">support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">)</span>
+        <span class="n">comp_feature_1</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"_compute_features"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">compute_features</span>
+        <span class="p">)</span>
+        <span class="n">comp_feature_2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">,</span> <span class="s2">"_compute_features"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">compute_features</span>
+        <span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">hstack_pynapple</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">comp_feature_1</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">]),</span>
+                <span class="n">comp_feature_2</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="p">:]),</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span>
+
+<div class="viewcode-block" id="AdditiveBasis.split_by_feature">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.split_by_feature">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Decompose an array along a specified axis into sub-arrays based on the basis components.</span>
+
+<span class="sd">        This function takes an array (e.g., a design matrix or model coefficients) and splits it along</span>
+<span class="sd">        a designated axis. Each split corresponds to a different additive component of the basis,</span>
+<span class="sd">        preserving all dimensions except the specified axis.</span>
+
+<span class="sd">        **How It Works:**</span>
+
+<span class="sd">        Suppose the basis is made up of **m components**, each with :math:`b_i` basis functions and :math:`n_i` inputs.</span>
+<span class="sd">        The total number of features, :math:`N`, is calculated as:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            N = b_1 \cdot n_1 + b_2 \cdot n_2 + \ldots + b_m \cdot n_m</span>
+
+<span class="sd">        This method splits any axis of length :math:`N` into sub-arrays, one for each basis component.</span>
+
+<span class="sd">        The sub-array for the i-th basis component is reshaped into dimensions</span>
+<span class="sd">        :math:`(n_i, b_i)`.</span>
+
+<span class="sd">        For example, if the array shape is :math:`(1, 2, N, 4, 5)`, then each split sub-array will have shape:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            (1, 2, n_i, b_i, 4, 5)</span>
+
+<span class="sd">        where:</span>
+
+<span class="sd">        - :math:`n_i` represents the number of inputs associated with the i-th component,</span>
+<span class="sd">        - :math:`b_i` represents the number of basis functions in that component.</span>
+
+<span class="sd">        The specified axis (``axis``) determines where the split occurs, and all other dimensions</span>
+<span class="sd">        remain unchanged. See the example section below for the most common use cases.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x :</span>
+<span class="sd">            The input array to be split, representing concatenated features, coefficients,</span>
+<span class="sd">            or other data. The shape of ``x`` along the specified axis must match the total</span>
+<span class="sd">            number of features generated by the basis, i.e., ``self.n_output_features``.</span>
+
+<span class="sd">            **Examples:**</span>
+<span class="sd">            - For a design matrix: ``(n_samples, total_n_features)``</span>
+<span class="sd">            - For model coefficients: ``(total_n_features,)`` or ``(total_n_features, n_neurons)``.</span>
+
+<span class="sd">        axis : int, optional</span>
+<span class="sd">            The axis along which to split the features. Defaults to 1.</span>
+<span class="sd">            Use ``axis=1`` for design matrices (features along columns) and ``axis=0`` for</span>
+<span class="sd">            coefficient arrays (features along rows). All other dimensions are preserved.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the shape of ``x`` along the specified axis does not match ``self.n_output_features``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            A dictionary where:</span>
+
+<span class="sd">            - **Keys**: Labels of the additive basis components.</span>
+<span class="sd">            - **Values**: Sub-arrays corresponding to each component. Each sub-array has the shape:</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                (..., n_i1, n_i2,..,n_im, b_i, ...)</span>
+
+<span class="sd">            - ``(n_samples, n_i1, n_i2,..,n_im)``: is the shape of the input to the i-th basis.</span>
+<span class="sd">            - ``b_i``: The number of basis functions for the i-th basis component.</span>
+
+<span class="sd">            These sub-arrays are reshaped along the specified axis, with all other dimensions</span>
+<span class="sd">            remaining the same.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineConv</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">        &gt;&gt;&gt; # Define an additive basis</span>
+<span class="sd">        &gt;&gt;&gt; basis = (</span>
+<span class="sd">        ...     BSplineConv(n_basis_funcs=5, window_size=10, label="feature_1") +</span>
+<span class="sd">        ...     BSplineConv(n_basis_funcs=6, window_size=10, label="feature_2")</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; # Generate a sample input array and compute features</span>
+<span class="sd">        &gt;&gt;&gt; x1, x2 = np.random.randn(20), np.random.randn(20)</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(x1, x2)</span>
+<span class="sd">        &gt;&gt;&gt; # Split the feature matrix along axis 1</span>
+<span class="sd">        &gt;&gt;&gt; split_features = basis.split_by_feature(X, axis=1)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, arr in split_features.items():</span>
+<span class="sd">        ...     print(f"{feature}: shape {arr.shape}")</span>
+<span class="sd">        feature_1: shape (20, 5)</span>
+<span class="sd">        feature_2: shape (20, 6)</span>
+<span class="sd">        &gt;&gt;&gt; # If one of the basis components accepts multiple inputs, the resulting dictionary will be nested:</span>
+<span class="sd">        &gt;&gt;&gt; multi_input_basis = BSplineConv(n_basis_funcs=6, window_size=10,</span>
+<span class="sd">        ... label="multi_input")</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = multi_input_basis.compute_features(np.random.randn(20, 2))</span>
+<span class="sd">        &gt;&gt;&gt; split_features_multi = multi_input_basis.split_by_feature(X_multi, axis=1)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
+<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        multi_input, shape (20, 2, 6)</span>
+<span class="sd">        &gt;&gt;&gt; # the method can be used to decompose the glm coefficients in the various features</span>
+<span class="sd">        &gt;&gt;&gt; counts = np.random.poisson(size=20)</span>
+<span class="sd">        &gt;&gt;&gt; model = GLM().fit(X, counts)</span>
+<span class="sd">        &gt;&gt;&gt; split_coef = basis.split_by_feature(model.coef_, axis=0)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, coef in split_coef.items():</span>
+<span class="sd">        ...     print(f"{feature}: shape {coef.shape}")</span>
+<span class="sd">        feature_1: shape (5,)</span>
+<span class="sd">        feature_2: shape (6,)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdditiveBasis.evaluate_on_grid">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.evaluate_on_grid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Evaluate the basis set on a grid of equi-spaced sample points.</span>
+
+<span class="sd">        The i-th axis of the grid will be sampled with ``n_samples[i]`` equi-spaced points.</span>
+<span class="sd">        The method uses numpy.meshgrid with ``indexing="ij"``, returning matrix indexing</span>
+<span class="sd">        instead of the default cartesian indexing, see Notes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_samples[0],...,n_samples[n]</span>
+<span class="sd">            The number of points in the uniformly spaced grid. The length of</span>
+<span class="sd">            n_samples must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        *Xs :</span>
+<span class="sd">            A tuple of arrays containing the meshgrid values, one element for each of the n dimension of the grid,</span>
+<span class="sd">            where n equals to the number of inputs.</span>
+<span class="sd">            The size of ``Xs[i]`` is ``(n_samples[0], ... , n_samples[n])``.</span>
+<span class="sd">        Y :</span>
+<span class="sd">            The basis function evaluated at the samples,</span>
+<span class="sd">            shape ``(n_samples[0], ... , n_samples[n], number of basis)``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the time point number is inconsistent between inputs or if the number of inputs doesn't match what</span>
+<span class="sd">            the Basis object requires.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If one of the n_samples is &lt;= 0.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Setting ``indexing = 'ij'`` returns a meshgrid with matrix indexing. In the N-D case with inputs of size</span>
+<span class="sd">        :math:`M_1,...,M_N`, outputs are of shape :math:`(M_1, M_2, M_3, ....,M_N)`.</span>
+<span class="sd">        This differs from the numpy.meshgrid default, which uses Cartesian indexing.</span>
+<span class="sd">        For the same input, Cartesian indexing would return an output of shape :math:`(M_2, M_1, M_3, ....,M_N)`.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+
+<span class="sd">        &gt;&gt;&gt; # define two basis objects and add them</span>
+<span class="sd">        &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(10)</span>
+<span class="sd">        &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(15)</span>
+<span class="sd">        &gt;&gt;&gt; additive_basis = basis_1 + basis_2</span>
+
+<span class="sd">        &gt;&gt;&gt; # evaluate on a grid of 10 x 10 equi-spaced samples</span>
+<span class="sd">        &gt;&gt;&gt; X, Y, Z = additive_basis.evaluate_on_grid(10, 10)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_feature_slicing</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_inputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_slice</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Calculate and return the slicing for features based on the input structure.</span>
+
+<span class="sd">        This method determines how to slice the features for different basis types.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_inputs :</span>
+<span class="sd">            The number of input basis for each component, by default it uses ``self._n_basis_input``.</span>
+<span class="sd">        start_slice :</span>
+<span class="sd">            The starting index for slicing, by default it starts from 0.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        split_dict :</span>
+<span class="sd">            Dictionary with keys as labels and values as slices representing</span>
+<span class="sd">            the slicing for each additive component.</span>
+<span class="sd">        start_slice :</span>
+<span class="sd">            The updated starting index after slicing.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        _get_default_slicing : Handles default slicing logic.</span>
+<span class="sd">        _merge_slicing_dicts : Merges multiple slicing dictionaries, handling keys conflicts.</span>
+<span class="sd">        """</span>
+        <span class="c1"># Set default values for n_inputs and start_slice if not provided</span>
+        <span class="n">n_inputs</span> <span class="o">=</span> <span class="n">n_inputs</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span>
+        <span class="n">start_slice</span> <span class="o">=</span> <span class="n">start_slice</span> <span class="ow">or</span> <span class="mi">0</span>
+
+        <span class="c1"># If the instance is of AdditiveBasis type, handle slicing for the additive components</span>
+
+        <span class="n">split_dict</span><span class="p">,</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_get_feature_slicing</span><span class="p">(</span>
+            <span class="n">n_inputs</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">)],</span>
+            <span class="n">start_slice</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">sp2</span><span class="p">,</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">_get_feature_slicing</span><span class="p">(</span>
+            <span class="n">n_inputs</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">)</span> <span class="p">:],</span>
+            <span class="n">start_slice</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># label should always be unique, so update is safe</span>
+        <span class="n">split_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sp2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">split_dict</span><span class="p">,</span> <span class="n">start_slice</span>
+
+<div class="viewcode-block" id="AdditiveBasis.__iter__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.__iter__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Iterate over components."""</span>
+        <span class="k">for</span> <span class="n">bas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">bas</span>
+        <span class="k">for</span> <span class="n">bas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">bas</span></div>
+
+
+<div class="viewcode-block" id="AdditiveBasis.__len__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.AdditiveBasis.html#nemos.basis._basis.AdditiveBasis.__len__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return the number of additive basis."""</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MultiplicativeBasis">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MultiplicativeBasis</span><span class="p">(</span><span class="n">CompositeBasisMixin</span><span class="p">,</span> <span class="n">Basis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Class representing the multiplication (external product) of two Basis objects.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    basis1 :</span>
+<span class="sd">        First basis object to multiply.</span>
+<span class="sd">    basis2 :</span>
+<span class="sd">        Second basis object to multiply.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; # Generate sample data</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(30, 3))</span>
+
+<span class="sd">    &gt;&gt;&gt; # define two basis and multiply</span>
+<span class="sd">    &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(10)</span>
+<span class="sd">    &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(15)</span>
+<span class="sd">    &gt;&gt;&gt; multiplicative_basis = basis_1 * basis_2</span>
+<span class="sd">    &gt;&gt;&gt; multiplicative_basis</span>
+<span class="sd">    '(BSplineEval * RaisedCosineLinearEval)': MultiplicativeBasis(</span>
+<span class="sd">        ...</span>
+<span class="sd">    )</span>
+
+<span class="sd">    &gt;&gt;&gt; # Can multiply or add another basis to the AdditiveBasis object</span>
+<span class="sd">    &gt;&gt;&gt; # This will cause the number of output features of the result basis to grow accordingly</span>
+<span class="sd">    &gt;&gt;&gt; basis_3 = nmo.basis.RaisedCosineLogEval(100)</span>
+<span class="sd">    &gt;&gt;&gt; multiplicative_basis_2 = multiplicative_basis * basis_3</span>
+<span class="sd">    &gt;&gt;&gt; multiplicative_basis_2</span>
+<span class="sd">    '((BSplineEval * RaisedCosineLinearEval) * RaisedCosineLogEval)': MultiplicativeBasis(</span>
+<span class="sd">        ...</span>
+<span class="sd">    )</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allow_inputs_of_different_shape</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="MultiplicativeBasis.__init__">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="n">basis2</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Invalid multiplication between two complex bases.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Fourier basis are complex bases, and "</span>
+                <span class="s2">"the multiplication of a real basis with a Fourier bases results in a complex basis as well. "</span>
+                <span class="s2">"Multiplication between two complex bases is not allowed in NeMoS as it would treat "</span>
+                <span class="s2">"real and imaginary columns alike."</span>
+            <span class="p">)</span>
+        <span class="n">input_shape1</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis1</span><span class="p">)</span>
+        <span class="n">input_shape2</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
+        <span class="c1"># replace None with default</span>
+        <span class="n">input_shape1</span> <span class="o">=</span> <span class="p">[()</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_shape1</span><span class="p">]</span>
+        <span class="n">input_shape2</span> <span class="o">=</span> <span class="p">[()</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_shape2</span><span class="p">]</span>
+        <span class="n">have_unique_shapes</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_have_unique_shapes</span><span class="p">(</span><span class="n">input_shape1</span> <span class="o">+</span> <span class="n">input_shape2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">have_unique_shapes</span><span class="p">:</span>
+            <span class="n">basis1</span> <span class="o">=</span> <span class="n">set_input_shape</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">basis1</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">basis2</span> <span class="o">=</span> <span class="n">set_input_shape</span><span class="p">(</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">basis2</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">"Multiple different input shapes detected. "</span>
+                <span class="s2">"Resetting input shape to default (None)."</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">shallow_construction</span><span class="p">(</span><span class="ow">not</span> <span class="n">have_unique_shapes</span><span class="p">):</span>
+            <span class="n">CompositeBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">Basis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"("</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s2">" * "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s2">")"</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Compute the n-basis function runtime.</span>
+
+<span class="sd">        This plays well with cross-validation where the number of basis function of the</span>
+<span class="sd">        underlying bases can be changed. It must be read-only since the number of basis</span>
+<span class="sd">        is determined by the two basis elements and the type of composition.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">n_basis_funcs</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">n_basis_funcs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_output_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return the number of output features."""</span>
+        <span class="n">input_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_</span>  <span class="c1"># returns a list of length 1 or None</span>
+        <span class="k">if</span> <span class="n">input_shape</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">n_basis1</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"n_basis_funcs"</span><span class="p">)</span>
+        <span class="n">n_basis2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">,</span> <span class="s2">"n_basis_funcs"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n_basis1</span> <span class="o">*</span> <span class="n">n_basis2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<div class="viewcode-block" id="MultiplicativeBasis.evaluate">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.evaluate">[docs]</a>
+    <span class="nd">@support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)</span>
+    <span class="nd">@check_transform_input</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Evaluate the basis at the sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xi[0], ..., xi[n] : (n_samples,)</span>
+<span class="sd">            Tuple of input samples, each with the same number of samples. The</span>
+<span class="sd">            number of input arrays must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The basis function evaluated at the samples, shape (n_samples, n_basis_funcs)</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; mult_basis = nmo.basis.BSplineEval(5) * nmo.basis.RaisedCosineLinearEval(6)</span>
+<span class="sd">        &gt;&gt;&gt; x, y = np.random.randn(2, 30)</span>
+<span class="sd">        &gt;&gt;&gt; X = mult_basis.evaluate(x, y)</span>
+<span class="sd">        """</span>
+        <span class="c1"># evaluate preserves the shape of the input arrays</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">])</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="p">:])</span>
+        <span class="c1"># Required in case xi.shape[-1] == 0</span>
+        <span class="c1"># For example, in a multiplication with Zero basis</span>
+        <span class="n">x1_shape</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">x2_shape</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># numpy cannot convert tracers, jax.numpy handles both</span>
+        <span class="n">asarray</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span> <span class="k">if</span> <span class="n">is_traced</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span>
+            <span class="n">row_wise_kron</span><span class="p">(</span>
+                <span class="n">x1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1_shape</span><span class="p">,</span> <span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">x2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x2_shape</span><span class="p">,</span> <span class="n">x2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># run by the assumption (which is enforced) that the input shape is</span>
+        <span class="c1"># shared in a multiplicative basis.</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the features for the multiplied bases, and compute their outer product.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        xi[0], ..., xi[n] : (n_samples,)</span>
+<span class="sd">            Tuple of input samples, each with the same number of samples. The</span>
+<span class="sd">            number of input arrays must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The  features, shape (n_samples, n_basis_funcs)</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; mult_basis = nmo.basis.BSplineEval(5) * nmo.basis.RaisedCosineLinearEval(6)</span>
+<span class="sd">        &gt;&gt;&gt; x, y = np.random.randn(2, 30)</span>
+<span class="sd">        &gt;&gt;&gt; X = mult_basis.compute_features(x, y)</span>
+<span class="sd">        """</span>
+        <span class="n">kron</span> <span class="o">=</span> <span class="n">support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)(</span><span class="n">row_wise_kron</span><span class="p">)</span>
+        <span class="n">comp_feature_1</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"_compute_features"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">compute_features</span>
+        <span class="p">)</span>
+        <span class="n">comp_feature_2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="p">,</span> <span class="s2">"_compute_features"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span><span class="o">.</span><span class="n">compute_features</span>
+        <span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">comp_feature_1</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">])</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">comp_feature_2</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="p">:])</span>
+        <span class="c1"># multiplicative basis inputs are of the same shape, checked and</span>
+        <span class="c1"># set just before the call to this method</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># flatten on the first axis, so that the rowise kron applies to</span>
+        <span class="c1"># each sample and vectorized dimension in a pairwise way</span>
+
+        <span class="n">n_vec_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># note that x1/2 can have shape that doesn't divide self.basis1/2.n_basis_funcs</span>
+        <span class="c1"># for example, OrthExponentialEval has an orthogonalization procedure that drops</span>
+        <span class="c1"># redundant columns: i.e. the output may be less the nominal n-basis funcs,</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">kron</span><span class="p">(</span>
+            <span class="n">x1</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_vec_inputs</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span>
+            <span class="n">x2</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_vec_inputs</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span>
+            <span class="n">transpose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<div class="viewcode-block" id="MultiplicativeBasis.evaluate_on_grid">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.evaluate_on_grid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Evaluate the basis set on a grid of equi-spaced sample points.</span>
+
+<span class="sd">        The i-th axis of the grid will be sampled with ``n_samples[i]`` equi-spaced points.</span>
+<span class="sd">        The method uses numpy.meshgrid with ``indexing="ij"``, returning matrix indexing</span>
+<span class="sd">        instead of the default cartesian indexing, see Notes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_samples[0],...,n_samples[n]</span>
+<span class="sd">            The number of points in the uniformly spaced grid. The length of</span>
+<span class="sd">            n_samples must equal the number of combined bases.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        *Xs :</span>
+<span class="sd">            A tuple of arrays containing the meshgrid values, one element for each of the n dimension of the grid,</span>
+<span class="sd">            where n equals to the number of inputs.</span>
+<span class="sd">            The size of ``Xs[i]`` is ``(n_samples[0], ... , n_samples[n])``.</span>
+<span class="sd">        Y :</span>
+<span class="sd">            The basis function evaluated at the samples,</span>
+<span class="sd">            shape ``(n_samples[0], ... , n_samples[n], number of basis)``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the time point number is inconsistent between inputs or if the number of inputs doesn't match what</span>
+<span class="sd">            the Basis object requires.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If one of the n_samples is &lt;= 0.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Setting ``indexing = 'ij'`` returns a meshgrid with matrix indexing. In the N-D case with inputs of size</span>
+<span class="sd">        :math:`M_1,...,M_N`, outputs are of shape :math:`(M_1, M_2, M_3, ....,M_N)`.</span>
+<span class="sd">        This differs from the numpy.meshgrid default, which uses Cartesian indexing.</span>
+<span class="sd">        For the same input, Cartesian indexing would return an output of shape :math:`(M_2, M_1, M_3, ....,M_N)`.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; mult_basis = nmo.basis.BSplineEval(4) * nmo.basis.RaisedCosineLinearEval(5)</span>
+<span class="sd">        &gt;&gt;&gt; X, Y, Z = mult_basis.evaluate_on_grid(10, 10)</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MultiplicativeBasis.compute_features">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.compute_features">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"compute_features"</span><span class="p">,</span> <span class="n">Basis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis_mul = basis1 * basis2</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(np.random.randn(20, 2), np.random.randn(20, 2))</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 60 = 5 * 2 * 6</span>
+<span class="sd">        (20, 60)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MultiplicativeBasis.split_by_feature">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.split_by_feature">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"split_by_feature"</span><span class="p">,</span> <span class="n">BasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis_mul = basis1 * basis2</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(np.random.randn(20, 2), np.random.randn(20, 2))</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 20 = 2 * 5 * 6</span>
+<span class="sd">        (20, 60)</span>
+
+<span class="sd">        &gt;&gt;&gt; # The multiplicative basis is a single 2D component.</span>
+<span class="sd">        &gt;&gt;&gt; split_features = basis_mul.split_by_feature(X_multi, axis=1)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, arr in split_features.items():</span>
+<span class="sd">        ...     print(f"{feature}: shape {arr.shape}")</span>
+<span class="sd">        (one_input * two_inputs): shape (20, 2, 30)</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MultiplicativeBasis.set_input_shape">
+<a class="viewcode-back" href="../../../api/generated/_basis/nemos.basis._basis.MultiplicativeBasis.html#nemos.basis._basis.MultiplicativeBasis.set_input_shape">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Basis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Set the expected input shape for the basis object.</span>
+
+<span class="sd">        This method sets the input shape for each component basis in the basis.</span>
+<span class="sd">        One ``xi`` must be provided for each basis component, specified as an integer,</span>
+<span class="sd">        a tuple of integers, or an array. The method calculates and stores the total number of output features</span>
+<span class="sd">        based on the number of basis functions in each component and the provided input shapes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *xi :</span>
+<span class="sd">            The input shape specifications. For every k,``xi[k]`` can be:</span>
+<span class="sd">            - An integer: Represents the dimensionality of the input. A value of ``1`` is treated as scalar input.</span>
+<span class="sd">            - A tuple: Represents the exact input shape excluding the first axis (sample axis).</span>
+<span class="sd">              All elements must be integers.</span>
+<span class="sd">            - An array: The shape is extracted, excluding the first axis (assumed to be the sample axis).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If a tuple is provided, and it contains non-integer elements.</span>
+<span class="sd">            If not enough inputs are provided.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self :</span>
+<span class="sd">            Returns the instance itself to allow method chaining.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; # Generate sample data</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+
+<span class="sd">        &gt;&gt;&gt; # define an additive basis</span>
+<span class="sd">        &gt;&gt;&gt; basis_1 = nmo.basis.BSplineEval(5)</span>
+<span class="sd">        &gt;&gt;&gt; basis_2 = nmo.basis.RaisedCosineLinearEval(6)</span>
+<span class="sd">        &gt;&gt;&gt; basis_3 = nmo.basis.MSplineEval(7)</span>
+<span class="sd">        &gt;&gt;&gt; multiplicative_basis = basis_1 * basis_2 * basis_3</span>
+
+<span class="sd">        Specify the input shape using all 3 allowed ways: integer, tuple, array</span>
+<span class="sd">        &gt;&gt;&gt; _ = multiplicative_basis.set_input_shape((4, 5), (4, 5), np.ones((10, 4, 5)))</span>
+
+<span class="sd">        Expected output features are:</span>
+<span class="sd">        (5 * 6 * 7 bases) * (20 inputs) = 4200</span>
+<span class="sd">        &gt;&gt;&gt; multiplicative_basis.n_output_features</span>
+<span class="sd">        4200</span>
+
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D400, D205</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_input_shape_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Input shape list.</span>
+
+<span class="sd">        Override default list by returning the shape of one of the inputs.</span>
+<span class="sd">        Note that:</span>
+<span class="sd">        1. The other inputs must have the same shape.</span>
+<span class="sd">        2. This is used internally by `split_by_feature()` to know how many</span>
+<span class="sd">           inputs are available.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">)[:</span><span class="mi">1</span><span class="p">]</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
