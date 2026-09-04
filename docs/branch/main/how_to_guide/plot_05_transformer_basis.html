@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using bases as scikit-learn transformers &#8212; nemos 0.2.10.dev460 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=88068916"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how_to_guide/plot_05_transformer_basis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Selecting basis by cross-validation with scikit-learn" href="plot_06_sklearn_pipeline_cv_demo.html" />
+    <link rel="prev" title="Precomputed Features" href="custom_predictors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev460 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev460 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="save_and_load.html">Saving and Loading</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_02_glm_demo.html">GLM Demo: Toy Model Examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glm_for_classification.html">Fit GLM for Classification</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="finegrained_regularization.html">Regularizing parameters with different strengths</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handling_composite_bases.html">Handling Composite Bases</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="define_a_custom_basis.html">How to Define A Custom Basis Class</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="categorical_predictors/README.html">Categorical Predictors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_predictors.html">Design Matrices Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_identifiability.html">Technical Note: Redundancy in Categorical Designs</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_predictors.html">Precomputed Features</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using bases as scikit-learn transformers</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_06_sklearn_pipeline_cv_demo.html">Selecting basis by cross-validation with scikit-learn</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_zero_basis.html">Model Selection: Cross-validate over Inputs</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_group_lasso.html">Selecting Covariates via Group Lasso</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="convolve_large_arrays.html">Convolve Large Arrays</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="batching/README.html">Stochastic optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="batching/stochastic_fit.html">Stochastic optimization basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_dataloader.html">Creating a custom <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_callbacks_and_termination.html">Stopping on convergence and custom callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/manual_batching_loop.html">Manual update loop for more control</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_solvers.html">Creating custom solvers for use with NeMoS</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">How-To Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using bases as scikit-learn transformers</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="important admonition">
+<p class="admonition-title">Download</p>
+<p>Download this notebook: <strong><a class="reference download internal" download="" href="../_downloads/826a2be040d06b8d235d79ff15ab531d/plot_05_transformer_basis.ipynb"><code class="xref download myst-nb docutils literal notranslate"><span class="pre">plot_05_transformer_basis.ipynb</span></code></a></strong>!</p>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="using-bases-as-scikit-learn-transformers">
+<h1>Using bases as scikit-learn transformers<a class="headerlink" href="#using-bases-as-scikit-learn-transformers" title="Link to this heading">#</a></h1>
+<section id="scikit-learn-transformers-and-nemos-basis">
+<span id="tansformer-vs-nemos-basis"></span><h2>scikit-learn Transformers and NeMoS Basis<a class="headerlink" href="#scikit-learn-transformers-and-nemos-basis" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> is a powerful machine learning library that provides advanced tools for creating data analysis pipelines, from input transformations to model fitting and cross-validation.</p>
+<p>All of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s machinery relies on strict assumptions about input structure. In particular, all <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>
+objects require inputs to be arrays of at most two dimensions, where the first dimension represents the time (or samples)
+axis, and the second dimension represents features.
+While this may feel rigid, it enables transformations to be seamlessly chained together, greatly simplifying the
+process of building stable, complex pipelines.</p>
+<p>They can accept arrays or <code class="docutils literal notranslate"><span class="pre">pynapple</span></code> time series data,  which can take any shape as long as the time (or sample) axis is the first of each array.
+Furthermore, <code class="docutils literal notranslate"><span class="pre">NeMoS</span></code> design favours object composability: one can combine bases into <a class="reference internal" href="../background/basis/plot_02_ND_basis_function.html#composing-basis-function"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">CompositeBasis</span></code></span></a> objects to compute complex features, with a user-friendly interface that can accept a separate array/time series for each input type (e.g., an array with the spike counts, an array for the animal’s position, etc.).</p>
+<p>Both approaches to data transformation are valuable and each has its own advantages. Wouldn’t it be great if one could combine the two? Well, this is what NeMoS <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> is for!</p>
+</section>
+<section id="from-basis-to-transformerbasis">
+<h2>From Basis to TransformerBasis<a class="headerlink" href="#from-basis-to-transformerbasis" title="Link to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Composite Basis</p>
+<p>To learn more on composite basis, take a look at <a class="reference internal" href="../background/basis/plot_02_ND_basis_function.html#composing-basis-function"><span class="std std-ref">this note</span></a>.</p>
+</div>
+<p>With NeMoS, you can easily create a basis which accepts two inputs. Let’s assume that we want to process neural activity stored in a 2-dimensional spike count array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code> and a second array containing the speed of an animal, with shape <code class="docutils literal notranslate"><span class="pre">(n_samples,)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
+
+<span class="c1"># create the arrays</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_neurons</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># create a composite basis</span>
+<span class="n">counts_basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLogConv</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"counts"</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">speed_basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"speed"</span><span class="p">)</span>
+<span class="n">composite_basis</span> <span class="o">=</span> <span class="n">counts_basis</span> <span class="o">+</span> <span class="n">speed_basis</span>
+
+<span class="c1"># compute the features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">composite_basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="converting-nemos-basis-to-a-transformer">
+<h3>Converting NeMoS <code class="docutils literal notranslate"><span class="pre">Basis</span></code> to a transformer<a class="headerlink" href="#converting-nemos-basis-to-a-transformer" title="Link to this heading">#</a></h3>
+<p>Now, imagine that we want to use this basis as a step in a <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> pipeline.
+In this standard (for NeMoS) form, it would not be possible as the <code class="docutils literal notranslate"><span class="pre">composite_basis</span></code> object requires two inputs. We need to convert it first into a <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>-compliant  transformer. This can be achieved through the <a class="reference internal" href="../api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code></span></a> wrapper class.</p>
+<p>Instantiating a <a class="reference internal" href="../api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code></span></a> can be done either by using the constructor directly or with <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis.to_transformer" title="nemos.basis._basis.Basis.to_transformer"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">Basis.to_transformer()</span></code></span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bas</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearConv</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># initalize using the constructor</span>
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">TransformerBasis</span><span class="p">(</span><span class="n">bas</span><span class="p">)</span>
+
+<span class="c1"># equivalent initialization via "to_transformer"</span>
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="n">bas</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference internal" href="../api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code></span></a> provides convenient access to the underlying <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Basis</span></code></span></a> object’s attributes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bas</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also set attributes of the underlying <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Basis</span></code></span></a>. Note that – because <a class="reference internal" href="../api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code></span></a> is created with a copy of the <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Basis</span></code></span></a> object passed to it – this does not change the original <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Basis</span></code></span></a>, nor does changing the original <a class="reference internal" href="../api/generated/_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">Basis</span></code></span></a> modify the <a class="reference internal" href="../api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code></span></a> we created:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans_bas</span><span class="o">.</span><span class="n">n_basis_funcs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">bas</span><span class="o">.</span><span class="n">n_basis_funcs</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bas</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with any <code class="docutils literal notranslate"><span class="pre">sckit-learn</span></code> transformer, the <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> implements <code class="docutils literal notranslate"><span class="pre">fit</span></code>, a preparation step, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, the actual feature computation, and <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> which chains <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code>. These methods comply with the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> input structure convention, and therefore they all accept a single 2D array.</p>
+</section>
+</section>
+<section id="setting-up-the-transformerbasis">
+<h2>Setting up the TransformerBasis<a class="headerlink" href="#setting-up-the-transformerbasis" title="Link to this heading">#</a></h2>
+<p>At this point, we have an object equipped with the necessary methods. So, all we need to do is concatenate the inputs into a single array and call fit_transform, right? <strong>Not quite.</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> has two additional requirements: input shape (all basis objects) and bounds (<code class="docutils literal notranslate"><span class="pre">Eval</span></code> only).</p>
+<section id="setting-the-input-shape">
+<h3>Setting the <code class="docutils literal notranslate"><span class="pre">input_shape</span></code><a class="headerlink" href="#setting-the-input-shape" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If each basis accepts a single column of the input, as in <a class="reference internal" href="plot_06_sklearn_pipeline_cv_demo.html#sklearn-how-to"><span class="std std-ref">this example</span></a>, then the default behavior works fine, and <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code> does not need to be called.</p>
+</div>
+<section id="the-problem">
+<h4>The Problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h4>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> assumes that <code class="docutils literal notranslate"><span class="pre">inp</span></code> has one column per input in the composition. So in this example, with two one-dimensional basis functions, <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> expects an input of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">2)</span></code>.</p>
+<p>However, our actual input has shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">6)</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">counts</span></code> consists of <strong>5 columns</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">speed</span></code> consists of <strong>1 column</strong></p></li>
+</ul>
+<p>When concatenated, this results in a <strong>6-column input</strong>, and our <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> doesn’t know how to split those 6 columns.</p>
+<p>This mismatch leads to an error when calling fit_transform:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reinstantiate the basis transformer for illustration purposes</span>
+<span class="n">composite_basis</span> <span class="o">=</span> <span class="n">counts_basis</span> <span class="o">+</span> <span class="n">speed_basis</span>
+<span class="c1"># set the bounds now (see "Setting up the bounds" below for why this is required)</span>
+<span class="n">composite_basis</span><span class="p">[</span><span class="s2">"speed"</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">composite_basis</span><span class="p">)</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="c1"># concatenate the inputs</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 6)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># concatenate the inputs</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:333,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="sd">     Compute the kernels and the features.</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd"> </span>
+<span class="sd">   (...)    331     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">333</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:231,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="sd"> Check the input structure and, if necessary, compute the convolutional kernels.</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
+<span class="sd">   (...)    228 &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span><span class="sd"> """</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">231</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span> <span class="k">if</span> <span class="n">setup_basis</span><span class="p">:</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:605,</span> in <span class="ni">TransformerBasis._check_input</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">601</span>         <span class="sa">f</span><span class="s2">"X must be 2-dimensional, shape (n_samples, n_features). The provided X has shape </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> instead."</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">605</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span>         <span class="sa">f</span><span class="s2">"Input mismatch: expected </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">)</span><span class="si">}</span><span class="s2"> inputs, but got </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span>         <span class="sa">f</span><span class="s2">"columns in X.</span><span class="se">\n</span><span class="s2">To modify the required number of inputs, call `set_input_shape` before using "</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="sa">f</span><span class="s2">"`fit` or `fit_transform`."</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span>         <span class="s2">"X and y must have the same number of samples. "</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="sa">f</span><span class="s2">"X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, while y has </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples."</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+
+<span class="ne">ValueError</span>: Input mismatch: expected 2 inputs, but got 6 columns in X.
+<span class="n">To</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">required</span> <span class="n">number</span> <span class="n">of</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">call</span> <span class="err">`</span><span class="n">set_input_shape</span><span class="err">`</span> <span class="n">before</span> <span class="n">using</span> <span class="err">`</span><span class="n">fit</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="n">fit_transform</span><span class="err">`</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-solution-defining-the-input-shape">
+<h4>The Solution: Defining the Input Shape<a class="headerlink" href="#the-solution-defining-the-input-shape" title="Link to this heading">#</a></h4>
+<p>To resolve this, we need to explicitly specify the input structure using the <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code> method. This method tells <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> how to interpret the input columns by storing the number of columns assigned to each basis function.</p>
+<p>You can call set_input_shape before or after defining the transformer basis. There are multiple ways to specify the input shape:</p>
+<ul class="simple">
+<li><p>It directly accepts the input: <code class="docutils literal notranslate"><span class="pre">composite_basis.set_input_shape(counts,</span> <span class="pre">speed)</span></code>.</p></li>
+<li><p>If the input is 1D or 2D, it also accepts the number of columns: <code class="docutils literal notranslate"><span class="pre">composite_basis.set_input_shape(5,</span> <span class="pre">1)</span></code>.</p></li>
+<li><p>A tuple containing the shapes of all except the first: <code class="docutils literal notranslate"><span class="pre">composite_basis.set_input_shape((5,),</span> <span class="pre">(1,))</span></code>.</p></li>
+<li><p>A mix of the above methods: <code class="docutils literal notranslate"><span class="pre">composite_basis.set_input_shape(counts,</span> <span class="pre">1)</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that what <code class="docutils literal notranslate"><span class="pre">set_input_shapes</span></code> requires are the dimensions of the input stimuli, with the exception of the sample
+axis. For example, if the input is a 4D tensor, one needs to provide the last 3 dimensions:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a 4D input</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># define and setup the basis</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># reshape to 2D</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>You can also invert the order of operations and call <code class="docutils literal notranslate"><span class="pre">to_transform</span></code> first and then set the input shapes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans_bas</span> <span class="o">=</span> <span class="n">composite_basis</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="n">trans_bas</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you define a basis and call <code class="docutils literal notranslate"><span class="pre">compute_features</span></code> on your inputs, internally, it will store its shapes,
+and the <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> will be ready to process without any direct call to <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If for some reason you need to provide an input of different shape to an already set-up transformer, you must reset the
+<code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> with <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define inputs with different shapes and concatenate</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">inp2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="n">composite_basis</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="n">trans_bas</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">out2</span> <span class="o">=</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="setting-up-the-bounds">
+<span id="transformer-basis-bounds"></span><h3>Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code><a class="headerlink" href="#setting-up-the-bounds" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>The Problem<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Any basis that derives its domain from <code class="docutils literal notranslate"><span class="pre">bounds</span></code> must have <code class="docutils literal notranslate"><span class="pre">bounds</span></code> set explicitly before it can be used as a transformer. This is a deliberate safety choice. With <code class="docutils literal notranslate"><span class="pre">bounds</span></code> left unset, the domain is inferred from the data, so during cross-validation each fold would re-fit the domain to its own data range. The transformation would then differ from fold to fold, which is rarely what you want when cross-validating.</p>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, or <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on a <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> whose domain-defining <code class="docutils literal notranslate"><span class="pre">bounds</span></code> are unset raises a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code>.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reinstantiate the basis transformer for illustration purposes</span>
+<span class="n">composite_basis</span> <span class="o">=</span> <span class="n">counts_basis</span> <span class="o">+</span> <span class="n">speed_basis</span>
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">composite_basis</span><span class="p">)</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="c1"># set the input shape but NOT the bounds</span>
+<span class="n">trans_bas</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+<span class="c1"># concatenate the inputs</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 6)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># concatenate the inputs</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">inp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:333,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="sd">     Compute the kernels and the features.</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd"> </span>
+<span class="sd">   (...)    331     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">333</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:230,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="sd">     Check the input structure and, if necessary, compute the convolutional kernels.</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
+<span class="sd">   (...)    228     &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:154,</span> in <span class="ni">TransformerBasis._check_initialized</span><span class="nt">(basis)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="o">.</span><span class="n">_iterate_over_components</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="c1"># ``_bounds_define_domain`` (True only on the bounded Eval mixin) flags bases whose</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="c1"># domain is data-inferred when ``bounds`` is unset; those are the unsafe ones. It's</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="c1"># False elsewhere, and True implies a ``bounds`` attribute, so no existence check needed.</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="c1"># Some bases have n-d bounds (FourierEval): a list of tuples or Nones. We must reject any</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="c1"># None. ``jax.tree.leaves`` skips empty (None) leaves by default, so ``is_leaf`` keeps them.</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">"_bounds_define_domain"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="nn">    152         for v</span> in <span class="ni">jax.tree.leaves</span><span class="nt">(b.bounds, is_leaf=lambda x: x is None)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">154</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>             <span class="sa">f</span><span class="s2">"Cannot apply TransformerBasis: component </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> has unset ``bounds``.</span><span class="se">\n</span><span class="s2">"</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>             <span class="s2">"When a basis is used as a transformer, ``bounds`` must be set explicitly so the "</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>             <span class="s2">"domain is identical across folds; otherwise it is derived from the input data and "</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>             <span class="s2">"the transformation changes at every fit. Set the ``bounds`` attribute before calling "</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>             <span class="s2">"``fit``, ``transform``, or ``fit_transform``."</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: Cannot apply TransformerBasis: component 'speed': BSplineEval(n_basis_funcs=5, order=4) has unset ``bounds``.
+<span class="n">When</span> <span class="n">a</span> <span class="n">basis</span> <span class="ow">is</span> <span class="n">used</span> <span class="k">as</span> <span class="n">a</span> <span class="n">transformer</span><span class="p">,</span> <span class="err">``</span><span class="n">bounds</span><span class="err">``</span> <span class="n">must</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">explicitly</span> <span class="n">so</span> <span class="n">the</span> <span class="n">domain</span> <span class="ow">is</span> <span class="n">identical</span> <span class="n">across</span> <span class="n">folds</span><span class="p">;</span> <span class="n">otherwise</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">derived</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="nb">input</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">transformation</span> <span class="n">changes</span> <span class="n">at</span> <span class="n">every</span> <span class="n">fit</span><span class="o">.</span> <span class="n">Set</span> <span class="n">the</span> <span class="err">``</span><span class="n">bounds</span><span class="err">``</span> <span class="n">attribute</span> <span class="n">before</span> <span class="n">calling</span> <span class="err">``</span><span class="n">fit</span><span class="err">``</span><span class="p">,</span> <span class="err">``</span><span class="n">transform</span><span class="err">``</span><span class="p">,</span> <span class="ow">or</span> <span class="err">``</span><span class="n">fit_transform</span><span class="err">``</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-solution">
+<h4>The Solution<a class="headerlink" href="#the-solution" title="Link to this heading">#</a></h4>
+<p>We can finish setting up the <code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code> by setting the bounds for the <code class="docutils literal notranslate"><span class="pre">speed</span></code> component (<code class="docutils literal notranslate"><span class="pre">speed</span></code>) of <code class="docutils literal notranslate"><span class="pre">composite_basis</span></code>. We do not need to do this for the <code class="docutils literal notranslate"><span class="pre">position</span></code> component because it is <code class="docutils literal notranslate"><span class="pre">Conv</span></code> basis object, and only <code class="docutils literal notranslate"><span class="pre">Eval</span></code> basis objects have <code class="docutils literal notranslate"><span class="pre">bounds</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the Eval basis using its label and set the bounds</span>
+<span class="n">composite_basis</span><span class="p">[</span><span class="s2">"speed"</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># set the input shape</span>
+<span class="n">composite_basis</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+
+<span class="c1"># convert to a transformer</span>
+<span class="n">trans_bas</span> <span class="o">=</span> <span class="n">composite_basis</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+
+<span class="c1"># transform the data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="learn-more">
+<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
+<p>If you want to learn more about how to select basis’ hyperparameters with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelining and cross-validation, check out <a class="reference internal" href="plot_06_sklearn_pipeline_cv_demo.html#sklearn-how-to"><span class="std std-ref">this how-to guide</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="custom_predictors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Precomputed Features</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_06_sklearn_pipeline_cv_demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Selecting basis by cross-validation with scikit-learn</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn-transformers-and-nemos-basis">scikit-learn Transformers and NeMoS Basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-basis-to-transformerbasis">From Basis to TransformerBasis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-nemos-basis-to-a-transformer">Converting NeMoS <code class="docutils literal notranslate"><span class="pre">Basis</span></code> to a transformer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-transformerbasis">Setting up the TransformerBasis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-input-shape">Setting the <code class="docutils literal notranslate"><span class="pre">input_shape</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-defining-the-input-shape">The Solution: Defining the Input Shape</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-bounds">Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Problem</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution">The Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/how_to_guide/plot_05_transformer_basis.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
