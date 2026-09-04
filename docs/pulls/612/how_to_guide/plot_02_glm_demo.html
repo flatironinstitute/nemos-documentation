@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GLM Demo: Toy Model Examples &#8212; nemos 0.2.10.dev506 documentation</title>
+    <title>GLM Demo: Toy Model Examples &#8212; nemos 0.2.10.dev507 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=17f33042"></script>
+    <script src="../_static/documentation_options.js?v=b38bb45b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev506 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev506 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev507 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev507 documentation - Home"/>
   
   
 </a></div>
@@ -758,7 +758,7 @@ Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GLM model parameters:
 	- fit_intercept: True
 	- fix_params: (None, None)
-	- inverse_link_function: &lt;function exp at 0x7f5999692e80&gt;
+	- inverse_link_function: &lt;function exp at 0x7fd694352fc0&gt;
 	- observation_model: PoissonObservations()
 	- regularizer: UnRegularized()
 	- regularizer_strength: None
@@ -809,7 +809,7 @@ Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated regularizer:  Lasso()
-Updated NL:  &lt;PjitFunction of &lt;function exp at 0x7f59c83b32e0&gt;&gt;
+Updated NL:  &lt;PjitFunction of &lt;function exp at 0x7fd6cb91b4c0&gt;&gt;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_PR-612/venv/lib/python3.12/site-packages/nemos/base_class.py:83: UserWarning: Solver ``LBFGS`` is not allowed for regularizer Lasso(). Overriding solver with the default allowed solver ProximalGradient.
@@ -849,7 +849,7 @@ The same exact syntax works for any configuration.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge results
 True weights:       [0.49429818 0.         0.         0.         0.32923678]
-Recovered weights:  [ 0.5816024   0.00835909  0.1209215  -0.03206041  0.2539841 ]
+Recovered weights:  [ 0.5816024   0.00835908  0.1209215  -0.0320604   0.2539841 ]
 </pre></div>
 </div>
 </div>
@@ -883,7 +883,7 @@ back-end.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge results        
 Best hyperparameter:  {'regularizer_strength': np.float64(0.03162277660168379)}
 True weights:       [0.49429818 0.         0.         0.         0.32923678]
-Recovered weights:  [0.7308331  0.01661237 0.14847425 0.00181795 0.32947946]
+Recovered weights:  [0.7308331  0.01661239 0.14847423 0.00181795 0.32947946]
 </pre></div>
 </div>
 </div>
@@ -966,7 +966,7 @@ through the <code class="docutils literal notranslate"><span class="pre">model.s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.collections.EventCollection at 0x7f596102f830&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.collections.EventCollection at 0x7fd664324d70&gt;]
 </pre></div>
 </div>
 <img alt="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" src="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" />
@@ -1146,7 +1146,7 @@ the second neuron</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f59604d6720&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd65b8f70e0&gt;
 </pre></div>
 </div>
 <img alt="../_images/b9f9e0add51f11540d4097224cdc463de1a8c23bf0be592843f971b620a990a7.png" src="../_images/b9f9e0add51f11540d4097224cdc463de1a8c23bf0be592843f971b620a990a7.png" />
