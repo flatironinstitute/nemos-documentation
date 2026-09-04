@@ -1,0 +1,1707 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.regularizer &#8212; nemos 0.2.10.dev459 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=a2bd4ecc"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/regularizer';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev459 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev459 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.regularizer</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.regularizer</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">A Module for Optimization with Various Regularization Schemes.</span>
+
+<span class="sd">This module provides a series of classes that facilitate the optimization of models</span>
+<span class="sd">with different types of regularizations. Each `Regularizer` class in this module interfaces</span>
+<span class="sd">with various optimization methods, and they can be applied depending on the model's requirements.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">equinox</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">eqx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.base_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.proximal_operator</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">compute_normalization</span><span class="p">,</span>
+    <span class="n">masked_norm_2</span><span class="p">,</span>
+    <span class="n">prox_elastic_net</span><span class="p">,</span>
+    <span class="n">prox_group_lasso</span><span class="p">,</span>
+    <span class="n">prox_lasso</span><span class="p">,</span>
+    <span class="n">prox_none</span><span class="p">,</span>
+    <span class="n">prox_ridge</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.solvers._hess</span><span class="w"> </span><span class="kn">import</span> <span class="n">Diagonal</span><span class="p">,</span> <span class="n">General</span><span class="p">,</span> <span class="n">HessianTag</span><span class="p">,</span> <span class="n">PositiveDefinite</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.tree_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">pytree_map_and_reduce</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">_is_scalar_or_0d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProximalOperator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_repr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_tree_leaves_to_jax_array</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"UnRegularized"</span><span class="p">,</span> <span class="s2">"Ridge"</span><span class="p">,</span> <span class="s2">"Lasso"</span><span class="p">,</span> <span class="s2">"GroupLasso"</span><span class="p">,</span> <span class="s2">"ElasticNet"</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="fm">__dir__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">__all__</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_operator</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Apply an operator to all regularizable subtrees of a parameter pytree.</span>
+
+<span class="sd">    This function iterates over all locations returned by</span>
+<span class="sd">    ``params.regularizable_subtrees()`` and applies ``func`` to each selected</span>
+<span class="sd">    subtree. The updated values are written back into ``params`` using</span>
+<span class="sd">    :func:`equinox.tree_at`. Typical use cases include applying proximal</span>
+<span class="sd">    operators or other transformations to parameter tensors while leaving</span>
+<span class="sd">    non-regularized fields (e.g., intercepts or structural metadata) unchanged.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func :</span>
+<span class="sd">        A callable with signature ``func(x, *args, **kwargs) -&gt; Any``.</span>
+<span class="sd">        It receives each regularizable subtree ``x`` and must return a value</span>
+<span class="sd">        with the same pytree structure that should replace that subtree.</span>
+<span class="sd">    params :</span>
+<span class="sd">       params any parameter object. If it implements ``regularizable_subtrees()``, the</span>
+<span class="sd">       method is used to return an iterable of selector functions (</span>
+<span class="sd">       suitable for ``eqx.tree_at``) that identify the leaves/subtrees to be transformed.</span>
+<span class="sd">    *args :</span>
+<span class="sd">        Additional positional arguments passed directly to ``func``.</span>
+<span class="sd">    filter_kwargs :</span>
+<span class="sd">        Optional keyword-only dictionary of keyword arguments with PyTree values</span>
+<span class="sd">        that should be filtered per subtree. For each regularizable subtree, the</span>
+<span class="sd">        subtree selector is applied to each value in this dict, extracting only</span>
+<span class="sd">        the portion relevant to that subtree. These extracted kwargs are then</span>
+<span class="sd">        passed to ``func`` along with the subtree. This is useful for operators</span>
+<span class="sd">        that need PyTree-structured metadata (e.g., masks) aligned with the</span>
+<span class="sd">        parameter structure. Must be passed as a keyword argument. Default is</span>
+<span class="sd">        None, which results in no filtering.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Additional keyword arguments passed directly to ``func``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    params_new : same type as ``params``</span>
+<span class="sd">        A new pytree/module with ``func`` applied to all regularizable</span>
+<span class="sd">        subtrees. Non-regularized fields are preserved unchanged.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - ``regularizable_subtrees()`` must return a sequence of callables</span>
+<span class="sd">      compatible with ``eqx.tree_at``. Each callable should extract a subtree</span>
+<span class="sd">      from ``params``.</span>
+<span class="sd">    - ``func`` must be pure and JAX-compatible if this function is used inside</span>
+<span class="sd">      JIT-compiled code.</span>
+<span class="sd">    - When ``filter_kwargs`` is provided, each value in the dict must be a PyTree</span>
+<span class="sd">      with the same structure as ``params`` (or compatible with the subtree selectors).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    A minimal working example with a fake ``Params`` object:</span>
+
+<span class="sd">    &gt;&gt;&gt; import equinox as eqx</span>
+<span class="sd">    &gt;&gt;&gt; class Params(eqx.Module):</span>
+<span class="sd">    ...     w: float</span>
+<span class="sd">    ...     b: float</span>
+<span class="sd">    ...</span>
+<span class="sd">    ...     # Only `w` is regularizable</span>
+<span class="sd">    ...     def regularizable_subtrees(self):</span>
+<span class="sd">    ...         return [lambda p: p.w]</span>
+
+<span class="sd">    &gt;&gt;&gt; p = Params(w=3.0, b=10.0)</span>
+
+<span class="sd">    Define an operator that halves the value:</span>
+
+<span class="sd">    &gt;&gt;&gt; def halve(x):</span>
+<span class="sd">    ...     return x / 2</span>
+
+<span class="sd">    Apply it only to the regularizable subtree (`w`):</span>
+
+<span class="sd">    &gt;&gt;&gt; p2 = apply_operator(halve, p)</span>
+<span class="sd">    &gt;&gt;&gt; p2.w</span>
+<span class="sd">    1.5</span>
+<span class="sd">    &gt;&gt;&gt; p2.b</span>
+<span class="sd">    10.0</span>
+
+<span class="sd">    The bias `b` is unchanged because it is not listed in</span>
+<span class="sd">    `regularizable_subtrees`.</span>
+
+<span class="sd">    Example with ``filter_kwargs`` for PyTree-structured metadata:</span>
+
+<span class="sd">    &gt;&gt;&gt; def masked_op(x, mask=None):</span>
+<span class="sd">    ...     if mask is not None:</span>
+<span class="sd">    ...         return x * mask</span>
+<span class="sd">    ...     return x</span>
+
+<span class="sd">    &gt;&gt;&gt; # Create a mask with same structure as params</span>
+<span class="sd">    &gt;&gt;&gt; mask_tree = Params(w=0.5, b=1.0)</span>
+
+<span class="sd">    &gt;&gt;&gt; # Apply operator with filtered kwargs - only the relevant mask piece</span>
+<span class="sd">    &gt;&gt;&gt; # is passed to each subtree</span>
+<span class="sd">    &gt;&gt;&gt; p3 = apply_operator(masked_op, p, filter_kwargs={"mask": mask_tree})</span>
+<span class="sd">    &gt;&gt;&gt; p3.w  # w was multiplied by mask.w (0.5)</span>
+<span class="sd">    1.5</span>
+<span class="sd">    &gt;&gt;&gt; p3.b  # b is not regularizable, so unchanged</span>
+<span class="sd">    10.0</span>
+<span class="sd">    """</span>
+    <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="n">filter_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="c1"># if there is a list of regularizable sub-trees use that</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">):</span>
+        <span class="n">regularizable_subtrees</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">regularizable_subtrees</span><span class="p">()</span>
+    <span class="c1"># otherwise regularize all the tree</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">regularizable_subtrees</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">regularizable_subtrees</span><span class="p">:</span>
+        <span class="c1"># Extract subtree-specific kwargs by applying the selector to each value</span>
+        <span class="n">subtree_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">where</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">filter_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span>
+            <span class="n">where</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">func</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">params</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">subtree_kwargs</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">params</span>
+
+
+<div class="viewcode-block" id="Regularizer">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Regularizer</span><span class="p">(</span><span class="n">Base</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Abstract base class for regularized solvers.</span>
+
+<span class="sd">    This class is designed to provide a consistent interface for optimization solvers,</span>
+<span class="sd">    enabling users to easily switch between different regularizers, ensuring compatibility</span>
+<span class="sd">    with various loss functions and optimization algorithms.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    allowed_solvers : Tuple[str]</span>
+<span class="sd">        Tuple of solver names that are allowed for use with this regularizer.</span>
+<span class="sd">    default_solver : str</span>
+<span class="sd">        String of the default solver name allowed for use with this regularizer.</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">_default_solver</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_proximal_operator</span><span class="p">:</span> <span class="n">Callable</span>
+    <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Regularizer.resolve_hess_tag">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.resolve_hess_tag">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_hess_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HessianTag</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Hessian tag of this regularizer's curvature for the given parameters.</span>
+
+<span class="sd">        The regularizer's Hessian is positive definite only on the subtrees it</span>
+<span class="sd">        penalizes (``params.regularizable_subtrees``); if it does not cover every</span>
+<span class="sd">        parameter it offers no global definiteness guarantee, so the property is</span>
+<span class="sd">        downgraded to ``General``.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hess_tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">):</span>
+            <span class="n">regularized</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nb">id</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">regularizable_subtrees</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+            <span class="p">}</span>
+            <span class="n">all_regularized</span> <span class="o">=</span> <span class="n">regularized</span> <span class="o">==</span> <span class="p">{</span>
+                <span class="nb">id</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span> <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">all_regularized</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">all_regularized</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hess_tag</span>
+        <span class="k">return</span> <span class="n">HessianTag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hess_tag</span><span class="o">.</span><span class="n">structure</span><span class="p">,</span> <span class="n">General</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">allowed_solvers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allowed_solvers</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">default_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_solver</span>
+
+<div class="viewcode-block" id="Regularizer.check_solver">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.check_solver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solver_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Raise an error if the given solver is not allowed."""</span>
+        <span class="k">if</span> <span class="n">solver_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allowed_solvers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"The solver: </span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="s2"> is not allowed for "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> regularization. Allowed solvers are "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed_solvers</span><span class="si">}</span><span class="s2">."</span>
+                <span class="sa">f</span><span class="s2">"If </span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="s2"> is your implementation and is designed to be"</span>
+                <span class="sa">f</span><span class="s2">"compatible with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, register it with"</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.allow_solver(</span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="s2">)"</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Regularizer.allow_solver">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.allow_solver">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">allow_solver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">algo_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Add an algorithm to the list of compatible solvers.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        algo_name :</span>
+<span class="sd">            Name of the optimization algorithm to add.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">algo_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_allowed_solvers</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_allowed_solvers</span> <span class="o">+=</span> <span class="p">(</span><span class="n">algo_name</span><span class="p">,)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">format_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">format_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_loss_output_tuple</span><span class="p">(</span><span class="n">output</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">n_out</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="s2">"value"</span> <span class="k">if</span> <span class="n">n_out</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">"values"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Invalid loss function return. The loss function returns a tuple with </span><span class="si">{</span><span class="n">n_out</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"A valid loss function can return either a single value (float or a 0-dim array), the loss, "</span>
+                <span class="s2">"or a tuple with two values, the loss and an auxiliary variable."</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="Regularizer.get_proximal_operator">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.get_proximal_operator">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_proximal_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProximalOperator</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Retrieve the proximal operator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params:</span>
+<span class="sd">            The parameters to be regularized.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The proximal operator, applying regularization to the provided parameters.</span>
+<span class="sd">        """</span>
+        <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c1"># hyperparams is unused: strength is captured in filter_kwargs at construction time.</span>
+        <span class="c1"># The argument is required to match the jaxopt prox interface:</span>
+        <span class="c1"># prox(params, hyperparams_prox, scaling=1.0).</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">prox_op</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">hyperparams</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">apply_operator</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_proximal_operator</span><span class="p">,</span>
+                <span class="n">params</span><span class="p">,</span>
+                <span class="n">filter_kwargs</span><span class="o">=</span><span class="n">filter_kwargs</span><span class="p">,</span>
+                <span class="n">scaling</span><span class="o">=</span><span class="n">scaling</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">prox_op</span></div>
+
+
+<div class="viewcode-block" id="Regularizer.penalized_loss">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.penalized_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">penalized_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return a function for calculating the penalized loss."""</span>
+
+        <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_penalized_loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">penalty</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_penalization</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="o">=</span><span class="n">filter_kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_loss_output_tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="n">loss_value</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">result</span>
+                <span class="k">return</span> <span class="n">loss_value</span> <span class="o">+</span> <span class="n">penalty</span><span class="p">,</span> <span class="n">aux</span>
+
+            <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="n">penalty</span>
+
+        <span class="k">return</span> <span class="n">_penalized_loss</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">penalty</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">regularizable_subtrees</span><span class="p">():</span>
+                <span class="n">subtree</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+                <span class="n">subtree_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">where</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">filter_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="n">penalty</span> <span class="o">=</span> <span class="n">penalty</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_penalty_on_subtree</span><span class="p">(</span><span class="n">subtree</span><span class="p">,</span> <span class="o">**</span><span class="n">subtree_kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">penalty</span> <span class="o">=</span> <span class="n">penalty</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_penalty_on_subtree</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">filter_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">penalty</span>
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Validate regularizer strength type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        strength : Any</span>
+<span class="sd">            Regularizer strength specified as one of:</span>
+<span class="sd">            - None</span>
+<span class="sd">                Defaults to a scalar strength of 1.0.</span>
+<span class="sd">            - scalar (Python number or 0-D array)</span>
+<span class="sd">                Preserved as-is.</span>
+<span class="sd">            - array-like or PyTree</span>
+<span class="sd">                Converted leaf-wise to JAX arrays.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Any</span>
+<span class="sd">            A scalar or PyTree where:</span>
+<span class="sd">            - Python scalar leaves are preserved</span>
+<span class="sd">            - Array-like leaves are converted to `jnp.ndarray`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If conversion of array-like leaves to JAX arrays fails.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">strength</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">1.0</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_convert_if_arraylike</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mf">1.0</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">x</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># use Python floats when possible</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+                <span class="n">_convert_if_arraylike</span><span class="p">,</span>
+                <span class="n">strength</span><span class="p">,</span>
+                <span class="n">is_leaf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)),</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Could not convert regularizer strength to floats: </span><span class="si">{</span><span class="n">strength</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Align and broadcast regularizer strength to match model parameters.</span>
+
+<span class="sd">        This function takes a validated regularizer strength specification and</span>
+<span class="sd">        aligns it with the structure of `params`, filling only regularizable</span>
+<span class="sd">        subtrees and inserting `None` elsewhere.</span>
+
+<span class="sd">        Regularizable subtrees are determined via</span>
+<span class="sd">        `params.regularizable_subtrees()` if available; otherwise, the entire</span>
+<span class="sd">        parameter tree is treated as regularizable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params : Any</span>
+<span class="sd">            Model parameters structured as a PyTree.</span>
+
+<span class="sd">        strength : Any</span>
+<span class="sd">            Regularizer strength specification. Accepted forms:</span>
+<span class="sd">            - None</span>
+<span class="sd">                Uses a scalar strength of 1.0 for all regularizable parameters.</span>
+<span class="sd">            - scalar or 0-D array</span>
+<span class="sd">                Logically broadcast to all regularizable parameter leaves.</span>
+<span class="sd">            - PyTree</span>
+<span class="sd">                Must match the structure of the regularizable subtrees. Each leaf</span>
+<span class="sd">                may be a scalar, 0-D array, or an array matching the corresponding</span>
+<span class="sd">                parameter leaf shape.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        structured_strength : Any</span>
+<span class="sd">            PyTree with the same structure as `params`:</span>
+<span class="sd">            - Regularizable parameter leaves contain strength values</span>
+<span class="sd">              (scalars or arrays)</span>
+<span class="sd">            - Non-regularizable leaves are `None`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If:</span>
+<span class="sd">            - The number of provided strength subtrees does not match the number of</span>
+<span class="sd">              regularizable subtrees.</span>
+<span class="sd">            - A strength PyTree does not match the structure of its corresponding</span>
+<span class="sd">              parameter subtree.</span>
+<span class="sd">            - A non-scalar strength leaf does not match the shape of the</span>
+<span class="sd">              corresponding parameter leaf.</span>
+<span class="sd">        """</span>
+
+        <span class="n">wheres</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">])()</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_structure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">structured_strength</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span>
+            <span class="n">struct</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">struct</span><span class="o">.</span><span class="n">num_leaves</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">strength</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">strength</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="n">substrengths</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">strength</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strength</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">strength</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">wheres</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">substrengths</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wheres</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wheres</span><span class="p">)</span><span class="si">}</span><span class="s2"> strength values, got </span><span class="si">{</span><span class="n">strength</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_structured_strength</span><span class="p">(</span><span class="n">strength_leaf</span><span class="p">,</span> <span class="n">param_leaf</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">_is_scalar_or_0d</span><span class="p">(</span><span class="n">strength_leaf</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">strength_leaf</span>
+            <span class="k">if</span> <span class="n">strength_leaf</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">param_leaf</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Strength shape </span><span class="si">{</span><span class="n">strength_leaf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> does not match "</span>
+                    <span class="sa">f</span><span class="s2">"parameter shape </span><span class="si">{</span><span class="n">param_leaf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">strength_leaf</span>
+
+        <span class="k">for</span> <span class="n">substrength</span><span class="p">,</span> <span class="n">where</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">substrengths</span><span class="p">,</span> <span class="n">wheres</span><span class="p">):</span>
+            <span class="n">subtree</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">validated</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">substrength</span><span class="p">,</span> <span class="n">subtree</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">_is_scalar_or_0d</span><span class="p">(</span><span class="n">substrength</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="n">_structured_strength</span><span class="p">,</span> <span class="n">substrength</span><span class="p">,</span> <span class="n">subtree</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">structured_strength</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span>
+                <span class="n">where</span><span class="p">,</span> <span class="n">structured_strength</span><span class="p">,</span> <span class="n">validated</span><span class="p">,</span> <span class="n">is_leaf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">structured_strength</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_filter_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="n">strength</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_strength_structure</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"strength"</span><span class="p">:</span> <span class="n">strength</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_filter_kwargs_batch_axes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">batch_axes</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Which axis carries the batch, for each ingredient of the penalty."""</span>
+        <span class="n">strength</span> <span class="o">=</span> <span class="n">filter_kwargs</span><span class="p">[</span><span class="s2">"strength"</span><span class="p">]</span>
+        <span class="n">wheres</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">])()</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_structure</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">struct</span><span class="o">.</span><span class="n">num_leaves</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">wheres</span><span class="p">:</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">batch_axes</span><span class="p">)</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span>
+                <span class="n">where</span><span class="p">,</span>
+                <span class="n">axes</span><span class="p">,</span>
+                <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">_is_scalar_or_0d</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">else</span> <span class="n">axis</span><span class="p">,</span> <span class="n">where</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+                <span class="p">),</span>
+                <span class="n">is_leaf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"strength"</span><span class="p">:</span> <span class="n">axes</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_hess_fn</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">batch_axes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return a function computing the second derivative of the regularizer penalty.</span>
+
+<span class="sd">        ``None`` when the regularizer declares no curvature (``_hess_tag is None``):</span>
+<span class="sd">        its penalty is either identically zero or has no second derivative.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params:</span>
+<span class="sd">            Full, unsliced parameters. Used to expand the strength, so the shape checks</span>
+<span class="sd">            in ``_validate_strength_structure`` see the shapes the user passed.</span>
+<span class="sd">        strength:</span>
+<span class="sd">            The strength as the user set it.</span>
+<span class="sd">        batch_axes:</span>
+<span class="sd">            Which axis of each parameter carries the batch (for a ``PopulationGLM``,</span>
+<span class="sd">            the neurons). When given, the returned function produces one block per</span>
+<span class="sd">            batch element, stacked on a leading axis, matching the layout of the</span>
+<span class="sd">            model's block Hessian.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hess_tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">hessian</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_penalization</span><span class="p">)(</span><span class="n">p</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">batch_axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">hessian</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="p">)</span>
+
+        <span class="n">kwargs_axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_kwargs_batch_axes</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="p">,</span> <span class="n">batch_axes</span><span class="p">)</span>
+        <span class="n">batched</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">in_axes</span><span class="o">=</span><span class="p">(</span><span class="n">batch_axes</span><span class="p">,</span> <span class="n">kwargs_axes</span><span class="p">))</span>
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">batched</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="UnRegularized">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.UnRegularized.html#nemos.regularizer.UnRegularized">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnRegularized</span><span class="p">(</span><span class="n">Regularizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Regularizer class for unregularized models.</span>
+
+<span class="sd">    This class equips models with the identity proximal operator (no shrinkage) and the</span>
+<span class="sd">    unpenalized loss function.</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"GradientDescent"</span><span class="p">,</span>
+        <span class="s2">"BFGS"</span><span class="p">,</span>
+        <span class="s2">"LBFGS"</span><span class="p">,</span>
+        <span class="s2">"NonlinearCG"</span><span class="p">,</span>
+        <span class="s2">"ProximalGradient"</span><span class="p">,</span>
+        <span class="s2">"SVRG"</span><span class="p">,</span>
+        <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+        <span class="s2">"Newton"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"LBFGS"</span>
+    <span class="n">_proximal_operator</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prox_none</span><span class="p">)</span>
+    <span class="n">_hess_tag</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="Ridge">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Ridge.html#nemos.regularizer.Ridge">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Ridge</span><span class="p">(</span><span class="n">Regularizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Regularizer class for Ridge (L2 regularization).</span>
+
+<span class="sd">    This class equips models with the Ridge proximal operator and the</span>
+<span class="sd">    Ridge penalized loss function.</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"GradientDescent"</span><span class="p">,</span>
+        <span class="s2">"BFGS"</span><span class="p">,</span>
+        <span class="s2">"LBFGS"</span><span class="p">,</span>
+        <span class="s2">"NonlinearCG"</span><span class="p">,</span>
+        <span class="s2">"ProximalGradient"</span><span class="p">,</span>
+        <span class="s2">"SVRG"</span><span class="p">,</span>
+        <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+        <span class="s2">"Newton"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"LBFGS"</span>
+
+    <span class="n">_proximal_operator</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prox_ridge</span><span class="p">)</span>
+    <span class="n">_hess_tag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">Diagonal</span><span class="p">,</span> <span class="nb">property</span><span class="o">=</span><span class="n">PositiveDefinite</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the Ridge penalization for given parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        subtree :</span>
+<span class="sd">            Model parameter subtree for which to compute the penalization.</span>
+<span class="sd">        strength :</span>
+<span class="sd">            Regularization strength.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            The Ridge penalization value.</span>
+<span class="sd">        """</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">l2_penalty</span><span class="p">(</span><span class="n">coef</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">leaf_strength</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">leaf_strength</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">coef</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+            <span class="n">l2_penalty</span><span class="p">,</span>
+            <span class="nb">sum</span><span class="p">,</span>
+            <span class="n">subtree</span><span class="p">,</span>
+            <span class="n">strength</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Lasso">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Lasso.html#nemos.regularizer.Lasso">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Lasso</span><span class="p">(</span><span class="n">Regularizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Regularizer class for Lasso (L1 regularization).</span>
+
+<span class="sd">    This class equips models with the Lasso proximal operator and the</span>
+<span class="sd">    Lasso penalized loss function.</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"ProximalGradient"</span><span class="p">,</span>
+        <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>
+
+    <span class="n">_proximal_operator</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prox_lasso</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the Lasso penalization for given parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        subtree :</span>
+<span class="sd">            Model parameters for which to compute the penalization.</span>
+<span class="sd">        strength :</span>
+<span class="sd">            Regularization strength.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            The Lasso penalization value.</span>
+<span class="sd">        """</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">l1_penalty</span><span class="p">(</span><span class="n">coef</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">leaf_strength</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">leaf_strength</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+            <span class="n">l1_penalty</span><span class="p">,</span>
+            <span class="nb">sum</span><span class="p">,</span>
+            <span class="n">subtree</span><span class="p">,</span>
+            <span class="n">strength</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ElasticNet">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.ElasticNet.html#nemos.regularizer.ElasticNet">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ElasticNet</span><span class="p">(</span><span class="n">Regularizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">    Regularizer class for Elastic Net (L1 + L2 regularization).</span>
+
+<span class="sd">    The Elastic Net penalty [3]_ [4]_ is defined as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        P(\beta) = \alpha \left((1 - \lambda) \frac{1}{2} ||\beta||_{\ell_2}^2 +</span>
+<span class="sd">        \lambda ||\beta||_{\ell_1} \right)</span>
+
+<span class="sd">    where :math:`\alpha` is the regularizer strength, and :math:`\lambda` is the regularizer ratio.</span>
+<span class="sd">    The regularizer ratio controls the balance between L1 (Lasso) and L2 (Ridge)</span>
+<span class="sd">    regularization, where :math:`\lambda = 0` is equivalent to Ridge regularization and</span>
+<span class="sd">    :math:`\lambda = 1` is equivalent to Lasso regularization.</span>
+
+<span class="sd">    This class equips models with the Elastic Net proximal operator and the</span>
+<span class="sd">    Elastic Net penalized loss function.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [3] Zou, H., &amp; Hastie, T. (2005).</span>
+<span class="sd">        Regularization and variable selection via the elastic net.</span>
+<span class="sd">        Journal of the Royal Statistical Society: Series B (Statistical Methodology), 67(2), 301-320.</span>
+<span class="sd">        https://doi.org/10.1111/j.1467-9868.2005.00503.x</span>
+
+<span class="sd">    .. [4] https://en.wikipedia.org/wiki/Elastic_net_regularization</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"ProximalGradient"</span><span class="p">,</span>
+        <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>
+
+    <span class="n">_proximal_operator</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prox_elastic_net</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Compute the Elastic Net penalization for given parameters.</span>
+
+<span class="sd">        The elastic net penalty is defined as:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            P(\beta) = \alpha ((1 - \lambda) \frac{1}{2} ||\beta||_{\ell_2}^2 +</span>
+<span class="sd">            \lambda ||\beta||_{\ell_1}</span>
+
+<span class="sd">        where :math:`\alpha` is the regularizer strength, and :math:`\lambda` is the regularizer ratio.</span>
+<span class="sd">        The regularizer ratio controls the balance between L1 (Lasso) and L2 (Ridge)</span>
+<span class="sd">        regularization, where :math:`\lambda = 0` is equivalent to Ridge regularization and</span>
+<span class="sd">        :math:`\lambda = 1` is equivalent to Lasso regularization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        subtree :</span>
+<span class="sd">            Model parameters for which to compute the penalization.</span>
+<span class="sd">        strength :</span>
+<span class="sd">            Regularization strength.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The Elastic Net penalization value.</span>
+<span class="sd">        """</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">net_penalty</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="n">leaf_strength</span><span class="p">):</span>
+            <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">leaf_strength</span>
+            <span class="n">quad</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+            <span class="n">l1</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">quad</span> <span class="o">+</span> <span class="n">l1</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+            <span class="n">net_penalty</span><span class="p">,</span>
+            <span class="nb">sum</span><span class="p">,</span>
+            <span class="n">subtree</span><span class="p">,</span>
+            <span class="n">strength</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">strength</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">strength</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strength</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">"ElasticNet regularizer strength must be a tuple (strength, ratio)"</span>
+                <span class="p">)</span>
+            <span class="n">strength</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">strength</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">strength</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">strength</span><span class="p">,</span> <span class="mf">0.5</span>
+
+        <span class="n">strength</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_strength</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_strength</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">check_ratio</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">jnp</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"ElasticNet regularization ratio must be in (0, 1], got </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">r</span>
+
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="n">check_ratio</span><span class="p">,</span> <span class="n">ratio</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">strength</span><span class="p">,</span> <span class="n">ratio</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="n">_strength</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_strength_structure</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_strength_structure</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">zip_leaves</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="n">zip_leaves</span><span class="p">,</span> <span class="n">_strength</span><span class="p">,</span> <span class="n">ratio</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="GroupLasso">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupLasso</span><span class="p">(</span><span class="n">Regularizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Regularizer class for Group Lasso (group-L1) regularized models.</span>
+
+<span class="sd">    This class equips models with the group-lasso proximal operator and the</span>
+<span class="sd">    group-lasso penalized loss function.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mask :</span>
+<span class="sd">        A mask array (or PyTree of arrays) indicating group membership for regularization.</span>
+<span class="sd">        Each regularizable parameter leaf with shape ``(n_features, ...)`` requires a corresponding</span>
+<span class="sd">        mask leaf with shape ``(n_groups, n_features, ...)``, i.e. ``(n_groups, *params.shape)``.</span>
+<span class="sd">        Row ``i`` of a mask leaf is 1 for features belonging to group ``i`` and 0 elsewhere;</span>
+<span class="sd">        each feature may belong to at most one group.</span>
+<span class="sd">        If ``None`` (default), a mask is auto-initialized so that each trailing dimension of each</span>
+<span class="sd">        parameter leaf forms its own group.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    For GroupLasso, the regularizer strength is defined **per group**, not per parameter.</span>
+<span class="sd">    It must be either a scalar or a 1D array of length ``n_groups``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from nemos.regularizer import GroupLasso  # Assuming the module is named group_lasso</span>
+<span class="sd">    &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">    &gt;&gt;&gt; # simulate some counts</span>
+<span class="sd">    &gt;&gt;&gt; num_samples, num_features, num_groups = 1000, 5, 3</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features)) # design matrix</span>
+<span class="sd">    &gt;&gt;&gt; w = [0, 0.5, 1, 0, -0.5] # define some weights</span>
+<span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(w))) # observed counts</span>
+<span class="sd">    &gt;&gt;&gt; # Define a mask for 3 groups and 5 features</span>
+<span class="sd">    &gt;&gt;&gt; mask = np.zeros((num_groups, num_features))</span>
+<span class="sd">    &gt;&gt;&gt; mask[0] = [1, 0, 0, 1, 0]  # Group 0 includes features 0 and 3</span>
+<span class="sd">    &gt;&gt;&gt; mask[1] = [0, 1, 0, 0, 0]  # Group 1 includes features 1</span>
+<span class="sd">    &gt;&gt;&gt; mask[2] = [0, 0, 1, 0, 1]  # Group 2 includes features 2 and 4</span>
+
+<span class="sd">    &gt;&gt;&gt; # Create the GroupLasso regularizer instance</span>
+<span class="sd">    &gt;&gt;&gt; group_lasso = GroupLasso(mask=mask)</span>
+<span class="sd">    &gt;&gt;&gt; # fit a group-lasso glm</span>
+<span class="sd">    &gt;&gt;&gt; model = GLM(regularizer=group_lasso, regularizer_strength=0.1).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(f"coeff shape: {model.coef_.shape}")</span>
+<span class="sd">    coeff shape: (5,)</span>
+
+<span class="sd">    For a :class:`~nemos.glm.PopulationGLM`, where ``coef_`` has shape</span>
+<span class="sd">    ``(n_features, n_neurons)``, the mask must have the matching shape</span>
+<span class="sd">    ``(n_groups, n_features, n_neurons)``:</span>
+
+<span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">    &gt;&gt;&gt; num_samples, num_features, num_neurons = 1000, 4, 3</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features))</span>
+<span class="sd">    &gt;&gt;&gt; w = np.random.randn(num_features, num_neurons) * 0.1</span>
+<span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(w)))</span>
+<span class="sd">    &gt;&gt;&gt; # group 0: regularize all features jointly for neurons 0-1</span>
+<span class="sd">    &gt;&gt;&gt; # group 1: regularize all features jointly for neuron 2</span>
+<span class="sd">    &gt;&gt;&gt; mask = np.zeros((2, num_features, num_neurons))</span>
+<span class="sd">    &gt;&gt;&gt; mask[0, :, :2] = 1</span>
+<span class="sd">    &gt;&gt;&gt; mask[1, :, 2:] = 1</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.PopulationGLM(</span>
+<span class="sd">    ...     regularizer=nmo.regularizer.GroupLasso(mask=mask),</span>
+<span class="sd">    ...     regularizer_strength=0.1,</span>
+<span class="sd">    ... ).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(f"coef shape: {model.coef_.shape}")</span>
+<span class="sd">    coef shape: (4, 3)</span>
+<span class="sd">    """</span>
+
+    <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"ProximalGradient"</span><span class="p">,</span>
+        <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>
+
+    <span class="n">_proximal_operator</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">prox_group_lasso</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GroupLasso.__init__">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">mask</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mask</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Getter for the mask attribute."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span>
+
+    <span class="nd">@mask</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">"""Setter for the mask attribute."""</span>
+        <span class="c1"># check mask if passed by user, else will be initialized later</span>
+        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cast_and_check_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="n">mask</span>
+
+<div class="viewcode-block" id="GroupLasso.initialize_mask">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso.initialize_mask">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Initialize a default group mask for a PyTree of parameters.</span>
+
+<span class="sd">        Creates a mask where each leaf array and each of its trailing dimensions</span>
+<span class="sd">        (beyond the first) are assigned to separate groups. This default grouping</span>
+<span class="sd">        treats:</span>
+<span class="sd">        - Each leaf in the PyTree as a distinct parameter set</span>
+<span class="sd">        - The first dimension (axis 0) as the feature dimension</span>
+<span class="sd">        - Each trailing dimension as a separate group of features</span>
+
+<span class="sd">        For a leaf with shape (n_features, d1, d2, ..., dk), this creates</span>
+<span class="sd">        (d1 * d2 * ... * dk) groups, where each group's mask is 1.0 for all</span>
+<span class="sd">        features in that specific trailing dimension combination and 0.0 elsewhere.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : Any</span>
+<span class="sd">            PyTree of parameter arrays. Each leaf should have shape</span>
+<span class="sd">            (n_features, ...) where n_features is the number of features</span>
+<span class="sd">            and trailing dimensions define additional grouping structure.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mask : Any</span>
+<span class="sd">            PyTree with the same structure as x, where each leaf has shape</span>
+<span class="sd">            (n_groups, n_features, ...) matching the original leaf shape.</span>
+<span class="sd">            The mask contains 1.0 for elements in each group and 0.0 elsewhere.</span>
+
+<span class="sd">        """</span>
+        <span class="n">reg_subtrees</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">regularizable_subtrees</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_structure</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">struct</span><span class="o">.</span><span class="n">num_leaves</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">reg_subtrees</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span>
+                <span class="n">where</span><span class="p">,</span>
+                <span class="n">mask</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_subtree_mask</span><span class="p">(</span><span class="n">where</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+                <span class="n">is_leaf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mask</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_subtree_mask</span><span class="p">(</span><span class="n">subtree</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Initialize individual subtree mask matching structure."""</span>
+        <span class="n">flat_x</span><span class="p">,</span> <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_flatten</span><span class="p">(</span><span class="n">subtree</span><span class="p">)</span>
+
+        <span class="c1"># Calculate total number of groups across all leaves</span>
+        <span class="n">n_groups_per_leaf</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">leaf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">flat_x</span><span class="p">]</span>
+        <span class="n">total_groups</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">n_groups_per_leaf</span><span class="p">)</span>
+
+        <span class="c1"># Build mask for each leaf</span>
+        <span class="n">mask_flat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">group_offset</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">leaf</span><span class="p">,</span> <span class="n">n_groups</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">flat_x</span><span class="p">,</span> <span class="n">n_groups_per_leaf</span><span class="p">):</span>
+            <span class="c1"># Create mask: (total_groups, n_features, *extra_dims)</span>
+            <span class="n">mask_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_groups</span><span class="p">,</span> <span class="o">*</span><span class="n">leaf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+            <span class="c1"># Set 1.0 for this leaf's groups along the flattened extra dimensions</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_groups</span><span class="p">):</span>
+                <span class="c1"># Use reshape to map linear index to multi-dimensional index</span>
+                <span class="n">extra_shape</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="n">multi_idx</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">extra_shape</span><span class="p">)</span>
+                <span class="c1"># Build index tuple: (group_id, slice(:), *multi_idx)</span>
+                <span class="c1"># When dropping support for Python &lt; 3.11, replace with</span>
+                <span class="c1"># mask = mask.at[group_offset + i, :, *multi_idx].set(1.0)</span>
+                <span class="n">full_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">group_offset</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span> <span class="o">+</span> <span class="n">multi_idx</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">full_idx</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+            <span class="n">mask_flat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+            <span class="n">group_offset</span> <span class="o">+=</span> <span class="n">n_groups</span>
+
+        <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">mask_flat</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_cast_and_check_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Cast to jax array of floats and validate the mask.</span>
+
+<span class="sd">        This method ensures the mask adheres to requirements:</span>
+<span class="sd">        - The mask should be castable to a PyTree of arrays of float type.</span>
+<span class="sd">        - Each element must be either 0 or 1.</span>
+<span class="sd">        - Each feature should belong to only one group.</span>
+<span class="sd">        - The mask should not be empty.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If any of the above conditions are not met.</span>
+<span class="sd">        """</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">convert_tree_leaves_to_jax_array</span><span class="p">(</span>
+            <span class="n">mask</span><span class="p">,</span>
+            <span class="s2">"Unable to convert mask to a tree with ``jax.ndarray`` leaves."</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">flat_mask</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+        <span class="n">n_groups</span> <span class="o">=</span> <span class="n">flat_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_groups</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flat_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="n">n_groups</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_groups</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flat_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">:]}</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"The length of the first dimension array leaves in the mask PyTree "</span>
+                <span class="s2">"should be equal to ``n_groups``. "</span>
+                <span class="sa">f</span><span class="s2">"Leaves of the mask tree have inconsistent first dimension lengths: </span><span class="si">{</span><span class="n">n_groups</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">flat_mask</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Mask arrays should have at least 2 dimensions ``(n_groups, n_features, ...)``."</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_groups</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Empty mask provided!"</span><span class="p">)</span>
+
+        <span class="n">has_invalid_entries</span> <span class="o">=</span> <span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">m</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">any</span><span class="p">,</span> <span class="n">mask</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">has_invalid_entries</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Mask elements must be 0s and 1s!"</span><span class="p">)</span>
+
+        <span class="n">all_zeros</span> <span class="o">=</span> <span class="n">pytree_map_and_reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="nb">all</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">all_zeros</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Empty mask provided!"</span><span class="p">)</span>
+
+        <span class="n">multi_group_assignment</span> <span class="o">=</span> <span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">any</span><span class="p">,</span> <span class="n">mask</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">multi_group_assignment</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Incorrect group assignment. Some of the features are assigned "</span>
+                <span class="s2">"to more than one group."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mask</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_penalty_on_subtree</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">subtree</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Apply the Group Lasso penalty to a subtree.</span>
+
+<span class="sd">        Note: the penalty is being calculated according to the following formula:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \\text{loss}(\beta_1,...,\beta_g) + \alpha \cdot \sum _{j=1...,g} \sqrt{\dim(\beta_j)} || \beta_j||_2</span>
+
+<span class="sd">        where :math:`g` is the number of groups, :math:`\dim(\cdot)` is the dimension of the vector,</span>
+<span class="sd">        i.e. the number of coefficient in each :math:`\beta_j`, and :math:`||\cdot||_2` is the euclidean norm.</span>
+<span class="sd">        """</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">penalty_leaf</span><span class="p">(</span><span class="n">leaf</span><span class="p">,</span> <span class="n">leaf_mask</span><span class="p">,</span> <span class="n">leaf_strength</span><span class="p">):</span>
+            <span class="n">leaf_l2_norm</span> <span class="o">=</span> <span class="n">masked_norm_2</span><span class="p">(</span><span class="n">leaf</span><span class="p">,</span> <span class="n">leaf_mask</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">leaf_norm</span> <span class="o">=</span> <span class="n">compute_normalization</span><span class="p">(</span><span class="n">leaf_mask</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">leaf_strength</span> <span class="o">*</span> <span class="n">leaf_norm</span> <span class="o">*</span> <span class="n">leaf_l2_norm</span><span class="p">)</span>
+
+        <span class="n">penalties</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+            <span class="n">penalty_leaf</span><span class="p">,</span>
+            <span class="n">subtree</span><span class="p">,</span>
+            <span class="n">mask</span><span class="p">,</span>
+            <span class="n">strength</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">penalties</span><span class="p">)))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_mask_and_params_shape_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="n">reg_subtrees</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">regularizable_subtrees</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">where</span> <span class="ow">in</span> <span class="n">reg_subtrees</span><span class="p">:</span>
+            <span class="n">sub_mask</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+            <span class="n">sub_params</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">shape_mismatched</span> <span class="o">=</span> <span class="n">pytree_map_and_reduce</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="nb">any</span><span class="p">,</span> <span class="n">sub_mask</span><span class="p">,</span> <span class="n">sub_params</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">shape_mismatched</span><span class="p">:</span>
+                <span class="n">flat_mask_leaves</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">sub_mask</span><span class="p">)</span>
+                <span class="n">flat_param_leaves</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">sub_params</span><span class="p">)</span>
+                <span class="n">mismatches</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">"mask </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> (expected </span><span class="si">{</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span>
+                    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">flat_mask_leaves</span><span class="p">,</span> <span class="n">flat_param_leaves</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span>
+                <span class="p">]</span>
+                <span class="n">sep</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">- "</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"GroupLasso mask shape mismatch: the mask must have shape "</span>
+                    <span class="s2">"``(n_groups, *params.shape)`` for every regularizable parameter leaf. "</span>
+                    <span class="sa">f</span><span class="s2">"Mismatched leaves:</span><span class="se">\n\t</span><span class="s2">- </span><span class="si">{</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mismatches</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_strength_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_mask</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">flat_mask</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+        <span class="n">n_groups</span> <span class="o">=</span> <span class="n">flat_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strength</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">or</span> <span class="n">strength</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">per_group_strength</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_groups</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">strength</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">strength</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">strength</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">strength</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_groups</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"GroupLasso strength must be a scalar or shape (</span><span class="si">{</span><span class="n">n_groups</span><span class="si">}</span><span class="s2">,), "</span>
+                    <span class="sa">f</span><span class="s2">"got shape </span><span class="si">{</span><span class="n">strength</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="n">per_group_strength</span> <span class="o">=</span> <span class="n">strength</span>
+
+        <span class="k">return</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">per_group_strength</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_filter_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_mask_and_params_shape_match</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_mask</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"mask"</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span> <span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="p">)}</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

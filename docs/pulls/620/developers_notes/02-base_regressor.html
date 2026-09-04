@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Abstract Class BaseRegressor &#8212; nemos 0.2.10.dev459 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=a2bd4ecc"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'developers_notes/02-base_regressor';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The glm Module" href="03-glm.html" />
+    <link rel="prev" title="The base_class Module" href="01-base_class.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev459 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev459 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-base_class.html">The <code class="docutils literal notranslate"><span class="pre">base_class</span></code> Module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Abstract Class <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-glm.html">The <code class="docutils literal notranslate"><span class="pre">glm</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-basis_module.html">The <code class="docutils literal notranslate"><span class="pre">basis</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-observation_models.html">The <code class="docutils literal notranslate"><span class="pre">observation_models</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-solvers.html">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">For Developers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">The Abstract Class <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-abstract-class-baseregressor">
+<h1>The Abstract Class <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code><a class="headerlink" href="#the-abstract-class-baseregressor" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> is an abstract class that inherits from <code class="docutils literal notranslate"><span class="pre">Base</span></code>, stipulating the implementation of number of abstract methods such as <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.fit" title="nemos.glm.GLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a>, <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.predict" title="nemos.glm.GLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a>, <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.score" title="nemos.glm.GLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a>. This ensures seamless assimilation with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> pipelines and cross-validation procedures.</p>
+<div class="note admonition">
+<p class="admonition-title">Example</p>
+<p>The current package version includes a concrete class named <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.glm.GLM</span></code></span></a>. This class inherits from <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code>, which in turn inherits <code class="docutils literal notranslate"><span class="pre">Base</span></code>, since it falls under the “GLM regression” category.
+As a <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code>, it <strong>must</strong> implement the <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.fit" title="nemos.glm.GLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a>, <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.score" title="nemos.glm.GLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a>, <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.predict" title="nemos.glm.GLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> and the other abstract methods of this class, see below.</p>
+</div>
+<section id="abstract-methods">
+<h2>Abstract Methods<a class="headerlink" href="#abstract-methods" title="Link to this heading">#</a></h2>
+<p>For subclasses derived from <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> to function correctly, they must implement the following:</p>
+<section id="public-methods">
+<h3>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.fit" title="nemos.glm.GLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a>: Adapt the model using input data <code class="docutils literal notranslate"><span class="pre">X</span></code> and corresponding observations <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.predict" title="nemos.glm.GLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a>: Provide predictions based on the trained model and input data <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.score" title="nemos.glm.GLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a>: Score the accuracy of model predictions using input data <code class="docutils literal notranslate"><span class="pre">X</span></code> against the actual observations <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.simulate" title="nemos.glm.GLM.simulate"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">simulate</span></code></span></a>: Simulate data based on the trained regression model.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.update" title="nemos.glm.GLM.update"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">update</span></code></span></a>: Run a single optimization step, and stores the updated parameter and solver state. Used by stochastic optimization schemes.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.compute_loss" title="nemos.glm.GLM.compute_loss"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">compute_loss</span></code></span></a>: Computes the loss function for given user-provided parameters, <code class="docutils literal notranslate"><span class="pre">X</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code>. This method validates inputs and parameters, converts user parameters to the internal representation, and delegates to <code class="docutils literal notranslate"><span class="pre">_compute_loss</span></code>.</p></li>
+</ol>
+</section>
+<section id="private-methods">
+<h3>Private Methods<a class="headerlink" href="#private-methods" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="6">
+<li><p><code class="docutils literal notranslate"><span class="pre">_compute_loss</span></code>: Compute predictions and evaluate the loss function given the parameters, <code class="docutils literal notranslate"><span class="pre">X</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code>. This method operates on the internal parameter representation (e.g., <code class="docutils literal notranslate"><span class="pre">GLMParams</span></code>). The public-facing <code class="docutils literal notranslate"><span class="pre">compute_loss</span></code> wrapper handles conversion from user-provided parameters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_get_model_params</span></code>: Pack model parameters from sklearn-style attributes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>, <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>) into the internal parameter representation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_set_model_params</span></code>: Unpack the internal parameter representation and store as sklearn-style attributes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>, <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_params</span></code>: Serialize and save model parameters to disk.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_get_optimal_solver_params_config</span></code>: Return functions for computing default step size and batch size for the solver.</p></li>
+</ol>
+</section>
+</section>
+<section id="parameter-representation-and-validation">
+<h2>Parameter Representation and Validation<a class="headerlink" href="#parameter-representation-and-validation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> maintains two representations of model parameters:</p>
+<ul class="simple">
+<li><p><strong>User-facing parameters</strong>: Simple structures (tuples, arrays) that users provide to methods like <code class="docutils literal notranslate"><span class="pre">fit()</span></code>, <code class="docutils literal notranslate"><span class="pre">predict()</span></code>, etc.</p></li>
+<li><p><strong>Internal parameters</strong>: Model-specific parameter containers (e.g., <code class="docutils literal notranslate"><span class="pre">GLMParams</span></code>) with named fields for clarity and type safety.</p></li>
+</ul>
+<p>Each <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> subclass has an associated <code class="docutils literal notranslate"><span class="pre">RegressorValidator</span></code> that handles:</p>
+<ul class="simple">
+<li><p>Validation of user-provided inputs and parameters</p></li>
+<li><p>Conversion between user-facing and internal parameter representations</p></li>
+<li><p>Consistency checks between parameters and data</p></li>
+</ul>
+<p>The validator is accessed via the <code class="docutils literal notranslate"><span class="pre">_validator</span></code> attribute and is used throughout the class to ensure data integrity.</p>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<p>Public attributes are stored as properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">regularizer</span></code>: An instance of the <a class="reference internal" href="../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.regularizer.Regularizer</span></code></span></a> class. The setter for this property accepts either the instance directly or a string that is used to instantiate the appropriate regularizer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regularizer_strength</span></code>: A float quantifying the amount of regularization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solver_name</span></code>: One of the supported solvers in the solver registry, currently “GradientDescent”, “BFGS”, “LBFGS”, “ProximalGradient”, “SVRG”, and “NonlinearCG”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solver_kwargs</span></code>: Extra keyword arguments to be passed at solver initialization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer_init_state</span></code>, <code class="docutils literal notranslate"><span class="pre">optimizer_update</span></code>, <code class="docutils literal notranslate"><span class="pre">optimizer_run</span></code>: Read-only property with a partially evaluated <code class="docutils literal notranslate"><span class="pre">solver.init_state</span></code>, <code class="docutils literal notranslate"><span class="pre">solver.update</span></code> and, <code class="docutils literal notranslate"><span class="pre">solver.run</span></code> methods. The partial evaluation guarantees a consistent API for all solvers.</p></li>
+</ul>
+<p>When implementing a new subclass of <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code>, the only attributes you must interact directly with are those that operate on the solver, i.e. <code class="docutils literal notranslate"><span class="pre">optimizer_init_state</span></code>, <code class="docutils literal notranslate"><span class="pre">optimizer_update</span></code>, <code class="docutils literal notranslate"><span class="pre">optimizer_run</span></code>.</p>
+<p>Typically, in <code class="docutils literal notranslate"><span class="pre">YourRegressor</span></code> you will call <code class="docutils literal notranslate"><span class="pre">self.optimizer_init_state</span></code> at the parameter initialization step, <code class="docutils literal notranslate"><span class="pre">self.optimizer_run</span></code> in <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.fit" title="nemos.glm.GLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a>, and <code class="docutils literal notranslate"><span class="pre">self.optimizer_update</span></code> in <a class="reference internal" href="../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.update" title="nemos.glm.GLM.update"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">update</span></code></span></a>.</p>
+<div class="note admonition">
+<p class="admonition-title">Solvers</p>
+<p>We implement a set of standard solvers in NeMoS, relying on various backends. In the future we are planning to add support for user-defined solvers, because in principle any object that adheres to our <code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code> interface should be compatible with NeMoS. For more information about the solver interface and solvers, see the <a class="reference internal" href="07-solvers.html"><span class="std std-doc">developer notes about solvers</span></a>.</p>
+</div>
+</section>
+<section id="parameter-containers">
+<h2>Parameter Containers<a class="headerlink" href="#parameter-containers" title="Link to this heading">#</a></h2>
+<p>Model parameters are stored internally using <code class="docutils literal notranslate"><span class="pre">equinox.Module</span></code> containers, which are frozen dataclasses that are also valid JAX pytrees. These containers provide:</p>
+<ul class="simple">
+<li><p><strong>Named fields</strong>: Self-documenting code (e.g., <code class="docutils literal notranslate"><span class="pre">params.coef</span></code>, <code class="docutils literal notranslate"><span class="pre">params.intercept</span></code>)</p></li>
+<li><p><strong>Type safety</strong>: Full type annotation support</p></li>
+<li><p><strong>JAX compatibility</strong>: Work seamlessly with <code class="docutils literal notranslate"><span class="pre">jax.jit</span></code>, <code class="docutils literal notranslate"><span class="pre">jax.grad</span></code>, etc.</p></li>
+<li><p><strong>Extensibility</strong>: Easy to add model-specific hooks</p></li>
+</ul>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">GLMParams</span></code> includes a <code class="docutils literal notranslate"><span class="pre">regularizable_subtrees()</span></code> method that specifies which parameter components should be regularized. This allows regularizers and other components to interact with parameters in a controlled, model-aware manner.</p>
+</section>
+<section id="validation-framework">
+<h2>Validation Framework<a class="headerlink" href="#validation-framework" title="Link to this heading">#</a></h2>
+<p>Validation is handled by model-specific <code class="docutils literal notranslate"><span class="pre">RegressorValidator</span></code> subclasses (e.g., <code class="docutils literal notranslate"><span class="pre">GLMValidator</span></code> for GLM models). The validator:</p>
+<ol class="arabic simple">
+<li><p>Validates user-provided parameters and inputs</p></li>
+<li><p>Converts user parameters to internal representation</p></li>
+<li><p>Validates internal parameters</p></li>
+<li><p>Checks consistency between parameters and data</p></li>
+</ol>
+<p>This separation of concerns keeps the model classes focused on their core functionality while ensuring robust input validation.</p>
+</section>
+<section id="contributor-guidelines">
+<h2>Contributor Guidelines<a class="headerlink" href="#contributor-guidelines" title="Link to this heading">#</a></h2>
+<section id="implementing-model-subclasses">
+<h3>Implementing Model Subclasses<a class="headerlink" href="#implementing-model-subclasses" title="Link to this heading">#</a></h3>
+<p>When devising a new model subclass based on the <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> abstract class, adhere to the subsequent guidelines:</p>
+<ul class="simple">
+<li><p><strong>Must</strong> inherit the <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code> abstract superclass.</p></li>
+<li><p><strong>Must</strong> realize the abstract methods, see above.</p></li>
+<li><p><strong>Should not</strong> overwrite the <code class="docutils literal notranslate"><span class="pre">get_params</span></code> and <code class="docutils literal notranslate"><span class="pre">set_params</span></code> methods, inherited from <code class="docutils literal notranslate"><span class="pre">Base</span></code>.</p></li>
+<li><p><strong>May</strong> introduce auxiliary methods for added utility.</p></li>
+<li><p><strong>May</strong> re-implement the <code class="docutils literal notranslate"><span class="pre">__sklearn_tags__</span></code> method to add metadata that is relevant to the specific estimator implemented. See the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.Tags.html#sklearn.utils.Tags"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> documentation</a> for the available tagging options.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Tags</p>
+<p>Tags are not needed for estimators to function correctly, as long as the required methods (<code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code>,…) are implemented. Citing the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#estimator-tags">documentation for the estimator API</a>,</p>
+<blockquote>
+<div><p>Scikit-learn introduced estimator tags in version 0.21 as a private API and mostly used in tests. However, these tags expanded over time and many third party developers also need to use them. Therefore in version 1.6 the API for the tags was revamped and exposed as public API.</p>
+</div></blockquote>
+</div>
+</section>
+</section>
+<section id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Regularization</strong></p></td>
+<td><p>Regularization is a technique used to prevent overfitting by adding a penalty to the loss function, which discourages complex models. Common regularization techniques include L1 (Lasso) and L2 (Ridge) regularization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Optimization</strong></p></td>
+<td><p>Optimization refers to the process of minimizing (or maximizing) a function by systematically choosing the values of the variables within an allowable set. In machine learning, optimization aims to minimize the loss function to train models.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Solver</strong></p></td>
+<td><p>A solver is an algorithm or a set of algorithms used for solving optimization problems. In the given module, solvers are used to find the parameters that minimize the loss function, potentially subject to some constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Runner</strong></p></td>
+<td><p>A runner in this context refers to a callable function configured to execute the solver with the specified parameters and data. It acts as an interface to the solver, simplifying the process of running optimization tasks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-base_class.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The <code class="docutils literal notranslate"><span class="pre">base_class</span></code> Module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03-glm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The <code class="docutils literal notranslate"><span class="pre">glm</span></code> Module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract-methods">Abstract Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-methods">Public Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#private-methods">Private Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-representation-and-validation">Parameter Representation and Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-containers">Parameter Containers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-framework">Validation Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributor-guidelines">Contributor Guidelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-model-subclasses">Implementing Model Subclasses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary">Glossary</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/developers_notes/02-base_regressor.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

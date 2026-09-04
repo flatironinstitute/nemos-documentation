@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>nemos.basis._transformer_basis.TransformerBasis &#8212; nemos 0.2.10.dev459 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=a2bd4ecc"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/_transformer_basis/nemos.basis._transformer_basis.TransformerBasis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Observation Models" href="../../observation_models.html" />
+    <link rel="prev" title="nemos.basis._custom_basis.CustomBasis" href="../_custom_basis/nemos.basis._custom_basis.CustomBasis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev459 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev459 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../glm.html">GLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../glm/nemos.glm.GLM.html">nemos.glm.GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glm/nemos.glm.ClassifierGLM.html">nemos.glm.ClassifierGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glm/nemos.glm.PopulationGLM.html">nemos.glm.PopulationGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../glm/nemos.glm.ClassifierPopulationGLM.html">nemos.glm.ClassifierPopulationGLM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../glm_hmm.html">GLM-HMM</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../glm_hmm/nemos.glm_hmm.GLMHMM.html">nemos.glm_hmm.GLMHMM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../basis.html">Bases</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html">nemos.basis._basis.Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_basis/nemos.basis._spline_basis.SplineBasis.html">nemos.basis._spline_basis.SplineBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.MSplineConv.html">nemos.basis.MSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.BSplineConv.html">nemos.basis.BSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.CyclicBSplineConv.html">nemos.basis.CyclicBSplineConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.RaisedCosineLinearConv.html">nemos.basis.RaisedCosineLinearConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.RaisedCosineLogConv.html">nemos.basis.RaisedCosineLogConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.OrthExponentialConv.html">nemos.basis.OrthExponentialConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.HistoryConv.html">nemos.basis.HistoryConv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.MSplineEval.html">nemos.basis.MSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.BSplineEval.html">nemos.basis.BSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.CyclicBSplineEval.html">nemos.basis.CyclicBSplineEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.RaisedCosineLinearEval.html">nemos.basis.RaisedCosineLinearEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.RaisedCosineLogEval.html">nemos.basis.RaisedCosineLogEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.FourierEval.html">nemos.basis.FourierEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.OrthExponentialEval.html">nemos.basis.OrthExponentialEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.Category.html">nemos.basis.Category</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.IdentityEval.html">nemos.basis.IdentityEval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/nemos.basis.Zero.html">nemos.basis.Zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_basis/nemos.basis._basis.AdditiveBasis.html">nemos.basis._basis.AdditiveBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_basis/nemos.basis._basis.MultiplicativeBasis.html">nemos.basis._basis.MultiplicativeBasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_custom_basis/nemos.basis._custom_basis.CustomBasis.html">nemos.basis._custom_basis.CustomBasis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">nemos.basis._transformer_basis.TransformerBasis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../observation_models.html">Observation Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.Observations.html">nemos.observation_models.Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.PoissonObservations.html">nemos.observation_models.PoissonObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.GaussianObservations.html">nemos.observation_models.GaussianObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.NegativeBinomialObservations.html">nemos.observation_models.NegativeBinomialObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.GammaObservations.html">nemos.observation_models.GammaObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.BernoulliObservations.html">nemos.observation_models.BernoulliObservations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../observation_models/nemos.observation_models.CategoricalObservations.html">nemos.observation_models.CategoricalObservations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../regularizers.html">Regularizers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html">nemos.regularizer.Regularizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.UnRegularized.html">nemos.regularizer.UnRegularized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.Ridge.html">nemos.regularizer.Ridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.Lasso.html">nemos.regularizer.Lasso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.ElasticNet.html">nemos.regularizer.ElasticNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.regularizer.GroupLasso.html">nemos.regularizer.GroupLasso</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../io.html">IO</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../io/nemos.io.load_model.html">nemos.io.load_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/nemos.io.inspect_npz.html">nemos.io.inspect_npz</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solvers.html">Solvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.get_solver.html">nemos.solvers.get_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.get_solver_documentation.html">nemos.solvers.get_solver_documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.list_available_solvers.html">nemos.solvers.list_available_solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.list_available_algorithms.html">nemos.solvers.list_available_algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.list_algo_backends.html">nemos.solvers.list_algo_backends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.register.html">nemos.solvers.register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.set_default_backend.html">nemos.solvers.set_default_backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.list_stochastic_solvers.html">nemos.solvers.list_stochastic_solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.supports_stochastic.html">nemos.solvers.supports_stochastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.SolverSpec.html">nemos.solvers.SolverSpec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers._solver_adapter.SolverAdapter.html">nemos.solvers._solver_adapter.SolverAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers._jaxopt_solvers.JaxoptAdapter.html">nemos.solvers._jaxopt_solvers.JaxoptAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers._optimistix_solvers.OptimistixAdapter.html">nemos.solvers._optimistix_solvers.OptimistixAdapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers._optax_optimistix_solvers.AbstractOptimistixOptaxSolver.html">nemos.solvers._optax_optimistix_solvers.AbstractOptimistixOptaxSolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.AbstractSolver.html">nemos.solvers.AbstractSolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.OptimizationInfo.html">nemos.solvers.OptimizationInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.SolverProtocol.html">nemos.solvers.SolverProtocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solvers/nemos.solvers.validate_solver_class.html">nemos.solvers.validate_solver_class</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../stochastic_optimization.html">Stochastic optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.batching.DataLoader.html">nemos.batching.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.batching.ArrayDataLoader.html">nemos.batching.ArrayDataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.batching.LazyArrayDataLoader.html">nemos.batching.LazyArrayDataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.Callback.html">nemos.callbacks.Callback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.CallbackList.html">nemos.callbacks.CallbackList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.SolverConvergenceCallback.html">nemos.callbacks.SolverConvergenceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.TestLossLogger.html">nemos.callbacks.TestLossLogger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.TrainingContext.html">nemos.callbacks.TrainingContext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.StochasticFitSummary.html">nemos.callbacks.StochasticFitSummary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../convolve.html">Convolution utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regularizer/nemos.convolve.create_convolutional_predictor.html">nemos.convolve.create_convolutional_predictor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../simulations.html">Simulations utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../simulation/nemos.simulation.simulate_recurrent.html">nemos.simulation.simulate_recurrent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation/nemos.simulation.difference_of_gammas.html">nemos.simulation.difference_of_gammas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation/nemos.simulation.regress_filter.html">nemos.simulation.regress_filter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../identifiability.html">Identifiability utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints.html">nemos.identifiability_constraints.apply_identifiability_constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../identifiability_constraints/nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component.html">nemos.identifiability_constraints.apply_identifiability_constraints_by_basis_component</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../basis.html" class="nav-link">Bases</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.basis._transformer_basis.TransformerBasis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="nemos-basis-transformer-basis-transformerbasis">
+<h1>nemos.basis._transformer_basis.TransformerBasis<a class="headerlink" href="#nemos-basis-transformer-basis-transformerbasis" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">nemos.basis._transformer_basis.</span></span><span class="sig-name descname"><span class="pre">TransformerBasis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Basis as <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> transformers.</p>
+<p>This class abstracts the underlying basis function details, offering methods
+similar to scikit-learn’s transformers but specifically designed for basis
+transformations. It supports fitting to data (calculating any necessary parameters
+of the basis functions), transforming data (applying the basis functions to
+data), and both fitting and transforming in one step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TransformerBasis</span></code>, unlike <code class="docutils literal notranslate"><span class="pre">Basis</span></code>, is compatible with scikit-learn pipelining and
+model selection, enabling the cross-validation of the basis type and parameters,
+for example <code class="docutils literal notranslate"><span class="pre">n_basis_funcs</span></code>. See the example section below.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Any <code class="docutils literal notranslate"><span class="pre">Eval</span></code> basis composing the transformer must have its <code class="docutils literal notranslate"><span class="pre">bounds</span></code> set, so its domain is
+fixed rather than re-inferred from each fold’s data during cross-validation. The example sets
+<code class="docutils literal notranslate"><span class="pre">bounds=(x.min(),</span> <span class="pre">x.max())</span></code> for this reason.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>basis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><code class="xref py py-class docutils literal notranslate"><span class="pre">Basis</span></code></a></span>) – A concrete subclass of <code class="docutils literal notranslate"><span class="pre">Basis</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">BSplineEval</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransformerBasis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.glm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">num_samples</span><span class="p">,</span> <span class="n">num_features</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="p">))</span>  <span class="c1"># raw time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">BSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># basis transformed time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">basis</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>  <span class="c1"># true weights</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">)))</span>  <span class="c1"># spike counts</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># transformer can be used in pipelines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer</span> <span class="o">=</span> <span class="n">TransformerBasis</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span> <span class="p">(</span><span class="s2">"compute_features"</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> <span class="p">(</span><span class="s2">"glm"</span><span class="p">,</span> <span class="n">GLM</span><span class="p">()),])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># x need to be 2D for sklearn transformer API</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">])</span> <span class="c1"># predict rate from new datas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># TransformerBasis parameter can be cross-validated.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 5-fold cross-validate the number of basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">compute_features__n_basis_funcs</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">grid_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">"Cross-validated number of basis:"</span><span class="p">,</span> <span class="n">grid_cv</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="go">Cross-validated number of basis: {'compute_features__n_basis_funcs': 10}</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.basis" title="nemos.basis._transformer_basis.TransformerBasis.basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code></a></p></td>
+<td><p>Return the wrapped basis.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>basis</strong> (<a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><em>Basis</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.__init__" title="nemos.basis._transformer_basis.TransformerBasis.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(basis)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.fit" title="nemos.basis._transformer_basis.TransformerBasis.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X[, y])</p></td>
+<td><p>Check the input structure and, if necessary, compute the convolutional kernels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.fit_transform" title="nemos.basis._transformer_basis.TransformerBasis.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(X[, y])</p></td>
+<td><p>Compute the kernels and the features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.get_params" title="nemos.basis._transformer_basis.TransformerBasis.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Extend the dict of parameters from the underlying Basis with basis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.set_params" title="nemos.basis._transformer_basis.TransformerBasis.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**parameters)</p></td>
+<td><p>Set TransformerBasis parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis.transform" title="nemos.basis._transformer_basis.TransformerBasis.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(X[, y])</p></td>
+<td><p>Transform the data using the fitted basis functions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__add__" title="Link to this definition">#</a></dt>
+<dd><p>Add two TransformerBasis objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a> | <a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><code class="xref py py-class docutils literal notranslate"><span class="pre">Basis</span></code></a></span>) – The other TransformerBasis object to add.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting Basis object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__dir__">
+<span class="sig-name descname"><span class="pre">__dir__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__dir__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__dir__" title="Link to this definition">#</a></dt>
+<dd><p>Extend the list of properties of methods with the ones from the underlying Basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__getattr__">
+<span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__getattr__" title="Link to this definition">#</a></dt>
+<dd><p>Enable easy access to attributes of the underlying Basis object.</p>
+<p>This method caches all chainable methods (methods returning self) in a dicitonary.
+These methods are created the first time they are accessed by decorating the <cite>self.basis.name</cite>
+and cached for future use.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="kn">import</span> <span class="n">basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bas</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearEval</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trans_bas</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">TransformerBasis</span><span class="p">(</span><span class="n">bas</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bas</span><span class="o">.</span><span class="n">n_basis_funcs</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trans_bas</span><span class="o">.</span><span class="n">n_basis_funcs</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__getitem__" title="Link to this definition">#</a></dt>
+<dd><p>Get the basis from label and wrap into a transformer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__getstate__">
+<span class="sig-name descname"><span class="pre">__getstate__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__getstate__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__getstate__" title="Link to this definition">#</a></dt>
+<dd><p>Explicitly define how to pickle TransformerBasis object.</p>
+<p>See <a class="reference external" href="https://docs.python.org/3/library/pickle.html#object.__getstate__">https://docs.python.org/3/library/pickle.html#object.__getstate__</a>
+and <a class="reference external" href="https://docs.python.org/3/library/pickle.html#pickle-state">https://docs.python.org/3/library/pickle.html#pickle-state</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__mul__" title="Link to this definition">#</a></dt>
+<dd><p>Multiply two TransformerBasis objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a> | <a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><code class="xref py py-class docutils literal notranslate"><span class="pre">Basis</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The other TransformerBasis object to multiply.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting Basis object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__pow__">
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exponent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__pow__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__pow__" title="Link to this definition">#</a></dt>
+<dd><p>Exponentiation of a TransformerBasis object.</p>
+<p>Define the power of a basis by repeatedly applying the method __mul__.
+The exponent must be a positive integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>exponent</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Positive integer exponent</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The product of the basis with itself “exponent” times. Equivalent to self * self * … * self.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If the provided exponent is not an integer.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If the integer is zero or negative.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__repr__" title="Link to this definition">#</a></dt>
+<dd><p>Repr for Transformer wrapped basis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__rmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__rmul__" title="Link to this definition">#</a></dt>
+<dd><p>Right multiplication operator for basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>other</strong> (<a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><em>TransformerBasis</em></a><em> | </em><a class="reference internal" href="../_basis/nemos.basis._basis.Basis.html#nemos.basis._basis.Basis" title="nemos.basis._basis.Basis"><em>Basis</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__setattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__setattr__" title="Link to this definition">#</a></dt>
+<dd><p>Allow setting basis or the attributes of basis with a convenient dot assignment syntax.</p>
+<p>Setting any other attribute is not allowed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If the attribute being set is not <code class="docutils literal notranslate"><span class="pre">basis</span></code> or an attribute of <code class="docutils literal notranslate"><span class="pre">basis</span></code>.</p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trans_bas</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">TransformerBasis</span><span class="p">(</span><span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">MSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># allowed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trans_bas</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># allowed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trans_bas</span><span class="o">.</span><span class="n">n_basis_funcs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># not allowed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">trans_bas</span><span class="o">.</span><span class="n">rand_atrr</span> <span class="o">=</span> <span class="s2">"some value"</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="go">ValueError('Only setting basis or existing attributes of basis is allowed. Attempt to set `rand_atrr`.')</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__setstate__">
+<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__setstate__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__setstate__" title="Link to this definition">#</a></dt>
+<dd><p>Define how to populate the object’s state when unpickling.</p>
+<p>Note that during unpickling a new object is created without calling __init__.
+Needed to avoid infinite recursion in __getattr__ when unpickling.</p>
+<p>See <a class="reference external" href="https://docs.python.org/3/library/pickle.html#object.__setstate__">https://docs.python.org/3/library/pickle.html#object.__setstate__</a>
+and <a class="reference external" href="https://docs.python.org/3/library/pickle.html#pickle-state">https://docs.python.org/3/library/pickle.html#pickle-state</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.__sklearn_clone__">
+<span class="sig-name descname"><span class="pre">__sklearn_clone__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.__sklearn_clone__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.__sklearn_clone__" title="Link to this definition">#</a></dt>
+<dd><p>Customize how TransformerBasis objects are cloned when used with sklearn.model_selection.</p>
+<p>By default, scikit-learn tries to clone the object by calling __init__ using the output of get_params,
+which fails in our case.</p>
+<p>For more info: <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#cloning">https://scikit-learn.org/stable/developers/develop.html#cloning</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.basis">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">basis</span></span><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.basis" title="Link to this definition">#</a></dt>
+<dd><p>Return the wrapped basis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.fit" title="Link to this definition">#</a></dt>
+<dd><p>Check the input structure and, if necessary, compute the convolutional kernels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">FeatureMatrix</span>) – The data to fit the basis functions to, shape (num_samples, num_input).</p></li>
+<li><p><strong>y</strong> (<em>ignored</em>) – Not used, present for API consistency by convention.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The transformer object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>self</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.14)"><strong>RuntimeError</strong></a> – <ul>
+<li><p>If the basis has no defined input shape (<code class="docutils literal notranslate"><span class="pre">self.n_basis_input</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>).
+      Call <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code> before <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, or <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>.
+    - If a component basis derives its domain from <code class="docutils literal notranslate"><span class="pre">bounds</span></code> but <code class="docutils literal notranslate"><span class="pre">bounds</span></code> is unset.
+      Such a basis would re-fit its domain to the input on every call, so <code class="docutils literal notranslate"><span class="pre">bounds</span></code> must
+      be set explicitly before it is used as a transformer.</p></li>
+</ul>
+</p></li>
+<li><p><strong>ValueError:</strong> – If the number of columns in X does not match <code class="docutils literal notranslate"><span class="pre">self.n_basis_input_</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">MSplineEval</span><span class="p">,</span> <span class="n">TransformerBasis</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example input</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Define and fit tranformation basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">MSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer</span> <span class="o">=</span> <span class="n">TransformerBasis</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer_fitted</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.fit_transform" title="Link to this definition">#</a></dt>
+<dd><p>Compute the kernels and the features.</p>
+<p>This method is a convenience that combines fit and transform into
+one step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">FeatureMatrix</span>) – The data to fit the basis functions to and then transform.</p></li>
+<li><p><strong>y</strong> – Not used, present for API consistency by convention.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The data transformed by the basis functions, after fitting the basis
+functions to the data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type">FeatureMatrix</span></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.14)"><strong>RuntimeError</strong></a> – <ul class="simple">
+<li><p>If the basis has no defined input shape (<code class="docutils literal notranslate"><span class="pre">self.n_basis_input</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>).
+      Call <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code> before <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, or <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>.
+    - If a component basis derives its domain from <code class="docutils literal notranslate"><span class="pre">bounds</span></code> but <code class="docutils literal notranslate"><span class="pre">bounds</span></code> is unset.
+      Such a basis would re-fit its domain to the input on every call, so <code class="docutils literal notranslate"><span class="pre">bounds</span></code> must
+      be set explicitly before it is used as a transformer.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">MSplineEval</span><span class="p">,</span> <span class="n">TransformerBasis</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example input</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Define tranformation basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">MSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer</span> <span class="o">=</span> <span class="n">TransformerBasis</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fit and transform basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature_transformed</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.get_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Extend the dict of parameters from the underlying Basis with basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>deep</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set TransformerBasis parameters.</p>
+<p>When used with <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code>, users can set either the <code class="docutils literal notranslate"><span class="pre">basis</span></code> attribute directly
+or the parameters of the underlying Basis, but not both.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">BSplineEval</span><span class="p">,</span> <span class="n">MSplineEval</span><span class="p">,</span> <span class="n">TransformerBasis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">MSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer_basis</span> <span class="o">=</span> <span class="n">TransformerBasis</span><span class="p">(</span><span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># setting parameters of basis is allowed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">transformer_basis</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">)</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># setting basis directly is allowed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">transformer_basis</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">basis</span><span class="o">=</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">basis</span><span class="p">))</span>
+<span class="go">&lt;class 'nemos.basis.basis.BSplineEval'&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># mixing is not allowed, this will raise an exception</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">transformer_basis</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">basis</span><span class="o">=</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="go">ValueError('Set either new basis object or parameters for existing basis, not both.')</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.basis._transformer_basis.TransformerBasis.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_transformer_basis.html#TransformerBasis.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis._transformer_basis.TransformerBasis.transform" title="Link to this definition">#</a></dt>
+<dd><p>Transform the data using the fitted basis functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">FeatureMatrix</span>) – The data to transform using the basis functions, shape (num_samples, num_input).</p></li>
+<li><p><strong>y</strong> – Not used, present for API consistency by convention.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">FeatureMatrix</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The data transformed by the basis functions.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.14)"><strong>RuntimeError</strong></a> – <ul class="simple">
+<li><p>If the basis has no defined input shape (<code class="docutils literal notranslate"><span class="pre">self.n_basis_input</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>).
+      Call <code class="docutils literal notranslate"><span class="pre">set_input_shape</span></code> before <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">transform</span></code>, or <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>.
+    - If a component basis derives its domain from <code class="docutils literal notranslate"><span class="pre">bounds</span></code> but <code class="docutils literal notranslate"><span class="pre">bounds</span></code> is unset.
+      Such a basis would re-fit its domain to the input on every call, so <code class="docutils literal notranslate"><span class="pre">bounds</span></code> must
+      be set explicitly before it is used as a transformer.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">MSplineConv</span><span class="p">,</span> <span class="n">TransformerBasis</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example input</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">MSplineConv</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer</span> <span class="o">=</span> <span class="n">TransformerBasis</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Before calling `fit` the convolution kernel is not set</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer</span><span class="o">.</span><span class="n">kernel_</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">transformer_fitted</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now the convolution kernel is initialized and has shape (window_size, n_basis_funcs)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformer_fitted</span><span class="o">.</span><span class="n">kernel_</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(200, 10)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Transform basis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature_transformed</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_custom_basis/nemos.basis._custom_basis.CustomBasis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">nemos.basis._custom_basis.CustomBasis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../observation_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Observation Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

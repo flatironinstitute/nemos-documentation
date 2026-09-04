@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basis Function &#8212; nemos 0.2.10.dev459 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=a2bd4ecc"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background/basis/README';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Simple Basis Function" href="plot_01_1D_basis_function.html" />
+    <link rel="prev" title="Generalized Linear Models: An Introduction" href="../plot_00_conceptual_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev459 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev459 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_00_conceptual_intro.html">Generalized Linear Models: An Introduction</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Basis Function</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html">Simple Basis Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html">Composing Basis Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndimensional_foureir_basis.html">Fourier Basis</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_07_glm_pytree.html">JAX Pytrees for Structuring Multiple Predictors</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../plot_03_1D_convolution.html">Convolution</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../README.html" class="nav-link">Background</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Basis Function</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basis-function">
+<h1>Basis Function<a class="headerlink" href="#basis-function" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><span id="table-basis"></span><table class="table table-center" id="table-basis">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Basis</strong></p></th>
+<th class="head"><p><strong>Kernel Visualization</strong></p></th>
+<th class="head"><p><strong>Examples</strong></p></th>
+<th class="head"><p><strong>Evaluation/Convolution</strong></p></th>
+<th class="head"><p><strong>Preferred Mode</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>B-Spline</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_bspline.png"><img alt="../../_images/basis_figs_plot_bspline.png" class="plot-directive" src="../../_images/basis_figs_plot_bspline.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../tutorials/plot_03_grid_cells.html#grid-cells-nemos"><span class="std std-ref">Grid cells</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.BSplineEval.html#nemos.basis.BSplineEval" title="nemos.basis.BSplineEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">BSplineEval</span></code></a> <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.BSplineConv.html#nemos.basis.BSplineConv" title="nemos.basis.BSplineConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">BSplineConv</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Cyclic B-Spline</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_cyclic_bspline.png"><img alt="../../_images/basis_figs_plot_cyclic_bspline.png" class="plot-directive" src="../../_images/basis_figs_plot_cyclic_bspline.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../tutorials/plot_05_place_cells.html#basis-eval-place-cells"><span class="std std-ref">Place cells</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.CyclicBSplineEval.html#nemos.basis.CyclicBSplineEval" title="nemos.basis.CyclicBSplineEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">CyclicBSplineEval</span></code></a>  <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.CyclicBSplineConv.html#nemos.basis.CyclicBSplineConv" title="nemos.basis.CyclicBSplineConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">CyclicBSplineConv</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>M-Spline</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_mspline.png"><img alt="../../_images/basis_figs_plot_mspline.png" class="plot-directive" src="../../_images/basis_figs_plot_mspline.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../tutorials/plot_05_place_cells.html#basis-eval-place-cells"><span class="std std-ref">Place cells</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.MSplineEval.html#nemos.basis.MSplineEval" title="nemos.basis.MSplineEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">MSplineEval</span></code></a>  <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.MSplineConv.html#nemos.basis.MSplineConv" title="nemos.basis.MSplineConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">MSplineConv</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Linearly Spaced Raised Cosine</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_raised_cosine_linear.png"><img alt="../../_images/basis_figs_plot_raised_cosine_linear.png" class="plot-directive" src="../../_images/basis_figs_plot_raised_cosine_linear.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.RaisedCosineLinearEval.html#nemos.basis.RaisedCosineLinearEval" title="nemos.basis.RaisedCosineLinearEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaisedCosineLinearEval</span></code></a>  <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.RaisedCosineLinearConv.html#nemos.basis.RaisedCosineLinearConv" title="nemos.basis.RaisedCosineLinearConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaisedCosineLinearConv</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Log Spaced Raised Cosine</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_raised_cosine_log.png"><img alt="../../_images/basis_figs_plot_raised_cosine_log.png" class="plot-directive" src="../../_images/basis_figs_plot_raised_cosine_log.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../tutorials/plot_02_head_direction.html#head-direction-reducing-dimensionality"><span class="std std-ref">Head Direction</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.RaisedCosineLogEval.html#nemos.basis.RaisedCosineLogEval" title="nemos.basis.RaisedCosineLogEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaisedCosineLogEval</span></code></a>  <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.RaisedCosineLogConv.html#nemos.basis.RaisedCosineLogConv" title="nemos.basis.RaisedCosineLogConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaisedCosineLogConv</span></code></a></p></td>
+<td><p>🔵 Conv</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Fourier Basis</strong> <span class="raw-html"><sup><a id="fnref-basis-1" href="#fn-basis-1" role="doc-noteref">1</a></sup></span></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_fourier_basis.png"><img alt="../../_images/basis_figs_plot_fourier_basis.png" class="plot-directive" src="../../_images/basis_figs_plot_fourier_basis.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval" title="nemos.basis.FourierEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">FourierEval</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Orthogonalized Exponential Decays</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_orth_exp_basis.png"><img alt="../../_images/basis_figs_plot_orth_exp_basis.png" class="plot-directive" src="../../_images/basis_figs_plot_orth_exp_basis.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.OrthExponentialEval.html#nemos.basis.OrthExponentialEval" title="nemos.basis.OrthExponentialEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrthExponentialEval</span></code></a>  <span class="raw-html"><br /></span>
+<a class="reference internal" href="../../api/generated/basis/nemos.basis.OrthExponentialConv.html#nemos.basis.OrthExponentialConv" title="nemos.basis.OrthExponentialConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrthExponentialConv</span></code></a></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Identity Function</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_identity_basis.png"><img alt="../../_images/basis_figs_plot_identity_basis.png" class="plot-directive" src="../../_images/basis_figs_plot_identity_basis.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../how_to_guide/custom_predictors.html#custom-features"><span class="std std-ref">Custom Features</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.IdentityEval.html#nemos.basis.IdentityEval" title="nemos.basis.IdentityEval"><code class="xref py py-class docutils literal notranslate"><span class="pre">IdentityEval</span></code></a>  <span class="raw-html"><br /></span></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>History Effects</strong></p></td>
+<td><figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_history_basis.png"><img alt="../../_images/basis_figs_plot_history_basis.png" class="plot-directive" src="../../_images/basis_figs_plot_history_basis.png" style="height: 80px;" />
+</a>
+</figure>
+</td>
+<td><p><a class="reference internal" href="../../how_to_guide/raw_history_feature.html#fully-coupled-glm-how-to"><span class="std std-ref">Coupled GLM</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.HistoryConv.html#nemos.basis.HistoryConv" title="nemos.basis.HistoryConv"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryConv</span></code></a>  <span class="raw-html"><br /></span></p></td>
+<td><p>🔵 Conv</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Zero Basis</strong> <span class="raw-html"><br /></span> <em>Model Selection</em></p></td>
+<td><a class="reference internal image-reference" href="../../_images/Empty_set.svg"><img alt="../../_images/Empty_set.svg" src="../../_images/Empty_set.svg" style="height: 80px;" />
+</a>
+</td>
+<td><p><a class="reference internal" href="../../how_to_guide/variable_selection_zero_basis.html#variable-selection"><span class="std std-ref">Model selection</span></a></p></td>
+<td><p><a class="reference internal" href="../../api/generated/basis/nemos.basis.Zero.html#nemos.basis.Zero" title="nemos.basis.Zero"><code class="xref py py-class docutils literal notranslate"><span class="pre">Zero</span></code></a>  <span class="raw-html"><br /></span></p></td>
+<td><p>🟢 Eval</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnote-list brackets">
+  <aside class="footnote brackets" id="fn-basis-1" role="doc-footnote">
+    <p>
+      <span class="label">[1]</span>
+      The Fourier basis follows a slightly different API compared to all other bases.
+      See <a class="reference internal" href="ndimensional_foureir_basis.html">documentation page</a>.
+      <a href="#fnref-basis-1" class="footnote-backref" role="doc-backlink">↩</a>
+    </p>
+  </aside>
+</div><section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>A basis function is a collection of simple building blocks—functions that, when combined (weighted and summed together), can represent more complex, non-linear relationships. Think of them as tools for constructing predictors in GLMs, helping to model:</p>
+<ol class="arabic simple">
+<li><p><strong>Non-linear mappings</strong> between task variables (like velocity or position) and firing rates.</p></li>
+<li><p><strong>Linear temporal effects</strong>, such as spike history, neuron-to-neuron couplings, or how stimuli are integrated over time.</p></li>
+</ol>
+<p>In a GLM, we assume a non-linear mapping exists between task variables and neuronal firing rates. This mapping isn’t something we can directly observe—what we do see are the inputs (task covariates) and the resulting neural activity. The challenge is to infer a “good” approximation of this hidden relationship.</p>
+<p>Basis functions help simplify this process by representing the non-linearity as a weighted sum of fixed functions, <span class="math notranslate nohighlight">\(\psi_1(x), \dots, \psi_n(x)\)</span>, with weights <span class="math notranslate nohighlight">\(\alpha_1, \dots, \alpha_n\)</span>. Mathematically:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) \approx \alpha_1 \psi_1(x) + \dots + \alpha_n \psi_n(x)
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\approx\)</span> means “approximately equal”.</p>
+<p>Instead of tackling the hard problem of learning an unknown function <span class="math notranslate nohighlight">\(f(x)\)</span> directly, we reduce it to the simpler task of learning the weights <span class="math notranslate nohighlight">\(\{\alpha_i\}\)</span>. This preserves convexity, resulting in a much simpler optimization problem.</p>
+</section>
+<section id="basis-in-nemos">
+<h2>Basis in NeMoS<a class="headerlink" href="#basis-in-nemos" title="Link to this heading">#</a></h2>
+<p>NeMoS provides a variety of basis functions (see the <a class="reference internal" href="#table-basis"><span class="std std-ref">table</span></a> above). For each basis type, there are two dedicated classes of objects, corresponding to the two uses described above:</p>
+<ul class="simple">
+<li><p><strong>Eval basis objects</strong>: For representing non-linear mappings between task variables and outputs. These objects all have names ending with <code class="docutils literal notranslate"><span class="pre">Eval</span></code>.</p></li>
+<li><p><strong>Conv basis objects</strong>: For linear temporal effects. These objects all have names ending with <code class="docutils literal notranslate"><span class="pre">Conv</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Eval</span></code> and <code class="docutils literal notranslate"><span class="pre">Conv</span></code> objects can be combined to construct multi-dimensional basis functions, enabling <a class="reference internal" href="plot_02_ND_basis_function.html#composing-basis-function"><span class="std std-ref">complex feature construction</span></a>.</p>
+</section>
+<section id="learn-more">
+<h2>Learn More<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_1d_basis_thumbnail.png"><img alt="../../_images/basis_figs_plot_1d_basis_thumbnail.png" class="plot-directive" src="../../_images/basis_figs_plot_1d_basis_thumbnail.png" style="height: 100px;" />
+</a>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="plot_01_1D_basis_function.html">Simple Basis Function</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html#defining-a-1d-basis-object">Defining a 1D Basis Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html#computing-features">Computing Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html#plotting-the-basis-function-elements">Plotting the Basis Function Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_01_1D_basis_function.html#setting-the-basis-support-eval-only">Setting the basis support (Eval only)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_nd_basis_thumbnail.png"><img alt="../../_images/basis_figs_plot_nd_basis_thumbnail.png" class="plot-directive" src="../../_images/basis_figs_plot_nd_basis_thumbnail.png" style="height: 100px;" />
+</a>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="plot_02_ND_basis_function.html">Composing Basis Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#d-basis-functions">2D Basis Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#n-dimensional-basis">N-Dimensional Basis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="plot-directive reference internal image-reference" href="../../_images/basis_figs_plot_fourier_basis.png"><img alt="../../_images/basis_figs_plot_fourier_basis.png" class="plot-directive" src="../../_images/basis_figs_plot_fourier_basis.png" style="height: 100px;" />
+</a>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ndimensional_foureir_basis.html">Fourier Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ndimensional_foureir_basis.html#one-dimensional-fourier-basis">One-Dimensional Fourier Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndimensional_foureir_basis.html#multi-dimensional-fourier-basis">Multi-Dimensional Fourier Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndimensional_foureir_basis.html#composing-with-the-fourier-basis">Composing with the Fourier basis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../plot_00_conceptual_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Generalized Linear Models: An Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_01_1D_basis_function.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simple Basis Function</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
