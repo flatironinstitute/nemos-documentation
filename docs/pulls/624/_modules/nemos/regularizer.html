@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.regularizer &#8212; nemos 0.2.10.dev541 documentation</title>
+    <title>nemos.regularizer &#8212; nemos 0.2.10.dev543 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=9434e7de"></script>
+    <script src="../../_static/documentation_options.js?v=07b4e9ad"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev541 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev541 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev543 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev543 documentation - Home"/>
   
   
 </a></div>
@@ -891,16 +891,56 @@
         <span class="k">return</span> <span class="n">prox_op</span></div>
 
 
+<div class="viewcode-block" id="Regularizer.penalty_fn">
+<a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.penalty_fn">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">penalty_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Return a function evaluating the penalty alone, given the parameters.</span>
+
+<span class="sd">        The penalty depends on the parameters only: the strength, and any other</span>
+<span class="sd">        ingredient the penalty needs (``GroupLasso``'s mask), are resolved once here by</span>
+<span class="sd">        ``_get_filter_kwargs``. ``_penalization`` then applies ``_penalty_on_subtree``</span>
+<span class="sd">        to each of ``params.regularizable_subtrees()``, which is what leaves the</span>
+<span class="sd">        intercept unpenalized.</span>
+
+<span class="sd">        Most callers want ``loss + penalty`` and should use ``penalized_loss``, which is</span>
+<span class="sd">        written in terms of this method so the two cannot disagree. This accessor is for</span>
+<span class="sd">        solvers needing the penalty on its own: a proximal solver differentiates the</span>
+<span class="sd">        smooth loss and reaches the penalty through its proximal operator, so it has to</span>
+<span class="sd">        evaluate :math:`P` without :math:`f` -- see</span>
+<span class="sd">        ``ProximalNewton._line_search_inputs``, whose sufficient-decrease slope is built</span>
+<span class="sd">        from :math:`P(\\beta + d) - P(\\beta)`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params:</span>
+<span class="sd">            Full, unsliced parameters. Used to expand the strength and to build any</span>
+<span class="sd">            mask, so the shape checks see the shapes the user passed.</span>
+<span class="sd">        strength:</span>
+<span class="sd">            The strength as the user set it.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A function mapping a parameter tree to the scalar penalty.</span>
+<span class="sd">        """</span>
+        <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_penalty</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_penalization</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="o">=</span><span class="n">filter_kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_penalty</span></div>
+
+
 <div class="viewcode-block" id="Regularizer.penalized_loss">
 <a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.penalized_loss">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">penalized_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a function for calculating the penalized loss."""</span>
 
-        <span class="n">filter_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filter_kwargs</span><span class="p">(</span><span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">penalty_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">penalty_fn</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">_penalized_loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">penalty</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_penalization</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">filter_kwargs</span><span class="o">=</span><span class="n">filter_kwargs</span><span class="p">)</span>
+            <span class="n">penalty</span> <span class="o">=</span> <span class="n">penalty_fn</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_check_loss_output_tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
                 <span class="n">loss_value</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">result</span>
@@ -1201,6 +1241,7 @@
         <span class="s2">"SVRG"</span><span class="p">,</span>
         <span class="s2">"ProxSVRG"</span><span class="p">,</span>
         <span class="s2">"Newton"</span><span class="p">,</span>
+        <span class="s2">"ProximalNewton"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"LBFGS"</span>
@@ -1250,6 +1291,7 @@
         <span class="s2">"SVRG"</span><span class="p">,</span>
         <span class="s2">"ProxSVRG"</span><span class="p">,</span>
         <span class="s2">"Newton"</span><span class="p">,</span>
+        <span class="s2">"ProximalNewton"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"LBFGS"</span>
@@ -1303,6 +1345,7 @@
     <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"ProximalGradient"</span><span class="p">,</span>
         <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+        <span class="s2">"ProximalNewton"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>
@@ -1371,6 +1414,7 @@
     <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"ProximalGradient"</span><span class="p">,</span>
         <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+        <span class="s2">"ProximalNewton"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>
@@ -1534,6 +1578,7 @@
     <span class="n">_allowed_solvers</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"ProximalGradient"</span><span class="p">,</span>
         <span class="s2">"ProxSVRG"</span><span class="p">,</span>
+        <span class="s2">"ProximalNewton"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">_default_solver</span> <span class="o">=</span> <span class="s2">"ProximalGradient"</span>

@@ -32,5 +32,6 @@
       ~ElasticNet.get_params
       ~ElasticNet.get_proximal_operator
       ~ElasticNet.penalized_loss
+      ~ElasticNet.penalty_fn
       ~ElasticNet.set_params
    

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev541 documentation</title>
+    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev543 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=9434e7de"></script>
+    <script src="../../../_static/documentation_options.js?v=07b4e9ad"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev541 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev541 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev543 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev543 documentation - Home"/>
   
   
 </a></div>
@@ -706,19 +706,27 @@ don’t follow a normal distribution.</p>
 <tbody>
 <tr class="row-even"><td><p>UnRegularized</p></td>
 <td><p>LBFGS</p></td>
-<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton</p></td>
+<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG,
+ProximalGradient, SVRG, ProxSVRG, Newton,
+ProximalNewton</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ridge</p></td>
 <td><p>Newton</p></td>
-<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton</p></td>
+<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG,
+ProximalGradient, SVRG, ProxSVRG, Newton,
+ProximalNewton</p></td>
 </tr>
 <tr class="row-even"><td><p>Lasso</p></td>
 <td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
 </tr>
-<tr class="row-odd"><td><p>GroupLasso</p></td>
+<tr class="row-odd"><td><p>ElasticNet</p></td>
 <td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
+</tr>
+<tr class="row-even"><td><p>GroupLasso</p></td>
 <td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
 </tr>
 </tbody>
 </table>
