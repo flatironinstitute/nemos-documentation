@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Convolve Large Arrays &#8212; nemos 0.2.10.dev542 documentation</title>
+    <title>Convolve Large Arrays &#8212; nemos 0.2.10.dev543 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=a3cc6db4"></script>
+    <script src="../_static/documentation_options.js?v=07b4e9ad"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev542 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev542 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev543 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev543 documentation - Home"/>
   
   
 </a></div>
@@ -770,7 +770,7 @@
  Text(1, 1.0, 'direct faster')]
 </pre></div>
 </div>
-<img alt="../_images/89ff0c7e4b68d1123bc770d5096dd9d732ee68cf10cfe602ec1416e3c3f64c87.png" src="../_images/89ff0c7e4b68d1123bc770d5096dd9d732ee68cf10cfe602ec1416e3c3f64c87.png" />
+<img alt="../_images/10f29489f69d2e0b44320606e63e4984373580fb83169120f8811798227d7f92.png" src="../_images/10f29489f69d2e0b44320606e63e4984373580fb83169120f8811798227d7f92.png" />
 </div>
 </div>
 <p>The boundary between the two regimes is nearly vertical: the window size decides the winner at almost any recording length. Direct convolution is faster for windows up to roughly 64 samples, the two are comparable between 64 and 128, and from a few hundred samples on the FFT wins at every recording length we tested, reaching a several-fold advantage for windows in the thousands. The dashed line is the rule the default <code class="docutils literal notranslate"><span class="pre">use_fft=None</span></code> applies, and it tracks the white band, so in most cases you can leave <code class="docutils literal notranslate"><span class="pre">use_fft</span></code> unset; pass an explicit value to force a backend, for example <code class="docutils literal notranslate"><span class="pre">use_fft=True</span></code> when convolving long windows inside a <code class="docutils literal notranslate"><span class="pre">jax.jit</span></code>-compiled function, where the automatic selection falls back to direct.</p>
