@@ -1,0 +1,39 @@
+﻿nemos.observation\_models.PoissonObservations
+=============================================
+
+.. currentmodule:: nemos.observation_models
+
+.. autoclass:: PoissonObservations
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PoissonObservations.default_inverse_link_function
+      ~PoissonObservations.glm_convexity_preserving_links
+      ~PoissonObservations.scale
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PoissonObservations.__init__
+      ~PoissonObservations.deviance
+      ~PoissonObservations.estimate_scale
+      ~PoissonObservations.get_params
+      ~PoissonObservations.likelihood
+      ~PoissonObservations.log_likelihood
+      ~PoissonObservations.pseudo_r2
+      ~PoissonObservations.sample_generator
+      ~PoissonObservations.set_params
+   

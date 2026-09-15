@@ -1,0 +1,64 @@
+﻿nemos.glm\_hmm.ClassifierGLMHMM
+===============================
+
+.. currentmodule:: nemos.glm_hmm
+
+.. autoclass:: ClassifierGLMHMM
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ClassifierGLMHMM.classes_
+      ~ClassifierGLMHMM.dirichlet_initial_proba
+      ~ClassifierGLMHMM.dirichlet_transition_proba
+      ~ClassifierGLMHMM.hmm_initialization_funcs
+      ~ClassifierGLMHMM.inverse_link_function
+      ~ClassifierGLMHMM.maxiter
+      ~ClassifierGLMHMM.model_initialization_funcs
+      ~ClassifierGLMHMM.n_classes
+      ~ClassifierGLMHMM.n_states
+      ~ClassifierGLMHMM.observation_model
+      ~ClassifierGLMHMM.optimizer_init_state
+      ~ClassifierGLMHMM.optimizer_run
+      ~ClassifierGLMHMM.optimizer_update
+      ~ClassifierGLMHMM.regularizer
+      ~ClassifierGLMHMM.regularizer_strength
+      ~ClassifierGLMHMM.seed
+      ~ClassifierGLMHMM.solver_kwargs
+      ~ClassifierGLMHMM.solver_name
+      ~ClassifierGLMHMM.solver_spec
+      ~ClassifierGLMHMM.tol
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ClassifierGLMHMM.__init__
+      ~ClassifierGLMHMM.compute_loss
+      ~ClassifierGLMHMM.decode_state
+      ~ClassifierGLMHMM.filter_proba
+      ~ClassifierGLMHMM.fit
+      ~ClassifierGLMHMM.get_model_params
+      ~ClassifierGLMHMM.get_params
+      ~ClassifierGLMHMM.initialize_optimizer_and_state
+      ~ClassifierGLMHMM.initialize_params
+      ~ClassifierGLMHMM.save_params
+      ~ClassifierGLMHMM.score
+      ~ClassifierGLMHMM.set_classes
+      ~ClassifierGLMHMM.set_params
+      ~ClassifierGLMHMM.setup
+      ~ClassifierGLMHMM.simulate
+      ~ClassifierGLMHMM.smooth_proba
+      ~ClassifierGLMHMM.update
+   
