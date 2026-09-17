@@ -1,0 +1,39 @@
+﻿nemos.regularizer.GroupLasso
+============================
+
+.. currentmodule:: nemos.regularizer
+
+.. autoclass:: GroupLasso
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GroupLasso.allowed_solvers
+      ~GroupLasso.default_solver
+      ~GroupLasso.mask
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GroupLasso.__init__
+      ~GroupLasso.allow_solver
+      ~GroupLasso.check_solver
+      ~GroupLasso.get_params
+      ~GroupLasso.get_proximal_operator
+      ~GroupLasso.initialize_mask
+      ~GroupLasso.penalized_loss
+      ~GroupLasso.resolve_hess_tag
+      ~GroupLasso.set_params
+   

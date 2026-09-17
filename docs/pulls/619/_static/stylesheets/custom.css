@@ -1,0 +1,97 @@
+html[data-theme=light]{
+  --pst-color-primary: rgb(52, 54, 99);
+  --pst-color-secondary: rgb(107, 161, 174);
+  --pst-color-link: rgb(74, 105, 145);
+  --pst-color-inline-code: rgb(96, 141, 130);
+}
+
+.iconify {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.sd-card-title {
+    height: 2.5rem; /* Adjust to a height that fits your content */
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem; /* Spacing between title and separator */
+}
+
+.sd-card-body hr {
+    width: 100%;
+    border: 0;
+    border-top: 2px solid #ddd; /* Light gray for a subtle line */
+    margin: 5%; /* Remove any default margin around the <hr> */
+}
+
+.sd-card-body {
+    padding-top: .5rem; /* Adjust padding for consistent layout */
+}
+
+.card-footer-content {
+    margin-top: auto; /* Pushes the footer content to the bottom */
+}
+
+
+/* Add vertical spacing between cards */
+.sd-col {
+    margin-bottom: 20px; /* Adjust this value as needed for desired spacing */
+}
+
+table.table-center{
+    text-align: center;
+}
+
+ #table-basis {
+    table-layout: auto;
+    width: 100%;
+}
+
+#table-basis th:nth-child(1), #table-basis td:nth-child(1) {
+    width: 22%;
+}
+
+#table-basis th:nth-child(2), #table-basis td:nth-child(2) {
+    width: 22%;
+}
+#table-basis th:nth-child(3), #table-basis td:nth-child(3) {
+    width: 10%;
+}
+
+#table-basis th:nth-child(4), #table-basis td:nth-child(4) {
+    width: 20%;
+}
+#table-basis th:nth-child(5), #table-basis td:nth-child(5) {
+    width: 10%;
+}
+
+/* Predictor summary tables (Input | Definition | Interpretation).
+   Give the Definition column enough room for its formulas, which are
+   inline math and get broken mid-expression when the column is too narrow. */
+.predictor-table table {
+    table-layout: fixed;
+    width: 100%;
+    /* on narrow viewports let the wrapper scroll instead of squeezing the formulas */
+    min-width: 44rem;
+}
+
+.predictor-table th:nth-child(1), .predictor-table td:nth-child(1) {
+    width: 20%;
+}
+
+.predictor-table th:nth-child(2), .predictor-table td:nth-child(2) {
+    width: 54%;
+}
+
+.predictor-table th:nth-child(3), .predictor-table td:nth-child(3) {
+    width: 26%;
+}
+
+/* Header navigation: two-word section names ("Getting Started", "API Reference")
+   were breaking mid-label, staggering the bar over two ragged lines. Keep each
+   entry whole; if the row runs out of room, whole entries wrap instead. */
+.bd-header .navbar-nav li a.nav-link {
+    white-space: nowrap;
+}

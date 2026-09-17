@@ -1,0 +1,38 @@
+﻿nemos.observation\_models.Observations
+======================================
+
+.. currentmodule:: nemos.observation_models
+
+.. autoclass:: Observations
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Observations.default_inverse_link_function
+      ~Observations.scale
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Observations.__init__
+      ~Observations.deviance
+      ~Observations.estimate_scale
+      ~Observations.get_params
+      ~Observations.likelihood
+      ~Observations.log_likelihood
+      ~Observations.pseudo_r2
+      ~Observations.sample_generator
+      ~Observations.set_params
+   
