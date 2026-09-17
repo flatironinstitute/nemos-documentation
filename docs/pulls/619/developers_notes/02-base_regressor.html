@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The Abstract Class BaseRegressor &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>The Abstract Class BaseRegressor &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../_static/documentation_options.js?v=29234efd"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -451,6 +451,7 @@
 <li class="toctree-l1"><a class="reference internal" href="05-observation_models.html">The <code class="docutils literal notranslate"><span class="pre">observation_models</span></code> Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-solvers.html">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-hessian_tagging.html">Hessian tagging</a></li>
 </ul>
 </div>
 </nav></div>
@@ -609,7 +610,9 @@ As a <code class="docutils literal notranslate"><span class="pre">BaseRegressor<
 <li><p><strong>Should not</strong> overwrite the <code class="docutils literal notranslate"><span class="pre">get_params</span></code> and <code class="docutils literal notranslate"><span class="pre">set_params</span></code> methods, inherited from <code class="docutils literal notranslate"><span class="pre">Base</span></code>.</p></li>
 <li><p><strong>May</strong> introduce auxiliary methods for added utility.</p></li>
 <li><p><strong>May</strong> re-implement the <code class="docutils literal notranslate"><span class="pre">__sklearn_tags__</span></code> method to add metadata that is relevant to the specific estimator implemented. See the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.Tags.html#sklearn.utils.Tags"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> documentation</a> for the available tagging options.</p></li>
+<li><p><strong>May</strong> certify something about the curvature of its loss, by overriding <code class="docutils literal notranslate"><span class="pre">_resolve_hess_property</span></code> (the sign), <code class="docutils literal notranslate"><span class="pre">_definite_on</span></code> (the leaves whose block is definite), <code class="docutils literal notranslate"><span class="pre">_hess_structure</span></code> and <code class="docutils literal notranslate"><span class="pre">_hess_batch_axes</span></code>. Every default certifies nothing, so a subclass that overrides none of them still gets a correct tag and a solver that assumes the least about the Hessian. See <a class="reference internal" href="08-hessian_tagging.html"><span class="std std-doc">Hessian tagging</span></a>.</p></li>
 </ul>
+<p>TODO: the tag has no hook for a loss that is <em>flat</em> on a leaf, because no model here has one. Two situations would need it, and they are worth settling before a subclass runs into either: a parameter the loss never references, which only the penalty curves on, and a Lagrange multiplier, whose diagonal block is structurally zero. The second also needs the tag to stay unsigned, since a flat claim implies nothing about the null space of an indefinite matrix.</p>
 <div class="note admonition">
 <p class="admonition-title">Tags</p>
 <p>Tags are not needed for estimators to function correctly, as long as the required methods (<code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code>,…) are implemented. Citing the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#estimator-tags">documentation for the estimator API</a>,</p>

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../../../_static/documentation_options.js?v=29234efd"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -502,9 +502,9 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation_models</span> <span class="k">as</span> <span class="n">obs</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._hess</span><span class="w"> </span><span class="kn">import</span> <span class="n">LeafClaim</span><span class="p">,</span> <span class="n">MatrixStructure</span><span class="p">,</span> <span class="n">claim_nothing</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..label_encoder</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..regularizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticNet</span><span class="p">,</span> <span class="n">GroupLasso</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">,</span> <span class="n">Ridge</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers._hess</span><span class="w"> </span><span class="kn">import</span> <span class="n">BlockDiagonal</span><span class="p">,</span> <span class="n">Full</span><span class="p">,</span> <span class="n">HessianTag</span><span class="p">,</span> <span class="n">PositiveSemiDefinite</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_numpy_array_like</span><span class="p">,</span> <span class="n">support_pynapple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span>
@@ -528,11 +528,30 @@
     <span class="c1"># observation model inferred</span>
     <span class="n">_invalid_observation_types</span> <span class="o">=</span> <span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_hess_property_override</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># The softmax loss is singular along the (unregularized) uniform intercept</span>
-        <span class="c1"># shift, so Ridge does not make the penalized Hessian positive definite. Unlike</span>
-        <span class="c1"># a plain GLM, this loss certifies nothing extra -- no override.</span>
-        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_hess_leaf_claims</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GLMParams</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">active_spec</span><span class="p">:</span> <span class="n">GLMParams</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GLMParams</span><span class="p">[</span><span class="n">LeafClaim</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Certify nothing, unlike the plain GLM this inherits from.</span>
+
+<span class="sd">        Adding the same constant to every class's intercept leaves the softmax</span>
+<span class="sd">        probabilities unchanged, so the intercept block is singular along that direction</span>
+<span class="sd">        rather than definite.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params :</span>
+<span class="sd">            The parameters being fitted.</span>
+<span class="sd">        active_spec :</span>
+<span class="sd">            The filter spec ``params`` was partitioned with. Unused: nothing is certified</span>
+<span class="sd">            whether or not a leaf is being fitted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A tree shaped like ``params`` carrying ``LeafClaim.UNCLAIMED``</span>
+<span class="sd">            everywhere.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">claim_nothing</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClassifierMixin</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
@@ -588,7 +607,9 @@
 <span class="sd">        &gt;&gt;&gt; model.set_classes(y_all_classes)</span>
 <span class="sd">        ClassifierGLM(...)</span>
 <span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X_batch1, y_batch1)</span>
-<span class="sd">        &gt;&gt;&gt; state = model.initialize_optimizer_and_state(init_params, X_batch1, y_batch1)</span>
+<span class="sd">        &gt;&gt;&gt; state = model.initialize_optimizer_and_state(</span>
+<span class="sd">        ...     init_params, X_batch1, y_batch1</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Now batches with any subset of classes work with :meth:`update`:</span>
 
@@ -1205,7 +1226,9 @@
 
 <span class="sd">    Classify into more than two classes:</span>
 
-<span class="sd">    &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]])</span>
+<span class="sd">    &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1, 2, 2])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
@@ -1216,9 +1239,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(</span>
-<span class="sd">    ...     n_classes=2,</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.5</span>
+<span class="sd">    ...     n_classes=2, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1236,7 +1257,6 @@
 <span class="sd">    """</span>
 
     <span class="n">_validator_class</span> <span class="o">=</span> <span class="n">ClassifierGLMValidator</span>
-    <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">Full</span><span class="p">,</span> <span class="nb">property</span><span class="o">=</span><span class="n">PositiveSemiDefinite</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ClassifierGLM.__init__">
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.__init__">[docs]</a>
@@ -1472,7 +1492,9 @@
 <span class="sd">    &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">    &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
@@ -1498,7 +1520,9 @@
 
 <span class="sd">    Class labels can be strings or any hashable type:</span>
 
-<span class="sd">    &gt;&gt;&gt; y_str = np.array([["a", "a"], ["a", "b"], ["b", "a"], ["b", "c"], ["c", "b"], ["c", "c"]])</span>
+<span class="sd">    &gt;&gt;&gt; y_str = np.array(</span>
+<span class="sd">    ...     [["a", "a"], ["a", "b"], ["b", "a"], ["b", "c"], ["c", "b"], ["c", "c"]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y_str)</span>
 <span class="sd">    &gt;&gt;&gt; model.classes_</span>
 <span class="sd">    array(['a', 'b', 'c'], dtype='&lt;U1')</span>
@@ -1512,8 +1536,7 @@
 <span class="sd">    &gt;&gt;&gt; feature_mask = jnp.array([[1, 0], [1, 1]])</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3,</span>
-<span class="sd">    ...     feature_mask=feature_mask</span>
+<span class="sd">    ...     n_classes=3, feature_mask=feature_mask</span>
 <span class="sd">    ... ).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_</span>
 <span class="sd">    Array(...)</span>
@@ -1523,9 +1546,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3,</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.5</span>
+<span class="sd">    ...     n_classes=3, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1542,11 +1563,9 @@
 <span class="sd">    """</span>
 
     <span class="n">_validator_class</span> <span class="o">=</span> <span class="n">PopulationClassifierGLMValidator</span>
-    <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span>
-        <span class="n">structure</span><span class="o">=</span><span class="n">BlockDiagonal</span><span class="p">,</span>
-        <span class="nb">property</span><span class="o">=</span><span class="n">PositiveSemiDefinite</span><span class="p">,</span>
-        <span class="n">batch_axes</span><span class="o">=</span><span class="n">GLMParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">)</span>
+    <span class="c1"># One block per neuron, as in ``PopulationGLM``.</span>
+    <span class="n">_hess_structure</span> <span class="o">=</span> <span class="n">MatrixStructure</span><span class="o">.</span><span class="n">BLOCK_DIAGONAL</span>
+    <span class="n">_hess_batch_axes</span> <span class="o">=</span> <span class="n">GLMParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ClassifierPopulationGLM.__init__">
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.__init__">[docs]</a>
@@ -1650,7 +1669,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">        &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3)</span>
 <span class="sd">        &gt;&gt;&gt; model = model.fit(X, y)</span>
@@ -1702,7 +1723,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">        &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; score = model.score(X, y)</span>

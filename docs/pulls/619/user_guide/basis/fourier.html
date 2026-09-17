@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fourier Basis &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>Fourier Basis &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../../_static/documentation_options.js?v=29234efd"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -2034,29 +2034,29 @@ shape of the `masked_frequencies` array: (2, 31)
 <span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> has no bounds."</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">164</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:564,</span> in <span class="ni">FourierBasis.frequency_mask</span><span class="nt">(self, values)</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
-<span class="g g-Whitespace">    </span><span class="mi">563</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">564</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_array_frequency_mask</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="c1"># used to drop or not the zero phase</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="mi">0</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span> <span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:563,</span> in <span class="ni">FourierBasis.frequency_mask</span><span class="nt">(self, values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_array_frequency_mask</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="c1"># used to drop or not the zero phase</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span>     <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span> <span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:594,</span> in <span class="ni">FourierBasis._set_array_frequency_mask</span><span class="nt">(self, values)</span>
-<span class="g g-Whitespace">    </span><span class="mi">592</span> <span class="n">expected_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">593</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">expected_len</span><span class="p">,):</span>
-<span class="ne">--&gt; </span><span class="mi">594</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">595</span>         <span class="sa">f</span><span class="s2">"Mis-shaped ``frequency_mask``. An array mask must have shape "</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>         <span class="sa">f</span><span class="s2">"``(</span><span class="si">{</span><span class="n">expected_len</span><span class="si">}</span><span class="s2">,)``, one entry per frequency combination: "</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="sa">f</span><span class="s2">"entry ``i`` keeps (1/True) or drops (0/False) the combination "</span>
-<span class="g g-Whitespace">    </span><span class="mi">598</span>         <span class="sa">f</span><span class="s2">"``masked_frequencies[:, i]``. Print the ``masked_frequencies`` "</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span>         <span class="s2">"attribute to see the combinations currently included."</span>
-<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="n">values</span><span class="p">]</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_fourier_basis.py:593,</span> in <span class="ni">FourierBasis._set_array_frequency_mask</span><span class="nt">(self, values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="n">expected_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">expected_len</span><span class="p">,):</span>
+<span class="ne">--&gt; </span><span class="mi">593</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span>         <span class="sa">f</span><span class="s2">"Mis-shaped ``frequency_mask``. An array mask must have shape "</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span>         <span class="sa">f</span><span class="s2">"``(</span><span class="si">{</span><span class="n">expected_len</span><span class="si">}</span><span class="s2">,)``, one entry per frequency combination: "</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span>         <span class="sa">f</span><span class="s2">"entry ``i`` keeps (1/True) or drops (0/False) the combination "</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="sa">f</span><span class="s2">"``masked_frequencies[:, i]``. Print the ``masked_frequencies`` "</span>
+<span class="g g-Whitespace">    </span><span class="mi">598</span>         <span class="s2">"attribute to see the combinations currently included."</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">601</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">values</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="n">values</span><span class="p">]</span>
 
 <span class="ne">ValueError</span>: Mis-shaped ``frequency_mask``. An array mask must have shape ``(12,)``, one entry per frequency combination: entry ``i`` keeps (1/True) or drops (0/False) the combination ``masked_frequencies[:, i]``. Print the ``masked_frequencies`` attribute to see the combinations currently included.
 </pre></div>
@@ -2272,41 +2272,41 @@ shape of the `masked_frequencies` array: (2, 31)
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1">#   - (fourier + bspline) * fourier</span>
 <span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">mul</span> <span class="o">*</span> <span class="n">mul</span>  <span class="c1"># raises by design</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_composition_utils.py:657,</span> in <span class="ni">promote_to_transformer.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">655</span> <span class="n">args_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="n">kwargs_bas</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-<span class="ne">--&gt; </span><span class="mi">657</span> <span class="n">out</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args_bas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_bas</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="n">any_transformer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">659</span>     <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">660</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">661</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">664</span> <span class="k">if</span> <span class="n">any_transformer</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="s2">"to_transformer"</span><span class="p">):</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_composition_utils.py:655,</span> in <span class="ni">promote_to_transformer.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span> <span class="n">args_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> <span class="n">kwargs_bas</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="ne">--&gt; </span><span class="mi">655</span> <span class="n">out</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args_bas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_bas</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="n">any_transformer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span>     <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span> <span class="k">if</span> <span class="n">any_transformer</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="s2">"to_transformer"</span><span class="p">):</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:464,</span> in <span class="ni">Basis.__mul__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">is_basis_like</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="s2">"Basis multiplicative factor should be a Basis object or a positive integer!"</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">464</span> <span class="k">return</span> <span class="n">MultiplicativeBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:463,</span> in <span class="ni">Basis.__mul__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">is_basis_like</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>         <span class="s2">"Basis multiplicative factor should be a Basis object or a positive integer!"</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">463</span> <span class="k">return</span> <span class="n">MultiplicativeBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:1005,</span> in <span class="ni">MultiplicativeBasis.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
-<span class="g g-Whitespace">    </span><span class="mi">999</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1000</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1001</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1002</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1003</span>         <span class="n">basis2</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span>     <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1005</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1006</span>             <span class="s2">"Invalid multiplication between two complex bases.</span><span class="se">\n</span><span class="s2">"</span>
-<span class="g g-Whitespace">   </span><span class="mi">1007</span>             <span class="s2">"Fourier basis are complex bases, and "</span>
-<span class="g g-Whitespace">   </span><span class="mi">1008</span>             <span class="s2">"the multiplication of a real basis with a Fourier bases results in a complex basis as well. "</span>
-<span class="g g-Whitespace">   </span><span class="mi">1009</span>             <span class="s2">"Multiplication between two complex bases is not allowed in NeMoS as it would treat "</span>
-<span class="g g-Whitespace">   </span><span class="mi">1010</span>             <span class="s2">"real and imaginary columns alike."</span>
-<span class="g g-Whitespace">   </span><span class="mi">1011</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1012</span>     <span class="n">input_shape1</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis1</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span>     <span class="n">input_shape2</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:1008,</span> in <span class="ni">MultiplicativeBasis.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1003</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span>         <span class="n">basis2</span><span class="p">,</span> <span class="s2">"is_complex"</span><span class="p">,</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1007</span>     <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1008</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span>             <span class="s2">"Invalid multiplication between two complex bases.</span><span class="se">\n</span><span class="s2">"</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>             <span class="s2">"Fourier basis are complex bases, and "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1011</span>             <span class="s2">"the multiplication of a real basis with a Fourier bases results in a complex basis as well. "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span>             <span class="s2">"Multiplication between two complex bases is not allowed in NeMoS as it would treat "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span>             <span class="s2">"real and imaginary columns alike."</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">input_shape1</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis1</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span>     <span class="n">input_shape2</span> <span class="o">=</span> <span class="n">get_input_shape</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: Invalid multiplication between two complex bases.
 <span class="n">Fourier</span> <span class="n">basis</span> <span class="n">are</span> <span class="nb">complex</span> <span class="n">bases</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">multiplication</span> <span class="n">of</span> <span class="n">a</span> <span class="n">real</span> <span class="n">basis</span> <span class="k">with</span> <span class="n">a</span> <span class="n">Fourier</span> <span class="n">bases</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">basis</span> <span class="k">as</span> <span class="n">well</span><span class="o">.</span> <span class="n">Multiplication</span> <span class="n">between</span> <span class="n">two</span> <span class="nb">complex</span> <span class="n">bases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">NeMoS</span> <span class="k">as</span> <span class="n">it</span> <span class="n">would</span> <span class="n">treat</span> <span class="n">real</span> <span class="ow">and</span> <span class="n">imaginary</span> <span class="n">columns</span> <span class="n">alike</span><span class="o">.</span>

@@ -34,6 +34,6 @@
       ~GroupLasso.get_proximal_operator
       ~GroupLasso.initialize_mask
       ~GroupLasso.penalized_loss
-      ~GroupLasso.resolve_hess_tag
+      ~GroupLasso.penalty_fn
       ~GroupLasso.set_params
    

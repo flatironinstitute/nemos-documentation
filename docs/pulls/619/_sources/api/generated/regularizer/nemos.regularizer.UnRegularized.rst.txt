@@ -32,6 +32,6 @@
       ~UnRegularized.get_params
       ~UnRegularized.get_proximal_operator
       ~UnRegularized.penalized_loss
-      ~UnRegularized.resolve_hess_tag
+      ~UnRegularized.penalty_fn
       ~UnRegularized.set_params
    

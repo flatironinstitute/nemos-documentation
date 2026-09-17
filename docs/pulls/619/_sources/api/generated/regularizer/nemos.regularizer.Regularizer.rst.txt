@@ -32,6 +32,6 @@
       ~Regularizer.get_params
       ~Regularizer.get_proximal_operator
       ~Regularizer.penalized_loss
-      ~Regularizer.resolve_hess_tag
+      ~Regularizer.penalty_fn
       ~Regularizer.set_params
    

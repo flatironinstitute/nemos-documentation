@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Stopping on convergence and custom callbacks &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>Stopping on convergence and custom callbacks &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../_static/documentation_options.js?v=29234efd"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -633,7 +633,7 @@ In the <a class="reference internal" href="stochastic_fit.html"><span class="std
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../_images/b3c215be0cb3ce03a8ff090a8009400cc47a31a8b1baa82a0aefbf4d572c6338.png" src="../_images/b3c215be0cb3ce03a8ff090a8009400cc47a31a8b1baa82a0aefbf4d572c6338.png" />
+<img alt="../_images/7377419186a731c7510ab508832a3aa91961ceff29cdb626eb729c74870af19a.png" src="../_images/7377419186a731c7510ab508832a3aa91961ceff29cdb626eb729c74870af19a.png" />
 </div>
 </div>
 <section id="create-a-custom-callback-for-early-stopping">
@@ -1518,7 +1518,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7ffa4828f880&gt;</td>
+            <td class="value">&lt;function exp...x7f1a483a3560&gt;</td>
         </tr>
     
 
@@ -1644,7 +1644,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-1.490...dtype=float64)</td>
+           <td>Array([-1.495...dtype=float64)</td>
 
 
        </tr>
@@ -1673,7 +1673,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">stochastic_fit_summary_</a></td>
            <td class="fitted-att-type">StochasticFitSummary</td>
-           <td>StochasticFit...: 3.448696\n&#x27;)</td>
+           <td>StochasticFit...: 3.457315\n&#x27;)</td>
 
 
        </tr>
@@ -1868,10 +1868,10 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffabd1fcda0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1a88f08fe0&gt;
 </pre></div>
 </div>
-<img alt="../_images/ec1e048568b635d0d118516d67a4a88e5c4dec0e190a11634c01da265a6b1513.png" src="../_images/ec1e048568b635d0d118516d67a4a88e5c4dec0e190a11634c01da265a6b1513.png" />
+<img alt="../_images/2a3eaac954e3d816d9aded2ed9785587d3ebfefe8449a0310250642f8630047b.png" src="../_images/2a3eaac954e3d816d9aded2ed9785587d3ebfefe8449a0310250642f8630047b.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1914,8 +1914,8 @@ through <code class="docutils literal notranslate"><span class="pre">stochastic_
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loss improved by less than 0.02 for 5 consecutive passes through the data (training epochs).
-last loss: 3.449886
-reference loss: 3.448696
+last loss: 3.448784
+reference loss: 3.457315
 </pre></div>
 </div>
 </div>
@@ -1999,7 +1999,7 @@ We then average along basis to get a weight matrix of shape <code class="docutil
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, 'Full model'), Text(0.5, 0, 'Neuron')]
 </pre></div>
 </div>
-<img alt="../_images/6cecb38bddc1fa8b7b68d560e90d553f06a077cd1fddd258c7f4dfa02c33e337.png" src="../_images/6cecb38bddc1fa8b7b68d560e90d553f06a077cd1fddd258c7f4dfa02c33e337.png" />
+<img alt="../_images/5224a3eebd91ec57ea70d3225c3e7d3e7ec41bf3b845cb63a7bb183a1147a82c.png" src="../_images/5224a3eebd91ec57ea70d3225c3e7d3e7ec41bf3b845cb63a7bb183a1147a82c.png" />
 </div>
 </div>
 <p>As we can see, the batch model starts to approximate the full model.</p>

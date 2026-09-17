@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Neural ModelS &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>Neural ModelS &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="_static/documentation_options.js?v=29234efd"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -139,8 +139,8 @@
       
     
     
-    <img src="_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -469,72 +469,180 @@
 <p>NeMoS (Neural ModelS) is a statistical modeling framework optimized for systems neuroscience and powered by <a class="reference external" href="https://jax.readthedocs.io/en/latest/">JAX</a>.
 It streamlines the process of defining and selecting models, through a collection of easy-to-use methods for feature design.</p>
 <p>The core of NeMoS includes GPU-accelerated, well-tested implementations of standard statistical models for systems neuroscience.</p>
-<p>We provide:</p>
-<ul class="simple">
-<li><p>A <a class="reference internal" href="api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">GLM</span></code></a> for single neurons and a <a class="reference internal" href="api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">PopulationGLM</span></code></a>, with a choice of <a class="reference internal" href="api/observation_models.html#observation-models"><span class="std std-ref">observation models</span></a> (<a class="reference internal" href="api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations" title="nemos.observation_models.PoissonObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Poisson</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations" title="nemos.observation_models.NegativeBinomialObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Negative</span> <span class="pre">Binomial</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.GammaObservations.html#nemos.observation_models.GammaObservations" title="nemos.observation_models.GammaObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gamma</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.GaussianObservations.html#nemos.observation_models.GaussianObservations" title="nemos.observation_models.GaussianObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gaussian</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.BernoulliObservations.html#nemos.observation_models.BernoulliObservations" title="nemos.observation_models.BernoulliObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bernoulli</span></code></a>) and a <a class="reference internal" href="api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></a> for categorical responses.</p></li>
-<li><p>A composable <a class="reference internal" href="api/basis.html#nemos-basis"><span class="std std-ref">basis module</span></a> for constructing and transforming model features.</p></li>
-<li><p>Multiple <a class="reference internal" href="api/regularizers.html#regularizers"><span class="std std-ref">regularization schemes</span></a>: <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.Ridge.html#nemos.regularizer.Ridge" title="nemos.regularizer.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.Lasso.html#nemos.regularizer.Lasso" title="nemos.regularizer.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso" title="nemos.regularizer.GroupLasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupLasso</span></code></a>, and <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.ElasticNet.html#nemos.regularizer.ElasticNet" title="nemos.regularizer.ElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticNet</span></code></a>.</p></li>
-</ul>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-3 sd-row-cols-lg-3 docutils">
+<div class="sd-row sd-row-cols-auto sd-row-cols-xs-auto sd-row-cols-sm-auto sd-row-cols-md-auto sd-row-cols-lg-auto docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a></p>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="user_guide/README.html"><span class="doc">User Guide</span></a></p>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="how_to_guide/README.html"><span class="doc">How-To Guide</span></a></p>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="tutorials/README.html"><span class="doc">Tutorials</span></a></p>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="api/index.html"><span class="doc">API Reference</span></a></p>
+</div>
+</div>
+</div>
+<section id="models">
+<h2><strong>Models</strong><a class="headerlink" href="#models" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>GLM</strong></div>
+<img alt="Linear-Nonlinear-Poisson diagram." class="only-light" src="_images/lnp_model_colscheme.svg" style="width: 100%;" />
+<img alt="Linear-Nonlinear-Poisson diagram." class="only-dark" src="_images/lnp_model_colscheme_dark.svg" style="width: 100%;" />
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>GLM-HMM</strong></div>
+<img alt="GLM-HMM graphical model." class="only-light" src="_images/glm_hmm_graphical_model.svg" style="width: 100%;" />
+<img alt="GLM-HMM graphical model." class="only-dark" src="_images/glm_hmm_graphical_model_dark.svg" style="width: 100%;" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Within the same model class, you can configure:</p>
+<ul class="simple">
+<li><p><strong>Observation models</strong>: <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations" title="nemos.observation_models.PoissonObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Poisson</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations" title="nemos.observation_models.NegativeBinomialObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">NegativeBinomial</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.GammaObservations.html#nemos.observation_models.GammaObservations" title="nemos.observation_models.GammaObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gamma</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.GaussianObservations.html#nemos.observation_models.GaussianObservations" title="nemos.observation_models.GaussianObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gaussian</span></code></a>, <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.BernoulliObservations.html#nemos.observation_models.BernoulliObservations" title="nemos.observation_models.BernoulliObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bernoulli</span></code></a>. Categorical responses are the exception, and are fit with <a class="reference internal" href="api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></a>, a separate class that fixes <a class="reference internal" href="api/generated/observation_models/nemos.observation_models.CategoricalObservations.html#nemos.observation_models.CategoricalObservations" title="nemos.observation_models.CategoricalObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalObservations</span></code></a> as its observation model.</p></li>
+<li><p><strong>Regularizers</strong>: <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.UnRegularized.html#nemos.regularizer.UnRegularized" title="nemos.regularizer.UnRegularized"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnRegularized</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.Ridge.html#nemos.regularizer.Ridge" title="nemos.regularizer.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.Lasso.html#nemos.regularizer.Lasso" title="nemos.regularizer.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso" title="nemos.regularizer.GroupLasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupLasso</span></code></a>, <a class="reference internal" href="api/generated/regularizer/nemos.regularizer.ElasticNet.html#nemos.regularizer.ElasticNet" title="nemos.regularizer.ElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticNet</span></code></a>.</p></li>
+</ul>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-4 sd-row-cols-lg-4 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>Spike counts</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_counts_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_counts_thumbnail.png" style="height: 100px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_counts_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_counts_thumbnail_dark.png" style="height: 100px;" />
+</figure>
+<div style="text-align: center;">
+<p class="sd-card-text">GLM<br/>GLM-HMM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>Continuous signals</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_continuous_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_continuous_thumbnail.png" style="height: 100px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_continuous_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_continuous_thumbnail_dark.png" style="height: 100px;" />
+</figure>
+<div style="text-align: center;">
+<p class="sd-card-text">GLM<br/>GLM-HMM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>Binary outcomes</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_binary_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_binary_thumbnail.png" style="height: 100px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_binary_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_binary_thumbnail_dark.png" style="height: 100px;" />
+</figure>
+<div style="text-align: center;">
+<p class="sd-card-text">GLM<br/>GLM-HMM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<strong>Choices and categories</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_choices_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_choices_thumbnail.png" style="height: 100px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_choices_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_choices_thumbnail_dark.png" style="height: 100px;" />
+</figure>
+<div style="text-align: center;">
+<p class="sd-card-text">ClassifierGLM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="building-the-features">
+<h2><strong>Building the features</strong><a class="headerlink" href="#building-the-features" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-<span class="iconify" data-icon="mdi:clock-fast"></span>   <strong>Getting Started</strong></div>
-<hr class="docutils" />
-<p class="sd-card-text">Install NeMoS and fit a first model with our quickstart.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">nemos</span>
-</pre></div>
+<strong>Building blocks</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_zoo_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_zoo_thumbnail.png" style="height: 140px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_zoo_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_zoo_thumbnail_dark.png" style="height: 140px;" />
+</figure>
+<p class="sd-card-text">B-splines (regular or cyclic), raised cosines, Fourier, and many more.</p>
 </div>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference external" href="getting_started.html"><span>Getting Started</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-<span class="iconify" data-icon="mdi:book-open-variant-outline"></span>   <strong>User Guide</strong></div>
-<hr class="docutils" />
-<p class="sd-card-text">Tour the package one concept at a time, from the theory behind the models to the classes that implement them.</p>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference external" href="user_guide/README.html"><span>User Guide</span></a></div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="user_guide/basis/one_dimensional.html"><span>Building blocks</span></a></div>
 </div>
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-<span class="iconify" data-icon="mdi:lightbulb-on-10"></span>   <strong>How-to Guide</strong></div>
-<hr class="docutils" />
-<p class="sd-card-text">Already familiar with the concepts? Learn how you to process and analyze your data with NeMoS.</p>
-<div class="card-footer-content">
-<p class="sd-card-text"><em>Requires familiarity with the theory.</em></p>
+<strong>Multiple predictors</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_addition_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_addition_thumbnail.png" style="height: 140px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_addition_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_addition_thumbnail_dark.png" style="height: 140px;" />
+</figure>
+<p class="sd-card-text">Add bases to give each input its own block of the design matrix.</p>
 </div>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference external" href="how_to_guide/README.html"><span>How-to-Guide</span></a></div>
-</div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-<span class="iconify" data-icon="mdi:brain"></span>   <strong>Neural Modeling</strong></div>
-<hr class="docutils" />
-<p class="sd-card-text">Explore fully worked examples to learn how to analyze neural recordings from scratch.</p>
-<div class="card-footer-content">
-<p class="sd-card-text"><em>Requires familiarity with the theory.</em></p>
-</div>
-</div>
-<a class="sd-stretched-link sd-hide-link-text reference external" href="tutorials/README.html"><span>Tutorials</span></a></div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="user_guide/basis/composing.html"><span>Multiple predictors</span></a></div>
 </div>
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
-<span class="iconify" data-icon="mdi:cog"></span>   <strong>API Reference</strong></div>
-<hr class="docutils" />
-<p class="sd-card-text">Access a detailed description of each module and function, including parameters and functionality.</p>
+<strong>Higher dimension</strong></div>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_product_thumbnail.png" class="plot-directive only-light" src="_images/catalogue_figs_plot_product_thumbnail.png" style="height: 140px;" />
+</figure>
+<figure class="align-default">
+<img alt="_images/catalogue_figs_plot_product_thumbnail_dark.png" class="plot-directive only-dark" src="_images/catalogue_figs_plot_product_thumbnail_dark.png" style="height: 140px;" />
+</figure>
+<p class="sd-card-text">Multiply bases to model the joint effect of two inputs.</p>
 </div>
-<a class="sd-stretched-link sd-hide-link-text reference external" href="api/index.html"><span>API Reference</span></a></div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="user_guide/basis/composing.html"><span>Higher dimension</span></a></div>
 </div>
 </div>
 </div>
@@ -542,6 +650,7 @@ It streamlines the process of defining and selecting models, through a collectio
 <p><strong>Learning Resources:</strong> <a class="reference external" href="https://compneuro.neuromatch.io/tutorials/W1D3_GeneralizedLinearModels/student/W1D3_Tutorial1.html"><span class="iconify" data-icon="mdi:book-open-variant-outline"></span> Neuromatch Academy’s Lessons</a> | <a class="reference external" href="https://www.youtube.com/watch?v=NFeGW5ljUoI&amp;t=424s"><span class="iconify" data-icon="mdi:youtube"></span> Cosyne 2018 Tutorial</a> <br>
 <strong>Useful Links:</strong> <a class="reference internal" href="getting_help.html"><span class="std std-doc"><span class="iconify" data-icon="mdi:chat-question"></span> Getting Help</span></a> | <a class="reference external" href="https://github.com/flatironinstitute/nemos/issues"><span class="iconify" data-icon="mdi:alert-circle-outline"></span> Issue Tracker</a> | <a class="reference external" href="https://github.com/flatironinstitute/nemos/blob/main/CONTRIBUTING.md"><span class="iconify" data-icon="mdi:order-bool-ascending-variant"></span> Contributing Guidelines</a></p>
 </div>
+</section>
 <section id="license">
 <h2><span class="iconify" data-icon="mdi:scale-balance" style="width: 1em"></span>  <strong>License</strong><a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
 <p>Open source, <a class="reference external" href="https://github.com/flatironinstitute/nemos/blob/main/LICENSE">licensed under MIT</a>.</p>

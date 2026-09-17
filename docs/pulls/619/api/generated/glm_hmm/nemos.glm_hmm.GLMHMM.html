@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm_hmm.GLMHMM &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>nemos.glm_hmm.GLMHMM &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../../../_static/documentation_options.js?v=29234efd"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -666,23 +666,27 @@ are governed by a transition probability matrix. The model is fitted using the E
 <tbody>
 <tr class="row-even"><td><p>UnRegularized</p></td>
 <td><p>LBFGS</p></td>
-<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient</p></td>
+<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG,
+ProximalGradient, SVRG, ProxSVRG, Newton,
+ProximalNewton</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ridge</p></td>
 <td><p>LBFGS</p></td>
-<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient</p></td>
+<td><p>GradientDescent, BFGS, LBFGS, NonlinearCG,
+ProximalGradient, SVRG, ProxSVRG, Newton,
+ProximalNewton</p></td>
 </tr>
 <tr class="row-even"><td><p>Lasso</p></td>
 <td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
 </tr>
 <tr class="row-odd"><td><p>ElasticNet</p></td>
 <td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
 </tr>
 <tr class="row-even"><td><p>GroupLasso</p></td>
 <td><p>ProximalGradient</p></td>
-<td><p>ProximalGradient</p></td>
+<td><p>ProximalGradient, ProxSVRG, ProximalNewton</p></td>
 </tr>
 </tbody>
 </table>
@@ -892,7 +896,9 @@ are equivalent:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">is_new_mask</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">is_new_mask</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Equivalent: pass the starts as integer indices.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Decode Hidden States</strong></p>
@@ -1212,7 +1218,9 @@ Viterbi recursion so that no path crosses session borders.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">decode_state</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">state_format</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">states</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(100,)</span>
@@ -1313,7 +1321,9 @@ that no information crosses session borders.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">filter_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filt</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(100, 3)</span>
@@ -1416,7 +1426,9 @@ enabling float64, raising <code class="docutils literal notranslate"><span class
 </div>
 <p>Multiple sessions via explicit <code class="docutils literal notranslate"><span class="pre">session_starts</span></code>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session_starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -1676,8 +1688,13 @@ dict under <code class="docutils literal notranslate"><span class="pre">model_in
 saved (built-in) names:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">my_glm_init</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">n_states</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">inverse_link_function</span><span class="p">,</span> <span class="n">observation_model</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">session_starts</span><span class="p">,</span> <span class="n">random_key</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">n_states</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">inverse_link_function</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">observation_model</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">session_starts</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">random_key</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_states</span><span class="p">)),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1881,6 +1898,7 @@ observation model.</p></li>
 <p>To inspect a protocol’s signature, import and <code class="docutils literal notranslate"><span class="pre">help()</span></code> it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.hmm.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitFunctionHMM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">nemos.glm_hmm.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitFunctionGLM</span>
+
 <span class="n">help</span><span class="p">(</span><span class="n">InitFunctionHMM</span><span class="p">)</span>  <span class="c1"># or help(InitFunctionGLM)</span>
 </pre></div>
 </div>
@@ -1896,8 +1914,13 @@ framework can supply them uniformly.</p>
 <p>Plug in a custom callable matching the GLM-side protocol:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">my_glm_init</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">n_states</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">inverse_link_function</span><span class="p">,</span> <span class="n">observation_model</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">session_starts</span><span class="p">,</span> <span class="n">random_key</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">n_states</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">inverse_link_function</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">observation_model</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">session_starts</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">random_key</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">coef</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_states</span><span class="p">))</span>
 <span class="gp">... </span>    <span class="n">intercept</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_states</span><span class="p">,))</span>
@@ -2058,7 +2081,9 @@ crosses session borders.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">posteriors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">smooth_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">posteriors</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(100, 3)</span>
@@ -2182,8 +2207,12 @@ freedom. Defaults to <code class="docutils literal notranslate"><span class="pre
 <span class="gp">&gt;&gt;&gt; </span><span class="n">session_starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm_hmm</span><span class="o">.</span><span class="n">GLMHMM</span><span class="p">(</span><span class="n">n_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">init_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_params</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">opt_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_optimizer_and_state</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">new_params</span><span class="p">,</span> <span class="n">new_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">opt_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_optimizer_and_state</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_params</span><span class="p">,</span> <span class="n">new_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">init_params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

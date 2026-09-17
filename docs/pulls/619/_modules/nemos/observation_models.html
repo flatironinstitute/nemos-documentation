@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.observation_models &#8212; nemos 0.2.10.dev468 documentation</title>
+    <title>nemos.observation_models &#8212; nemos 0.2.10.dev534 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=ab95ba19"></script>
+    <script src="../../_static/documentation_options.js?v=29234efd"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev468 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev468 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev534 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev534 documentation - Home"/>
   
   
 </a></div>
@@ -499,7 +499,14 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">utils</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.base_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">identity</span><span class="p">,</span> <span class="n">log_softmax</span><span class="p">,</span> <span class="n">logistic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">exp</span><span class="p">,</span>
+    <span class="n">expit</span><span class="p">,</span>
+    <span class="n">identity</span><span class="p">,</span>
+    <span class="n">log_softmax</span><span class="p">,</span>
+    <span class="n">logistic</span><span class="p">,</span>
+    <span class="n">softplus</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"PoissonObservations"</span><span class="p">,</span>
@@ -536,6 +543,9 @@
 <span class="sd">    :class:`~nemos.observation_models.BernoulliObservations`</span>
 <span class="sd">        A specific implementation of an observation model using the Bernoulli distribution.</span>
 <span class="sd">    """</span>
+
+    <span class="c1"># list link functions that we know preserve convexity of GLM</span>
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">()</span>
 
 <div class="viewcode-block" id="Observations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations.__init__">[docs]</a>
@@ -958,6 +968,8 @@
 
 <span class="sd">    """</span>
 
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">softplus</span><span class="p">)</span>
+
 <div class="viewcode-block" id="PoissonObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1222,6 +1234,8 @@
 
 <span class="sd">    """</span>
 
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">utils</span><span class="o">.</span><span class="n">one_over_x</span><span class="p">)</span>
+
 <div class="viewcode-block" id="GammaObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.GammaObservations.html#nemos.observation_models.GammaObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1464,6 +1478,8 @@
 <span class="sd">    BernoulliObservations()</span>
 
 <span class="sd">    """</span>
+
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">logistic</span><span class="p">,</span> <span class="n">expit</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BernoulliObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.BernoulliObservations.html#nemos.observation_models.BernoulliObservations.__init__">[docs]</a>
@@ -1837,6 +1853,9 @@
 
 <span class="sd">    """</span>
 
+    <span class="c1"># NOTE: softplus makes the problem non-convex!</span>
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp</span><span class="p">,)</span>
+
 <div class="viewcode-block" id="NegativeBinomialObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2127,6 +2146,8 @@
 <span class="sd">    GaussianObservations()</span>
 
 <span class="sd">    """</span>
+
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">identity</span><span class="p">,)</span>
 
 <div class="viewcode-block" id="GaussianObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.GaussianObservations.html#nemos.observation_models.GaussianObservations.__init__">[docs]</a>
@@ -2486,7 +2507,6 @@
 
     <span class="c1"># Perform checks for each attribute</span>
     <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">check_info</span> <span class="ow">in</span> <span class="n">checks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
         <span class="c1"># check if the observation model has the attribute</span>
         <span class="n">utils</span><span class="o">.</span><span class="n">assert_has_attribute</span><span class="p">(</span><span class="n">observation_model</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
 
@@ -2538,6 +2558,8 @@
 <span class="sd">    CategoricalObservations()</span>
 
 <span class="sd">    """</span>
+
+    <span class="n">glm_convexity_preserving_links</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_softmax</span><span class="p">,)</span>
 
 <div class="viewcode-block" id="CategoricalObservations.__init__">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.CategoricalObservations.html#nemos.observation_models.CategoricalObservations.__init__">[docs]</a>

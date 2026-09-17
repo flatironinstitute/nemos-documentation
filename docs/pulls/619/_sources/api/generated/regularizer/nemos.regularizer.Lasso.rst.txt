@@ -32,6 +32,6 @@
       ~Lasso.get_params
       ~Lasso.get_proximal_operator
       ~Lasso.penalized_loss
-      ~Lasso.resolve_hess_tag
+      ~Lasso.penalty_fn
       ~Lasso.set_params
    
