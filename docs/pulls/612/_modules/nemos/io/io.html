@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.io.io &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.io.io &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -1031,8 +1031,8 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; params = {</span>
-<span class="sd">    ...     'regularizer': {'class': 'GroupLasso', 'params': {'mask': None}},</span>
-<span class="sd">    ...     'solver_kwargs': {'tol': 1e-7, 'maxiter': 100}</span>
+<span class="sd">    ...     "regularizer": {"class": "GroupLasso", "params": {"mask": None}},</span>
+<span class="sd">    ...     "solver_kwargs": {"tol": 1e-7, "maxiter": 100},</span>
 <span class="sd">    ... }</span>
 <span class="sd">    &gt;&gt;&gt; get_user_keys_from_nested_dict(params)</span>
 <span class="sd">    ['regularizer', 'regularizer__mask', 'solver_kwargs', 'solver_kwargs__maxiter', 'solver_kwargs__tol']</span>
@@ -1096,22 +1096,27 @@
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">    &gt;&gt;&gt; def square(x):</span>
 <span class="sd">    ...     return x**2</span>
-<span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; class MyRegularizer(nmo.regularizer.GroupLasso):</span>
 <span class="sd">    ...     def __init__(self, mask=None, new_param=1):</span>
 <span class="sd">    ...         super().__init__(mask=mask)</span>
 <span class="sd">    ...         self.new_param = new_param</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; invalid = _get_invalid_mappings({</span>
-<span class="sd">    ...     "inverse_link_function": square,</span>
-<span class="sd">    ...     "regularizer": {"class": MyRegularizer, "params": {"regularizer__new_param": 10.}}</span>
-<span class="sd">    ... })</span>
+<span class="sd">    &gt;&gt;&gt; invalid = _get_invalid_mappings(</span>
+<span class="sd">    ...     {</span>
+<span class="sd">    ...         "inverse_link_function": square,</span>
+<span class="sd">    ...         "regularizer": {</span>
+<span class="sd">    ...             "class": MyRegularizer,</span>
+<span class="sd">    ...             "params": {"regularizer__new_param": 10.0},</span>
+<span class="sd">    ...         },</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; invalid</span>
 <span class="sd">    []</span>
-<span class="sd">    &gt;&gt;&gt; invalid = _get_invalid_mappings({</span>
-<span class="sd">    ...     "inverse_link_function": square,</span>
-<span class="sd">    ...     "regularizer": {"params": {"new_param": 10.}}</span>
-<span class="sd">    ... })</span>
+<span class="sd">    &gt;&gt;&gt; invalid = _get_invalid_mappings(</span>
+<span class="sd">    ...     {</span>
+<span class="sd">    ...         "inverse_link_function": square,</span>
+<span class="sd">    ...         "regularizer": {"params": {"new_param": 10.0}},</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; invalid</span>
 <span class="sd">    ['regularizer__new_param']</span>
 <span class="sd">    """</span>

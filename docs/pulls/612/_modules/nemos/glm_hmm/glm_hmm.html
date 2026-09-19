@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -826,7 +826,9 @@
 <span class="sd">    &gt;&gt;&gt; is_new_mask[100] = True</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=is_new_mask)</span>
 <span class="sd">    &gt;&gt;&gt; # Equivalent: pass the starts as integer indices.</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=np.array([0, 100]))</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(</span>
+<span class="sd">    ...     X, y, session_starts=np.array([0, 100])</span>
+<span class="sd">    ... )</span>
 
 <span class="sd">    **Decode Hidden States**</span>
 
@@ -1025,6 +1027,7 @@
 
 <span class="sd">            from nemos.hmm.initialize_parameters import InitFunctionHMM</span>
 <span class="sd">            from nemos.glm_hmm.initialize_parameters import InitFunctionGLM</span>
+
 <span class="sd">            help(InitFunctionHMM)  # or help(InitFunctionGLM)</span>
 
 <span class="sd">        All arguments must appear in the function signature even when unused, so the</span>
@@ -1042,8 +1045,13 @@
 
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
-<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
-<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ...     n_states,</span>
+<span class="sd">        ...     X,</span>
+<span class="sd">        ...     y,</span>
+<span class="sd">        ...     inverse_link_function,</span>
+<span class="sd">        ...     observation_model,</span>
+<span class="sd">        ...     session_starts,</span>
+<span class="sd">        ...     random_key,</span>
 <span class="sd">        ... ):</span>
 <span class="sd">        ...     coef = jnp.zeros((X.shape[1], n_states))</span>
 <span class="sd">        ...     intercept = jnp.zeros((n_states,))</span>
@@ -1321,7 +1329,9 @@
 <span class="sd">        Multiple sessions via explicit ``session_starts``:</span>
 
 <span class="sd">        &gt;&gt;&gt; session_starts = np.array([0, 100])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=session_starts)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(</span>
+<span class="sd">        ...     X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
@@ -1711,7 +1721,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; posteriors = model.smooth_proba(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; posteriors.shape</span>
 <span class="sd">        (100, 3)</span>
@@ -1811,7 +1823,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; filt = model.filter_proba(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; filt.shape</span>
 <span class="sd">        (100, 3)</span>
@@ -1925,7 +1939,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; states = model.decode_state(X, y, state_format="index")</span>
 <span class="sd">        &gt;&gt;&gt; states.shape</span>
 <span class="sd">        (100,)</span>
@@ -1991,8 +2007,13 @@
 
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
-<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
-<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ...     n_states,</span>
+<span class="sd">        ...     X,</span>
+<span class="sd">        ...     y,</span>
+<span class="sd">        ...     inverse_link_function,</span>
+<span class="sd">        ...     observation_model,</span>
+<span class="sd">        ...     session_starts,</span>
+<span class="sd">        ...     random_key,</span>
 <span class="sd">        ... ):</span>
 <span class="sd">        ...     return jnp.zeros((X.shape[1], n_states)), jnp.zeros((n_states,))</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
@@ -2129,8 +2150,12 @@
 <span class="sd">        &gt;&gt;&gt; session_starts[0] = True</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
 <span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X, y)</span>
-<span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(init_params, X, y, session_starts=session_starts)</span>
-<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(init_params, opt_state, X, y, session_starts=session_starts)</span>
+<span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(</span>
+<span class="sd">        ...     init_params, X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(</span>
+<span class="sd">        ...     init_params, opt_state, X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">safe</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="c1"># validate inputs and session boundaries</span>

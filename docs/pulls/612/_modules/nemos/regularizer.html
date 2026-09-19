@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.regularizer &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.regularizer &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -935,7 +935,6 @@
 <a class="viewcode-back" href="../../api/generated/regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer.penalized_loss">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">penalized_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">strength</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a function for calculating the penalized loss."""</span>
-
         <span class="n">penalty_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">penalty_fn</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="n">strength</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">_penalized_loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1118,7 +1117,6 @@
 <span class="sd">            - A non-scalar strength leaf does not match the shape of the</span>
 <span class="sd">              corresponding parameter leaf.</span>
 <span class="sd">        """</span>
-
         <span class="n">wheres</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"regularizable_subtrees"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">])()</span>
         <span class="n">struct</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_structure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         <span class="n">structured_strength</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_unflatten</span><span class="p">(</span>
@@ -1533,13 +1531,15 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">    &gt;&gt;&gt; from nemos.regularizer import GroupLasso  # Assuming the module is named group_lasso</span>
+<span class="sd">    &gt;&gt;&gt; from nemos.regularizer import (</span>
+<span class="sd">    ...     GroupLasso,</span>
+<span class="sd">    ... )  # Assuming the module is named group_lasso</span>
 <span class="sd">    &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">    &gt;&gt;&gt; # simulate some counts</span>
 <span class="sd">    &gt;&gt;&gt; num_samples, num_features, num_groups = 1000, 5, 3</span>
-<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features)) # design matrix</span>
-<span class="sd">    &gt;&gt;&gt; w = [0, 0.5, 1, 0, -0.5] # define some weights</span>
-<span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(w))) # observed counts</span>
+<span class="sd">    &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features))  # design matrix</span>
+<span class="sd">    &gt;&gt;&gt; w = [0, 0.5, 1, 0, -0.5]  # define some weights</span>
+<span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(w)))  # observed counts</span>
 <span class="sd">    &gt;&gt;&gt; # Define a mask for 3 groups and 5 features</span>
 <span class="sd">    &gt;&gt;&gt; mask = np.zeros((num_groups, num_features))</span>
 <span class="sd">    &gt;&gt;&gt; mask[0] = [1, 0, 0, 1, 0]  # Group 0 includes features 0 and 3</span>

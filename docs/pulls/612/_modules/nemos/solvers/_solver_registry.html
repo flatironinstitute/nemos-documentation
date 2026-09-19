@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -571,7 +571,9 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; spec = nmo.solvers.SolverSpec("BFGS", "optimistix", nmo.solvers._optimistix_solvers.OptimistixBFGS)</span>
+<span class="sd">    &gt;&gt;&gt; spec = nmo.solvers.SolverSpec(</span>
+<span class="sd">    ...     "BFGS", "optimistix", nmo.solvers._optimistix_solvers.OptimistixBFGS</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; spec.algo_name</span>
 <span class="sd">    'BFGS'</span>
 <span class="sd">    &gt;&gt;&gt; spec.backend</span>
@@ -781,7 +783,9 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; nmo.solvers.register("FISTA", nmo.solvers._fista.OptimistixFISTA, backend="optimistix")</span>
+<span class="sd">    &gt;&gt;&gt; nmo.solvers.register(</span>
+<span class="sd">    ...     "FISTA", nmo.solvers._fista.OptimistixFISTA, backend="optimistix"</span>
+<span class="sd">    ... )</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">algo_name</span><span class="p">,</span> <span class="p">{}):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -884,7 +888,7 @@
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; nmo.solvers.list_available_algorithms() # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; nmo.solvers.list_available_algorithms()  # doctest: +NORMALIZE_WHITESPACE</span>
 <span class="sd">    ['GradientDescent', 'ProximalGradient', 'LBFGS', 'BFGS', 'NonlinearCG',</span>
 <span class="sd">     'SVRG', 'ProxSVRG', 'Newton', 'ProximalNewton']</span>
 <span class="sd">    """</span>

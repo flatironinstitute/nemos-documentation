@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Handling Composite Bases &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>Handling Composite Bases &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -4882,59 +4882,59 @@ This guarantees that the labels are always unique and you can always retrieve a 
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">BSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span> <span class="o">+</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">MSplineEval</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_composition_utils.py:657,</span> in <span class="ni">promote_to_transformer.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">655</span> <span class="n">args_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="n">kwargs_bas</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-<span class="ne">--&gt; </span><span class="mi">657</span> <span class="n">out</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args_bas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_bas</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="n">any_transformer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">659</span>     <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">660</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">661</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">664</span> <span class="k">if</span> <span class="n">any_transformer</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="s2">"to_transformer"</span><span class="p">):</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_composition_utils.py:655,</span> in <span class="ni">promote_to_transformer.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span> <span class="n">args_bas</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> <span class="n">kwargs_bas</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">basis</span> <span class="k">if</span> <span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">else</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="ne">--&gt; </span><span class="mi">655</span> <span class="n">out</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args_bas</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_bas</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="n">any_transformer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span>     <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>         <span class="o">*</span><span class="p">(</span><span class="n">is_transformer</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span> <span class="k">if</span> <span class="n">any_transformer</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="s2">"to_transformer"</span><span class="p">):</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:435,</span> in <span class="ni">Basis.__add__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">420</span> <span class="nd">@promote_to_transformer</span>
-<span class="g g-Whitespace">    </span><span class="mi">421</span> <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdditiveBasis</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">422</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">423</span><span class="sd">     Add two Basis objects together.</span>
-<span class="g g-Whitespace">    </span><span class="mi">424</span><span class="sd"> </span>
-<span class="sd">   (...)    433         The resulting Basis object.</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">435</span>     <span class="k">return</span> <span class="n">AdditiveBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:434,</span> in <span class="ni">Basis.__add__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span> <span class="nd">@promote_to_transformer</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span> <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdditiveBasis</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span><span class="sd">     Add two Basis objects together.</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span><span class="sd"> </span>
+<span class="sd">   (...)    432         The resulting Basis object.</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">434</span>     <span class="k">return</span> <span class="n">AdditiveBasis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:536,</span> in <span class="ni">AdditiveBasis.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
-<span class="g g-Whitespace">    </span><span class="mi">533</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">534</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">536</span>     <span class="n">CompositeBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span>     <span class="n">Basis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis.py:535,</span> in <span class="ni">AdditiveBasis.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">basis2</span><span class="p">:</span> <span class="n">BasisMixin</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">535</span>     <span class="n">CompositeBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="n">Basis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1017,</span> in <span class="ni">CompositeBasisMixin.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">basis2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span> <span class="o">=</span> <span class="n">basis1</span>
-<span class="ne">-&gt; </span><span class="mi">1017</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span> <span class="o">=</span> <span class="n">basis2</span>
-<span class="g g-Whitespace">   </span><span class="mi">1019</span> <span class="c1"># set parents</span>
-<span class="g g-Whitespace">   </span><span class="mi">1020</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">self</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1020,</span> in <span class="ni">CompositeBasisMixin.__init__</span><span class="nt">(self, basis1, basis2, label)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1017</span>     <span class="n">basis2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">basis2</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span> <span class="o">=</span> <span class="n">basis1</span>
+<span class="ne">-&gt; </span><span class="mi">1020</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis2</span> <span class="o">=</span> <span class="n">basis2</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="c1"># set parents</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis1</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">self</span>
 
 <span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:164,</span> in <span class="ni">BasisMixin.__setattr__</span><span class="nt">(self, name, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"bounds"</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_discrete</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> has no bounds."</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">164</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1071,</span> in <span class="ni">CompositeBasisMixin.basis2</span><span class="nt">(self, basis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1069</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_basis_like</span><span class="p">(</span><span class="n">basis2</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1070</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis1</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1071</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_labels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_basis1</span><span class="p">,</span> <span class="n">basis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1072</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis2</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>     <span class="n">basis</span> <span class="o">=</span> <span class="n">_composite_basis_setter_logic</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis2</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1074,</span> in <span class="ni">CompositeBasisMixin.basis2</span><span class="nt">(self, basis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1072</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_basis_like</span><span class="p">(</span><span class="n">basis2</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1073</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1074</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_labels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_basis1</span><span class="p">,</span> <span class="n">basis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1075</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis2</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1076</span>     <span class="n">basis</span> <span class="o">=</span> <span class="n">_composite_basis_setter_logic</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis2</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1123,</span> in <span class="ni">CompositeBasisMixin._set_labels</span><span class="nt">(self, basis1, basis2)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1121</span> <span class="n">non_unique</span><span class="p">,</span> <span class="n">err_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_unique_labels</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1122</span> <span class="k">if</span> <span class="n">non_unique</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1123</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1125</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_default_label_id</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_basis_mixin.py:1126,</span> in <span class="ni">CompositeBasisMixin._set_labels</span><span class="nt">(self, basis1, basis2)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1124</span> <span class="n">non_unique</span><span class="p">,</span> <span class="n">err_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_unique_labels</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1125</span> <span class="k">if</span> <span class="n">non_unique</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1126</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1128</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_default_label_id</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="n">basis2</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: All user-provided labels of basis elements must be distinct.
 <span class="n">The</span> <span class="n">basis</span> <span class="n">you</span> <span class="n">are</span> <span class="n">composing</span> <span class="n">share</span> <span class="n">the</span> <span class="n">following</span> <span class="n">labels</span><span class="p">:</span> <span class="s1">'x'</span><span class="o">.</span>

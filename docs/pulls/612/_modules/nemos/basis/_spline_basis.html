@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis._spline_basis &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.basis._spline_basis &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -1130,7 +1130,9 @@
 <span class="sd">    &gt;&gt;&gt; from numpy import linspace</span>
 <span class="sd">    &gt;&gt;&gt; from nemos.basis._spline_basis import mspline</span>
 <span class="sd">    &gt;&gt;&gt; sample_points = linspace(0, 1, 100)</span>
-<span class="sd">    &gt;&gt;&gt; mspline_eval = mspline(x=sample_points, k=3, i=2, T=np.random.rand(7)) # define a cubic M-spline</span>
+<span class="sd">    &gt;&gt;&gt; mspline_eval = mspline(</span>
+<span class="sd">    ...     x=sample_points, k=3, i=2, T=np.random.rand(7)</span>
+<span class="sd">    ... )  # define a cubic M-spline</span>
 <span class="sd">    &gt;&gt;&gt; mspline_eval.shape</span>
 <span class="sd">    (100,)</span>
 <span class="sd">    """</span>
@@ -1211,7 +1213,7 @@
 <span class="sd">    &gt;&gt;&gt; from nemos.basis._spline_basis import bspline</span>
 <span class="sd">    &gt;&gt;&gt; sample_points = linspace(0, 1, 100)</span>
 <span class="sd">    &gt;&gt;&gt; knots = np.array([0, 0, 0, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1, 1, 1, 1])</span>
-<span class="sd">    &gt;&gt;&gt; bspline_eval = bspline(sample_points, knots) # define a cubic B-spline</span>
+<span class="sd">    &gt;&gt;&gt; bspline_eval = bspline(sample_points, knots)  # define a cubic B-spline</span>
 <span class="sd">    &gt;&gt;&gt; bspline_eval.shape</span>
 <span class="sd">    (100, 10)</span>
 <span class="sd">    """</span>
@@ -1227,9 +1229,9 @@
     <span class="n">need_outer</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">sample_pts</span> <span class="o">&lt;</span> <span class="n">knots</span><span class="p">[</span><span class="n">order</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span>
         <span class="n">sample_pts</span> <span class="o">&gt;</span> <span class="n">knots</span><span class="p">[</span><span class="n">nk</span> <span class="o">-</span> <span class="n">order</span><span class="p">]</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="p">(</span>
-        <span class="ow">not</span> <span class="n">need_outer</span>
-    <span class="p">)</span> <span class="o">|</span> <span class="n">outer_ok</span><span class="p">,</span> <span class="s1">'sample points must lie within the B-spline knots range unless "outer_ok==True".'</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">need_outer</span><span class="p">)</span> <span class="o">|</span> <span class="n">outer_ok</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s1">'sample points must lie within the B-spline knots range unless "outer_ok==True".'</span>
+    <span class="p">)</span>
 
     <span class="c1"># select knots that are within the knots range (this takes care of eventual NaNs)</span>
     <span class="n">in_sample</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">&gt;=</span> <span class="n">knots</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">&lt;=</span> <span class="n">knots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -1323,7 +1325,7 @@
 <span class="sd">    &gt;&gt;&gt; from nemos.basis._spline_basis import bspline_jax</span>
 <span class="sd">    &gt;&gt;&gt; sample_points = linspace(0, 1, 100)</span>
 <span class="sd">    &gt;&gt;&gt; knots = np.array([0, 0, 0, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1, 1, 1, 1])</span>
-<span class="sd">    &gt;&gt;&gt; bspline_eval = bspline_jax(sample_points, knots) # define a cubic B-spline</span>
+<span class="sd">    &gt;&gt;&gt; bspline_eval = bspline_jax(sample_points, knots)  # define a cubic B-spline</span>
 <span class="sd">    &gt;&gt;&gt; bspline_eval.shape</span>
 <span class="sd">    (100, 10)</span>
 <span class="sd">    """</span>

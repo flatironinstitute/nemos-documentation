@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -892,7 +892,9 @@ of the mean <span class="math notranslate nohighlight">\(\mu\)</span> fully spec
 </pre></div>
 </div>
 <p>Or pass the observation model object directly:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">observation_model</span><span class="o">=</span><span class="n">nmo</span><span class="o">.</span><span class="n">observation_models</span><span class="o">.</span><span class="n">GammaObservations</span><span class="p">())</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">observation_model</span><span class="o">=</span><span class="n">nmo</span><span class="o">.</span><span class="n">observation_models</span><span class="o">.</span><span class="n">GammaObservations</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">observation_model</span>
 <span class="go">GammaObservations()</span>
 </pre></div>
@@ -1472,8 +1474,7 @@ into a GLM instance using the <cite>load_params</cite> function.</p>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Saving and loading a custom inverse link function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">inverse_link_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="gp">... </span>    <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">,</span> <span class="n">inverse_link_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span><span class="s2">"model_params.npz"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Provide a mapping for the custom link function when loading.</span>
@@ -1540,7 +1541,7 @@ of arrays of the same shape.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># get model score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">log_likelihood_score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># get a pseudo-R2 score</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pseudo_r2_score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s1">'pseudo-r2-McFadden'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pseudo_r2_score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s2">"pseudo-r2-McFadden"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
@@ -1808,7 +1809,10 @@ describing the run.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">loader</span> <span class="o">=</span> <span class="n">ArrayDataLoader</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="s2">"full"</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"GradientDescent"</span><span class="p">,</span> <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"stepsize"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">"acceleration"</span> <span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">solver_name</span><span class="o">=</span><span class="s2">"GradientDescent"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"stepsize"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">"acceleration"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Stop early when the solver's convergence criterion is met.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">stochastic_fit</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">loader</span><span class="p">,</span> <span class="n">n_passes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">SolverConvergenceCallback</span><span class="p">()</span>

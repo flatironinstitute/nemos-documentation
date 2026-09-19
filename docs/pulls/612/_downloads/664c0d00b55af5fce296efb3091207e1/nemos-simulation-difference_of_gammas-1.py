@@ -8,7 +8,7 @@ coupling_filter = difference_of_gammas(
     inhib_a=inhib_a,
     inhib_b=inhib_b,
     excit_a=excit_a,
-    excit_b=excit_b
+    excit_b=excit_b,
 )
 _ = plt.plot(coupling_filter)
 _ = plt.title("Coupling filter from difference of gammas")

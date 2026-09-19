@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis._transformer_basis &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.basis._transformer_basis &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -603,7 +603,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # Generate data</span>
 <span class="sd">    &gt;&gt;&gt; num_samples, num_features = 10000, 1</span>
-<span class="sd">    &gt;&gt;&gt; x = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">    &gt;&gt;&gt; x = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">    &gt;&gt;&gt; basis = BSplineEval(10, bounds=(x.min(), x.max()))</span>
 <span class="sd">    &gt;&gt;&gt; features = basis.compute_features(x)  # basis transformed time series</span>
 <span class="sd">    &gt;&gt;&gt; weights = np.random.normal(size=basis.n_basis_funcs)  # true weights</span>
@@ -611,9 +611,16 @@
 
 <span class="sd">    &gt;&gt;&gt; # transformer can be used in pipelines</span>
 <span class="sd">    &gt;&gt;&gt; transformer = TransformerBasis(basis)</span>
-<span class="sd">    &gt;&gt;&gt; pipeline = Pipeline([ ("compute_features", transformer), ("glm", GLM()),])</span>
-<span class="sd">    &gt;&gt;&gt; pipeline = pipeline.fit(x[:, None], y)  # x need to be 2D for sklearn transformer API</span>
-<span class="sd">    &gt;&gt;&gt; out = pipeline.predict(np.arange(10)[:, None]) # predict rate from new datas</span>
+<span class="sd">    &gt;&gt;&gt; pipeline = Pipeline(</span>
+<span class="sd">    ...     [</span>
+<span class="sd">    ...         ("compute_features", transformer),</span>
+<span class="sd">    ...         ("glm", GLM()),</span>
+<span class="sd">    ...     ]</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; pipeline = pipeline.fit(</span>
+<span class="sd">    ...     x[:, None], y</span>
+<span class="sd">    ... )  # x need to be 2D for sklearn transformer API</span>
+<span class="sd">    &gt;&gt;&gt; out = pipeline.predict(np.arange(10)[:, None])  # predict rate from new datas</span>
 <span class="sd">    &gt;&gt;&gt; # TransformerBasis parameter can be cross-validated.</span>
 <span class="sd">    &gt;&gt;&gt; # 5-fold cross-validate the number of basis</span>
 <span class="sd">    &gt;&gt;&gt; param_grid = dict(compute_features__n_basis_funcs=[4, 10])</span>

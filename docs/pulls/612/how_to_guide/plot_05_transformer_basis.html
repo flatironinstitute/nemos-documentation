@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Using bases as scikit-learn transformers &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>Using bases as scikit-learn transformers &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -751,42 +751,42 @@ In this standard (for NeMoS) form, it would not be possible as the <code class="
 <span class="g g-Whitespace">      </span><span class="mi">9</span> 
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:333,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="sd">     Compute the kernels and the features.</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd"> </span>
-<span class="sd">   (...)    331     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">333</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:340,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="sd">     Compute the kernels and the features.</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span><span class="sd"> </span>
+<span class="sd">   (...)    338     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">340</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:231,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="w"> </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="sd"> Check the input structure and, if necessary, compute the convolutional kernels.</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
-<span class="sd">   (...)    228 &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span><span class="sd"> """</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">231</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span> <span class="k">if</span> <span class="n">setup_basis</span><span class="p">:</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:238,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span><span class="sd"> Check the input structure and, if necessary, compute the convolutional kernels.</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span><span class="sd"> </span>
+<span class="sd">   (...)    235 &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span><span class="sd"> """</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">238</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">if</span> <span class="n">setup_basis</span><span class="p">:</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:605,</span> in <span class="ni">TransformerBasis._check_input</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">601</span>         <span class="sa">f</span><span class="s2">"X must be 2-dimensional, shape (n_samples, n_features). The provided X has shape </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> instead."</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">605</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span>         <span class="sa">f</span><span class="s2">"Input mismatch: expected </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">)</span><span class="si">}</span><span class="s2"> inputs, but got </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span>         <span class="sa">f</span><span class="s2">"columns in X.</span><span class="se">\n</span><span class="s2">To modify the required number of inputs, call `set_input_shape` before using "</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="sa">f</span><span class="s2">"`fit` or `fit_transform`."</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:612,</span> in <span class="ni">TransformerBasis._check_input</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="sa">f</span><span class="s2">"X must be 2-dimensional, shape (n_samples, n_features). The provided X has shape </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> instead."</span>
 <span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">611</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">612</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span>         <span class="s2">"X and y must have the same number of samples. "</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="sa">f</span><span class="s2">"X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, while y has </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples."</span>
-<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">612</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span>         <span class="sa">f</span><span class="s2">"Input mismatch: expected </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_shape_product</span><span class="p">)</span><span class="si">}</span><span class="s2"> inputs, but got </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="sa">f</span><span class="s2">"columns in X.</span><span class="se">\n</span><span class="s2">To modify the required number of inputs, call `set_input_shape` before using "</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>         <span class="sa">f</span><span class="s2">"`fit` or `fit_transform`."</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span>         <span class="s2">"X and y must have the same number of samples. "</span>
+<span class="g g-Whitespace">    </span><span class="mi">621</span>         <span class="sa">f</span><span class="s2">"X has </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples, while y has </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples."</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="p">)</span>
 
 <span class="ne">ValueError</span>: Input mismatch: expected 2 inputs, but got 6 columns in X.
 <span class="n">To</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">required</span> <span class="n">number</span> <span class="n">of</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">call</span> <span class="err">`</span><span class="n">set_input_shape</span><span class="err">`</span> <span class="n">before</span> <span class="n">using</span> <span class="err">`</span><span class="n">fit</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="n">fit_transform</span><span class="err">`</span><span class="o">.</span>
@@ -890,45 +890,45 @@ and the <code class="docutils literal notranslate"><span class="pre">Transformer
 <span class="g g-Whitespace">      </span><span class="mi">9</span> 
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trans_bas</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:333,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="sd">     Compute the kernels and the features.</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span><span class="sd"> </span>
-<span class="sd">   (...)    331     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">333</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:340,</span> in <span class="ni">TransformerBasis.fit_transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="sd">     Compute the kernels and the features.</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span><span class="sd"> </span>
+<span class="sd">   (...)    338     &gt;&gt;&gt; feature_transformed = transformer.fit_transform(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">340</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:230,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="sd">     Check the input structure and, if necessary, compute the convolutional kernels.</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
-<span class="sd">   (...)    228     &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:237,</span> in <span class="ni">TransformerBasis.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span> <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">FeatureMatrix</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span><span class="sd">     Check the input structure and, if necessary, compute the convolutional kernels.</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span><span class="sd"> </span>
+<span class="sd">   (...)    235     &gt;&gt;&gt; transformer_fitted = transformer.fit(X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">237</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_initialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>     <span class="n">setup_basis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span> <span class="s2">"setup_basis"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:154,</span> in <span class="ni">TransformerBasis._check_initialized</span><span class="nt">(basis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="o">.</span><span class="n">_iterate_over_components</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="c1"># ``_bounds_define_domain`` (True only on the bounded Eval mixin) flags bases whose</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="c1"># domain is data-inferred when ``bounds`` is unset; those are the unsafe ones. It's</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="c1"># False elsewhere, and True implies a ``bounds`` attribute, so no existence check needed.</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="c1"># Some bases have n-d bounds (FourierEval): a list of tuples or Nones. We must reject any</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="c1"># None. ``jax.tree.leaves`` skips empty (None) leaves by default, so ``is_leaf`` keeps them.</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">"_bounds_define_domain"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span>
-<span class="nn">    152         for v</span> in <span class="ni">jax.tree.leaves</span><span class="nt">(b.bounds, is_leaf=lambda x: x is None)</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">154</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">155</span>             <span class="sa">f</span><span class="s2">"Cannot apply TransformerBasis: component </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> has unset ``bounds``.</span><span class="se">\n</span><span class="s2">"</span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span>             <span class="s2">"When a basis is used as a transformer, ``bounds`` must be set explicitly so the "</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span>             <span class="s2">"domain is identical across folds; otherwise it is derived from the input data and "</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span>             <span class="s2">"the transformation changes at every fit. Set the ``bounds`` attribute before calling "</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span>             <span class="s2">"``fit``, ``transform``, or ``fit_transform``."</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="p">)</span>
+<span class="nn">File ~/venv/lib/python3.12/site-packages/nemos/basis/_transformer_basis.py:161,</span> in <span class="ni">TransformerBasis._check_initialized</span><span class="nt">(basis)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="o">.</span><span class="n">_iterate_over_components</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="c1"># ``_bounds_define_domain`` (True only on the bounded Eval mixin) flags bases whose</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="c1"># domain is data-inferred when ``bounds`` is unset; those are the unsafe ones. It's</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span>     <span class="c1"># False elsewhere, and True implies a ``bounds`` attribute, so no existence check needed.</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>     <span class="c1"># Some bases have n-d bounds (FourierEval): a list of tuples or Nones. We must reject any</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>     <span class="c1"># None. ``jax.tree.leaves`` skips empty (None) leaves by default, so ``is_leaf`` keeps them.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s2">"_bounds_define_domain"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>         <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="nn">    159         for v</span> in <span class="ni">jax.tree.leaves</span><span class="nt">(b.bounds, is_leaf=lambda x: x is None)</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>     <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">161</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>             <span class="sa">f</span><span class="s2">"Cannot apply TransformerBasis: component </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> has unset ``bounds``.</span><span class="se">\n</span><span class="s2">"</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>             <span class="s2">"When a basis is used as a transformer, ``bounds`` must be set explicitly so the "</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>             <span class="s2">"domain is identical across folds; otherwise it is derived from the input data and "</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>             <span class="s2">"the transformation changes at every fit. Set the ``bounds`` attribute before calling "</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="s2">"``fit``, ``transform``, or ``fit_transform``."</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="p">)</span>
 
 <span class="ne">RuntimeError</span>: Cannot apply TransformerBasis: component 'speed': BSplineEval(n_basis_funcs=5, order=4) has unset ``bounds``.
 <span class="n">When</span> <span class="n">a</span> <span class="n">basis</span> <span class="ow">is</span> <span class="n">used</span> <span class="k">as</span> <span class="n">a</span> <span class="n">transformer</span><span class="p">,</span> <span class="err">``</span><span class="n">bounds</span><span class="err">``</span> <span class="n">must</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">explicitly</span> <span class="n">so</span> <span class="n">the</span> <span class="n">domain</span> <span class="ow">is</span> <span class="n">identical</span> <span class="n">across</span> <span class="n">folds</span><span class="p">;</span> <span class="n">otherwise</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">derived</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="nb">input</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">transformation</span> <span class="n">changes</span> <span class="n">at</span> <span class="n">every</span> <span class="n">fit</span><span class="o">.</span> <span class="n">Set</span> <span class="n">the</span> <span class="err">``</span><span class="n">bounds</span><span class="err">``</span> <span class="n">attribute</span> <span class="n">before</span> <span class="n">calling</span> <span class="err">``</span><span class="n">fit</span><span class="err">``</span><span class="p">,</span> <span class="err">``</span><span class="n">transform</span><span class="err">``</span><span class="p">,</span> <span class="ow">or</span> <span class="err">``</span><span class="n">fit_transform</span><span class="err">``</span><span class="o">.</span>

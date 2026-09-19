@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.simulation &#8212; nemos 0.2.10.dev595 documentation</title>
+    <title>nemos.simulation &#8212; nemos 0.2.10.dev599 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=d458e4ce"></script>
+    <script src="../../_static/documentation_options.js?v=0bbacd66"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev595 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev595 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev599 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev599 documentation - Home"/>
   
   
 </a></div>
@@ -626,7 +626,7 @@
 <span class="sd">        ...     inhib_a=inhib_a,</span>
 <span class="sd">        ...     inhib_b=inhib_b,</span>
 <span class="sd">        ...     excit_a=excit_a,</span>
-<span class="sd">        ...     excit_b=excit_b</span>
+<span class="sd">        ...     excit_b=excit_b,</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.plot(coupling_filter)</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.title("Coupling filter from difference of gammas")</span>
@@ -706,7 +706,9 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLogEval</span>
 <span class="sd">        &gt;&gt;&gt; filter_duration = 100</span>
 <span class="sd">        &gt;&gt;&gt; n_basis_funcs = 20</span>
-<span class="sd">        &gt;&gt;&gt; filter_bank = difference_of_gammas(filter_duration).reshape(filter_duration, 1, 1)</span>
+<span class="sd">        &gt;&gt;&gt; filter_bank = difference_of_gammas(filter_duration).reshape(</span>
+<span class="sd">        ...     filter_duration, 1, 1</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; _, basis = RaisedCosineLogEval(10).evaluate_on_grid(filter_duration)</span>
 <span class="sd">        &gt;&gt;&gt; weights = regress_filter(filter_bank, basis)[0, 0]</span>
 <span class="sd">        &gt;&gt;&gt; print("Weights shape:", weights.shape)</span>
@@ -833,7 +835,7 @@
 <span class="sd">        &gt;&gt;&gt; coupling_duration = 100</span>
 <span class="sd">        &gt;&gt;&gt; feedforward_input = np.random.normal(size=(1000, n_neurons, 1))</span>
 <span class="sd">        &gt;&gt;&gt; coupling_basis = np.random.normal(size=(coupling_duration, 10))</span>
-<span class="sd">        &gt;&gt;&gt; coupling_coef = 0.5*np.random.normal(size=(n_neurons, n_neurons, 10))</span>
+<span class="sd">        &gt;&gt;&gt; coupling_coef = 0.5 * np.random.normal(size=(n_neurons, n_neurons, 10))</span>
 <span class="sd">        &gt;&gt;&gt; intercept = -9 * np.ones(n_neurons)</span>
 <span class="sd">        &gt;&gt;&gt; init_spikes = np.zeros((coupling_duration, n_neurons))</span>
 <span class="sd">        &gt;&gt;&gt; random_key = jax.random.key(123)</span>
@@ -844,7 +846,7 @@
 <span class="sd">        ...     random_key=random_key,</span>
 <span class="sd">        ...     feedforward_input=feedforward_input,</span>
 <span class="sd">        ...     coupling_basis_matrix=coupling_basis,</span>
-<span class="sd">        ...     init_y=init_spikes</span>
+<span class="sd">        ...     init_y=init_spikes,</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.figure()</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.plot(rates[:, 0], label="Neuron 0 rate")</span>
