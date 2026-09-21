@@ -1,0 +1,47 @@
+﻿nemos.basis.FourierEval
+=======================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: FourierEval
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FourierEval.bounds
+      ~FourierEval.frequencies
+      ~FourierEval.frequency_mask
+      ~FourierEval.input_shape
+      ~FourierEval.is_complex
+      ~FourierEval.label
+      ~FourierEval.masked_frequencies
+      ~FourierEval.n_basis_funcs
+      ~FourierEval.n_output_features
+      ~FourierEval.ndim
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FourierEval.__init__
+      ~FourierEval.compute_features
+      ~FourierEval.evaluate
+      ~FourierEval.evaluate_on_grid
+      ~FourierEval.get_params
+      ~FourierEval.set_input_shape
+      ~FourierEval.set_params
+      ~FourierEval.setup_basis
+      ~FourierEval.split_by_feature
+      ~FourierEval.to_transformer
+   
