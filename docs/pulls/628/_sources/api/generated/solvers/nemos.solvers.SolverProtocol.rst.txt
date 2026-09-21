@@ -1,0 +1,27 @@
+﻿nemos.solvers.SolverProtocol
+============================
+
+.. currentmodule:: nemos.solvers
+
+.. autoclass:: SolverProtocol
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SolverProtocol.__init__
+      ~SolverProtocol.get_accepted_arguments
+      ~SolverProtocol.init_state
+      ~SolverProtocol.run
+      ~SolverProtocol.update
+   

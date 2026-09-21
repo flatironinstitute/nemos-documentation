@@ -1,0 +1,43 @@
+﻿nemos.basis.\_spline\_basis.SplineBasis
+=======================================
+
+.. currentmodule:: nemos.basis._spline_basis
+
+.. autoclass:: SplineBasis
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SplineBasis.input_shape
+      ~SplineBasis.is_complex
+      ~SplineBasis.label
+      ~SplineBasis.n_basis_funcs
+      ~SplineBasis.n_output_features
+      ~SplineBasis.order
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SplineBasis.__init__
+      ~SplineBasis.compute_features
+      ~SplineBasis.evaluate
+      ~SplineBasis.evaluate_on_grid
+      ~SplineBasis.get_params
+      ~SplineBasis.set_input_shape
+      ~SplineBasis.set_params
+      ~SplineBasis.setup_basis
+      ~SplineBasis.split_by_feature
+      ~SplineBasis.to_transformer
+   

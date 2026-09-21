@@ -1,0 +1,308 @@
+.. _api:
+
+API Reference
+=============
+
+.. toctree::
+   :hidden:
+
+   glm
+   glm_hmm
+   basis
+   observation_models
+   regularizers
+   io
+   solvers
+   stochastic_optimization
+   convolve
+   simulations
+   identifiability
+
+GLMs
+----
+Classes for creating Generalized Linear Models (GLMs) for both single neurons and neural populations.
+
+.. currentmodule:: nemos.glm
+
+.. autosummary::
+    :nosignatures:
+
+    GLM
+    ClassifierGLM
+    PopulationGLM
+    ClassifierPopulationGLM
+
+GLM-HMM
+-------
+
+Classes for creating Hidden Markov models (HMMs) with Generalized Linear Models (GLMs) observations.
+
+.. currentmodule:: nemos.glm_hmm
+
+.. autosummary::
+    :nosignatures:
+
+    GLMHMM
+
+Bases
+-----
+Provides basis function classes to construct and transform features for model inputs.
+Basis can be grouped according to the mode of operation into basis that performs convolution and basis that operates
+as non-linear maps.
+
+
+**The Abstract Classes:**
+
+These classes are the building blocks for the concrete basis classes.
+
+.. currentmodule:: nemos.basis._basis
+
+.. autosummary::
+    :nosignatures:
+
+    Basis
+
+.. currentmodule:: nemos.basis._spline_basis
+.. autosummary::
+    :nosignatures:
+
+    SplineBasis
+
+
+**Bases For Convolution:**
+
+.. currentmodule:: nemos.basis
+
+.. autosummary::
+    :nosignatures:
+
+
+    MSplineConv
+    BSplineConv
+    CyclicBSplineConv
+    RaisedCosineLinearConv
+    RaisedCosineLogConv
+    OrthExponentialConv
+    HistoryConv
+
+.. check for a config that prints only nemos.basis.Name
+
+**Bases For Non-Linear Mapping:**
+
+.. currentmodule:: nemos.basis
+
+.. autosummary::
+    :nosignatures:
+
+    MSplineEval
+    BSplineEval
+    CyclicBSplineEval
+    RaisedCosineLinearEval
+    RaisedCosineLogEval
+    FourierEval
+    OrthExponentialEval
+    Category
+    IdentityEval
+    Zero
+
+**Composite Bases:**
+
+.. currentmodule:: nemos.basis._basis
+
+.. autosummary::
+    :nosignatures:
+
+    AdditiveBasis
+    MultiplicativeBasis
+
+**Custom defined Basis:**
+
+Define a fully functional basis form a list of functions.
+
+.. currentmodule:: nemos.basis._custom_basis
+
+.. autosummary::
+    :nosignatures:
+
+    CustomBasis
+
+**Basis As scikit-learn Tranformers:**
+
+.. currentmodule:: nemos.basis._transformer_basis
+
+.. autosummary::
+    :nosignatures:
+
+    TransformerBasis
+
+Observation Models
+------------------
+Statistical models to describe the distribution of neural responses or other predicted variables, given inputs.
+
+.. currentmodule:: nemos.observation_models
+
+.. autosummary::
+    :nosignatures:
+
+    Observations
+    PoissonObservations
+    GaussianObservations
+    NegativeBinomialObservations
+    GammaObservations
+    BernoulliObservations
+    CategoricalObservations
+
+Regularizers
+------------
+Implements various regularization techniques to constrain model parameters, which helps prevent overfitting.
+
+.. currentmodule:: nemos.regularizer
+
+.. autosummary::
+    :nosignatures:
+
+    Regularizer
+    UnRegularized
+    Ridge
+    Lasso
+    ElasticNet
+    GroupLasso
+
+
+IO
+--
+
+Save and load NeMoS models.
+
+.. currentmodule:: nemos.io
+.. autosummary::
+    :nosignatures:
+
+    load_model
+    inspect_npz
+
+Solvers
+-------
+Functions for interacting with the JAX-based optimizers used for parameter fitting.
+
+Solver registry functions
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Helpers to look up or register solvers.
+
+.. currentmodule:: nemos.solvers
+
+.. autosummary::
+    :nosignatures:
+
+    get_solver
+    get_solver_documentation
+    list_available_solvers
+    list_available_algorithms
+    list_algo_backends
+    register
+    set_default_backend
+    list_stochastic_solvers
+    supports_stochastic
+
+    SolverSpec
+
+
+Wrapping existing solvers
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Adapter classes for existing solvers, especially those defined in the JAXopt, Optimistix, or Optax libraries.
+
+.. currentmodule:: nemos.solvers
+
+.. autosummary::
+    :nosignatures:
+
+    _solver_adapter.SolverAdapter
+    _jaxopt_solvers.JaxoptAdapter
+    _optimistix_solvers.OptimistixAdapter
+    _optax_optimistix_solvers.AbstractOptimistixOptaxSolver
+
+Writing custom solvers
+^^^^^^^^^^^^^^^^^^^^^^
+Classes useful for creating completely custom solvers.
+
+.. currentmodule:: nemos.solvers
+
+.. autosummary::
+    :nosignatures:
+
+    AbstractSolver
+    OptimizationInfo
+    SolverProtocol
+    validate_solver_class
+
+.. seealso::
+
+    :doc:`The developer notes <developers_notes/07-solvers>` explain the solver contract and expected types in more detail.
+
+Stochastic optimization
+-----------------------
+Tools for fitting models on batched data via ``stochastic_fit``.
+
+Data loaders
+^^^^^^^^^^^^
+Helper classes loading data for stochastic optimization.
+
+.. currentmodule:: nemos.batching
+
+.. autosummary::
+    :nosignatures:
+
+    DataLoader
+    ArrayDataLoader
+    LazyArrayDataLoader
+
+Callbacks
+^^^^^^^^^
+Callback interfaces for stochastic optimization and post-fit run summaries.
+
+.. currentmodule:: nemos.callbacks
+
+.. autosummary::
+    :nosignatures:
+
+    Callback
+    CallbackList
+    SolverConvergenceCallback
+    TestLossLogger
+    TrainingContext
+    StochasticFitSummary
+
+Convolution utilities
+---------------------
+Utility functions for running convolution over the sample axis.
+
+.. currentmodule:: nemos.convolve
+
+.. autosummary::
+    :nosignatures:
+
+    create_convolutional_predictor
+Simulations utilities
+---------------------
+Utility functions for simulating spiking activity in recurrently connected neural populations.
+
+.. currentmodule:: nemos.simulation
+
+.. autosummary::
+    :nosignatures:
+
+    simulate_recurrent
+    difference_of_gammas
+    regress_filter
+Identifiability utilities
+-------------------------
+Functions to apply identifiability constraints to rank-deficient feature matrices, ensuring the uniqueness of model
+solutions.
+
+.. currentmodule:: nemos.identifiability_constraints
+
+.. autosummary::
+    :nosignatures:
+
+    apply_identifiability_constraints
+    apply_identifiability_constraints_by_basis_component
