@@ -1,0 +1,61 @@
+﻿nemos.glm\_hmm.GLMHMM
+=====================
+
+.. currentmodule:: nemos.glm_hmm
+
+.. autoclass:: GLMHMM
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GLMHMM.dirichlet_initial_proba
+      ~GLMHMM.dirichlet_transition_proba
+      ~GLMHMM.hmm_initialization_funcs
+      ~GLMHMM.inverse_link_function
+      ~GLMHMM.maxiter
+      ~GLMHMM.model_initialization_funcs
+      ~GLMHMM.n_states
+      ~GLMHMM.observation_model
+      ~GLMHMM.optimizer_init_state
+      ~GLMHMM.optimizer_run
+      ~GLMHMM.optimizer_update
+      ~GLMHMM.regularizer
+      ~GLMHMM.regularizer_strength
+      ~GLMHMM.seed
+      ~GLMHMM.solver_kwargs
+      ~GLMHMM.solver_name
+      ~GLMHMM.solver_spec
+      ~GLMHMM.tol
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GLMHMM.__init__
+      ~GLMHMM.compute_loss
+      ~GLMHMM.decode_state
+      ~GLMHMM.filter_proba
+      ~GLMHMM.fit
+      ~GLMHMM.get_model_params
+      ~GLMHMM.get_params
+      ~GLMHMM.initialize_optimizer_and_state
+      ~GLMHMM.initialize_params
+      ~GLMHMM.save_params
+      ~GLMHMM.score
+      ~GLMHMM.set_params
+      ~GLMHMM.setup
+      ~GLMHMM.simulate
+      ~GLMHMM.smooth_proba
+      ~GLMHMM.update
+   
