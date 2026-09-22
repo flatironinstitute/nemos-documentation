@@ -1,0 +1,211 @@
+
+# How-To Guide
+
+Task-oriented recipes: each page answers a single "how do I ...?" question. The concepts behind them are covered in the [user guide](../user_guide/README.md).
+
+:::{dropdown} Additional requirements
+:color: warning
+:icon: alert
+:open:
+To run these guides, you may need to install some additional packages used for plotting and data fetching.
+You can install all of the required packages with the following command:
+```
+pip install nemos[examples]
+```
+:::
+
+% Only the first toctree of each group carries the :caption:, so the sidebar shows one
+% group header per section; conf.py keeps captions out of this page's body.
+
+## Using Models
+
+::::{grid} 1 2 3 3
+
+:::{grid-item-card}
+
+<figure>
+<a href="raw_history_feature.html">
+<img src="../_static/glm_population_scheme.svg" style="height: 100px", alt="Coupled GLM."/>
+</a>
+</figure>
+
+```{toctree}
+:maxdepth: 2
+:caption: Using Models
+
+raw_history_feature.md
+```
+:::
+
+:::{grid-item-card}
+
+<figure>
+<a href="glm_for_classification.html">
+<img src="../_static/thumbnails/how_to_guide/glm_for_classification.svg" style="height: 100px", alt="Confusion Matrix."/>
+</a>
+</figure>
+
+```{toctree}
+:maxdepth: 2
+
+glm_for_classification.md
+```
+:::
+
+:::{grid-item-card}
+
+```{toctree}
+:maxdepth: 2
+
+simulate_coupled_population.md
+```
+:::
+
+:::{grid-item-card}
+
+<figure>
+<a href="model_selection.html">
+<img src="../_static/thumbnails/how_to_guide/variable_selection_zero_basis.svg" style="height: 100px", alt="Model Selection."/>
+</a>
+</figure>
+
+```{toctree}
+:maxdepth: 2
+
+model_selection.md
+```
+:::
+
+::::
+
+## Feature Engineering
+
+::::{grid} 1 2 3 3
+
+:::{grid-item-card}
+
+```{eval-rst}
+
+.. plot:: scripts/basis_figs.py plot_laguerre_basis
+   :show-source-link: False
+   :height: 100px
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: Feature Engineering
+
+define_a_custom_basis.md
+```
+
+:::
+
+:::{grid-item-card}
+
+```{eval-rst}
+
+.. plot:: scripts/glm_predictors.py plot_custom_features
+   :show-source-link: False
+   :height: 100px
+```
+
+```{toctree}
+:maxdepth: 2
+
+custom_predictors.md
+```
+
+:::
+
+:::{grid-item-card}
+
+```{toctree}
+:maxdepth: 2
+
+pytree_predictors.md
+```
+
+:::
+
+::::
+
+## Performance and Scaling
+
+::::{grid} 1 2 3 3
+
+:::{grid-item-card}
+
+<figure>
+<a href="convolve_large_arrays.html">
+<img src="../_static/convolve_batching_scheme.svg" style="height: 100px", alt="Batching scheme."/>
+</a>
+</figure>
+
+```{toctree}
+:maxdepth: 2
+:caption: Performance and Scaling
+
+convolve_large_arrays.md
+```
+
+:::
+
+:::{grid-item-card}
+
+```{toctree}
+:maxdepth: 2
+
+stochastic_fit.md
+```
+:::
+
+:::{grid-item-card}
+
+```{toctree}
+:maxdepth: 2
+
+custom_dataloader.md
+```
+:::
+
+:::{grid-item-card}
+
+<figure>
+<img src="../_static/thumbnails/how_to_guide/batch_glm_loss_curve.svg" style="height: 100px", alt="Batched GLM."/>
+</figure>
+
+```{toctree}
+:maxdepth: 2
+
+custom_callbacks_and_termination.md
+```
+:::
+
+:::{grid-item-card}
+
+```{toctree}
+:maxdepth: 2
+
+manual_batching_loop.md
+```
+:::
+
+::::
+
+## Extensions and Customizations
+
+::::{grid} 1 2 3 3
+
+:::{grid-item-card}
+
+
+```{toctree}
+:maxdepth: 2
+:caption: Extensions and Customizations
+
+custom_solvers.md
+```
+
+:::
+
+::::

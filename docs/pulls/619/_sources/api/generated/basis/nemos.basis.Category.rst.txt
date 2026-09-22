@@ -1,0 +1,44 @@
+﻿nemos.basis.Category
+====================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: Category
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Category.categories
+      ~Category.input_shape
+      ~Category.is_complex
+      ~Category.label
+      ~Category.n_basis_funcs
+      ~Category.n_output_features
+      ~Category.out_of_category
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Category.__init__
+      ~Category.compute_features
+      ~Category.evaluate
+      ~Category.evaluate_on_grid
+      ~Category.get_params
+      ~Category.set_input_shape
+      ~Category.set_params
+      ~Category.setup_basis
+      ~Category.split_by_feature
+      ~Category.to_transformer
+   
