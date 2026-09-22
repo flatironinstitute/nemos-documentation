@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The solvers Module &#8212; nemos 0.2.10.dev524 documentation</title>
+    <title>The solvers Module &#8212; nemos 0.2.10.dev526 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=4dec9eb9"></script>
+    <script src="../_static/documentation_options.js?v=de6c90ca"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev524 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev524 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev526 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev526 documentation - Home"/>
   
   
 </a></div>
@@ -658,7 +658,7 @@ Mixin LineSearchLoopMixin          (outer loop, step acceptance, LineSearchState
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Newton</span></code>, <code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code> and <code class="docutils literal notranslate"><span class="pre">ProximalLBFGS</span></code> sit outside the adapter tree: they are not backed
 by an external optimization library, so they implement <code class="docutils literal notranslate"><span class="pre">SolverProtocol</span></code> structurally rather than
-subclassing <code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code>. What they share is assembled from three mixins, described under
+subclassing <code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code>. What they share is assembled from four mixins, described under
 <a class="reference internal" href="#second-order-optimization">second-order optimization</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">OptaxOptimistixSolver</span></code> is an adapter for Optax solvers, relying on <code class="docutils literal notranslate"><span class="pre">optimistix.OptaxMinimiser</span></code> to run the full optimization loop. If there is a need, this can be used to wrap adaptive solvers (e.g. Adam).</p>
 <p>Gradient descent is implemented by two classes:</p>
@@ -745,7 +745,9 @@ loop, <code class="docutils literal notranslate"><span class="pre">None</span></
 identity shift for <code class="docutils literal notranslate"><span class="pre">Newton</span></code>); <code class="docutils literal notranslate"><span class="pre">_direction</span></code>, which reads a step off that model and hands back what
 the model carries away from having been read; and <code class="docutils literal notranslate"><span class="pre">_converged</span></code>, whose default is the gradient-norm
 test, overridden by both a Hessian-modified <code class="docutils literal notranslate"><span class="pre">Newton</span></code> step and a composite objective with the
-step-only Cauchy test <code class="docutils literal notranslate"><span class="pre">_step_cauchy_converged</span></code>.</p>
+Cauchy test <code class="docutils literal notranslate"><span class="pre">_cauchy_converged</span></code>, the iterate arm of <code class="docutils literal notranslate"><span class="pre">optimistix.cauchy_termination</span></code> alone. It reads
+<code class="docutils literal notranslate"><span class="pre">y_diff</span></code>, which is infinite until a step is accepted; a quasi-Newton <code class="docutils literal notranslate"><span class="pre">_curvature</span></code> wanting that same
+step as the <code class="docutils literal notranslate"><span class="pre">s</span></code> of its curvature pair carries its own <code class="docutils literal notranslate"><span class="pre">y_prev</span></code> instead.</p>
 <p><code class="docutils literal notranslate"><span class="pre">HessianMixin</span></code> also fills in <code class="docutils literal notranslate"><span class="pre">_build_cache</span></code>, <code class="docutils literal notranslate"><span class="pre">_init_curvature</span></code> and <code class="docutils literal notranslate"><span class="pre">_curvature</span></code> with “the curvature
 model is the assembled Hessian, rebuilt from the data every iteration”, which is what lets
 <code class="docutils literal notranslate"><span class="pre">Newton</span></code> and <code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code> share everything but the direction.</p>

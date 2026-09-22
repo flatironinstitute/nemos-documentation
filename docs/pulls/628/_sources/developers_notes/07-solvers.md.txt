@@ -102,7 +102,7 @@ Mixin LineSearchLoopMixin          (outer loop, step acceptance, LineSearchState
 
 `Newton`, `ProximalNewton` and `ProximalLBFGS` sit outside the adapter tree: they are not backed
 by an external optimization library, so they implement `SolverProtocol` structurally rather than
-subclassing `AbstractSolver`. What they share is assembled from three mixins, described under
+subclassing `AbstractSolver`. What they share is assembled from four mixins, described under
 [second-order optimization](#second-order-optimization).
 
 `OptaxOptimistixSolver` is an adapter for Optax solvers, relying on `optimistix.OptaxMinimiser` to run the full optimization loop. If there is a need, this can be used to wrap adaptive solvers (e.g. Adam).
@@ -172,7 +172,9 @@ loop, `None` for `ProximalNewton`, which rebuilds its Hessian every iteration, t
 identity shift for `Newton`); `_direction`, which reads a step off that model and hands back what
 the model carries away from having been read; and `_converged`, whose default is the gradient-norm
 test, overridden by both a Hessian-modified `Newton` step and a composite objective with the
-step-only Cauchy test `_step_cauchy_converged`.
+Cauchy test `_cauchy_converged`, the iterate arm of `optimistix.cauchy_termination` alone. It reads
+`y_diff`, which is infinite until a step is accepted; a quasi-Newton `_curvature` wanting that same
+step as the `s` of its curvature pair carries its own `y_prev` instead.
 
 `HessianMixin` also fills in `_build_cache`, `_init_curvature` and `_curvature` with "the curvature
 model is the assembled Hessian, rebuilt from the data every iteration", which is what lets
