@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -552,11 +552,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation_models</span> <span class="k">as</span> <span class="n">obs</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span><span class="p">,</span> <span class="n">validation</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.._hess</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">LeafClaim</span><span class="p">,</span>
-    <span class="n">MatrixProperty</span><span class="p">,</span>
-    <span class="n">MatrixStructure</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._hess</span><span class="w"> </span><span class="kn">import</span> <span class="n">LeafClaim</span><span class="p">,</span> <span class="n">MatrixProperty</span><span class="p">,</span> <span class="n">MatrixStructure</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.._observation_model_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">instantiate_observation_model</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..base_regressor</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRegressor</span><span class="p">,</span> <span class="n">strip_metadata</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..batching</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">_PreprocessedDataLoader</span><span class="p">,</span> <span class="n">is_data_loader</span>
@@ -698,17 +694,23 @@
 
 <span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
 
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                                   |</span>
-<span class="sd">    +===============+==================+=====================================================================+</span>
-<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                     |</span>
+<span class="sd">    +===============+==================+=======================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
 
 <span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
@@ -836,7 +838,9 @@
 
 <span class="sd">    Or pass the observation model object directly:</span>
 
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.GLM(observation_model=nmo.observation_models.GammaObservations())</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.GLM(</span>
+<span class="sd">    ...     observation_model=nmo.observation_models.GammaObservations()</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.observation_model</span>
 <span class="sd">    GammaObservations()</span>
 
@@ -1418,7 +1422,7 @@
 <span class="sd">        &gt;&gt;&gt; # get model score</span>
 <span class="sd">        &gt;&gt;&gt; log_likelihood_score = model.score(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; # get a pseudo-R2 score</span>
-<span class="sd">        &gt;&gt;&gt; pseudo_r2_score = model.score(X, y, score_type='pseudo-r2-McFadden')</span>
+<span class="sd">        &gt;&gt;&gt; pseudo_r2_score = model.score(X, y, score_type="pseudo-r2-McFadden")</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -1827,7 +1831,10 @@
 <span class="sd">        &gt;&gt;&gt; X = jnp.ones((100, 5))</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.ones((100,))</span>
 <span class="sd">        &gt;&gt;&gt; loader = ArrayDataLoader(X, y, batch_size=32, shuffle="full")</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(solver_name="GradientDescent", solver_kwargs={"stepsize": 0.01, "acceleration" : False})</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(</span>
+<span class="sd">        ...     solver_name="GradientDescent",</span>
+<span class="sd">        ...     solver_kwargs={"stepsize": 0.01, "acceleration": False},</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; # Stop early when the solver's convergence criterion is met.</span>
 <span class="sd">        &gt;&gt;&gt; model = model.stochastic_fit(</span>
 <span class="sd">        ...     loader, n_passes=10, callbacks=SolverConvergenceCallback()</span>
@@ -1935,7 +1942,6 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_warn_about_estimated_svrg_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Warn if SVRG settings are estimated on sample data instead of the full dataset."""</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="p">,</span> <span class="p">(</span><span class="n">WrappedSVRG</span><span class="p">,</span> <span class="n">WrappedProxSVRG</span><span class="p">)):</span>
             <span class="k">return</span>
 
@@ -2427,8 +2433,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Saving and loading a custom inverse link function</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(</span>
-<span class="sd">        ...     observation_model="Poisson",</span>
-<span class="sd">        ...     inverse_link_function=lambda x: x**2</span>
+<span class="sd">        ...     observation_model="Poisson", inverse_link_function=lambda x: x**2</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; model.save_params("model_params.npz")</span>
 <span class="sd">        &gt;&gt;&gt; # Provide a mapping for the custom link function when loading.</span>
@@ -2448,7 +2453,6 @@
 <span class="sd">        solver_kwargs: {}</span>
 <span class="sd">        solver_name: LBFGS</span>
 <span class="sd">        """</span>
-
         <span class="c1"># initialize saving dictionary</span>
         <span class="n">fit_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fit_state</span><span class="p">()</span>
         <span class="n">fit_attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"solver_state_"</span><span class="p">)</span>
@@ -2504,17 +2508,23 @@
 <span class="sd">    stored in tabular format, shape (n_timebins, num_features) or as a pytree of arrays of the same shape.</span>
 <span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
 
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                                   |</span>
-<span class="sd">    +===============+==================+=====================================================================+</span>
-<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                     |</span>
+<span class="sd">    +===============+==================+=======================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
 
 <span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
@@ -2656,16 +2666,16 @@
 <span class="sd">    &gt;&gt;&gt; X_dict = {"feature_1": feature_1, "feature_2": feature_2}</span>
 <span class="sd">    &gt;&gt;&gt; weights = dict(</span>
 <span class="sd">    ...     feature_1=jnp.array([[0.0, 0.5], [0.0, -0.5]]),</span>
-<span class="sd">    ...     feature_2=jnp.array([[1.0, 0.0]])</span>
+<span class="sd">    ...     feature_2=jnp.array([[1.0, 0.0]]),</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; rate = np.exp(</span>
-<span class="sd">    ...     X_dict["feature_1"].dot(weights["feature_1"]) +</span>
-<span class="sd">    ...     X_dict["feature_2"].dot(weights["feature_2"])</span>
+<span class="sd">    ...     X_dict["feature_1"].dot(weights["feature_1"])</span>
+<span class="sd">    ...     + X_dict["feature_2"].dot(weights["feature_2"])</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = np.random.poisson(rate)</span>
 <span class="sd">    &gt;&gt;&gt; feature_mask = {</span>
 <span class="sd">    ...     "feature_1": jnp.array([[0, 1], [0, 1]], dtype=jnp.int32),</span>
-<span class="sd">    ...     "feature_2": jnp.array([[1, 0]], dtype=jnp.int32)</span>
+<span class="sd">    ...     "feature_2": jnp.array([[1, 0]], dtype=jnp.int32),</span>
 <span class="sd">    ... }</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.PopulationGLM(feature_mask=feature_mask).fit(X_dict, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_</span>
@@ -2687,8 +2697,7 @@
 <span class="sd">    &gt;&gt;&gt; weights = np.array([[0.5, 0.0], [-0.5, -0.5], [0.0, 1.0]])</span>
 <span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(weights)))</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.PopulationGLM(</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.1</span>
+<span class="sd">    ...     regularizer="Ridge", regularizer_strength=0.1</span>
 <span class="sd">    ... ).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -2855,7 +2864,7 @@
 <span class="sd">        &gt;&gt;&gt; num_samples, num_features, num_neurons = 100, 3, 2</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features))</span>
 <span class="sd">        &gt;&gt;&gt; # Weights is defined by how each feature influences the output, shape (num_features, num_neurons)</span>
-<span class="sd">        &gt;&gt;&gt; weights = np.array([[ 0.5,  0. ], [-0.5, -0.5], [ 0. ,  1. ]])</span>
+<span class="sd">        &gt;&gt;&gt; weights = np.array([[0.5, 0.0], [-0.5, -0.5], [0.0, 1.0]])</span>
 <span class="sd">        &gt;&gt;&gt; # Output y simulates a Poisson distribution based on a linear model between features X and wegihts</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(weights)))</span>
 <span class="sd">        &gt;&gt;&gt; # Define a feature mask, shape (num_features, num_neurons)</span>

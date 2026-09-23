@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -654,7 +654,9 @@
 <span class="sd">        &gt;&gt;&gt; model.set_classes(y_all_classes)</span>
 <span class="sd">        ClassifierGLM(...)</span>
 <span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X_batch1, y_batch1)</span>
-<span class="sd">        &gt;&gt;&gt; state = model.initialize_optimizer_and_state(init_params, X_batch1, y_batch1)</span>
+<span class="sd">        &gt;&gt;&gt; state = model.initialize_optimizer_and_state(</span>
+<span class="sd">        ...     init_params, X_batch1, y_batch1</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Now batches with any subset of classes work with :meth:`update`:</span>
 
@@ -1271,7 +1273,9 @@
 
 <span class="sd">    Classify into more than two classes:</span>
 
-<span class="sd">    &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]])</span>
+<span class="sd">    &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1, 2, 2])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
@@ -1282,9 +1286,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(</span>
-<span class="sd">    ...     n_classes=2,</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.5</span>
+<span class="sd">    ...     n_classes=2, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1537,7 +1539,9 @@
 <span class="sd">    &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">    &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
@@ -1563,7 +1567,9 @@
 
 <span class="sd">    Class labels can be strings or any hashable type:</span>
 
-<span class="sd">    &gt;&gt;&gt; y_str = np.array([["a", "a"], ["a", "b"], ["b", "a"], ["b", "c"], ["c", "b"], ["c", "c"]])</span>
+<span class="sd">    &gt;&gt;&gt; y_str = np.array(</span>
+<span class="sd">    ...     [["a", "a"], ["a", "b"], ["b", "a"], ["b", "c"], ["c", "b"], ["c", "c"]]</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y_str)</span>
 <span class="sd">    &gt;&gt;&gt; model.classes_</span>
 <span class="sd">    array(['a', 'b', 'c'], dtype='&lt;U1')</span>
@@ -1577,8 +1583,7 @@
 <span class="sd">    &gt;&gt;&gt; feature_mask = jnp.array([[1, 0], [1, 1]])</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3,</span>
-<span class="sd">    ...     feature_mask=feature_mask</span>
+<span class="sd">    ...     n_classes=3, feature_mask=feature_mask</span>
 <span class="sd">    ... ).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_</span>
 <span class="sd">    Array(...)</span>
@@ -1588,9 +1593,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3,</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.5</span>
+<span class="sd">    ...     n_classes=3, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1713,7 +1716,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">        &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3)</span>
 <span class="sd">        &gt;&gt;&gt; model = model.fit(X, y)</span>
@@ -1765,7 +1770,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; X = jnp.array([[1., 2.], [2., 3.], [3., 4.], [4., 5.], [5., 6.], [6., 7.]])</span>
+<span class="sd">        &gt;&gt;&gt; X = jnp.array(</span>
+<span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; score = model.score(X, y)</span>

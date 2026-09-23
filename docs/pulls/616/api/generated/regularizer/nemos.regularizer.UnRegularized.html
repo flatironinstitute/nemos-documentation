@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.regularizer.UnRegularized &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.regularizer.UnRegularized &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -58,6 +58,8 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/regularizer/nemos.regularizer.UnRegularized';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -140,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -703,7 +705,10 @@ unpenalized loss function.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#nemos.regularizer.UnRegularized.penalized_loss" title="nemos.regularizer.UnRegularized.penalized_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">penalized_loss</span></code></a>(loss, params, strength)</p></td>
 <td><p>Return a function for calculating the penalized loss.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.regularizer.UnRegularized.set_params" title="nemos.regularizer.UnRegularized.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.regularizer.UnRegularized.penalty_fn" title="nemos.regularizer.UnRegularized.penalty_fn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">penalty_fn</span></code></a>(params, strength)</p></td>
+<td><p>Return a function evaluating the penalty alone, given the parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.regularizer.UnRegularized.set_params" title="nemos.regularizer.UnRegularized.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
@@ -838,6 +843,39 @@ name, value is the parameter value.</p>
 <li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>)</p></li>
 <li><p><strong>strength</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><em>Any</em></a>)</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nemos.regularizer.UnRegularized.penalty_fn">
+<span class="sig-name descname"><span class="pre">penalty_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strength</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nemos.regularizer.UnRegularized.penalty_fn" title="Link to this definition">#</a></dt>
+<dd><p>Return a function evaluating the penalty alone, given the parameters.</p>
+<p>The penalty depends on the parameters only: the strength, and any other
+ingredient the penalty needs (<code class="docutils literal notranslate"><span class="pre">GroupLasso</span></code>’s mask), are resolved once here by
+<code class="docutils literal notranslate"><span class="pre">_get_filter_kwargs</span></code>. <code class="docutils literal notranslate"><span class="pre">_penalization</span></code> then applies <code class="docutils literal notranslate"><span class="pre">_penalty_on_subtree</span></code>
+to each of <code class="docutils literal notranslate"><span class="pre">params.regularizable_subtrees()</span></code>, which is what leaves the
+intercept unpenalized.</p>
+<p>Most callers want <code class="docutils literal notranslate"><span class="pre">loss</span> <span class="pre">+</span> <span class="pre">penalty</span></code> and should use <code class="docutils literal notranslate"><span class="pre">penalized_loss</span></code>, which is
+written in terms of this method so the two cannot disagree. This accessor is for
+solvers needing the penalty on its own: a proximal solver differentiates the
+smooth loss and reaches the penalty through its proximal operator, so it has to
+evaluate <span class="math notranslate nohighlight">\(P\)</span> without <span class="math notranslate nohighlight">\(f\)</span> – see
+<code class="docutils literal notranslate"><span class="pre">ProximalNewton._line_search_inputs</span></code>, whose sufficient-decrease slope is built
+from <span class="math notranslate nohighlight">\(P(\\beta + d) - P(\\beta)\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Full, unsliced parameters. Used to expand the strength and to build any
+mask, so the shape checks see the shapes the user passed.</p></li>
+<li><p><strong>strength</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – The strength as the user set it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping a parameter tree to the scalar penalty.</p>
 </dd>
 </dl>
 </dd></dl>

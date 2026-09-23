@@ -32,5 +32,6 @@
       ~Lasso.get_params
       ~Lasso.get_proximal_operator
       ~Lasso.penalized_loss
+      ~Lasso.penalty_fn
       ~Lasso.set_params
    

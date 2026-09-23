@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis._basis &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.basis._basis &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -710,7 +710,6 @@
 <span class="sd">        A generator yielding numpy arrays of linspaces from 0 (or specified min)</span>
 <span class="sd">        to 1 (or specified max) of sizes specified by ``n_samples``.</span>
 <span class="sd">    """</span>
-
     <span class="k">if</span> <span class="n">_is_single_bound</span><span class="p">(</span><span class="n">bounds</span><span class="p">):</span>
         <span class="c1"># bounds is None or a single (min, max) tuple - expand to match n_samples length</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
@@ -1264,10 +1263,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; basis_add = basis1 + basis2</span>
-<span class="sd">        &gt;&gt;&gt; X_multi = basis_add.compute_features(np.random.randn(20), np.random.randn(20, 2))</span>
-<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 17 = 5 + 2*6</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_add.compute_features(</span>
+<span class="sd">        ...     np.random.randn(20), np.random.randn(20, 2)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape)  # num_features: 17 = 5 + 2*6</span>
 <span class="sd">        (20, 17)</span>
 
 <span class="sd">        """</span>
@@ -1399,10 +1402,9 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; # Define an additive basis</span>
-<span class="sd">        &gt;&gt;&gt; basis = (</span>
-<span class="sd">        ...     BSplineConv(n_basis_funcs=5, window_size=10, label="feature_1") +</span>
-<span class="sd">        ...     BSplineConv(n_basis_funcs=6, window_size=10, label="feature_2")</span>
-<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; basis = BSplineConv(</span>
+<span class="sd">        ...     n_basis_funcs=5, window_size=10, label="feature_1"</span>
+<span class="sd">        ... ) + BSplineConv(n_basis_funcs=6, window_size=10, label="feature_2")</span>
 <span class="sd">        &gt;&gt;&gt; # Generate a sample input array and compute features</span>
 <span class="sd">        &gt;&gt;&gt; x1, x2 = np.random.randn(20), np.random.randn(20)</span>
 <span class="sd">        &gt;&gt;&gt; X = basis.compute_features(x1, x2)</span>
@@ -1413,12 +1415,13 @@
 <span class="sd">        feature_1: shape (20, 5)</span>
 <span class="sd">        feature_2: shape (20, 6)</span>
 <span class="sd">        &gt;&gt;&gt; # If one of the basis components accepts multiple inputs, the resulting dictionary will be nested:</span>
-<span class="sd">        &gt;&gt;&gt; multi_input_basis = BSplineConv(n_basis_funcs=6, window_size=10,</span>
-<span class="sd">        ... label="multi_input")</span>
+<span class="sd">        &gt;&gt;&gt; multi_input_basis = BSplineConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="multi_input"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; X_multi = multi_input_basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = multi_input_basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        multi_input, shape (20, 2, 6)</span>
 <span class="sd">        &gt;&gt;&gt; # the method can be used to decompose the glm coefficients in the various features</span>
 <span class="sd">        &gt;&gt;&gt; counts = np.random.poisson(size=20)</span>
@@ -1821,10 +1824,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; basis_mul = basis1 * basis2</span>
-<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(np.random.randn(20, 2), np.random.randn(20, 2))</span>
-<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 60 = 5 * 2 * 6</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(</span>
+<span class="sd">        ...     np.random.randn(20, 2), np.random.randn(20, 2)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape)  # num_features: 60 = 5 * 2 * 6</span>
 <span class="sd">        (20, 60)</span>
 
 <span class="sd">        """</span>
@@ -1846,10 +1853,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval, RaisedCosineLogConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis1 = BSplineEval(n_basis_funcs=5, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis2 = RaisedCosineLogConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; basis_mul = basis1 * basis2</span>
-<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(np.random.randn(20, 2), np.random.randn(20, 2))</span>
-<span class="sd">        &gt;&gt;&gt; print(X_multi.shape) # num_features: 20 = 2 * 5 * 6</span>
+<span class="sd">        &gt;&gt;&gt; X_multi = basis_mul.compute_features(</span>
+<span class="sd">        ...     np.random.randn(20, 2), np.random.randn(20, 2)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; print(X_multi.shape)  # num_features: 20 = 2 * 5 * 6</span>
 <span class="sd">        (20, 60)</span>
 
 <span class="sd">        &gt;&gt;&gt; # The multiplicative basis is a single 2D component.</span>
@@ -1907,7 +1918,9 @@
 <span class="sd">        &gt;&gt;&gt; multiplicative_basis = basis_1 * basis_2 * basis_3</span>
 
 <span class="sd">        Specify the input shape using all 3 allowed ways: integer, tuple, array</span>
-<span class="sd">        &gt;&gt;&gt; _ = multiplicative_basis.set_input_shape((4, 5), (4, 5), np.ones((10, 4, 5)))</span>
+<span class="sd">        &gt;&gt;&gt; _ = multiplicative_basis.set_input_shape(</span>
+<span class="sd">        ...     (4, 5), (4, 5), np.ones((10, 4, 5))</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Expected output features are:</span>
 <span class="sd">        (5 * 6 * 7 bases) * (20 inputs) = 4200</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The solvers Module &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>The solvers Module &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../_static/documentation_options.js?v=36763308"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -496,6 +496,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-hessian_tagging.html">Hessian tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-associative_estep_hmm.html">Associative Scan For The HMM E-Step</a></li>
 </ul>
 </div>
 </nav></div>
@@ -617,7 +618,7 @@ During construction they set a <code class="docutils literal notranslate"><span 
 </section>
 <section id="list-of-available-solvers">
 <h2>List of available solvers<a class="headerlink" href="#list-of-available-solvers" title="Link to this heading">#</a></h2>
-<p>The following diagram shows the solver class hierarchy. Solvers marked with <code class="docutils literal notranslate"><span class="pre">[S]</span></code> support stochastic optimization via <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code>.</p>
+<p>The following diagram shows the solver class hierarchy. Solvers marked with <code class="docutils literal notranslate"><span class="pre">[S]</span></code> support stochastic optimization via <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code>; those marked with <code class="docutils literal notranslate"><span class="pre">[H]</span></code> consume the model’s analytic Hessian via <code class="docutils literal notranslate"><span class="pre">setup_hessian</span></code> (see <a class="reference internal" href="#second-order-optimization">second-order optimization</a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Abstract Class AbstractSolver
 │
 ├─ Abstract Subclass SolverAdapter
@@ -643,8 +644,17 @@ During construction they set a <code class="docutils literal notranslate"><span 
 │   │
 │   ├─ Concrete Subclass WrappedSVRG [S]
 │   └─ Concrete Subclass WrappedProxSVRG [S]
+
+Mixin HessianMixin
+│
+└─ Concrete Subclass Newton [H]
+  │
+  └─ Concrete Subclass ProximalNewton [H]
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">Newton</span></code> and <code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code> sit outside the adapter tree: they are not backed by an external
+optimization library, so they implement <code class="docutils literal notranslate"><span class="pre">SolverProtocol</span></code> structurally rather than subclassing
+<code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code>. What they do inherit is <code class="docutils literal notranslate"><span class="pre">HessianMixin</span></code>, which supplies the curvature machinery.</p>
 <p><code class="docutils literal notranslate"><span class="pre">OptaxOptimistixSolver</span></code> is an adapter for Optax solvers, relying on <code class="docutils literal notranslate"><span class="pre">optimistix.OptaxMinimiser</span></code> to run the full optimization loop. If there is a need, this can be used to wrap adaptive solvers (e.g. Adam).</p>
 <p>Gradient descent is implemented by two classes:</p>
 <ul class="simple">
@@ -676,6 +686,68 @@ There are also options in <a class="reference internal" href="../api/generated/s
 To validate a solver without registering, the <a class="reference internal" href="../api/generated/solvers/nemos.solvers.validate_solver_class.html#nemos.solvers.validate_solver_class" title="nemos.solvers.validate_solver_class"><span class="xref myst py py-func"><code class="docutils literal notranslate"><span class="pre">nemos.solvers.validate_solver_class</span></code></span></a> can be used.
 While it is not necessary, a way to ensure adherence to the interface is subclassing <code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code>.</p>
 </section>
+<section id="second-order-optimization">
+<span id="id3"></span><h2>Second-order optimization<a class="headerlink" href="#second-order-optimization" title="Link to this heading">#</a></h2>
+<p>Some solvers can exploit the second derivative of the loss. Rather than autodiffing it, models
+supply an analytic Hessian: <code class="docutils literal notranslate"><span class="pre">BaseRegressor._instantiate_solver</span></code> offers it to the solver through
+<code class="docutils literal notranslate"><span class="pre">setup_hessian</span></code>, along with tags describing the matrix (see <code class="docutils literal notranslate"><span class="pre">nemos._hess</span></code>).</p>
+<section id="solver-level-interface">
+<h3>Solver-level interface<a class="headerlink" href="#solver-level-interface" title="Link to this heading">#</a></h3>
+<p>Only solvers with <code class="docutils literal notranslate"><span class="pre">_uses_hessian</span> <span class="pre">=</span> <span class="pre">True</span></code> are offered the Hessian; every other solver is left
+untouched, exactly as <code class="docutils literal notranslate"><span class="pre">_supports_stochastic</span></code> gates <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code>. Currently:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Newton</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code></p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h3>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h3>
+<p>The machinery lives in <code class="docutils literal notranslate"><span class="pre">HessianMixin</span></code> (<code class="docutils literal notranslate"><span class="pre">nemos.solvers._hessian_mixins</span></code>), which sets
+<code class="docutils literal notranslate"><span class="pre">_uses_hessian</span> <span class="pre">=</span> <span class="pre">True</span></code> and provides:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setup_hessian</span></code>: accept the model’s Hessian function and resolve the <code class="docutils literal notranslate"><span class="pre">HessianTag</span></code> describing it,
+combining the model’s tag with the regularizer’s (<code class="docutils literal notranslate"><span class="pre">Regularizer.resolve_hess_tag</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_penalize_hessian</span></code>: add the penalty’s curvature to the likelihood’s, valid because
+<code class="docutils literal notranslate"><span class="pre">penalized_loss</span></code> is a sum and the second derivative of a sum is the sum of second derivatives.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_resolve_linear_solver</span></code>: pick the linear solver once from the tag – Cholesky when the Hessian is
+positive definite, otherwise a least-squares solve tolerating rank deficiency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_block_apply</span></code>: apply a function once per Hessian block, the single place reading the tag’s
+block structure. <code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code> supplies one block per neuron.</p></li>
+</ul>
+<p>It is deliberately a mixin rather than part of <code class="docutils literal notranslate"><span class="pre">AbstractSolver</span></code>: a first-order solver has no use for
+a Hessian tag or a linear solver and should not inherit them.</p>
+</section>
+<section id="step-acceptance">
+<h3>Step acceptance<a class="headerlink" href="#step-acceptance" title="Link to this heading">#</a></h3>
+<p>Both second-order solvers scale their step with <code class="docutils literal notranslate"><span class="pre">optax.scale_by_backtracking_linesearch</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">Newton._apply_or_reject</span></code> decides whether that search runs at all. It gates on the slope contracted
+with the step, <code class="docutils literal notranslate"><span class="pre">tree_dot(slope,</span> <span class="pre">step)</span></code>: the step is taken when that is negative, or when it is NaN.
+A zero slope means the iterate is stationary and a positive one that the direction is unusable, so
+both are rejected. The NaN case is deliberate rather than an oversight – a subproblem that diverged
+has to surface as a non-finite iterate, where rejecting it would leave a zero step behind and the
+Cauchy criterion would report convergence.</p>
+</section>
+<section id="proximal-second-order-solvers">
+<h3>Proximal second-order solvers<a class="headerlink" href="#proximal-second-order-solvers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code> minimizes a composite objective <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">+</span> <span class="pre">P</span></code>, with <code class="docutils literal notranslate"><span class="pre">P</span></code> reached through its proximal
+operator. Setting <code class="docutils literal notranslate"><span class="pre">_proximal</span> <span class="pre">=</span> <span class="pre">True</span></code> changes four things:</p>
+<ul class="simple">
+<li><p>the solver receives the <strong>unregularized</strong> loss and the regularizer’s proximal operator, the same
+convention <code class="docutils literal notranslate"><span class="pre">OptimistixAdapter._proximal</span></code> uses;</p></li>
+<li><p>the penalty contributes neither curvature nor tag to the Hessian, since the prox already applies
+it – adding it would double-count;</p></li>
+<li><p>convergence is a Cauchy criterion on the step rather than <code class="docutils literal notranslate"><span class="pre">||grad||</span> <span class="pre">&lt;=</span> <span class="pre">tol</span></code>, because the gradient
+of the smooth part does not vanish at the optimum of a nonsmooth objective;</p></li>
+<li><p>the line search is handed the composite objective and the Tseng &amp; Yun (2009) slope
+<code class="docutils literal notranslate"><span class="pre">Delta</span> <span class="pre">=</span> <span class="pre">grad</span> <span class="pre">f^T</span> <span class="pre">d</span> <span class="pre">+</span> <span class="pre">P(b</span> <span class="pre">+</span> <span class="pre">d)</span> <span class="pre">-</span> <span class="pre">P(b)</span></code>, since <code class="docutils literal notranslate"><span class="pre">grad</span> <span class="pre">F^T</span> <span class="pre">d</span></code> does not exist where <code class="docutils literal notranslate"><span class="pre">P</span></code> has its kink.
+<code class="docutils literal notranslate"><span class="pre">optax</span></code>’s search only ever contracts the vector it is given with the step, so
+<code class="docutils literal notranslate"><span class="pre">ProximalNewton._line_search_inputs</span></code> folds <code class="docutils literal notranslate"><span class="pre">Delta</span></code> into that contraction and the stock Armijo
+search applies unchanged.</p></li>
+</ul>
+<p>Each iteration solves the penalized quadratic subproblem with <code class="docutils literal notranslate"><span class="pre">FISTA</span></code>. The Hessian is never
+inverted, only multiplied, so a singular smooth Hessian is not by itself a problem.</p>
+</section>
+</section>
 <section id="stochastic-optimization">
 <h2>Stochastic optimization<a class="headerlink" href="#stochastic-optimization" title="Link to this heading">#</a></h2>
 <p>NeMoS provides a high-level interface for stochastic (mini-batch) optimization through the <code class="docutils literal notranslate"><span class="pre">stochastic_fit</span></code> method on GLM models and the <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code> method on solvers.</p>
@@ -698,7 +770,6 @@ While it is not necessary, a way to ensure adherence to the interface is subclas
     <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"stepsize"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">"acceleration"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
 <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">stochastic_fit</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">n_passes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </section>
@@ -722,8 +793,8 @@ While it is not necessary, a way to ensure adherence to the interface is subclas
 </div>
 <p>NeMoS provides <code class="docutils literal notranslate"><span class="pre">ArrayDataLoader</span></code> for in-memory arrays. For out-of-core data, users can implement their own data loader following the protocol.</p>
 </section>
-<section id="solver-level-interface">
-<h3>Solver-level interface<a class="headerlink" href="#solver-level-interface" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Solver-level interface<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>At the solver level, stochastic optimization is provided through the <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">stochastic_run</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">n_passes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -737,8 +808,8 @@ While it is not necessary, a way to ensure adherence to the interface is subclas
 </ul>
 <p>Solvers that do not support stochastic optimization (e.g., <code class="docutils literal notranslate"><span class="pre">BFGS</span></code>, <code class="docutils literal notranslate"><span class="pre">LBFGS</span></code>, <code class="docutils literal notranslate"><span class="pre">NonlinearCG</span></code>) will raise <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> when <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code> is called.</p>
 </section>
-<section id="implementation-details">
-<h3>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Implementation details<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Stochastic support is implemented through the <code class="docutils literal notranslate"><span class="pre">StochasticSolverMixin</span></code> class which provides a default implementation of <code class="docutils literal notranslate"><span class="pre">_stochastic_run_impl</span></code>. This mixin iterates over the data loader for the specified number of passes, calling <code class="docutils literal notranslate"><span class="pre">update</span></code> on each batch.</p>
 <p>For SVRG-based solvers, <code class="docutils literal notranslate"><span class="pre">stochastic_run</span></code> in the wrappers dispatches to a <code class="docutils literal notranslate"><span class="pre">run_streaming</span></code> method that handles the more complex optimization loop that requires computing full gradients at reference points.</p>
 </section>
@@ -804,11 +875,18 @@ While it is not necessary, a way to ensure adherence to the interface is subclas
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adapters">Adapters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-available-solvers">List of available solvers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-solvers">Custom solvers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-optimization">Second-order optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-level-interface">Solver-level interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-acceptance">Step acceptance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proximal-second-order-solvers">Proximal second-order solvers</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-optimization">Stochastic optimization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-stochastic-fit">Using <code class="docutils literal notranslate"><span class="pre">stochastic_fit</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataloader-protocol">DataLoader protocol</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-level-interface">Solver-level interface</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Solver-level interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Implementation details</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-batching">Manual batching</a></li>
 </ul>
 </li>

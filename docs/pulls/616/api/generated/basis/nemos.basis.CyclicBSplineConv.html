@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.basis.CyclicBSplineConv &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.basis.CyclicBSplineConv &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -686,7 +686,9 @@ that the convolution axis is <code class="docutils literal notranslate"><span cl
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">CyclicBSplineConv</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n_basis_funcs</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">order</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cyclic_bspline_basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span><span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cyclic_bspline_basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cyclic_bspline_basis</span>
 <span class="go">CyclicBSplineConv(n_basis_funcs=5, window_size=10, order=3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sample_points</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -924,7 +926,7 @@ structure: a single (X, y) pair for the transformer, a number of time series for
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_samples</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="p">))</span>  <span class="c1"># raw time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,))</span>  <span class="c1"># raw time series</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># basis transformed time series</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
@@ -999,15 +1001,19 @@ SciPy to compute the basis values.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">CyclicBSplineConv</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cbspline_basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span><span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cbspline_basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sample_points</span><span class="p">,</span> <span class="n">basis_values</span> <span class="o">=</span> <span class="n">cbspline_basis</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="n">p</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sample_points</span><span class="p">,</span> <span class="n">basis_values</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Function </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Cyclic B-Spline Basis Functions'</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">p</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">sample_points</span><span class="p">,</span> <span class="n">basis_values</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Function </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Cyclic B-Spline Basis Functions"</span><span class="p">)</span>
 <span class="go">Text(0.5, 1.0, 'Cyclic B-Spline Basis Functions')</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Domain'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Domain"</span><span class="p">)</span>
 <span class="go">Text(0.5, 0, 'Domain')</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Basis Function Value'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Basis Function Value"</span><span class="p">)</span>
 <span class="go">Text(0, 0.5, 'Basis Function Value')</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1268,11 +1274,13 @@ coefficient arrays (features along rows). All other dimensions are preserved.</p
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">CyclicBSplineConv</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.glm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLM</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span><span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"two_inputs"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">CyclicBSplineConv</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_basis_funcs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"two_inputs"</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X_multi</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">split_features_multi</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">X_multi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">sub_dict</span> <span class="ow">in</span> <span class="n">split_features_multi</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="gp">... </span>       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">sub_dict</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">sub_dict</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="go">two_inputs, shape (20, 2, 6)</span>
 </pre></div>
 </div>
@@ -1295,8 +1303,12 @@ fixed rather than re-inferred on each cross-validation fold. Otherwise
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># load some data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glm</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="gp">... </span>    <span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glm</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"basis"</span><span class="p">,</span> <span class="n">basis</span><span class="p">),</span> <span class="p">(</span><span class="s2">"glm"</span><span class="p">,</span> <span class="n">glm</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">glm__regularizer_strength</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">),</span>

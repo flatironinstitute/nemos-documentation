@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.solvers._solver_registry &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -543,7 +543,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">._abstract_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolverProtocol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._fista</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimistixFISTA</span><span class="p">,</span> <span class="n">OptimistixNAG</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._newton</span><span class="w"> </span><span class="kn">import</span> <span class="n">Newton</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._newton</span><span class="w"> </span><span class="kn">import</span> <span class="n">Newton</span><span class="p">,</span> <span class="n">ProximalNewton</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._optax_optimistix_solvers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">OptimistixOptaxGradientDescent</span><span class="p">,</span>
     <span class="n">OptimistixOptaxLBFGS</span><span class="p">,</span>
@@ -571,7 +571,9 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; spec = nmo.solvers.SolverSpec("BFGS", "optimistix", nmo.solvers._optimistix_solvers.OptimistixBFGS)</span>
+<span class="sd">    &gt;&gt;&gt; spec = nmo.solvers.SolverSpec(</span>
+<span class="sd">    ...     "BFGS", "optimistix", nmo.solvers._optimistix_solvers.OptimistixBFGS</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; spec.algo_name</span>
 <span class="sd">    'BFGS'</span>
 <span class="sd">    &gt;&gt;&gt; spec.backend</span>
@@ -781,7 +783,9 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; nmo.solvers.register("FISTA", nmo.solvers._fista.OptimistixFISTA, backend="optimistix")</span>
+<span class="sd">    &gt;&gt;&gt; nmo.solvers.register(</span>
+<span class="sd">    ...     "FISTA", nmo.solvers._fista.OptimistixFISTA, backend="optimistix"</span>
+<span class="sd">    ... )</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">replace</span> <span class="ow">and</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">algo_name</span><span class="p">,</span> <span class="p">{}):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -884,8 +888,9 @@
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">    &gt;&gt;&gt; nmo.solvers.list_available_algorithms()</span>
-<span class="sd">    ['GradientDescent', 'ProximalGradient', 'LBFGS', 'BFGS', 'NonlinearCG', 'SVRG', 'ProxSVRG', 'Newton']</span>
+<span class="sd">    &gt;&gt;&gt; nmo.solvers.list_available_algorithms()  # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    ['GradientDescent', 'ProximalGradient', 'LBFGS', 'BFGS', 'NonlinearCG',</span>
+<span class="sd">     'SVRG', 'ProxSVRG', 'Newton', 'ProximalNewton']</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">_registry</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
@@ -960,6 +965,7 @@
 <span class="n">register</span><span class="p">(</span><span class="s2">"SVRG"</span><span class="p">,</span> <span class="n">WrappedSVRG</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span><span class="s2">"ProxSVRG"</span><span class="p">,</span> <span class="n">WrappedProxSVRG</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span><span class="s2">"Newton"</span><span class="p">,</span> <span class="n">Newton</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"ProximalNewton"</span><span class="p">,</span> <span class="n">ProximalNewton</span><span class="p">,</span> <span class="s2">"nemos"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">register</span><span class="p">(</span>
     <span class="s2">"GradientDescent"</span><span class="p">,</span> <span class="n">OptimistixOptaxGradientDescent</span><span class="p">,</span> <span class="s2">"optax+optimistix"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>

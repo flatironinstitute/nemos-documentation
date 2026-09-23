@@ -32,5 +32,6 @@
       ~UnRegularized.get_params
       ~UnRegularized.get_proximal_operator
       ~UnRegularized.penalized_loss
+      ~UnRegularized.penalty_fn
       ~UnRegularized.set_params
    

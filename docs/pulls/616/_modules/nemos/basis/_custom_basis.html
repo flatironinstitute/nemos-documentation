@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis._custom_basis &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.basis._custom_basis &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -639,7 +639,6 @@
     <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">],</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span> <span class="n">ndim_input</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Iterate over the output dim and apply the function to all input combination."""</span>
-
     <span class="c1"># check if no dimension needs vectorization</span>
     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="n">ndim_input</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xi</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
@@ -734,7 +733,7 @@
 <span class="sd">    &gt;&gt;&gt; from functools import partial</span>
 <span class="sd">    &gt;&gt;&gt; # Define a function</span>
 <span class="sd">    &gt;&gt;&gt; def decay_exp(x, rate, shift=0):</span>
-<span class="sd">    ...     return np.exp(-rate * (x + shift)**2)</span>
+<span class="sd">    ...     return np.exp(-rate * (x + shift) ** 2)</span>
 <span class="sd">    &gt;&gt;&gt; # Define a list of basis functions</span>
 <span class="sd">    &gt;&gt;&gt; funcs = [partial(decay_exp, rate=r) for r in np.linspace(0, 1, 10)]</span>
 <span class="sd">    &gt;&gt;&gt; bas = nmo.basis.CustomBasis(funcs=funcs, basis_kwargs=dict(shift=1))</span>
@@ -762,7 +761,7 @@
 <span class="sd">    sample-wise function transforms a given row the same way regardless of the other rows:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = np.array([1.0, 2.0, 3.0])</span>
-<span class="sd">    &gt;&gt;&gt; safe = nmo.basis.CustomBasis([lambda x: x ** 2])</span>
+<span class="sd">    &gt;&gt;&gt; safe = nmo.basis.CustomBasis([lambda x: x**2])</span>
 <span class="sd">    &gt;&gt;&gt; np.array_equal(safe.compute_features(x)[0], safe.compute_features(x[:1])[0])</span>
 <span class="sd">    True</span>
 
@@ -962,8 +961,10 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from functools import partial</span>
 <span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
-<span class="sd">        ...     return x ** n</span>
-<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis([partial(power_func, 1), partial(power_func, 2)])</span>
+<span class="sd">        ...     return x**n</span>
+<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis(</span>
+<span class="sd">        ...     [partial(power_func, 1), partial(power_func, 2)]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; bas.compute_features(np.arange(1, 4))</span>
 <span class="sd">        array([[1., 1.],</span>
 <span class="sd">               [2., 4.],</span>
@@ -1186,8 +1187,10 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from functools import partial</span>
 <span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
-<span class="sd">        ...     return x ** n</span>
-<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis([partial(power_func, 1), partial(power_func, 2)])</span>
+<span class="sd">        ...     return x**n</span>
+<span class="sd">        &gt;&gt;&gt; bas = nmo.basis.CustomBasis(</span>
+<span class="sd">        ...     [partial(power_func, 1), partial(power_func, 2)]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; # define a 3 x 2 input</span>
 <span class="sd">        &gt;&gt;&gt; inp = np.arange(1, 7).reshape(3, 2)</span>
 <span class="sd">        &gt;&gt;&gt; X = bas.compute_features(inp)</span>
@@ -1245,7 +1248,7 @@
 <span class="sd">        &gt;&gt;&gt; from functools import partial</span>
 <span class="sd">        &gt;&gt;&gt; # Basis with one input only</span>
 <span class="sd">        &gt;&gt;&gt; def power_func(n, x):</span>
-<span class="sd">        ...     return x ** n</span>
+<span class="sd">        ...     return x**n</span>
 <span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis([partial(power_func, n) for n in range(1, 6)])</span>
 <span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
 <span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
@@ -1262,8 +1265,10 @@
 <span class="sd">        100</span>
 <span class="sd">        &gt;&gt;&gt; # basis with 2 inputs</span>
 <span class="sd">        &gt;&gt;&gt; def power_add_func(n, x, y):</span>
-<span class="sd">        ...     return x ** n + y ** n</span>
-<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis([partial(power_add_func, n) for n in range(1, 6)])</span>
+<span class="sd">        ...     return x**n + y**n</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.CustomBasis(</span>
+<span class="sd">        ...     [partial(power_add_func, n) for n in range(1, 6)]</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3, 3)</span>
 <span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
 <span class="sd">        15</span>

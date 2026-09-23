@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.ClassifierGLM &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.glm.ClassifierGLM &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -779,7 +779,9 @@ you must call <a class="reference internal" href="#nemos.glm.ClassifierGLM.set_c
 </div>
 <p><strong>Multi-class Classification</strong></p>
 <p>Classify into more than two classes:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]]</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">ClassifierGLM</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span>
@@ -789,9 +791,7 @@ you must call <a class="reference internal" href="#nemos.glm.ClassifierGLM.set_c
 <p><strong>Use Regularization</strong></p>
 <p>Change regularization strength:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">ClassifierGLM</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="gp">... </span>    <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">regularizer</span>
 <span class="go">Ridge()</span>
@@ -1378,8 +1378,7 @@ into a GLM instance using the <cite>load_params</cite> function.</p>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Saving and loading a custom inverse link function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">inverse_link_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="gp">... </span>    <span class="n">observation_model</span><span class="o">=</span><span class="s2">"Poisson"</span><span class="p">,</span> <span class="n">inverse_link_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save_params</span><span class="p">(</span><span class="s2">"model_params.npz"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Provide a mapping for the custom link function when loading.</span>
@@ -1487,7 +1486,9 @@ batches may not contain all classes.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">set_classes</span><span class="p">(</span><span class="n">y_all_classes</span><span class="p">)</span>
 <span class="go">ClassifierGLM(...)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">init_params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_params</span><span class="p">(</span><span class="n">X_batch1</span><span class="p">,</span> <span class="n">y_batch1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_optimizer_and_state</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X_batch1</span><span class="p">,</span> <span class="n">y_batch1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">initialize_optimizer_and_state</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">init_params</span><span class="p">,</span> <span class="n">X_batch1</span><span class="p">,</span> <span class="n">y_batch1</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now batches with any subset of classes work with <a class="reference internal" href="#nemos.glm.ClassifierGLM.update" title="nemos.glm.ClassifierGLM.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a>:</p>
@@ -1755,7 +1756,10 @@ describing the run.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">loader</span> <span class="o">=</span> <span class="n">ArrayDataLoader</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="s2">"full"</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"GradientDescent"</span><span class="p">,</span> <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"stepsize"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">"acceleration"</span> <span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">solver_name</span><span class="o">=</span><span class="s2">"GradientDescent"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">solver_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"stepsize"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">"acceleration"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Stop early when the solver's convergence criterion is met.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">stochastic_fit</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">loader</span><span class="p">,</span> <span class="n">n_passes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">SolverConvergenceCallback</span><span class="p">()</span>

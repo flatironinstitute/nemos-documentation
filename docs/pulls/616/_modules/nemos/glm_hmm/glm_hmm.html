@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -553,7 +553,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.._observation_model_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">instantiate_observation_model</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.expectation_maximization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMState</span><span class="p">,</span> <span class="n">em_hmm</span><span class="p">,</span> <span class="n">em_step</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.hmm</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseHMM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.hmm</span><span class="w"> </span><span class="kn">import</span> <span class="n">FORWARD_BACKWARD</span><span class="p">,</span> <span class="n">BaseHMM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HMM_INITIALIZATION_FN_DICT</span><span class="p">,</span> <span class="n">InitFunctionHMM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_state_format</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_inverse_link_function</span>
@@ -621,19 +621,23 @@
 
 <span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
 
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
-<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                           |</span>
-<span class="sd">    +===============+==================+=============================================================+</span>
-<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient |</span>
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
-<span class="sd">    | Ridge         | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient |</span>
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
-<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                            |</span>
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
-<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient                                            |</span>
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
-<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                            |</span>
-<span class="sd">    +---------------+------------------+-------------------------------------------------------------+</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                     |</span>
+<span class="sd">    +===============+==================+=======================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -654,10 +658,27 @@
 <span class="sd">        ``1.0``. Ignored when ``regularizer="UnRegularized"``.</span>
 <span class="sd">    dirichlet_initial_proba :</span>
 <span class="sd">        Alpha parameters for the Dirichlet prior over the initial state probabilities.</span>
-<span class="sd">        Shape ``(n_states,)``. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">        Any array-like (list, tuple, NumPy or JAX array) of shape ``(n_states,)``, cast</span>
+<span class="sd">        to a JAX array on assignment. All values must be &gt;= 1. If None, a flat</span>
+<span class="sd">        (uninformative) prior is assumed.</span>
 <span class="sd">    dirichlet_transition_proba :</span>
 <span class="sd">        Alpha parameters for the Dirichlet prior over the transition probabilities.</span>
+<span class="sd">        Any array-like (list, tuple, NumPy or JAX array) of shape</span>
+<span class="sd">        ``(n_states, n_states)``, cast to a JAX array on assignment. All values must be</span>
+<span class="sd">        &gt;= 1. If None, a flat (uninformative) prior is assumed.</span>
 <span class="sd">        Shape ``(n_states, n_states)``. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">    estep_type:</span>
+<span class="sd">      How the forward-backward recursions of the E-step are evaluated. ``"sequential"``</span>
+<span class="sd">      steps through the time bins one at a time; ``"associative"`` uses</span>
+<span class="sd">      ``jax.lax.associative_scan``, whose depth grows like ``log(n_time_bins)`` rather</span>
+<span class="sd">      than ``n_time_bins``.</span>
+
+<span class="sd">      Which is faster depends on the hardware. On GPU and TPU the ``"associative"``</span>
+<span class="sd">      can be orders of magnitude faster; on CPU it is usually slower, a CPU core being</span>
+<span class="sd">      well suited to a tight sequential loop. ``"associative"`` also holds its whole scan</span>
+<span class="sd">      in memory, roughly ``4 * n_time_bins * n_states ** 2`` floats against</span>
+<span class="sd">      ``n_time_bins * n_states``, which becomes the binding constraint for large</span>
+<span class="sd">      ``n_states``.</span>
 <span class="sd">    solver_name :</span>
 <span class="sd">        Solver used for the GLM M-step. The solver must be valid for the chosen</span>
 <span class="sd">        regularizer (see table above). Default is ``None``, in which case the</span>
@@ -822,7 +843,9 @@
 <span class="sd">    &gt;&gt;&gt; is_new_mask[100] = True</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=is_new_mask)</span>
 <span class="sd">    &gt;&gt;&gt; # Equivalent: pass the starts as integer indices.</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=np.array([0, 100]))</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(</span>
+<span class="sd">    ...     X, y, session_starts=np.array([0, 100])</span>
+<span class="sd">    ... )</span>
 
 <span class="sd">    **Decode Hidden States**</span>
 
@@ -875,10 +898,9 @@
         <span class="n">regularizer</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Ridge"</span><span class="p">,</span>
         <span class="n">regularizer_strength</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># this is used to regularize GLM coef.</span>
         <span class="c1"># prior to regularize init prob and transition</span>
-        <span class="n">dirichlet_initial_proba</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, )</span>
-        <span class="n">dirichlet_transition_proba</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
-            <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, n_state)</span>
+        <span class="n">dirichlet_initial_proba</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, )</span>
+        <span class="n">dirichlet_transition_proba</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, n_state)</span>
+        <span class="n">estep_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"sequential"</span><span class="p">,</span> <span class="s2">"associative"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"sequential"</span><span class="p">,</span>
         <span class="n">solver_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">solver_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">maxiter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
@@ -899,6 +921,7 @@
             <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
             <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
             <span class="n">hmm_initialization_funcs</span><span class="o">=</span><span class="n">hmm_initialization_funcs</span><span class="p">,</span>
+            <span class="n">estep_type</span><span class="o">=</span><span class="n">estep_type</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span> <span class="o">=</span> <span class="n">observation_model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inverse_link_function</span> <span class="o">=</span> <span class="n">inverse_link_function</span>
@@ -1021,6 +1044,7 @@
 
 <span class="sd">            from nemos.hmm.initialize_parameters import InitFunctionHMM</span>
 <span class="sd">            from nemos.glm_hmm.initialize_parameters import InitFunctionGLM</span>
+
 <span class="sd">            help(InitFunctionHMM)  # or help(InitFunctionGLM)</span>
 
 <span class="sd">        All arguments must appear in the function signature even when unused, so the</span>
@@ -1038,8 +1062,13 @@
 
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
-<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
-<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ...     n_states,</span>
+<span class="sd">        ...     X,</span>
+<span class="sd">        ...     y,</span>
+<span class="sd">        ...     inverse_link_function,</span>
+<span class="sd">        ...     observation_model,</span>
+<span class="sd">        ...     session_starts,</span>
+<span class="sd">        ...     random_key,</span>
 <span class="sd">        ... ):</span>
 <span class="sd">        ...     coef = jnp.zeros((X.shape[1], n_states))</span>
 <span class="sd">        ...     intercept = jnp.zeros((n_states,))</span>
@@ -1317,7 +1346,9 @@
 <span class="sd">        Multiple sessions via explicit ``session_starts``:</span>
 
 <span class="sd">        &gt;&gt;&gt; session_starts = np.array([0, 100])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(X, y, session_starts=session_starts)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2).fit(</span>
+<span class="sd">        ...     X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
@@ -1348,11 +1379,27 @@
         <span class="c1"># set up optimization</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_optimizer_and_state</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
+        <span class="c1"># the priors were cast to arrays at assignment, before any data was seen, so</span>
+        <span class="c1"># their precision comes from the x64 config at that time; match y's instead, or</span>
+        <span class="c1"># the EM while_loop carry changes dtype and fails to compile.</span>
+        <span class="n">dirichlet_initial_proba</span><span class="p">,</span> <span class="n">dirichlet_transition_proba</span> <span class="o">=</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">tree_astype</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirichlet_initial_proba</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirichlet_transition_proba</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+
         <span class="c1"># run EM</span>
         <span class="p">(</span>
             <span class="n">fit_params</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">)</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span><span class="p">(</span>
+            <span class="n">init_params</span><span class="p">,</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">,</span>
+            <span class="n">dirichlet_initial_proba</span><span class="o">=</span><span class="n">dirichlet_initial_proba</span><span class="p">,</span>
+            <span class="n">dirichlet_transition_proba</span><span class="o">=</span><span class="n">dirichlet_transition_proba</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver_state_</span><span class="o">.</span><span class="n">iterations</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -1707,7 +1754,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; posteriors = model.smooth_proba(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; posteriors.shape</span>
 <span class="sd">        (100, 3)</span>
@@ -1807,7 +1856,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; filt = model.filter_proba(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; filt.shape</span>
 <span class="sd">        (100, 3)</span>
@@ -1921,7 +1972,9 @@
 <span class="sd">        &gt;&gt;&gt; np.random.seed(123)</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.randn(100, 5)</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(2, size=100)</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=3, observation_model="Poisson").fit(</span>
+<span class="sd">        ...     X, y</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; states = model.decode_state(X, y, state_format="index")</span>
 <span class="sd">        &gt;&gt;&gt; states.shape</span>
 <span class="sd">        (100,)</span>
@@ -1987,8 +2040,13 @@
 
 <span class="sd">        &gt;&gt;&gt; import jax.numpy as jnp</span>
 <span class="sd">        &gt;&gt;&gt; def my_glm_init(</span>
-<span class="sd">        ...     n_states, X, y, inverse_link_function, observation_model,</span>
-<span class="sd">        ...     session_starts, random_key,</span>
+<span class="sd">        ...     n_states,</span>
+<span class="sd">        ...     X,</span>
+<span class="sd">        ...     y,</span>
+<span class="sd">        ...     inverse_link_function,</span>
+<span class="sd">        ...     observation_model,</span>
+<span class="sd">        ...     session_starts,</span>
+<span class="sd">        ...     random_key,</span>
 <span class="sd">        ... ):</span>
 <span class="sd">        ...     return jnp.zeros((X.shape[1], n_states)), jnp.zeros((n_states,))</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
@@ -2125,8 +2183,12 @@
 <span class="sd">        &gt;&gt;&gt; session_starts[0] = True</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm_hmm.GLMHMM(n_states=2)</span>
 <span class="sd">        &gt;&gt;&gt; init_params = model.initialize_params(X, y)</span>
-<span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(init_params, X, y, session_starts=session_starts)</span>
-<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(init_params, opt_state, X, y, session_starts=session_starts)</span>
+<span class="sd">        &gt;&gt;&gt; opt_state = model.initialize_optimizer_and_state(</span>
+<span class="sd">        ...     init_params, X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; new_params, new_state = model.update(</span>
+<span class="sd">        ...     init_params, opt_state, X, y, session_starts=session_starts</span>
+<span class="sd">        ... )</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">safe</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="c1"># validate inputs and session boundaries</span>
@@ -2149,9 +2211,22 @@
         <span class="c1"># `initialize_optimizer_and_state` so the EM step function is in place)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">to_model_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
+        <span class="c1"># match the priors' precision to the data's (see the same cast in ``fit``)</span>
+        <span class="n">dirichlet_initial_proba</span><span class="p">,</span> <span class="n">dirichlet_transition_proba</span> <span class="o">=</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">tree_astype</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirichlet_initial_proba</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dirichlet_transition_proba</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+
         <span class="c1"># one EM step</span>
         <span class="n">updated_params</span><span class="p">,</span> <span class="n">updated_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_update</span><span class="p">(</span>
-            <span class="n">params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">opt_state</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">session_starts</span><span class="o">=</span><span class="n">session_starts</span><span class="p">,</span>
+            <span class="n">dirichlet_initial_proba</span><span class="o">=</span><span class="n">dirichlet_initial_proba</span><span class="p">,</span>
+            <span class="n">dirichlet_transition_proba</span><span class="o">=</span><span class="n">dirichlet_transition_proba</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># persist</span>
@@ -2197,10 +2272,15 @@
 
         <span class="c1"># cannot wrap session_starts, that's to be calculated at each update form the provided X and y.</span>
         <span class="c1"># for consistency, do not make a partial of that argument in run as well.</span>
+        <span class="c1"># the Dirichlet priors are not bound here either: they are traced arrays, not</span>
+        <span class="c1"># static configuration, and binding them would tie a change of prior to a new</span>
+        <span class="c1"># optimizer setup, which rebuilds the static m-step closure and forces a</span>
+        <span class="c1"># retrace. ``fit`` and ``update`` pass them at call time instead.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">Partial</span><span class="p">(</span>
             <span class="n">em_hmm</span><span class="p">,</span>
             <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
             <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+            <span class="n">e_step_fn</span><span class="o">=</span><span class="n">FORWARD_BACKWARD</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_estep_type</span><span class="p">],</span>
             <span class="n">maxiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">,</span>
             <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
         <span class="p">)</span>
@@ -2209,6 +2289,7 @@
             <span class="n">em_step</span><span class="p">,</span>
             <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
             <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+            <span class="n">e_step_fn</span><span class="o">=</span><span class="n">FORWARD_BACKWARD</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_estep_type</span><span class="p">],</span>
         <span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">init_state_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SolverState</span><span class="p">:</span>

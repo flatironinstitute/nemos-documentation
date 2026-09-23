@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating a custom DataLoader &#8212; nemos 0.2.10.dev516 documentation</title>
+    <title>Creating a custom DataLoader &#8212; nemos 0.2.10.dev529 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=733ce006"></script>
+    <script src="../../_static/documentation_options.js?v=36763308"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev516 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev516 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev529 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev529 documentation - Home"/>
   
   
 </a></div>
@@ -1633,7 +1633,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f41343c25c0&gt;</td>
+            <td class="value">&lt;function exp...x7fe3b43a6200&gt;</td>
         </tr>
     
 
@@ -1979,7 +1979,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/3a96c64b5d59396e0c04462d097dc1e056a0e6bfa136c7c20ce4f1baca2a767b.svg" src="../../_images/3a96c64b5d59396e0c04462d097dc1e056a0e6bfa136c7c20ce4f1baca2a767b.svg" />
+<img alt="../../_images/49d2c3c8fb2df652f3acfa16c19bc2b948bda2ccc8ad3f679b510478a15ff555.svg" src="../../_images/49d2c3c8fb2df652f3acfa16c19bc2b948bda2ccc8ad3f679b510478a15ff555.svg" />
 </div>
 </div>
 </section>
@@ -2025,7 +2025,7 @@ shape: (3, 2), time unit: sec.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../_images/6da0fe2d357e084f913c102dae916dee33a91a69cfbd9a3f525da8ea4364309c.svg" src="../../_images/6da0fe2d357e084f913c102dae916dee33a91a69cfbd9a3f525da8ea4364309c.svg" />
+<img alt="../../_images/e8fc8aa7ffc7bd6a39672472258419729fa17fc3389ae18cce536a0de1c88648.svg" src="../../_images/e8fc8aa7ffc7bd6a39672472258419729fa17fc3389ae18cce536a0de1c88648.svg" />
 </div>
 </div>
 <p>Putting the pieces together:</p>
@@ -2104,11 +2104,13 @@ shape: (3, 2), time unit: sec.
 <span class="sd">    Each row is ``(chunk_start, chunk_end, interval_start)``; ``interval_start`` lets the</span>
 <span class="sd">    loader clip the left context without reaching back into the previous interval.</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_chunk</span> <span class="o">+</span> <span class="n">interval_size</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">time_support</span><span class="o">.</span><span class="n">values</span>
-        <span class="k">for</span> <span class="n">start_chunk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">interval_size</span><span class="p">)</span>
-    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_chunk</span> <span class="o">+</span> <span class="n">interval_size</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">time_support</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">for</span> <span class="n">start_chunk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">interval_size</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 <p class="sd-card-text">It returns the same <code class="docutils literal notranslate"><span class="pre">(chunk_start,</span> <span class="pre">chunk_end,</span> <span class="pre">interval_start)</span></code> rows the loader expects, so <code class="docutils literal notranslate"><span class="pre">self._chunks</span> <span class="pre">=</span> <span class="pre">split_intervals(spike_times.time_support,</span> <span class="pre">interval_size)</span></code> is a drop-in replacement for those three lines.</p>
@@ -2937,7 +2939,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f41343c25c0&gt;</td>
+            <td class="value">&lt;function exp...x7fe3b43a6200&gt;</td>
         </tr>
     
 
@@ -3283,7 +3285,7 @@ forceTheme('sk-container-id-2');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/11e7fa0c2dd1515857479d71cb351e7ca429e7d4485ff32c5f79fb22393f1d60.svg" src="../../_images/11e7fa0c2dd1515857479d71cb351e7ca429e7d4485ff32c5f79fb22393f1d60.svg" />
+<img alt="../../_images/01a7552ddf094db3ae293c9b1b5554146c51f226ea4d7bb500cae9b8e45f8b19.svg" src="../../_images/01a7552ddf094db3ae293c9b1b5554146c51f226ea4d7bb500cae9b8e45f8b19.svg" />
 </div>
 </div>
 </section>
