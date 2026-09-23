@@ -553,7 +553,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.._observation_model_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">instantiate_observation_model</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.expectation_maximization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMState</span><span class="p">,</span> <span class="n">em_hmm</span><span class="p">,</span> <span class="n">em_step</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.hmm</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseHMM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.hmm</span><span class="w"> </span><span class="kn">import</span> <span class="n">FORWARD_BACKWARD</span><span class="p">,</span> <span class="n">BaseHMM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.initialize_parameters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HMM_INITIALIZATION_FN_DICT</span><span class="p">,</span> <span class="n">InitFunctionHMM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_state_format</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_inverse_link_function</span>
@@ -666,6 +666,19 @@
 <span class="sd">        Any array-like (list, tuple, NumPy or JAX array) of shape</span>
 <span class="sd">        ``(n_states, n_states)``, cast to a JAX array on assignment. All values must be</span>
 <span class="sd">        &gt;= 1. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">        Shape ``(n_states, n_states)``. If None, a flat (uninformative) prior is assumed.</span>
+<span class="sd">    estep_type:</span>
+<span class="sd">      How the forward-backward recursions of the E-step are evaluated. ``"sequential"``</span>
+<span class="sd">      steps through the time bins one at a time; ``"associative"`` uses</span>
+<span class="sd">      ``jax.lax.associative_scan``, whose depth grows like ``log(n_time_bins)`` rather</span>
+<span class="sd">      than ``n_time_bins``.</span>
+
+<span class="sd">      Which is faster depends on the hardware. On GPU and TPU the ``"associative"``</span>
+<span class="sd">      can be orders of magnitude faster; on CPU it is usually slower, a CPU core being</span>
+<span class="sd">      well suited to a tight sequential loop. ``"associative"`` also holds its whole scan</span>
+<span class="sd">      in memory, roughly ``4 * n_time_bins * n_states ** 2`` floats against</span>
+<span class="sd">      ``n_time_bins * n_states``, which becomes the binding constraint for large</span>
+<span class="sd">      ``n_states``.</span>
 <span class="sd">    solver_name :</span>
 <span class="sd">        Solver used for the GLM M-step. The solver must be valid for the chosen</span>
 <span class="sd">        regularizer (see table above). Default is ``None``, in which case the</span>
@@ -887,6 +900,7 @@
         <span class="c1"># prior to regularize init prob and transition</span>
         <span class="n">dirichlet_initial_proba</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, )</span>
         <span class="n">dirichlet_transition_proba</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># (n_state, n_state)</span>
+        <span class="n">estep_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"sequential"</span><span class="p">,</span> <span class="s2">"associative"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"sequential"</span><span class="p">,</span>
         <span class="n">solver_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">solver_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">maxiter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
@@ -907,6 +921,7 @@
             <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
             <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
             <span class="n">hmm_initialization_funcs</span><span class="o">=</span><span class="n">hmm_initialization_funcs</span><span class="p">,</span>
+            <span class="n">estep_type</span><span class="o">=</span><span class="n">estep_type</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span> <span class="o">=</span> <span class="n">observation_model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inverse_link_function</span> <span class="o">=</span> <span class="n">inverse_link_function</span>
@@ -2265,6 +2280,7 @@
             <span class="n">em_hmm</span><span class="p">,</span>
             <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
             <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+            <span class="n">e_step_fn</span><span class="o">=</span><span class="n">FORWARD_BACKWARD</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_estep_type</span><span class="p">],</span>
             <span class="n">maxiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maxiter</span><span class="p">,</span>
             <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
         <span class="p">)</span>
@@ -2273,6 +2289,7 @@
             <span class="n">em_step</span><span class="p">,</span>
             <span class="n">log_likelihood_func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">,</span>
             <span class="n">m_step_fn_model_params</span><span class="o">=</span><span class="n">m_step_update</span><span class="p">,</span>
+            <span class="n">e_step_fn</span><span class="o">=</span><span class="n">FORWARD_BACKWARD</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_estep_type</span><span class="p">],</span>
         <span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">init_state_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SolverState</span><span class="p">:</span>

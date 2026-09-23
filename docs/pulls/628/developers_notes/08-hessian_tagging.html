@@ -66,6 +66,7 @@
     <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Associative Scan For The HMM E-Step" href="09-associative_estep_hmm.html" />
     <link rel="prev" title="The solvers Module" href="07-solvers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -497,6 +498,7 @@
 <li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-solvers.html">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Hessian tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-associative_estep_hmm.html">Associative Scan For The HMM E-Step</a></li>
 </ul>
 </div>
 </nav></div>
@@ -1283,28 +1285,21 @@ This produces a descent direction for any symmetric <span class="math notranslat
 <tr class="row-even"><td><p>the structure ordering</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">MatrixStructure</span></code>, an <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> whose value is how general the structure is, so “take the larger” is <code class="docutils literal notranslate"><span class="pre">max</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>the decision the tag is for</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">HessianSolveMixin._resolve_linear_solver</span></code>, which turns the tag and the requested <code class="docutils literal notranslate"><span class="pre">linear_solver</span></code> into one of the strategies above</p></td>
-</tr>
-<tr class="row-even"><td><p>Hessian-solver resolution</p></td>
-<td><p>reached from <code class="docutils literal notranslate"><span class="pre">HessianSolveMixin._init_curvature</span></code>, and so from <code class="docutils literal notranslate"><span class="pre">Newton.init_state</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>the operator tags a multiplication gets</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">HessianMixin._resolve_hess_tag</span></code>, which is also where an unsupported property is rejected</p></td>
+<tr class="row-odd"><td><p>Hessian-solver resolution</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Newton.init_state</span></code> and <code class="docutils literal notranslate"><span class="pre">HessianMixin._resolve_linear_solver</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>construction and solution of <span class="math notranslate nohighlight">\((H+\tau I)d=-g\)</span></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">_solve_shifted_system</span></code> in <code class="docutils literal notranslate"><span class="pre">_hessian_mixins.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_solve_shifted_system</span></code> in <code class="docutils literal notranslate"><span class="pre">_newton.py</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>iterative identity shifting</p></td>
-<td><p>the <code class="docutils literal notranslate"><span class="pre">identity_shift</span></code> branch of <code class="docutils literal notranslate"><span class="pre">HessianSolveMixin._solve</span></code></p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">identity_shift</span></code> branch of <code class="docutils literal notranslate"><span class="pre">Newton._solve</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>eigenvalue modification</p></td>
-<td><p>the <code class="docutils literal notranslate"><span class="pre">eigh</span></code> branch of <code class="docutils literal notranslate"><span class="pre">HessianSolveMixin._solve</span></code></p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">eigh</span></code> branch of <code class="docutils literal notranslate"><span class="pre">Newton._solve</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Those last rows are also why <code class="docutils literal notranslate"><span class="pre">ProximalLBFGS</span></code> carries no tag at all, and declares <code class="docutils literal notranslate"><span class="pre">_uses_hessian</span> <span class="pre">=</span> <span class="pre">False</span></code>, and why <code class="docutils literal notranslate"><span class="pre">ProximalNewton</span></code> inherits <code class="docutils literal notranslate"><span class="pre">HessianMixin</span></code> without <code class="docutils literal notranslate"><span class="pre">HessianSolveMixin</span></code>. A proximal subproblem only multiplies by the curvature model and never solves with it, so the strategy decision the tag exists for never arises. Its operator is positive semidefinite, but that is not a claim anyone can make about <span class="math notranslate nohighlight">\(\nabla^2\ell + \nabla^2 p_\lambda\)</span>: it is a numerical property of the limited-memory approximation, maintained by skipping curvature pairs with <span class="math notranslate nohighlight">\(s^\top y \le \varepsilon\)</span>, and asserted on the operator directly via <code class="docutils literal notranslate"><span class="pre">lx.positive_semidefinite_tag</span></code>. The absence is deliberate, not an omission.</p>
 <p>The tag is built when the solver is set up, in <code class="docutils literal notranslate"><span class="pre">BaseRegressor._instantiate_solver</span></code>, against the parameters actually being fitted. A parameter held fixed is <code class="docutils literal notranslate"><span class="pre">None</span></code> in that tree, and every <code class="docutils literal notranslate"><span class="pre">tree_map</span></code> above drops it together with whatever was claimed about it. A claim about a pinned leaf therefore disappears with the leaf; it does not become an unclaimed leaf.</p>
 <p>Two places where the code carries more than the derivation above needs. <code class="docutils literal notranslate"><span class="pre">MatrixProperty</span></code> also has <code class="docutils literal notranslate"><span class="pre">NEGATIVE_SEMI_DEFINITE</span></code> and <code class="docutils literal notranslate"><span class="pre">NEGATIVE_DEFINITE</span></code>, handled by the <span class="math notranslate nohighlight">\(-H\)</span> symmetry the definition of <span class="math notranslate nohighlight">\(\Sigma\)</span> already invokes; no loss or penalty in the package declares one. And a leaf carries <code class="docutils literal notranslate"><span class="pre">UNCLAIMED</span></code> rather than being absent from both masks, which is the same statement as lying in neither <span class="math notranslate nohighlight">\(F\)</span> nor <span class="math notranslate nohighlight">\(D\)</span>, with the enum making it impossible to claim a leaf both flat and definite.</p>
 <p>Assumption 3 is enforced rather than assumed: <code class="docutils literal notranslate"><span class="pre">Regularizer._validate_strength</span></code> rejects a negative strength leaf by leaf, so <code class="docutils literal notranslate"><span class="pre">_leaf_claim</span></code> only ever compares non-negative entries.</p>
@@ -1335,6 +1330,15 @@ This produces a descent direction for any symmetric <span class="math notranslat
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="09-associative_estep_hmm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Associative Scan For The HMM E-Step</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
