@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Associative Scan For The HMM E-Step &#8212; nemos 0.2.10.dev538 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'developers_notes/09-associative_estep_hmm';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Hessian tagging" href="08-hessian_tagging.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-base_class.html">The <code class="docutils literal notranslate"><span class="pre">base_class</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-base_regressor.html">The Abstract Class <code class="docutils literal notranslate"><span class="pre">BaseRegressor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-glm.html">The <code class="docutils literal notranslate"><span class="pre">glm</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-basis_module.html">The <code class="docutils literal notranslate"><span class="pre">basis</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-observation_models.html">The <code class="docutils literal notranslate"><span class="pre">observation_models</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-regularizer.html">The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-solvers.html">The <code class="docutils literal notranslate"><span class="pre">solvers</span></code> Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-hessian_tagging.html">Hessian tagging</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Associative Scan For The HMM E-Step</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">For Developers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Associative Scan For The HMM E-Step</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="associative-scan-for-the-hmm-e-step">
+<h1>Associative Scan For The HMM E-Step<a class="headerlink" href="#associative-scan-for-the-hmm-e-step" title="Link to this heading">#</a></h1>
+<p>This note will clarify the math behind the associative scan implementation of the E-step of the HMM.</p>
+<section id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>object</p></th>
+<th class="head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(K\)</span>, <span class="math notranslate nohighlight">\(T\)</span></p></td>
+<td><p>number of states, number of time bins</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_t \in \mathbb{R}_+^K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(b_t[i] = p(y_t \mid z_t = i)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}_+^{K \times K}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(A[j,i] = p(z_t = i \mid z_{t-1} = j)\)</span>, rows sum to <span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\pi \in \mathbb{R}_+^K\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\pi[i] = p(z_t = i)\)</span> at a session start</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S\)</span></p></td>
+<td><p>set of session-start indices, always <span class="math notranslate nohighlight">\(0 \in S\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s(t)\)</span></p></td>
+<td><p>start of the session containing <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(s(t) = \max\{u \in S : u \leq t\}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(e(t)\)</span></p></td>
+<td><p>end of the session containing <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(e(t) = \min\{u \in S : u &gt; t\} - 1\)</span>, and <span class="math notranslate nohighlight">\(T-1\)</span> if no such <span class="math notranslate nohighlight">\(u\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="scan-map">
+<h2>Scan Map<a class="headerlink" href="#scan-map" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\oplus\)</span> be an associative operator on a set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>. For <span class="math notranslate nohighlight">\(x=(x_0,\dots,x_{T-1})\in \mathcal{M}^T\)</span>, let <span class="math notranslate nohighlight">\(X_{a:b} = x_a \oplus \dots \oplus x_b\)</span>. The <em>scan map</em> is</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{S}: \mathcal{M}^T \rightarrow \mathcal{M}^T, \;\;\; \mathcal{S}(x) = (X_{0:0}, \dots X_{0:T-1})
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\oplus\)</span> is associative, the scan map can be computed efficiently via <code class="docutils literal notranslate"><span class="pre">jax.lax.associative_scan</span></code>.</p>
+</section>
+<section id="the-forward-pass-associativity">
+<h2>The forward pass associativity<a class="headerlink" href="#the-forward-pass-associativity" title="Link to this heading">#</a></h2>
+<p>The forward step computes two quantities:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\alpha}_t[i] \;=\; p\bigl(z_t = i \mid y_{s(t):t}\bigr), \qquad c_t \;=\; p\bigl(y_t \mid y_{s(t):t-1}\bigr),
+\]</div>
+<p>These quantities can be computed recursively as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{\alpha}_t = \begin{cases}
+\pi \odot b_t, &amp; t \in S, \\
+(\hat{\alpha}_{t-1} A) \odot b_t, &amp; t \notin S,
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+c_t = \tilde{\alpha}_t \mathbf{1}, \qquad \hat{\alpha}_t = \tilde{\alpha}_t / c_t .
+\]</div>
+<p>Now, we can calculate these quantities by associative scan if we define:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_{u:t}[j,i]=\begin{cases}
+p(y_{u:t},\, z_t=i | z_{u-1} = j), &amp; u \notin S, \\
+p(y_{u:t},\, z_t=i), &amp; u \in S.
+\end{cases}
+\end{split}\]</div>
+<p>We can notice that <span class="math notranslate nohighlight">\(F_{u:v}\)</span> has the following properties:</p>
+<div class="admonition-proposition-1-one-step-update admonition">
+<p class="admonition-title">Proposition 1 (one-step update)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_{t:t} = \begin{cases}
+    \mathbf{1} (\pi \odot b_t)^\top &amp; t \in S, \\
+    A \cdot \text{diag} (b_t) &amp; t \notin S.
+\end{cases}
+\end{split}\]</div>
+<p>For all <span class="math notranslate nohighlight">\(t=0,\dots,T-1\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Follows directly from the HMM equations.</p>
+</div>
+<div class="admonition-proposition-2-matrix-product admonition">
+<p class="admonition-title">Proposition 2 (matrix product)</p>
+<p>For any <span class="math notranslate nohighlight">\(0 \leq u \leq v &lt; t \leq T\)</span>, <span class="math notranslate nohighlight">\(F_{u:t} = F_{u:v} \cdot F_{v+1:t}\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Case <span class="math notranslate nohighlight">\(u \notin S\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F_{u:t}[j, i] &amp;= p(y_{u:t}, z_t = i \mid  z_{u-1} = j) \\
+&amp;= \sum_k p(y_{u:t}, z_t = i, z_v = k \mid z_{u-1} = j) \\
+&amp;= \sum_k p(y_{v+1:t}, z_t = i \mid y_{u:v}, z_v = k, z_{u-1} = j) p(y_{u:v}, z_v = k \mid z_{u-1} = j) \\
+&amp;= \sum_k F_{u:v}[j,k]   p(y_{v+1:t}, z_t = i \mid y_{u:v}, z_v = k, z_{u-1} = j)\\
+&amp;\overset{(\star)}{=} \sum_k F_{u:v}[j,k]   p(y_{v+1:t}, z_t = i \mid z_v = k),
+\end{aligned}
+\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\((\star)\)</span> holds for the conditional independence implied by the HMM graphical model.</p>
+<p>If <span class="math notranslate nohighlight">\(v+1 \notin S\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+p(y_{v+1:t}, z_t = i \mid z_v = k) = F_{v+1:t}[k,i].
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(v+1 \in S\)</span>, the chain restarts after <span class="math notranslate nohighlight">\(v\)</span>, which implies that <span class="math notranslate nohighlight">\(y_{v+1:t}\)</span> and <span class="math notranslate nohighlight">\(z_t\)</span> are independent from <span class="math notranslate nohighlight">\(z_v\)</span>. From this we have,</p>
+<div class="math notranslate nohighlight">
+\[
+p(y_{v+1:t}, z_t = i) = F_{v+1:t}[k, i],
+\]</div>
+<p>where the last is by definition of <span class="math notranslate nohighlight">\(F_{u:v}\)</span> for <span class="math notranslate nohighlight">\(u \in S\)</span>. Therefore, for all <span class="math notranslate nohighlight">\(v+1\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+F_{u:t}[j, i] = \sum_k F_{u:v}[j,k] \cdot F_{v+1:t}[k, i].
+\]</div>
+<p>Case <span class="math notranslate nohighlight">\(u \in S\)</span>.</p>
+<p>Same computation but without the conditioning on <span class="math notranslate nohighlight">\(z_{u-1}\)</span>.</p>
+</div>
+<p>This last proposition implies that <span class="math notranslate nohighlight">\(F_{0:t} = \prod_{r=0}^t F_{r:r}\)</span> for all <span class="math notranslate nohighlight">\(t=0,\dots,T-1\)</span>, a matrix product, which is associative.</p>
+<div class="note admonition">
+<p class="admonition-title">Proposition (<span class="math notranslate nohighlight">\(\hat{\alpha}_t\)</span> and <span class="math notranslate nohighlight">\(c\)</span> from <span class="math notranslate nohighlight">\(F_{0:t}\)</span>)</p>
+<p>We have that</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\alpha}_t = \frac{F_{0:t}[j,\cdot]}{F_{0:t}[j,\cdot] \mathbf{1}}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{r\leq t} c_r = F_{0:t}[j,\cdot] \mathbf{1}
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(j=0,\dots,K-1\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p><span class="math notranslate nohighlight">\(\hat{\alpha}_t = p(z_t = \cdot \mid y_{s(t):t})\)</span> by definition.</p>
+<p>Rewriting <span class="math notranslate nohighlight">\(F_{s(t):t}\)</span> via the Bayes rule we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F_{s(t):t}[j,\cdot] &amp;= p(y_{s(t):t}, z_t = \cdot) \\
+&amp;= p(y_{s(t):t}) \frac{p(y_{s(t):t}, z_t = \cdot)}{p(y_{s(t):t})}\\
+&amp;= p(y_{s(t):t}) p(z_t = \cdot | y_{s(t):t})\\
+&amp;= p(y_{s(t):t}) \hat{\alpha}_t[\cdot],
+\end{aligned}
+\end{split}\]</div>
+<p>since <span class="math notranslate nohighlight">\(s(t) \in S\)</span>. Note how <span class="math notranslate nohighlight">\(F_{s(t):t}[j,\cdot]\)</span> is constant for all <span class="math notranslate nohighlight">\(j\)</span>, i.e. all the rows of <span class="math notranslate nohighlight">\(F_{s(t):t}\)</span> are equal.</p>
+<p>By proposition 2,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+F_{0:t} &amp; = F_{0:s(t)-1} \,F_{s(t):t} \\
+&amp;= \sum_k F_{0:s(t)-1}[\cdot \,, k] p(y_{s(t):t})  \hat{\alpha}_t[\cdot]\\
+&amp;= \big(\sum_k F_{0:s(t)-1}[\cdot\, , k]\big) \, p(y_{s(t):t})  \hat{\alpha}_t[\cdot] \\
+&amp;= \big(\sum_k p(y_{0:s(t)-1}, z_{s(t)-1}=k) \big) \, p(y_{s(t):t}) \hat{\alpha}_t[\cdot]\\
+&amp;= p(y_{0:s(t)-1})  p(y_{s(t):t}) \hat{\alpha}_t[\cdot] \\
+&amp;= p(y_{0:t})\hat{\alpha}_t[\cdot],
+\end{aligned}
+\end{split}\]</div>
+<p>where the last one holds for the independence of the sessions. Substituting <span class="math notranslate nohighlight">\(F_{0:t}[j, \cdot] \mathbf{1}=p(y_{0:t})\)</span>, and solving for <span class="math notranslate nohighlight">\(\hat{\alpha}_t\)</span> proves the first claim.</p>
+<p>For the second claim, we can notice that within one session, by definition of <span class="math notranslate nohighlight">\(c_t\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{r=s(t)}^t c_r = p(y_{s(t)}) \prod_{r=s(t)+1}^t p(y_r \mid y_{s(t):r-1})= p(y_{s(t):t})
+\]</div>
+<p>Therefore, for independence across sessions, <span class="math notranslate nohighlight">\(\prod_{r\leq t} c_r = p(y_{0:t}) = F_{0:t}[j, \cdot] \mathbf{1}\)</span>.</p>
+</div>
+<p>An associative scan over <span class="math notranslate nohighlight">\(F\)</span>s is possible, and would recover the forward step parameters, however, this approach would not work numerically. In particular, <span class="math notranslate nohighlight">\(F_{u:v}\)</span> are joint probabilities over <span class="math notranslate nohighlight">\(v-u+1\)</span> observations, and therefore decay geometrically with the length of the sequence, and the running products in the scan would rapidly underflow. Another way to see this is considering that <span class="math notranslate nohighlight">\(F_{0:t} = \prod_{r=0}^{t} F_{r:r}\)</span>: each time we take a product we multiply probabilities in <span class="math notranslate nohighlight">\([0,1]\)</span>, creating an exponential decay. In the next section we introduce an alternative parametrization that prevents that from happening while still preserving the associativity of the operations involved in the scan.</p>
+</section>
+<section id="stable-parametrization">
+<h2>Stable Parametrization<a class="headerlink" href="#stable-parametrization" title="Link to this heading">#</a></h2>
+<p>The idea is to decompose <span class="math notranslate nohighlight">\(F_{u:t}\)</span> in its row sums and the rest,</p>
+<div class="math notranslate nohighlight">
+\[
+l_{u:t} = F_{u:t} \mathbf{1}, \qquad L_{u:t} = \text{diag}(l_{u:t})^{-1} F_{u:t}.
+\]</div>
+<p>The first term is <span class="math notranslate nohighlight">\(l_{u:t}[j] = p(y_{u:t} \mid z_{u-1} = j)\)</span>, which is strictly positive for every observation model in nemos — Poisson, Bernoulli, Categorical, Gamma and Gaussian all have strictly positive densities, so <span class="math notranslate nohighlight">\(b_t &gt; 0\)</span> — and can therefore be safely inverted, as in the formula above. Note that positivity is all that is needed: <span class="math notranslate nohighlight">\(l_{u:t} \leq 1\)</span> holds for the discrete emissions but not for the continuous ones, whose densities can exceed <span class="math notranslate nohighlight">\(1\)</span>. The second term is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+L_{u:t}[j,i] &amp;=\; \frac{F_{u:t}[j,i]}{\ell_{u:t}[j]} \\
+&amp;=\; \frac{p\bigl(y_{u:t},\, z_t = i \mid z_{u-1} = j\bigr)}
+         {p\bigl(y_{u:t} \mid z_{u-1} = j\bigr)} \\
+&amp;=\; p\bigl(z_t = i \mid z_{u-1} = j,\, y_{u:t}\bigr).
+\end{aligned}
+\end{split}\]</div>
+<p>In particular, each row of <span class="math notranslate nohighlight">\(L_{u:t}\)</span> is a probability distribution over the states, which means that its entries lie in <span class="math notranslate nohighlight">\([0,1]\)</span> and the rows sum to <span class="math notranslate nohighlight">\(1\)</span> no matter how long the sequence of states is. There is no underflow issue anymore. <span class="math notranslate nohighlight">\(\log(l_{u:t})\)</span> on the other hand can be computed preventing underflows, see below.</p>
+<p><span class="math notranslate nohighlight">\(F_{u:t}\)</span> can be recovered from <span class="math notranslate nohighlight">\((l_{u:t}, L_{u:t})\)</span>, and from <span class="math notranslate nohighlight">\(F_{u:t}\)</span> we can compute the forward pass messages.</p>
+</section>
+<section id="get-log-l-l-via-scan">
+<h2>Get <span class="math notranslate nohighlight">\((\log(l), L)\)</span> via scan<a class="headerlink" href="#get-log-l-l-via-scan" title="Link to this heading">#</a></h2>
+<p>What we need to show is that we can compute <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(L\)</span> with a scan and that the operation we are scanning over is associative.</p>
+<p>Let’s define the invertible map <span class="math notranslate nohighlight">\(\phi(F_{u:t}) = (\log(l_{u:t}), L_{u:t}) = \left(\log(F_{u:t}\mathbf{1}),\,\text{diag}(F_{u:t}\mathbf{1})^{-1} F_{u:t}\right)\)</span>. The domain of the map is <span class="math notranslate nohighlight">\(\{F \in \mathbb{R}_{\ge 0}^{K \times K} : F\mathbf{1} &gt; 0\}\)</span>.</p>
+<p>The map is a bijection with inverse <span class="math notranslate nohighlight">\(\phi^{-1}((\log(l), L)) = \text{diag}(l) \cdot L\)</span>, and this allows to define an operator we can use for our scan:</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \oplus x_2 = \phi\bigl( \phi^{-1}(x_1) \phi^{-1}(x_2)\bigr).
+\]</div>
+<p>The operator is associative because the matrix product is and <span class="math notranslate nohighlight">\(\phi\)</span> is a bijection.</p>
+<p>We showed that <span class="math notranslate nohighlight">\(F_{u:t} = F_{u:v-1} \cdot F_{v:t}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+(\log(l_{u:v-1}), L_{u:v-1}) \oplus (\log(l_{v:t}), L_{v:t}) &amp;= \phi(F_{u:v-1} \cdot F_{v:t}) \\
+&amp;= \phi(F_{u:t}) = (\log(l_{u:t}), L_{u:t}).
+\end{aligned}
+\end{split}\]</div>
+<p>This is exactly what we need to be able to scan. A scan step computes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\log(l_{u:t}) &amp;= \log(F_{u:v-1} \cdot F_{v:t} \mathbf{1}) = \log(\phi^{-1}(\log(l_{u:v-1}), L_{u:v-1}) \cdot \phi^{-1}(\log(l_{v:t}), L_{v:t}) \mathbf{1}) \\
+&amp;= \log(\text{diag}(l_{u:v-1}) L_{u:v-1} \text{diag}(l_{v:t}) L_{v:t} \mathbf{1}) \\
+&amp;= \log(\text{diag}(l_{u:v-1}) L_{u:v-1} \text{diag}(l_{v:t})\mathbf{1}) \\
+&amp;\overset{\bullet}{=} \log(\text{diag}(l_{u:v-1}) L_{u:v-1} l_{v:t}) \\
+&amp;= \log(l_{u:v-1} \odot L_{u:v-1} l_{v:t}) = \log(l_{u:v-1}) + \log(L_{u:v-1} l_{v:t}).
+\end{aligned}
+\end{split}\]</div>
+<p>And,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+L_{u:t} &amp;= \text{diag}(l_{u:t})^{-1} F_{u:v-1} \cdot F_{v:t} \\
+&amp;\overset{\star}{=} \text{diag}(L_{u:v-1} l_{v:t})^{-1} \, \text{diag}(l_{u:v-1})^{-1} \text{diag}(l_{u:v-1}) L_{u:v-1} \text{diag}(l_{v:t}) L_{v:t} \\
+&amp;= \text{diag}(L_{u:v-1} l_{v:t})^{-1} L_{u:v-1} \text{diag}(l_{v:t}) L_{v:t}.
+\end{aligned}
+\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\((\star)\)</span> comes from <span class="math notranslate nohighlight">\((\bullet)\)</span>.</p>
+<p>If we computed <span class="math notranslate nohighlight">\(l_{v:t} = \exp\left(\log(l_{v:t})\right)\)</span>, that could underflow. The rest of the terms include matrix product involving <span class="math notranslate nohighlight">\(L_{a:b}\)</span> and adding a <span class="math notranslate nohighlight">\(\log(l_{u:v-1})\)</span> term, both are stable operations since <span class="math notranslate nohighlight">\(L_{a:b}\)</span> are a row-stochastic matrices.</p>
+<p>For numerical stability, we can set <span class="math notranslate nohighlight">\(m=\max_k \log(l_{v:t})[k]\)</span> and <span class="math notranslate nohighlight">\(w=\exp(\log(l_{v:t}) - m\mathbf{1})\)</span>, so that <span class="math notranslate nohighlight">\(w \in (0,1]^K\)</span> and <span class="math notranslate nohighlight">\(l_{v:t}=e^m w\)</span> (the letter <span class="math notranslate nohighlight">\(u\)</span> is already taken by the segment start index).</p>
+<p>Replacing in the expression derived,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+\log(l_{u:t}) =  \log(l_{u:v-1}) + \log(L_{u:v-1} w) + m\mathbf{1}\\
+\begin{aligned}
+L_{u:t} &amp;= \operatorname{diag}\bigl(L_{u:v-1} e^{m}w\bigr)^{-1} L_{u:v-1} \operatorname{diag}\bigl(e^{m}w\bigr) L_{v:t} \\
+        &amp;= e^{-m} e^{m}\, \operatorname{diag}\bigl(L_{u:v-1} w\bigr)^{-1} L_{u:v-1}  \operatorname{diag}(w)\, L_{v:t}\\
+        &amp;= \operatorname{diag}\bigl(L_{u:v-1} w\bigr)^{-1} L_{u:v-1}  \operatorname{diag}(w)\, L_{v:t}
+\end{aligned}
+\end{cases}
+\end{split}\]</div>
+</section>
+<section id="the-scan-step-by-step">
+<h2>The Scan, Step by Step<a class="headerlink" href="#the-scan-step-by-step" title="Link to this heading">#</a></h2>
+<p>An element is a pair <span class="math notranslate nohighlight">\(x = (\log l, L)\)</span> with <span class="math notranslate nohighlight">\(L\)</span> row-stochastic, composed with earlier segments on the left.</p>
+<section id="elements">
+<h3>Elements<a class="headerlink" href="#elements" title="Link to this heading">#</a></h3>
+<p>Applying <span class="math notranslate nohighlight">\(\phi\)</span> to Proposition 1, <span class="math notranslate nohighlight">\(x_t = \phi(F_{t:t})\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_t = \begin{cases}
+\left(\log(\pi^\top b_t)\,\mathbf{1}, \;\; \mathbf{1}(\pi \odot b_t)^\top / (\pi^\top b_t)\right), &amp; t \in S, \\
+\left(\log(A b_t), \;\; \text{diag}(A b_t)^{-1} A\, \text{diag}(b_t)\right), &amp; t \notin S.
+\end{cases}
+\end{split}\]</div>
+<p>The two lines are the same expression of a base matrix. Setting <span class="math notranslate nohighlight">\(M_t = \mathbf{1}\pi^\top\)</span> for <span class="math notranslate nohighlight">\(t \in S\)</span> and <span class="math notranslate nohighlight">\(M_t = A\)</span> otherwise, both read</p>
+<div class="math notranslate nohighlight">
+\[
+x_t = \left(\log(M_t b_t), \;\; \text{diag}(M_t b_t)^{-1} M_t\, \text{diag}(b_t)\right),
+\]</div>
+<p>since <span class="math notranslate nohighlight">\(\mathbf{1}\pi^\top b_t = (\pi^\top b_t)\mathbf{1}\)</span> and <span class="math notranslate nohighlight">\(\text{diag}\bigl((\pi^\top b_t)\mathbf{1}\bigr)^{-1} \mathbf{1}\pi^\top \text{diag}(b_t) = \mathbf{1}(\pi \odot b_t)^\top / (\pi^\top b_t)\)</span>. Sessions enter only through <span class="math notranslate nohighlight">\(M_t\)</span>: one <code class="docutils literal notranslate"><span class="pre">where</span></code> on the base matrix, then one expression evaluated for all <span class="math notranslate nohighlight">\(t\)</span> at once.</p>
+</section>
+<section id="combine">
+<h3>Combine<a class="headerlink" href="#combine" title="Link to this heading">#</a></h3>
+<p>The formulas of the previous section, with <span class="math notranslate nohighlight">\(l_2\)</span> left unexpanded, are</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \oplus x_2 \;=\; \Bigl(\log l_1 + \log(L_1 l_2), \;\; \bigl[\text{diag}(L_1 l_2)^{-1} L_1 \text{diag}(l_2)\bigr] L_2 \Bigr).
+\]</div>
+<p>Grouped this way, the bracketed factor and the term added to <span class="math notranslate nohighlight">\(\log l_1\)</span> are the element expression above with <span class="math notranslate nohighlight">\((M_t, b_t)\)</span> replaced by <span class="math notranslate nohighlight">\((L_1, l_2)\)</span>: a row-stochastic matrix conditioned on one positive weight per exit state, and the log of the row sums that conditioning divided out. The rest of the step is the two things the element form does not contain — carrying the earlier log scale <span class="math notranslate nohighlight">\(\log l_1\)</span>, and the multiplication by <span class="math notranslate nohighlight">\(L_2\)</span>.</p>
+</section>
+<section id="conditioning-on-exit-weights">
+<h3>Conditioning on exit weights<a class="headerlink" href="#conditioning-on-exit-weights" title="Link to this heading">#</a></h3>
+<p>Both therefore call the same operation,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{cond}(M, \log w) \;=\; \left(\log(Mw), \;\; \text{diag}(Mw)^{-1} M \,\text{diag}(w)\right), \qquad M \text{ row-stochastic}, \; w &gt; 0,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\((M, w) = (M_t, b_t)\)</span> for an element and <span class="math notranslate nohighlight">\((M, w) = (L_1, l_2)\)</span> for a combine, whose result <span class="math notranslate nohighlight">\((\log r, L')\)</span> is finished off as <span class="math notranslate nohighlight">\(\log l_1 + \log r\)</span> and <span class="math notranslate nohighlight">\(L' L_2\)</span>. Its output matrix is row-stochastic again, so the elements and everything the scan builds from them live in the same set.</p>
+<p>It takes <span class="math notranslate nohighlight">\(\log w\)</span> rather than <span class="math notranslate nohighlight">\(w\)</span> because that is where the stabilization goes: with <span class="math notranslate nohighlight">\(m = \max_k \log w[k]\)</span>, the matrix half is unchanged by rescaling <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(\log(Mw) = m\mathbf{1} + \log\left(M e^{\log w - m\mathbf{1}}\right)\)</span>, so the shift is exact and the one exponential in the step has a nonpositive argument. Nothing can overflow: <span class="math notranslate nohighlight">\(e^{\log w - m\mathbf{1}} \leq 1\)</span>, and <span class="math notranslate nohighlight">\(M e^{\log w - m\mathbf{1}}\)</span> is a convex combination of its entries, so it lies in <span class="math notranslate nohighlight">\((0,1]\)</span>. A combine therefore never forms <span class="math notranslate nohighlight">\(l_2\)</span> itself. The implementation subtracts one more maximum from the <span class="math notranslate nohighlight">\(\log l\)</span> it returns; that one is not part of <span class="math notranslate nohighlight">\(\oplus\)</span> and is the rescaling of the next paragraph.</p>
+</section>
+<section id="dropping-the-accumulated-scale">
+<h3>Dropping the accumulated scale<a class="headerlink" href="#dropping-the-accumulated-scale" title="Link to this heading">#</a></h3>
+<p>Unlike the shift inside <span class="math notranslate nohighlight">\(\text{cond}\)</span>, which is an identity, this one replaces an element by a different one. For <span class="math notranslate nohighlight">\(c&gt;0\)</span>, <span class="math notranslate nohighlight">\(\phi(cF) = (\log l + \log c\,\mathbf{1}, L)\)</span>: a common scalar factor lands entirely in the log half and leaves every <span class="math notranslate nohighlight">\(L\)</span> untouched. Subtracting <span class="math notranslate nohighlight">\(\max_k \log l[k]\)</span> from an element after each combine therefore returns <span class="math notranslate nohighlight">\(\phi(cF)\)</span> for a <span class="math notranslate nohighlight">\(c\)</span> nobody tracks, which changes nothing that is read out, and it keeps <span class="math notranslate nohighlight">\(\log l_{0:t}\)</span> from accumulating the segment log-likelihood, which grows linearly in <span class="math notranslate nohighlight">\(t\)</span>, while <span class="math notranslate nohighlight">\(\text{cond}\)</span> reads only the <span class="math notranslate nohighlight">\(O(1)\)</span> internal differences <span class="math notranslate nohighlight">\(\log l_2 - m\mathbf{1}\)</span> of it. The price is that <span class="math notranslate nohighlight">\(\log l_{0:T-1}\)</span> is no longer <span class="math notranslate nohighlight">\(\log p(y_{0:T-1})\)</span>, which is why the normalizers are recomputed below instead of being differenced out of it.</p>
+</section>
+<section id="read-out">
+<h3>Read-out<a class="headerlink" href="#read-out" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(L_{0:t}\)</span> is <span class="math notranslate nohighlight">\(F_{0:t}\)</span> with its rows divided by their sums, so by Proposition 3 every row of it is <span class="math notranslate nohighlight">\(\hat{\alpha}_t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\alpha}_t = L_{0:t}[j, \cdot] \quad \text{for any } j,
+\]</div>
+<p>and the implementation takes row <span class="math notranslate nohighlight">\(0\)</span>. No reset flag is needed for this: index <span class="math notranslate nohighlight">\(0\)</span> is a session start, so <span class="math notranslate nohighlight">\(L_{0:0}\)</span> has all rows equal, and both right-multiplication and the row rescaling in <span class="math notranslate nohighlight">\(\oplus\)</span> preserve equal rows, so <span class="math notranslate nohighlight">\(L_{0:t}\)</span> has equal rows for every <span class="math notranslate nohighlight">\(t\)</span> by induction.</p>
+</section>
+<section id="per-step-normalizers">
+<h3>Per-step normalizers<a class="headerlink" href="#per-step-normalizers" title="Link to this heading">#</a></h3>
+<p>The scan does not produce <span class="math notranslate nohighlight">\(c_t\)</span>, and <code class="docutils literal notranslate"><span class="pre">_backward_pass</span></code> consumes it. Differencing the accumulated scale, <span class="math notranslate nohighlight">\(\log c_t = \log l_{0:t} - \log l_{0:t-1}\)</span>, is exactly the cancellation the parametrization was built to avoid. Recompute it locally instead: once all <span class="math notranslate nohighlight">\(\hat{\alpha}_t\)</span> are known, the forward recursion gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c_t = \begin{cases}
+\left((\hat{\alpha}_{t-1} A) \odot b_t\right)\mathbf{1}, &amp; t \notin S, \\
+\left(\pi \odot b_t\right)\mathbf{1}, &amp; t \in S,
+\end{cases}
+\end{split}\]</div>
+<p>for all <span class="math notranslate nohighlight">\(t\)</span> at once — one <span class="math notranslate nohighlight">\(T \times K\)</span> by <span class="math notranslate nohighlight">\(K \times K\)</span> product and one reduction, every operand <span class="math notranslate nohighlight">\(O(1)\)</span>. The dummy <span class="math notranslate nohighlight">\(\hat{\alpha}_{-1}\)</span> that makes the shapes line up at <span class="math notranslate nohighlight">\(t=0\)</span> is discarded by the <span class="math notranslate nohighlight">\(t \in S\)</span> branch, but it must be a valid distribution rather than zeros: <span class="math notranslate nohighlight">\(\log 0\)</span> has an infinite derivative, and reverse-mode differentiation of a <code class="docutils literal notranslate"><span class="pre">where</span></code> hands that infinity a zero cotangent, producing <code class="docutils literal notranslate"><span class="pre">nan</span></code>.</p>
+</section>
+<section id="cost">
+<h3>Cost<a class="headerlink" href="#cost" title="Link to this heading">#</a></h3>
+<p>Each <span class="math notranslate nohighlight">\(\oplus\)</span> is two <span class="math notranslate nohighlight">\(K \times K\)</span> matrix products plus <span class="math notranslate nohighlight">\(O(K^2)\)</span> elementwise work, and <code class="docutils literal notranslate"><span class="pre">associative_scan</span></code> performs about <span class="math notranslate nohighlight">\(2T\)</span> of them: <span class="math notranslate nohighlight">\(O(TK^3)\)</span> work at depth <span class="math notranslate nohighlight">\(O(\log T)\)</span>, against <span class="math notranslate nohighlight">\(O(TK^2)\)</span> work at depth <span class="math notranslate nohighlight">\(O(T)\)</span> for the sequential recursion. The trade is worth taking only where the <span class="math notranslate nohighlight">\(T\)</span> sequential steps, each of them a small kernel launch, dominate — which is what the benchmarks have to decide, per <span class="math notranslate nohighlight">\(K\)</span> and per device.</p>
+</section>
+<section id="sketch">
+<h3>Sketch<a class="headerlink" href="#sketch" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cond</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">log_w</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Condition a row-stochastic M on log weights per exit state, renormalizing rows."""</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_w</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">Mw</span> <span class="o">=</span> <span class="n">M</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_w</span> <span class="o">-</span> <span class="n">m</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># diag-free M @ diag(w)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Mw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">m</span><span class="p">,</span> <span class="n">Mw</span> <span class="o">/</span> <span class="n">r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>  <span class="c1"># x1 earlier, x2 later</span>
+    <span class="n">log_l1</span><span class="p">,</span> <span class="n">L1</span> <span class="o">=</span> <span class="n">x1</span>
+    <span class="n">log_l2</span><span class="p">,</span> <span class="n">L2</span> <span class="o">=</span> <span class="n">x2</span>
+    <span class="n">log_r</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">cond</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">log_l2</span><span class="p">)</span>
+    <span class="n">log_l</span> <span class="o">=</span> <span class="n">log_l1</span> <span class="o">+</span> <span class="n">log_r</span>
+    <span class="k">return</span> <span class="n">log_l</span> <span class="o">-</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_l</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">L</span> <span class="o">@</span> <span class="n">L2</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">):</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">session_starts</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_pi</span><span class="p">),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_A</span><span class="p">))</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">cond</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">log_b</span><span class="p">)</span>  <span class="c1"># x_t = phi(F_{t:t}), batched over t</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">L_cum</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">associative_scan</span><span class="p">(</span><span class="n">combine</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+    <span class="n">alphas</span> <span class="o">=</span> <span class="n">L_cum</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># rows of L_{0:t} are all equal</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">alphas</span><span class="p">),</span> <span class="n">normalizers</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">,</span> <span class="n">alphas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">jnp.exp(log_pi)</span></code> broadcasts against a <span class="math notranslate nohighlight">\((T, K, K)\)</span> base, which is the <span class="math notranslate nohighlight">\(\mathbf{1}\pi^\top\)</span> of the element formula.</p>
+</section>
+</section>
+<section id="the-same-scan-in-log-space">
+<h2>The Same Scan in Log Space<a class="headerlink" href="#the-same-scan-in-log-space" title="Link to this heading">#</a></h2>
+<p>Everything above keeps <span class="math notranslate nohighlight">\(L\)</span> in probability space, and that puts a floor under it: a state whose message falls below <span class="math notranslate nohighlight">\(10^{-308}\)</span> in double precision, or <span class="math notranslate nohighlight">\(10^{-38}\)</span> in single, is stored as zero and its log comes back as <span class="math notranslate nohighlight">\(-\infty\)</span> where the sequential recursion returns a large finite number. The measured threshold is roughly 700 nats of within-bin spread between states in f64, which a fitted model does not reach, and about 87 in f32, which a population model reaches routinely. Since the floor costs nothing to remove, the implementation to write first is the one that carries the shape half in logs as well, and the probability-space form above becomes the faster variant to route to once the two agree.</p>
+<p>What changes is small, because the parametrization does not. The pair is still a scale and a shape, <span class="math notranslate nohighlight">\((\log l, \log L)\)</span> rather than <span class="math notranslate nohighlight">\((\log l, L)\)</span>, and the rows of <span class="math notranslate nohighlight">\(\log L\)</span> now sum to zero under <span class="math notranslate nohighlight">\(\operatorname{logsumexp}\)</span> instead of summing to one.</p>
+<p>In <span class="math notranslate nohighlight">\(\text{cond}\)</span> the explicit max shift disappears, absorbed into the <span class="math notranslate nohighlight">\(\operatorname{logsumexp}\)</span> that replaces the row sum, and the row division becomes a subtraction. It takes <span class="math notranslate nohighlight">\(\log M\)</span> and returns <span class="math notranslate nohighlight">\(\log l\)</span> and <span class="math notranslate nohighlight">\(\log L\)</span> directly.</p>
+<p>In the combine only the matrix product changes, to a log-semiring product <span class="math notranslate nohighlight">\(\operatorname{logsumexp}_k(\log L_1[i,k] + \log L_2[k,j])\)</span>. Everything else stands, including the subtraction of <span class="math notranslate nohighlight">\(\max_j \log l[j]\)</span>, which is doing exactly the same job as before.</p>
+<p>Carrying <span class="math notranslate nohighlight">\(\log F\)</span> whole — one matrix, log-semiring products, no split — is algebraically identical and numerically much worse: its entries then have the magnitude of <span class="math notranslate nohighlight">\(\log p(y_{0:t})\)</span>, so recovering the O(1) normalized message at read-out costs the ULP of that magnitude, and the error grows <em>linearly in T</em>. Measured at <span class="math notranslate nohighlight">\(K=5\)</span> with a per-bin log-likelihood of <span class="math notranslate nohighlight">\(-801\)</span>: 1.65e-10, 1.48e-9, 3.02e-8, 2.44e-7 at <span class="math notranslate nohighlight">\(T = 10^3\)</span> to <span class="math notranslate nohighlight">\(10^6\)</span>, each equal to <span class="math notranslate nohighlight">\(|\log p(y)|\)</span> times the machine epsilon. Splitting the scale out and dropping it, as below, holds the error at 5.6e-13 regardless of <span class="math notranslate nohighlight">\(T\)</span>. The rule is the one from the previous section: the shape and the scale must not share a number.</p>
+<p>The elements no longer exponentiate <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(A\)</span>, so the only place a probability appears is inside the log-semiring product. The read-out is now the cumulative matrix’s first row as it stands, with no <span class="math notranslate nohighlight">\(\log\)</span> applied — which is precisely where the probability-space version reintroduced the floor it had otherwise avoided. The per-step normalizers must be rewritten in logs for the same reason, the predicted distribution being formed by a log-matvec against <span class="math notranslate nohighlight">\(\log A\)</span> rather than a matvec against <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The cost is one <span class="math notranslate nohighlight">\(\exp\)</span> and one <span class="math notranslate nohighlight">\(\log\)</span> per combine, against a plain GEMM, and about 30% more memory: the pair is still a matrix plus a scale, and the log-semiring product materializes exponentiated copies on top of it. Measured peak, full forward-backward, is <span class="math notranslate nohighlight">\(5.3\)</span> to <span class="math notranslate nohighlight">\(5.8 \times T K^2\)</span> times the float size against <span class="math notranslate nohighlight">\(3.5\)</span> to <span class="math notranslate nohighlight">\(4.4\)</span> for the probability-space form.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_matmul</span><span class="p">(</span><span class="n">log_A</span><span class="p">,</span> <span class="n">log_B</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Log-semiring product: out[i, j] = logsumexp_k(log_A[i, k] + log_B[k, j]).</span>
+
+<span class="sd">    Shifted and run as a GEMM rather than as a broadcast logsumexp, which would</span>
+<span class="sd">    materialize a (..., K, K, K) intermediate.</span>
+<span class="sd">    """</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_B</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_A</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">@</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_B</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="o">+</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cond</span><span class="p">(</span><span class="n">log_M</span><span class="p">,</span> <span class="n">log_w</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Condition a row-stochastic log_M on log weights per exit state, renormalizing."""</span>
+    <span class="n">log_Mw</span> <span class="o">=</span> <span class="n">log_M</span> <span class="o">+</span> <span class="n">log_w</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># log of M @ diag(w)</span>
+    <span class="n">log_r</span> <span class="o">=</span> <span class="n">logsumexp</span><span class="p">(</span><span class="n">log_Mw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># log row sums, the shift is inside</span>
+    <span class="k">return</span> <span class="n">log_r</span><span class="p">,</span> <span class="n">log_Mw</span> <span class="o">-</span> <span class="n">log_r</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>  <span class="c1"># x1 earlier, x2 later</span>
+    <span class="n">log_l1</span><span class="p">,</span> <span class="n">log_L1</span> <span class="o">=</span> <span class="n">x1</span>
+    <span class="n">log_l2</span><span class="p">,</span> <span class="n">log_L2</span> <span class="o">=</span> <span class="n">x2</span>
+    <span class="n">log_r</span><span class="p">,</span> <span class="n">log_L</span> <span class="o">=</span> <span class="n">cond</span><span class="p">(</span><span class="n">log_L1</span><span class="p">,</span> <span class="n">log_l2</span><span class="p">)</span>
+    <span class="n">log_l</span> <span class="o">=</span> <span class="n">log_l1</span> <span class="o">+</span> <span class="n">log_r</span>
+    <span class="k">return</span> <span class="n">log_l</span> <span class="o">-</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_l</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">log_matmul</span><span class="p">(</span><span class="n">log_L</span><span class="p">,</span> <span class="n">log_L2</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">):</span>
+    <span class="n">log_base</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">session_starts</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">)</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">cond</span><span class="p">(</span><span class="n">log_base</span><span class="p">,</span> <span class="n">log_b</span><span class="p">)</span>  <span class="c1"># x_t = phi(F_{t:t}), batched over t</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">log_L_cum</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">associative_scan</span><span class="p">(</span><span class="n">combine</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+    <span class="n">log_alphas</span> <span class="o">=</span> <span class="n">log_L_cum</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># rows of L_{0:t} are all equal</span>
+    <span class="k">return</span> <span class="n">log_alphas</span><span class="p">,</span> <span class="n">normalizers</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">,</span> <span class="n">log_alphas</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">normalizers</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">,</span> <span class="n">log_alphas</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""log c_t, recomputed locally: the scan drops the scale that would carry it."""</span>
+    <span class="n">log_prev</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">log_alphas</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">log_alphas</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">log_transitioned</span> <span class="o">=</span> <span class="n">logsumexp</span><span class="p">(</span><span class="n">log_prev</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">log_A</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">log_predicted</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">session_starts</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">log_pi</span><span class="p">,</span> <span class="n">log_transitioned</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">logsumexp</span><span class="p">(</span><span class="n">log_b</span> <span class="o">+</span> <span class="n">log_predicted</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="the-backward-pass">
+<h2>The Backward Pass<a class="headerlink" href="#the-backward-pass" title="Link to this heading">#</a></h2>
+<p>Reading the recursion off the sequential implementation, with <span class="math notranslate nohighlight">\(\hat\beta\)</span> a column vector,</p>
+<div class="math notranslate nohighlight" id="equation-bwd-recursion">
+<span class="eqno">(1)<a class="headerlink" href="#equation-bwd-recursion" title="Link to this equation">#</a></span>\[
+\hat\beta_{t-1} = \frac{1}{c_t} A \bigl(b_t \odot \hat\beta_t\bigr) = N_t \hat\beta_t,
+\qquad
+N_t := \frac{1}{c_t} A \operatorname{diag}(b_t) = \frac{F_{t:t}}{c_t},
+\]</div>
+<p>seeded with <span class="math notranslate nohighlight">\(\hat\beta_{T-1} = \mathbf{1}\)</span> and reset by <span class="math notranslate nohighlight">\(\hat\beta_{t-1} = \mathbf{1}\)</span> whenever <span class="math notranslate nohighlight">\(t \in S\)</span>. The backward transfer matrix is the forward one-step element divided by the forward normalizer, which is what makes <span class="math notranslate nohighlight">\(\hat\beta\)</span> an <span class="math notranslate nohighlight">\(O(1)\)</span> quantity: <span class="math notranslate nohighlight">\(b_t\)</span> and <span class="math notranslate nohighlight">\(c_t\)</span> are of the same order, so the pairing <span class="math notranslate nohighlight">\(b_t / c_t\)</span> is the same cancellation the sequential code relies on. Unrolling from the seed,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\beta_{t-1} = N_t N_{t+1} \cdots N_{T-1} \mathbf{1},
+\]</div>
+<p>a suffix product within a session, which is the prefix problem of the first section run right to left. The product runs to the end of that session,</p>
+<div class="math notranslate nohighlight" id="equation-bwd-product">
+<span class="eqno">(2)<a class="headerlink" href="#equation-bwd-product" title="Link to this equation">#</a></span>\[
+\hat\beta_{t-1} = N_t N_{t+1} \cdots N_{e(t)} \mathbf{1},
+\]</div>
+<p>since the chain resets at <span class="math notranslate nohighlight">\(e(t) + 1 \in S\)</span> and <span class="math notranslate nohighlight">\(\hat\beta_{e(t)} = \mathbf{1}\)</span>.</p>
+<p>Composing blocks is a matrix product, so bracketing cannot change the value and the sequential sweep and the scan return the same <span class="math notranslate nohighlight">\(\hat\beta\)</span>. Within a session there is nothing further to check.</p>
+<p>Sessions are the part that needs care, and the mechanism is easiest to read off the sequential sweep. Going right to left, <a class="reference internal" href="#equation-bwd-recursion">(1)</a> grows the message by <span class="math notranslate nohighlight">\(\hat\beta_{t-1} = N_t \hat\beta_t\)</span> until <span class="math notranslate nohighlight">\(t\)</span> is a session start, where <span class="math notranslate nohighlight">\(\hat\beta_{t-1} = \mathbf{1}\)</span> instead. Putting that reset in the elements means replacing <span class="math notranslate nohighlight">\(N_s\)</span> at every <span class="math notranslate nohighlight">\(s \in S\)</span> by a matrix <span class="math notranslate nohighlight">\(R\)</span> with <span class="math notranslate nohighlight">\(R\mathbf{1} = \mathbf{1}\)</span>; the implementation takes <span class="math notranslate nohighlight">\(R = \mathbf{1}\mathbf{1}^\top / K\)</span>. A block then stops just after absorbing the <span class="math notranslate nohighlight">\(R\)</span> at <span class="math notranslate nohighlight">\(e(t)+1\)</span>, so what the scan holds at <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(N_t \cdots N_{e(t)} R\)</span>, whose row sums are those of <a class="reference internal" href="#equation-bwd-product">(2)</a>. Session starts can be tracked as a boolean alongside the matrix, so each element of the scan becomes a pair <span class="math notranslate nohighlight">\(x = (N_x, r_x)\)</span> with <span class="math notranslate nohighlight">\(r_x \in \{0,1\}\)</span>, and <span class="math notranslate nohighlight">\(\oplus\)</span> becomes, with <span class="math notranslate nohighlight">\(x\)</span> the block over later times and <span class="math notranslate nohighlight">\(y\)</span> the one over earlier times, the order in which <code class="docutils literal notranslate"><span class="pre">reverse=True</span></code> supplies them,</p>
+<div class="math notranslate nohighlight" id="equation-bwd-combine">
+<span class="eqno">(3)<a class="headerlink" href="#equation-bwd-combine" title="Link to this equation">#</a></span>\[\begin{split}
+x \oplus y = \bigl(N, \max(r_x, r_y)\bigr), \qquad
+N = \begin{cases}
+N_y, &amp; r_y = 1, \\
+N_y N_x, &amp; r_y = 0 .
+\end{cases}
+\end{split}\]</div>
+<p>A marked <span class="math notranslate nohighlight">\(y\)</span> keeps itself and discards <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(\max\)</span> never clears a marker once it is set, so a block that has reached a session start stops growing: through the remaining rounds of the scan its value no longer changes. That is what keeps <span class="math notranslate nohighlight">\(\hat\beta_{t-1}\)</span> independent of the times at and beyond the next session start. All that is left is that <span class="math notranslate nohighlight">\(\oplus\)</span> is associative.</p>
+<div class="admonition-proposition-the-flagged-operator-is-associative admonition">
+<p class="admonition-title">Proposition (the flagged operator is associative)</p>
+<p><span class="math notranslate nohighlight">\((x \oplus y) \oplus z = x \oplus (y \oplus z)\)</span>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Proof</p>
+<p>Write <span class="math notranslate nohighlight">\((x \oplus y) \oplus z = (N_{\mathrm{L}}, r_{\mathrm{L}})\)</span> and <span class="math notranslate nohighlight">\(x \oplus (y \oplus z) = (N_{\mathrm{R}}, r_{\mathrm{R}})\)</span>, and distinguish cases on <span class="math notranslate nohighlight">\((r_y, r_z)\)</span>; <span class="math notranslate nohighlight">\(r_x\)</span> never enters the matrix.</p>
+<p>If <span class="math notranslate nohighlight">\(r_z = 1\)</span>, then <span class="math notranslate nohighlight">\(N_{\mathrm{L}} = N_z\)</span>, and since <span class="math notranslate nohighlight">\(\max(r_y, r_z) = 1\)</span> also <span class="math notranslate nohighlight">\(N_{\mathrm{R}} = N_z\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(r_z = 0\)</span> and <span class="math notranslate nohighlight">\(r_y = 1\)</span>, then <span class="math notranslate nohighlight">\(N_{x \oplus y} = N_y\)</span> gives <span class="math notranslate nohighlight">\(N_{\mathrm{L}} = N_z N_y\)</span>, while <span class="math notranslate nohighlight">\(N_{y \oplus z} = N_z N_y\)</span> with <span class="math notranslate nohighlight">\(\max(r_y, r_z) = 1\)</span> gives <span class="math notranslate nohighlight">\(N_{\mathrm{R}} = N_z N_y\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(r_z = 0\)</span> and <span class="math notranslate nohighlight">\(r_y = 0\)</span>, then <span class="math notranslate nohighlight">\(N_{\mathrm{L}} = N_z (N_y N_x)\)</span> and <span class="math notranslate nohighlight">\(N_{\mathrm{R}} = (N_z N_y) N_x\)</span>, equal because the matrix product is associative, the only case in which that is needed.</p>
+<p>For the markers, <span class="math notranslate nohighlight">\(\max(\max(r_x, r_y), r_z) = \max(r_x, \max(r_y, r_z))\)</span>.</p>
+</div>
+<p>Taking <span class="math notranslate nohighlight">\(r_t = 1\)</span> for <span class="math notranslate nohighlight">\(t \in S\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise, the reverse scan’s element at index <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(N_t \cdots N_{e(t)}\)</span>, and <span class="math notranslate nohighlight">\(\hat\beta_{t-1}\)</span> is its row sum. Index <span class="math notranslate nohighlight">\(0\)</span> is unused, there being no <span class="math notranslate nohighlight">\(\hat\beta_{-1}\)</span>, and it cannot contaminate the others because the suffix at <span class="math notranslate nohighlight">\(t\)</span> involves only indices <span class="math notranslate nohighlight">\(\geq t\)</span>.</p>
+<p>Since the <span class="math notranslate nohighlight">\(N_t\)</span> of <a class="reference internal" href="#equation-bwd-recursion">(1)</a> are already <span class="math notranslate nohighlight">\(O(1)\)</span>, this pass is carried directly in log coordinates with the log-semiring product of the previous section and no renormalization. There is no row-stochastic structure to factor out here, and nothing to drop.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Two sessions of three bins, written out</p>
+<p>Take <span class="math notranslate nohighlight">\(T = 6\)</span> and <span class="math notranslate nohighlight">\(S = \{0, 3\}\)</span>, so the sessions are <span class="math notranslate nohighlight">\(\{0,1,2\}\)</span> and <span class="math notranslate nohighlight">\(\{3,4,5\}\)</span>, and <span class="math notranslate nohighlight">\(e = (2,2,2,5,5,5)\)</span>. The elements are</p>
+<div class="math notranslate nohighlight">
+\[
+x_0 = (R, 1), \quad x_1 = (N_1, 0), \quad x_2 = (N_2, 0), \quad x_3 = (R, 1), \quad x_4 = (N_4, 0), \quad x_5 = (N_5, 0).
+\]</div>
+<p>The scan reaches the suffixes in rounds, each doubling how far forward a slot reaches. At distance <span class="math notranslate nohighlight">\(d\)</span>, slot <span class="math notranslate nohighlight">\(t\)</span> applies <span class="math notranslate nohighlight">\(\oplus\)</span> with <span class="math notranslate nohighlight">\(x\)</span> the block at <span class="math notranslate nohighlight">\(t+d\)</span> and <span class="math notranslate nohighlight">\(y\)</span> the block at <span class="math notranslate nohighlight">\(t\)</span>, and slots whose partner is past the end are left alone. Applying the two cases of <a class="reference internal" href="#equation-bwd-combine">(3)</a> literally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elements</span>   <span class="n">x0</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="n">N2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="n">x3</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="n">x4</span> <span class="o">=</span> <span class="p">(</span><span class="n">N4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="n">x5</span> <span class="o">=</span> <span class="p">(</span><span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="mi">1</span>      <span class="n">pair</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x_t</span> <span class="k">with</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x_</span><span class="p">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span>
+
+           <span class="n">t</span><span class="o">=</span><span class="mi">0</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x1</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="n">a0</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">1</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x2</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">0</span>   <span class="o">-&gt;</span>  <span class="n">a1</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span> <span class="n">N2</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span> <span class="n">N2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">2</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x3</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">0</span>   <span class="o">-&gt;</span>  <span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="n">N2</span> <span class="n">R</span><span class="p">,</span>  <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">=</span> <span class="p">(</span><span class="n">N2</span> <span class="n">R</span><span class="p">,</span>  <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">3</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x4</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="n">a3</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">4</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x4</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x5</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">0</span>   <span class="o">-&gt;</span>  <span class="n">a4</span> <span class="o">=</span> <span class="p">(</span><span class="n">N4</span> <span class="n">N5</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">=</span> <span class="p">(</span><span class="n">N4</span> <span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">5</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">x5</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="n">a5</span> <span class="o">=</span> <span class="p">(</span><span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>      <span class="n">pair</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a_t</span> <span class="k">with</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a_</span><span class="p">{</span><span class="n">t</span><span class="o">+</span><span class="mi">2</span><span class="p">}</span>
+
+           <span class="n">t</span><span class="o">=</span><span class="mi">0</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a0</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a2</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="n">b0</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">1</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a3</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">0</span>   <span class="o">-&gt;</span>  <span class="n">b1</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span> <span class="n">N2</span> <span class="n">R</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span> <span class="n">N2</span> <span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">2</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a2</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a4</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="n">b2</span> <span class="o">=</span> <span class="p">(</span><span class="n">N2</span> <span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">3</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a3</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a5</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="n">b3</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">4</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a4</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="n">b4</span> <span class="o">=</span> <span class="p">(</span><span class="n">N4</span> <span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">5</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">a5</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="n">b5</span> <span class="o">=</span> <span class="p">(</span><span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="mi">4</span>      <span class="n">pair</span> <span class="n">y</span> <span class="o">=</span> <span class="n">b_t</span> <span class="k">with</span> <span class="n">x</span> <span class="o">=</span> <span class="n">b_</span><span class="p">{</span><span class="n">t</span><span class="o">+</span><span class="mi">4</span><span class="p">}</span>
+
+           <span class="n">t</span><span class="o">=</span><span class="mi">0</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b0</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">b4</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">1</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b1</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">b5</span>   <span class="n">r_y</span> <span class="o">=</span> <span class="mi">1</span>   <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">N1</span> <span class="n">N2</span> <span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">2</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b2</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">4</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">N2</span> <span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">3</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b3</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="o">+</span><span class="mi">4</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">4</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b4</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">4</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">N4</span> <span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+           <span class="n">t</span><span class="o">=</span><span class="mi">5</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">b5</span><span class="p">,</span> <span class="n">no</span> <span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">4</span> <span class="o">&gt;=</span> <span class="mi">6</span>      <span class="o">-&gt;</span>  <span class="p">(</span><span class="n">N5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Slot 2 stops at <span class="math notranslate nohighlight">\(d=1\)</span> because its own marker is set the moment it swallows <span class="math notranslate nohighlight">\(x_3\)</span>, and slot 1 stops at <span class="math notranslate nohighlight">\(d=2\)</span> for the same reason: a marked <span class="math notranslate nohighlight">\(y\)</span> keeps itself and drops <span class="math notranslate nohighlight">\(x\)</span>, so no block grows past a session start.</p>
+<p>Reading off <a class="reference internal" href="#equation-bwd-product">(2)</a>, <span class="math notranslate nohighlight">\(\hat\beta_{t-1}\)</span> is the row sum of slot <span class="math notranslate nohighlight">\(t\)</span>: <span class="math notranslate nohighlight">\(\hat\beta_0 = N_1N_2\mathbf{1}\)</span>, <span class="math notranslate nohighlight">\(\hat\beta_1 = N_2\mathbf{1}\)</span>, <span class="math notranslate nohighlight">\(\hat\beta_2 = \mathbf{1}\)</span>, <span class="math notranslate nohighlight">\(\hat\beta_3 = N_4N_5\mathbf{1}\)</span>, <span class="math notranslate nohighlight">\(\hat\beta_4 = N_5\mathbf{1}\)</span>, with <span class="math notranslate nohighlight">\(\hat\beta_5 = \mathbf{1}\)</span> the seed and slot <span class="math notranslate nohighlight">\(0\)</span> unused. The trailing <span class="math notranslate nohighlight">\(R\)</span> costs nothing, <span class="math notranslate nohighlight">\(R\mathbf{1} = \mathbf{1}\)</span>.</p>
+</div>
+</section>
+<section id="the-map-path-in-the-same-shape">
+<h2>The MAP Path in the Same Shape<a class="headerlink" href="#the-map-path-in-the-same-shape" title="Link to this heading">#</a></h2>
+<p>Viterbi is the same prefix problem in a different semiring. Replace the <span class="math notranslate nohighlight">\(\operatorname{logsumexp}\)</span> that sums over the intermediate state with a <span class="math notranslate nohighlight">\(\max\)</span> over it, and the sum that accumulates along a path stays a sum: <span class="math notranslate nohighlight">\((\max, +)\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/Tropical_semiring">tropical semiring</a>. Associativity is all the scan needs, and it holds there for the same reason it holds in the log semiring — <span class="math notranslate nohighlight">\(\max\)</span> is associative with identity <span class="math notranslate nohighlight">\(-\infty\)</span>, addition distributes over it — so the matrix product</p>
+<div class="math notranslate nohighlight">
+\[
+(X \otimes Y)[i,j] \;=\; \max_k \bigl( X[i,k] + Y[k,j] \bigr)
+\]</div>
+<p>is associative and the elements of the forward pass can be reused unchanged.</p>
+<p>Those elements are the one-step transfer matrices of Proposition 1 read in logs, <span class="math notranslate nohighlight">\(\log A + \log b_t\)</span> off a session start and <span class="math notranslate nohighlight">\(\log \pi + \log b_t\)</span> broadcast over the rows at one, which is the same <code class="docutils literal notranslate"><span class="pre">where</span></code> the forward pass performs. Their running product under <span class="math notranslate nohighlight">\(\otimes\)</span> has entries</p>
+<div class="math notranslate nohighlight">
+\[
+(M_0 \otimes \dots \otimes M_t)[j,i] \;=\; \max_{\text{paths } j \to i} \Bigl( \log p(\text{path}) + \sum_{r \le t} \log b_r \Bigr),
+\]</div>
+<p>so reading row <span class="math notranslate nohighlight">\(0\)</span> gives <span class="math notranslate nohighlight">\(\delta^{\text{scan}}_t[i]\)</span>, the best score of any path over <span class="math notranslate nohighlight">\(y_{0:t}\)</span> ending in state <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Sessions need no reset flag, as in the forward pass: the element at a session start is row-constant. They do leave the score of every session already closed inside the running product, so <span class="math notranslate nohighlight">\(\delta^{\text{scan}}\)</span> is the sequential recursion’s <span class="math notranslate nohighlight">\(\delta\)</span>, which restarts at <span class="math notranslate nohighlight">\(s(t)\)</span>, shifted by the best score reached before the current session began:</p>
+<div class="math notranslate nohighlight">
+\[
+\delta^{\text{scan}}_t[i] = \delta_t[i] + \kappa_t, \qquad \kappa_t = \max_j \delta^{\text{scan}}_{s(t)-1}[j], \qquad \kappa_t = 0 \;\text{ for }\; s(t) = 0 .
+\]</div>
+<p>Unlike <span class="math notranslate nohighlight">\(\log l\)</span> in the forward pass, <span class="math notranslate nohighlight">\(\kappa_t\)</span> never has to be dropped: it does not depend on <span class="math notranslate nohighlight">\(i\)</span>, and every read of <span class="math notranslate nohighlight">\(\delta^{\text{scan}}\)</span> is an <span class="math notranslate nohighlight">\(\arg\max\)</span> over <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>What does not carry over is that a scan over scores does not produce a path. The sequential algorithm records a backpointer at each step as a by-product of its <span class="math notranslate nohighlight">\(\arg\max\)</span>; the parallel one has no steps to record at. Both halves of the fix mirror decisions already made elsewhere in this note. The backpointers come back from the scores, in one batched <span class="math notranslate nohighlight">\(\arg\max\)</span> over all <span class="math notranslate nohighlight">\(t\)</span> at once,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{bp}_t[i] \;=\; \operatorname*{arg\,max}_j \bigl( \delta^{\text{scan}}_{t-1}[j] + \log A[j,i] \bigr),
+\]</div>
+<p>which is the same trade as recomputing <span class="math notranslate nohighlight">\(\log c_t\)</span> rather than differencing the scan’s accumulated scale — and it is well defined against the shifted <span class="math notranslate nohighlight">\(\delta\)</span>, an additive constant leaving the <span class="math notranslate nohighlight">\(\arg\max\)</span> alone. At a session start the state at <span class="math notranslate nohighlight">\(t-1\)</span> is not reachable from the state at <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(\text{bp}_t\)</span> becomes the constant map onto <span class="math notranslate nohighlight">\(\operatorname{arg\,max}_j \delta_{t-1}[j]\)</span>, which closes the previous session at its own best state.</p>
+<p>The backtrack is then a scan as well. Each <span class="math notranslate nohighlight">\(\text{bp}_t\)</span> is a map <span class="math notranslate nohighlight">\(\{0,\dots,K-1\} \to \{0,\dots,K-1\}\)</span>, and composition of maps is associative,</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl((f \circ g) \circ h\bigr)[i] = f\bigl[g[h[i]]\bigr] = \bigl(f \circ (g \circ h)\bigr)[i],
+\]</div>
+<p>so the suffix compositions <span class="math notranslate nohighlight">\(G_t = \text{bp}_t \circ \text{bp}_{t+1} \circ \dots \circ \text{bp}_{T-1}\)</span> are a scan map in the sense of the first section, run in reverse.</p>
+<p>Backtracking is the recursion <span class="math notranslate nohighlight">\(\text{path}[t-1] = \text{bp}_t\bigl[\text{path}[t]\bigr]\)</span> started from <span class="math notranslate nohighlight">\(\text{path}[T-1] = \operatorname*{arg\,max}_i \delta^{\text{scan}}_{T-1}[i]\)</span>, and unrolling it down from <span class="math notranslate nohighlight">\(T-1\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+\text{path}[t-1] \;=\; \text{bp}_t\Bigl[\text{bp}_{t+1}\bigl[\dots\text{bp}_{T-1}[\text{path}[T-1]]\dots\bigr]\Bigr] \;=\; G_t\bigl[\text{path}[T-1]\bigr].
+\]</div>
+<p>The path is therefore one column of the scan’s output, the column indexed by the best final state, and no step of the backtrack is left to run sequentially.</p>
+<p>Sessions need no flag here either. A reset makes <span class="math notranslate nohighlight">\(\text{bp}_t\)</span> constant, and a constant map absorbs whatever is composed after it, <span class="math notranslate nohighlight">\(c \circ f = c\)</span>, which is the statement that the state before a session start does not depend on the state after it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">max_plus_matmul</span><span class="p">(</span><span class="n">log_earlier</span><span class="p">,</span> <span class="n">log_later</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""out[i, j] = max_k(earlier[i, k] + later[k, j]); fused, not materialized."""</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">log_earlier</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">log_later</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compose_backpointers</span><span class="p">(</span><span class="n">later</span><span class="p">,</span> <span class="n">earlier</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""(earlier o later)[i] = earlier[later[i]]; reverse=True hands `later` over first."""</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">earlier</span><span class="p">,</span> <span class="n">later</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">max_sum</span><span class="p">(</span><span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">,</span> <span class="n">log_b</span><span class="p">,</span> <span class="n">session_starts</span><span class="p">):</span>
+    <span class="n">log_base</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">session_starts</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">log_pi</span><span class="p">,</span> <span class="n">log_A</span><span class="p">)</span>
+    <span class="n">cumulative</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">associative_scan</span><span class="p">(</span><span class="n">max_plus_matmul</span><span class="p">,</span> <span class="n">log_base</span> <span class="o">+</span> <span class="n">log_b</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>
+    <span class="n">deltas</span> <span class="o">=</span> <span class="n">cumulative</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># every row equal, index 0 resets</span>
+
+    <span class="n">backpointers</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">deltas</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">log_A</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">boundary</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">deltas</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># the previous session's best exit</span>
+    <span class="n">backpointers</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">session_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">boundary</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">backpointers</span><span class="p">)</span>
+
+    <span class="n">final</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">deltas</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">composed</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">lax</span><span class="o">.</span><span class="n">associative_scan</span><span class="p">(</span>
+        <span class="n">compose_backpointers</span><span class="p">,</span> <span class="n">backpointers</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">composed</span><span class="p">[:,</span> <span class="n">final</span><span class="p">],</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">final</span><span class="p">])])</span>
+</pre></div>
+</div>
+<p>Ties are broken the way <code class="docutils literal notranslate"><span class="pre">argmax</span></code> breaks them, by lowest index, in the backpointers and in the choice of final state alike. That is the same rule the sequential recursion applies at the same two places, which is why the two return not merely equally scoring paths but the identical one.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08-hessian_tagging.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hessian tagging</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scan-map">Scan Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-pass-associativity">The forward pass associativity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-parametrization">Stable Parametrization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-log-l-l-via-scan">Get <span class="math notranslate nohighlight">\((\log(l), L)\)</span> via scan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scan-step-by-step">The Scan, Step by Step</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elements">Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine">Combine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditioning-on-exit-weights">Conditioning on exit weights</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-the-accumulated-scale">Dropping the accumulated scale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-out">Read-out</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#per-step-normalizers">Per-step normalizers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost">Cost</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sketch">Sketch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-same-scan-in-log-space">The Same Scan in Log Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-backward-pass">The Backward Pass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-map-path-in-the-same-shape">The MAP Path in the Same Shape</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/developers_notes/09-associative_estep_hmm.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
