@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating custom solvers for use with NeMoS &#8212; nemos 0.2.10.dev530 documentation</title>
+    <title>Creating custom solvers for use with NeMoS &#8212; nemos 0.2.10.dev532 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../_static/documentation_options.js?v=d552545a"></script>
+    <script src="../_static/documentation_options.js?v=46d25a29"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev530 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev530 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev532 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev532 documentation - Home"/>
   
   
 </a></div>
@@ -495,6 +495,9 @@
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handle_silent_neurons.html">Handle Silent Neurons During Initialization</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
@@ -1683,7 +1686,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f3862427d80&gt;</td>
+            <td class="value">&lt;function exp...x7fbd4a2d3ba0&gt;</td>
         </tr>
     
 
@@ -1780,7 +1783,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([0.4405...dtype=float64)</td>
+           <td>Array([0.2802...dtype=float64)</td>
 
 
        </tr>
@@ -1798,7 +1801,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([1.0650...dtype=float64)</td>
+           <td>Array([1.0727...dtype=float64)</td>
 
 
        </tr>
@@ -2011,8 +2014,8 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Powell
-&lt;__main__.ScipyPowell object at 0x7f381048b7d0&gt;
-&lt;bound method ScipySolver.run of &lt;__main__.ScipyPowell object at 0x7f381048b7d0&gt;&gt;
+&lt;__main__.ScipyPowell object at 0x7fbcf85c7fe0&gt;
+&lt;bound method ScipySolver.run of &lt;__main__.ScipyPowell object at 0x7fbcf85c7fe0&gt;&gt;
 </pre></div>
 </div>
 </div>
@@ -2044,7 +2047,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 0, 'Iteration'), Text(0, 0.5, 'Obj. fun. value')]
 </pre></div>
 </div>
-<img alt="../_images/651ece9f5152fb5ce3649e2a32b5d2265e430fec3ce18e4e8c85391ad668e118.png" src="../_images/651ece9f5152fb5ce3649e2a32b5d2265e430fec3ce18e4e8c85391ad668e118.png" />
+<img alt="../_images/db3fbf2fd8f65d26e010159b220f8380903b4f85c6ad978c9d95dd859a7ded5b.png" src="../_images/db3fbf2fd8f65d26e010159b220f8380903b4f85c6ad978c9d95dd859a7ded5b.png" />
 </div>
 </div>
 </section>
@@ -2888,7 +2891,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f3862427d80&gt;</td>
+            <td class="value">&lt;function exp...x7fbd4a2d3ba0&gt;</td>
         </tr>
     
 
@@ -2985,7 +2988,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ndarray[float64](10,)</td>
-           <td>[0.44,0.09,0.39,...,0.21,0.25,0.35]</td>
+           <td>[0.28,0.02,0.18,...,0.4 ,0.03,0.36]</td>
 
 
        </tr>
