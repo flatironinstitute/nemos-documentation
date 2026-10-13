@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Population Classifier GLM &#8212; nemos 0.2.10.dev520 documentation</title>
+    <title>Population Classifier GLM &#8212; nemos 0.2.10.dev531 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=b19d841e"></script>
+    <script src="../../../_static/documentation_options.js?v=712ad043"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev520 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev520 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev531 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev531 documentation - Home"/>
   
   
 </a></div>
@@ -543,10 +543,6 @@
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="population-classifier-glm">
 <h1>Population Classifier GLM<a class="headerlink" href="#population-classifier-glm" title="Link to this heading">#</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Still to be added to this page: the choice of regularizer and solver, why Ridge does not make the categorical loss strictly convex, and saving and loading.</p>
-</div>
 <p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.ClassifierPopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></span></a> predicts discrete labels for several outputs at once, one categorical variable per neuron, through a softmax inverse link. It stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></span></a> as the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a> stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>: the same model, fit jointly over the neuron axis instead of in a loop.</p>
 <section id="fitting-a-population-classifier-glm">
 <h2>Fitting a Population Classifier GLM<a class="headerlink" href="#fitting-a-population-classifier-glm" title="Link to this heading">#</a></h2>
@@ -1342,7 +1338,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function log...x7f43306e2de0&gt;</td>
+            <td class="value">&lt;function log...x7fe60856af20&gt;</td>
         </tr>
     
 
@@ -1477,7 +1473,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](3, 4)</td>
-           <td>Array([[-0.01...dtype=float32)</td>
+           <td>Array([[-1.43...dtype=float32)</td>
 
 
        </tr>
@@ -1756,9 +1752,9 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proba shape: (1000, 3, 4)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.24713896, 0.27713302, 0.23347193, 0.24225609],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.24713896, 0.27713302, 0.23347193, 0.24225606],
        [0.24178106, 0.25539356, 0.24396673, 0.25885868],
-       [0.27131784, 0.24754784, 0.23151682, 0.24961746]], dtype=float32)
+       [0.27131784, 0.24754784, 0.23151681, 0.24961746]], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1820,7 +1816,7 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([-1.3825917, -1.3842756, -1.383205 ], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([-1.3825917, -1.3842756, -1.3832048], dtype=float32)
 </pre></div>
 </div>
 </div>
