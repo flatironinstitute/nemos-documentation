@@ -1,0 +1,31 @@
+﻿nemos.batching.LazyArrayDataLoader
+==================================
+
+.. currentmodule:: nemos.batching
+
+.. autoclass:: LazyArrayDataLoader
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LazyArrayDataLoader.batch_size
+      ~LazyArrayDataLoader.n_samples
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LazyArrayDataLoader.__init__
+      ~LazyArrayDataLoader.sample_batch
+   
