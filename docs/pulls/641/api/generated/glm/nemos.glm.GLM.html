@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev532 documentation</title>
+    <title>nemos.glm.GLM &#8212; nemos 0.2.10.dev535 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=46d25a29"></script>
+    <script src="../../../_static/documentation_options.js?v=8d5bcae4"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev532 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev532 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev535 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev535 documentation - Home"/>
   
   
 </a></div>
@@ -664,7 +664,7 @@
 <dt class="sig sig-object py" id="nemos.glm.GLM">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">nemos.glm.</span></span><span class="sig-name descname"><span class="pre">GLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Poisson'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_link_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularizer_strength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/glm/glm.html#GLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.glm.GLM" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRegressor</span></code></p>
-<p>Generalized Linear Model (GLM) predicting neural activity from input features.</p>
+<p>Generalized Linear Model (GLM) for neural activity data.</p>
 <p>This GLM implementation allows users to model neural activity based on a combination of exogenous inputs
 (like convolved currents or light intensities) and a choice of observation model. It is suitable for scenarios where
 the relationship between predictors and the response variable might be non-linear, and the residuals
