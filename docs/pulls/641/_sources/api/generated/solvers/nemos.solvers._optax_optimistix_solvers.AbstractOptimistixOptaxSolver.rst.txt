@@ -1,0 +1,38 @@
+﻿nemos.solvers.\_optax\_optimistix\_solvers.AbstractOptimistixOptaxSolver
+========================================================================
+
+.. currentmodule:: nemos.solvers._optax_optimistix_solvers
+
+.. autoclass:: AbstractOptimistixOptaxSolver
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AbstractOptimistixOptaxSolver.DEFAULT_MAXITER
+      ~AbstractOptimistixOptaxSolver.maxiter
+      ~AbstractOptimistixOptaxSolver.tol
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AbstractOptimistixOptaxSolver.__init__
+      ~AbstractOptimistixOptaxSolver.adjust_solver_init_kwargs
+      ~AbstractOptimistixOptaxSolver.get_accepted_arguments
+      ~AbstractOptimistixOptaxSolver.init_state
+      ~AbstractOptimistixOptaxSolver.run
+      ~AbstractOptimistixOptaxSolver.stochastic_convergence_criterion
+      ~AbstractOptimistixOptaxSolver.stochastic_run
+      ~AbstractOptimistixOptaxSolver.update
+   
