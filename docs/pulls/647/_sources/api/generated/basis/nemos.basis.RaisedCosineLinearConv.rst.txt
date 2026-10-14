@@ -1,0 +1,45 @@
+﻿nemos.basis.RaisedCosineLinearConv
+==================================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: RaisedCosineLinearConv
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RaisedCosineLinearConv.conv_kwargs
+      ~RaisedCosineLinearConv.input_shape
+      ~RaisedCosineLinearConv.is_complex
+      ~RaisedCosineLinearConv.label
+      ~RaisedCosineLinearConv.n_basis_funcs
+      ~RaisedCosineLinearConv.n_output_features
+      ~RaisedCosineLinearConv.width
+      ~RaisedCosineLinearConv.window_size
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RaisedCosineLinearConv.__init__
+      ~RaisedCosineLinearConv.compute_features
+      ~RaisedCosineLinearConv.evaluate
+      ~RaisedCosineLinearConv.evaluate_on_grid
+      ~RaisedCosineLinearConv.get_params
+      ~RaisedCosineLinearConv.set_input_shape
+      ~RaisedCosineLinearConv.set_params
+      ~RaisedCosineLinearConv.setup_basis
+      ~RaisedCosineLinearConv.split_by_feature
+      ~RaisedCosineLinearConv.to_transformer
+   
