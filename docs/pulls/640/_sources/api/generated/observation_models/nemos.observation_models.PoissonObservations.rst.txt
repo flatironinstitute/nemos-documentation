@@ -15,6 +15,7 @@
    
       ~PoissonObservations.default_inverse_link_function
       ~PoissonObservations.glm_convexity_preserving_links
+      ~PoissonObservations.rate_range
       ~PoissonObservations.scale
    
 

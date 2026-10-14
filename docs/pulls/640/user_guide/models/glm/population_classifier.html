@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Population Classifier GLM &#8212; nemos 0.2.10.dev531 documentation</title>
+    <title>Population Classifier GLM &#8212; nemos 0.2.10.dev557 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=712ad043"></script>
+    <script src="../../../_static/documentation_options.js?v=9f0a234e"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,8 +57,6 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/models/glm/population_classifier';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
@@ -142,8 +140,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev531 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev531 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev557 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev557 documentation - Home"/>
   
   
 </a></div>
@@ -427,6 +425,22 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
 
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
@@ -543,10 +557,10 @@
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="population-classifier-glm">
 <h1>Population Classifier GLM<a class="headerlink" href="#population-classifier-glm" title="Link to this heading">#</a></h1>
-<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.ClassifierPopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></span></a> predicts discrete labels for several outputs at once, one categorical variable per neuron, through a softmax inverse link. It stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></span></a> as the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a> stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>: the same model, fit jointly over the neuron axis instead of in a loop.</p>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.ClassifierPopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></span></a> predicts discrete labels for several outputs at once, one categorical variable per neuron, through a softmax inverse link. It stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></span></a> as the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a> stands to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>: the same model, fit jointly over the neuron axis instead of in a loop. This page covers the neuron axis; <code class="docutils literal notranslate"><span class="pre">n_classes</span></code>, the <a class="reference internal" href="classifier.html#classifier-labels"><span class="std std-ref">class labels</span></a> and the <a class="reference internal" href="classifier.html#classifier-identifiability"><span class="std std-ref">identifiability of the parameters</span></a> work as in the <a class="reference internal" href="classifier.html#glm-classifier"><span class="std std-ref">classifier GLM</span></a>.</p>
 <section id="fitting-a-population-classifier-glm">
 <h2>Fitting a Population Classifier GLM<a class="headerlink" href="#fitting-a-population-classifier-glm" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">y</span></code> passed to <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a> is a two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>, each column holding the labels of one neuron. The number of classes is not inferred from the data, it is declared at initialization with <code class="docutils literal notranslate"><span class="pre">n_classes</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">y</span></code> passed to <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a> is a two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>, each column holding the labels of one neuron. All the columns share one set of classes, declared at initialization with <code class="docutils literal notranslate"><span class="pre">n_classes</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
@@ -1338,7 +1352,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function log...x7fe60856af20&gt;</td>
+            <td class="value">&lt;function log...x7f7bc84e6f20&gt;</td>
         </tr>
     
 
@@ -1455,7 +1469,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](32, 3, 4)</td>
-           <td>Array([[[ 4.6...dtype=float32)</td>
+           <td>Array([[[ 6.7...dtype=float32)</td>
 
 
        </tr>
@@ -1473,7 +1487,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](3, 4)</td>
-           <td>Array([[-1.43...dtype=float32)</td>
+           <td>Array([[-0.00...dtype=float32)</td>
 
 
        </tr>
@@ -1693,29 +1707,11 @@ intercept_ shape: (3, 4)
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">coef_</span></code> is <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons,</span> <span class="pre">n_classes)</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> is <code class="docutils literal notranslate"><span class="pre">(n_neurons,</span> <span class="pre">n_classes)</span></code>, so <code class="docutils literal notranslate"><span class="pre">coef_[:,</span> <span class="pre">j,</span> <span class="pre">k]</span></code> are the weights that neuron <code class="docutils literal notranslate"><span class="pre">j</span></code> assigns to class <code class="docutils literal notranslate"><span class="pre">k</span></code>. Dropping the class axis from both recovers the shapes of the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a>, and dropping the neuron axis as well recovers those of the single neuron <a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM" title="nemos.glm.ClassifierGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ClassifierGLM</span></code></span></a>, <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_classes)</span></code> and <code class="docutils literal notranslate"><span class="pre">(n_classes,)</span></code>.</p>
-<p>The model is over-parameterized. It fits one linear predictor per class, <span class="math notranslate nohighlight">\(n\)</span> of them, to determine <span class="math notranslate nohighlight">\(n\)</span> probabilities that are constrained to sum to one, which is one more than strictly needed: once the first <span class="math notranslate nohighlight">\(n - 1\)</span> probabilities are known, the last one is</p>
-<div class="math notranslate nohighlight">
-\[
-p_n = 1 - \sum_{k=1}^{n-1} p_k .
-\]</div>
-<p>The redundancy is an invariance of the softmax, which is unchanged when the same quantity is added to the linear predictor of every class. Without regularization the model therefore has infinitely many solutions, all of them giving the same probabilities. Adding a Ridge regularization prevents that, and that is why <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> is the default instead of <code class="docutils literal notranslate"><span class="pre">UnRegularized</span></code>.</p>
-<p>The index <code class="docutils literal notranslate"><span class="pre">k</span></code> of the class axis refers to <code class="docutils literal notranslate"><span class="pre">classes_</span></code>, the sorted labels observed during the fit.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([0., 1., 2., 3.], dtype=float32)
-</pre></div>
-</div>
-</div>
-</div>
+<p>The class axis carries the same over-parameterization as in the single neuron model, one linear predictor per class for probabilities that sum to one, so <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> is the default here too. See <a class="reference internal" href="classifier.html#classifier-identifiability"><span class="std std-ref">identifiability</span></a>, including what the penalty does and does not pin down.</p>
 </section>
 <section id="predicting-labels-and-probabilities">
 <h2>Predicting labels and probabilities<a class="headerlink" href="#predicting-labels-and-probabilities" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.predict" title="nemos.glm.ClassifierPopulationGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> returns labels drawn from <code class="docutils literal notranslate"><span class="pre">classes_</span></code>, one per sample and neuron, with the class axis consumed by the arg-max.</p>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.predict" title="nemos.glm.ClassifierPopulationGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> consumes the class axis with its arg-max, leaving one label per sample and neuron.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -1737,7 +1733,7 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 </div>
 </div>
 </div>
-<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.predict_proba" title="nemos.glm.ClassifierPopulationGLM.predict_proba"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code></span></a> keeps the class axis and returns the whole distribution. It returns log-probabilities by default, matching the <code class="docutils literal notranslate"><span class="pre">log_softmax</span></code> inverse link; pass <code class="docutils literal notranslate"><span class="pre">return_type=&quot;proba&quot;</span></code> for probabilities.</p>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.predict_proba" title="nemos.glm.ClassifierPopulationGLM.predict_proba"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code></span></a> keeps the class axis, so the distribution of every neuron comes back on its own axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proba</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">"proba"</span><span class="p">)</span>
@@ -1752,9 +1748,9 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proba shape: (1000, 3, 4)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.24713896, 0.27713302, 0.23347193, 0.24225606],
-       [0.24178106, 0.25539356, 0.24396673, 0.25885868],
-       [0.27131784, 0.24754784, 0.23151681, 0.24961746]], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.24721646, 0.27908504, 0.23097126, 0.24272728],
+       [0.24178204, 0.25539398, 0.24396622, 0.25885782],
+       [0.2675871 , 0.2507614 , 0.22735208, 0.25429937]], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1803,7 +1799,7 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array(-1.3833574, dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array(-1.3830429, dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1816,7 +1812,7 @@ p_n = 1 - \sum_{k=1}^{n-1} p_k .
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([-1.3825917, -1.3842756, -1.3832048], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([-1.3818684, -1.3842756, -1.3829851], dtype=float32)
 </pre></div>
 </div>
 </div>

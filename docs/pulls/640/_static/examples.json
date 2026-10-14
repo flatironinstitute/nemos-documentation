@@ -120,6 +120,25 @@
     "description": "Fit a ClassifierGLM to simulated categorical choices and predict class labels and probabilities."
   },
   {
+    "title": "Handle Silent Neurons During Initialization",
+    "url": "how_to_guide/handle_silent_neurons.html",
+    "model": [
+      "GLM",
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "initialization"
+    ],
+    "data": "simulated",
+    "description": "Start a fit from finite parameters when a neuron never fires, and pick a solver that converges on it."
+  },
+  {
     "title": "Manual update loop for more control",
     "url": "how_to_guide/manual_batching_loop.html",
     "model": [
@@ -209,7 +228,7 @@
       "scalability"
     ],
     "data": "simulated",
-    "description": "Fit a population GLM by mini-batch stochastic optimization on data read from an NWB file."
+    "description": "Fit a population GLM by mini-batch stochastic optimization on data loaded from an NWB file."
   },
   {
     "title": "Selecting Covariates via Group Lasso",

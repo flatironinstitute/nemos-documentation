@@ -15,6 +15,7 @@
    
       ~NegativeBinomialObservations.default_inverse_link_function
       ~NegativeBinomialObservations.glm_convexity_preserving_links
+      ~NegativeBinomialObservations.rate_range
       ~NegativeBinomialObservations.scale
    
 

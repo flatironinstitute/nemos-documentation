@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Population GLM &#8212; nemos 0.2.10.dev531 documentation</title>
+    <title>Population GLM &#8212; nemos 0.2.10.dev557 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=712ad043"></script>
+    <script src="../../../_static/documentation_options.js?v=9f0a234e"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev531 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev531 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev557 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev557 documentation - Home"/>
   
   
 </a></div>
@@ -425,6 +425,22 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
 
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
@@ -576,58 +592,1126 @@
 </details>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="population-glm">
-<h1>Population GLM<a class="headerlink" href="#population-glm" title="Link to this heading">#</a></h1>
-<p>Fitting the activity of a neural population with NeMoS can be much more efficient than fitting each individual
-neuron in a loop, because <code class="docutils literal notranslate"><span class="pre">JAX</span></code> vectorizes the fit across neurons and runs it on the GPU.</p>
+<span id="glm-population"></span><h1>Population GLM<a class="headerlink" href="#population-glm" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a> fits a GLM to every neuron of a population at once. It takes the same arguments and has the same methods as the <a class="reference internal" href="single_neuron.html#glm-single-neuron"><span class="std std-ref">single neuron GLM</span></a>. This page covers only what changes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> has one column per neuron,</p></li>
+<li><p>every parameter gains a trailing neuron axis,</p></li>
+<li><p>each neuron can have its own set of predictors.</p></li>
+</ul>
+<p>Fitting the population jointly is faster than fitting one neuron at a time in a loop. JAX vectorizes the fit across neurons and can run it on a GPU. The loop uses less memory.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For an unregularized, Lasso, Ridge, or group-Lasso GLM, fitting a GLM one neuron at the time, or fitting jointly
-the neural population is equivalent. The main difference between the approaches is that the former is more
-memory efficient, the latter is computationally more efficient (it takes less time to fit).</p>
+<p>For an unregularized, Lasso, or Ridge GLM, the loss is a sum of one term per neuron. Fitting the population jointly and fitting each neuron on its own give the same parameters. The same holds for a GroupLasso whose groups do not mix neurons, so that the parameters of a neuron fall in groups of their own, which is what the default mask gives you.</p>
 </div>
-<section id="fitting-a-population-glm">
-<h2>Fitting a Population GLM<a class="headerlink" href="#fitting-a-population-glm" title="Link to this heading">#</a></h2>
-<p>NeMoS has a dedicated <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">nemos.GLM.PopulationGLM</span></code></span></a> class for fitting jointly a neural population. The API
-is very similar to that the regular <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>, but with a few differences:</p>
-<ol class="arabic simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">y</span></code> input to the methods <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.fit" title="nemos.glm.PopulationGLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a> and <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.score" title="nemos.glm.PopulationGLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a> must be a two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>.</p></li>
-<li><p>You can optionally pass a <code class="docutils literal notranslate"><span class="pre">feature_mask</span></code> in the form of an array of 0s and 1s with shape <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons)</span></code>
-that specifies which features are used as predictors for each neuron. More on this <a class="reference internal" href="#neuron-specific-features">later</a>.</p></li>
-</ol>
-<p>The rest of the configurations (observation models, regularizers etc.) work exactly as in the single neuron GLM. Refer to the <a class="reference internal" href="single_neuron.html"><span class="std std-doc">single neuron GLM</span></a> user guide for those.</p>
-<p>Let’s generate some synthetic data and fit a population model.</p>
+<section id="initializing-a-populationglm-object">
+<h2>Initializing a PopulationGLM object<a class="headerlink" href="#initializing-a-populationglm-object" title="Link to this heading">#</a></h2>
+<p>The arguments are those of <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>, with the same defaults, plus a <a class="reference internal" href="#neuron-specific-features"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">feature_mask</span></code></span></a> that selects the predictors of each neuron.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
-
-<span class="n">n_neurons</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
-
-<span class="c1"># generate data:</span>
-<span class="c1"># - X array of shape (n_samples, n_features)</span>
-<span class="c1"># - spikes array of shape (n_samples, n_features)</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">spikes</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">tuned_poisson</span><span class="p">(</span>
-    <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_neurons</span><span class="o">=</span><span class="n">n_neurons</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"X shape:      </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"spikes shape: </span><span class="si">{</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="c1"># define and fit the model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"Newton"</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+<span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X shape:      (1000, 8)
-spikes shape: (1000, 2)
+<div class="output text_html">
+        <div style="
+            font-family: sans-serif;
+            margin-bottom: 10px;
+            padding: 10px 14px;
+            border-left: 4px solid #dc3545;
+            background-color: #f8f9fa;
+            color: #333;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 13px;
+        ">
+            <div>
+                <span style="font-weight: bold; margin-right: 15px;">
+                    Model State: <span style="color: #dc3545;">Unfitted</span>
+                </span>
+                </div>
+        </div>
+        <style>.sk-global {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+}
+
+.sk-global.light {
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: black;
+  --sklearn-color-background: white;
+  --sklearn-color-border-box: black;
+  --sklearn-color-icon: #696969;
+}
+
+.sk-global.dark {
+  --sklearn-color-text-on-default-background: white;
+  --sklearn-color-background: #111;
+  --sklearn-color-border-box: white;
+  --sklearn-color-icon: #878787;
+}
+
+.sk-global {
+  color: var(--sklearn-color-text);
+}
+
+.sk-global pre {
+  padding: 0;
+}
+
+.sk-global input.sk-hidden--visually {
+  border: 0;
+  clip-path: inset(100%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sk-global div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+.sk-global div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+.sk-global div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+.sk-global div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+.sk-global div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+.sk-global div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.sk-global div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+.sk-global div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+.sk-global div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+.sk-global div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+.sk-global label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.sk-global label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+.sk-global label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+.sk-global label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+.sk-global div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.sk-global input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.sk-global input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+.sk-global div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+.sk-global div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.sk-global div.sk-label label.sk-toggleable__label,
+.sk-global div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+.sk-global div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+.sk-global div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+.sk-global div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+.sk-global div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+.sk-global div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+.sk-global div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+.sk-global div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.sk-global div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-3) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3) 1pt solid;
+  color: var(--sklearn-color-fitted-level-3);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-0);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-fitted-level-0);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+.sk-global a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+.sk-global a.estimator_doc_link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+.sk-global a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+.sk-global a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-top-container.sk-global {
+  /* pydata-sphinx-theme hides overflow, so scrolling is disabled.
+   We need to set it to !important and add tabindex="0" in the HTML
+   to allow keyboard-only users to navigate the display. */
+  overflow-x: scroll !important;
+  max-width: 100%;
+}
+
+.estimator-table {
+    font-family: monospace;
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.estimator-table summary::marker {
+    font-size: 0.7rem;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover td {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table :is(td, th) {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+/*
+    `table td`is set in notebook with right text-align.
+    We need to overwrite it.
+*/
+.estimator-table table td.param {
+    text-align: left;
+    position: relative;
+    padding: 0;
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left !important;
+}
+
+.user-set td.value {
+    color:rgb(255, 94, 0);
+    background-color: transparent;
+}
+
+.default td, .estimator-table th {
+    color: black;
+    text-align: left !important;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+td.fitted-att-type {
+    white-space: preserve nowrap;
+}
+
+/*
+    Styles for parameter documentation links
+    We need styling for visited so jupyter doesn't overwrite it
+*/
+a.param-doc-link,
+a.param-doc-link:link,
+a.param-doc-link:visited {
+    text-decoration: underline dashed;
+    text-underline-offset: .3em;
+    color: inherit;
+    display: block;
+    padding: .5em;
+}
+
+@supports(anchor-name: --doc-link) {
+    a.param-doc-link,
+    a.param-doc-link:link,
+    a.param-doc-link:visited {
+    anchor-name: --doc-link;
+    }
+}
+
+/* "hack" to make the entire area of the cell containing the link clickable */
+a.param-doc-link::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
+.param-doc-description {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    padding: .5ex;
+    margin-left: 1.5em;
+    color: var(--sklearn-color-text);
+    box-shadow: .3em .3em .4em #999;
+    width: max-content;
+    text-align: left;
+    max-height: 10em;
+    overflow-y: auto;
+
+    /* unfitted */
+    background: var(--sklearn-color-unfitted-level-0);
+    border: thin solid var(--sklearn-color-unfitted-level-3);
+}
+
+@supports(position-area: center right) {
+    .param-doc-description {
+    position-area: center right;
+    position: fixed;
+    margin-left: 0;
+    }
+}
+
+/* Fitted state for parameter tooltips */
+.fitted .param-doc-description {
+    /* fitted */
+    background: var(--sklearn-color-fitted-level-0);
+    border: thin solid var(--sklearn-color-fitted-level-3);
+}
+
+.param-doc-link:hover .param-doc-description {
+    display: block;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.copy-paste-icon:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 1px;
+}
+
+.features {
+  font-family: monospace;
+  cursor: pointer;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: .20em;
+  margin-bottom: 0.5em;
+  font-size: inherit; /* Needed for jupyter */
+}
+
+.features.fitted {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features summary {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: .25em;
+}
+
+.features details[open] > summary {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features.fitted details[open] > summary {
+  background-color: var(--sklearn-color-fitted-level-2);
+  border-radius: .20em 0 0 0;
+}
+
+.features details > summary .arrow::before {
+  content: "▸";
+  color: grey;
+}
+
+.features details[open] > summary .arrow::before {
+  content: "▾";
+}
+
+.features details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+.features.fitted details:hover > summary {
+  margin: 0;
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+.features .features-container {
+  max-height: 10em;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: .25em 0.1rem;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 0 0 .5em .5em;
+}
+
+.features.fitted .features-container {
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+.features .image-container {
+  block-size: 1em;
+  inline-size: 1em;
+  padding: 0;
+  margin: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features .copy-paste-icon {
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  filter: grayscale(100%) opacity(60%);
+}
+
+.features .features-container table {
+  width: 100%;
+  margin: 0.01em;
+}
+
+.features .features-container table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.features .features-container table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.features .features-container table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.features .features-container table {
+  table-layout: inherit;
+}
+
+.features .features-container table td {
+  text-align: left;
+  padding: 0 0.5em;
+  border: 1px solid rgba(106, 105, 104, 0.232);
+  white-space: nowrap;
+  color: var(--sklearn-color-text);
+}
+
+.total_features {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+</style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>PopulationGLM(
+    observation_model=PoissonObservations(),
+    inverse_link_function=exp,
+    regularizer=UnRegularized(),
+    fit_intercept=True,
+    solver_name=&#x27;LBFGS&#x27;
+)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>PopulationGLM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy observation_model to clipboard"
+                 onclick="copyToClipboard('observation_model',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">observation_model</td>
+            <td class="value">PoissonObservations()</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy inverse_link_function to clipboard"
+                 onclick="copyToClipboard('inverse_link_function',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">inverse_link_function</td>
+            <td class="value">&lt;function exp...x7fbc96ffe660&gt;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer to clipboard"
+                 onclick="copyToClipboard('regularizer',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">regularizer</td>
+            <td class="value">UnRegularized()</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy fix_params to clipboard"
+                 onclick="copyToClipboard('fix_params',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">fix_params</td>
+            <td class="value">(None, ...)</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_name to clipboard"
+                 onclick="copyToClipboard('solver_name',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">solver_name</td>
+            <td class="value">&#x27;LBFGS&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_kwargs to clipboard"
+                 onclick="copyToClipboard('solver_kwargs',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">solver_kwargs</td>
+            <td class="value">{}</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer_strength to clipboard"
+                 onclick="copyToClipboard('regularizer_strength',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">regularizer_strength</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy fit_intercept to clipboard"
+                 onclick="copyToClipboard('fit_intercept',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">fit_intercept</td>
+            <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy feature_mask to clipboard"
+                 onclick="copyToClipboard('feature_mask',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">feature_mask</td>
+            <td class="value">None</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    
+        <div class="estimator-table">
+            <details>
+                <summary>Fitted attributes</summary>
+                <table class="parameters-table">
+                    <tbody>
+                        <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        </tr>
+                        
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">aux_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">dof_resid_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">scale_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+
+       <tr class="default">
+           <td class="param"><a class="param-doc-link" style="text-decoration:none;">solver_state_</a></td>
+           <td class="fitted-att-type">NoneType</td>
+           <td>None</td>
+
+
+       </tr>
+    
+                    </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>/*  Authors: The scikit-learn developers
+ SPDX-License-Identifier: BSD-3-Clause
+*/
+
+function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.copy-paste-icon').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+
+    const parent = element.parentElement;
+    if (!parent || !parent.nextElementSibling) {
+        console.warn('Expected copy-paste icon is missing from the DOM structure');
+        return;
+    }
+
+    const paramName = element.parentElement.nextElementSibling
+        .textContent.trim().split(' ')[0];
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+
+/**
+ * Copy the list of feature names formatted as a Python list.
+ *
+ * @param {HTMLElement} element - The copy button inside a `.features` block; its siblings
+ *   contain a `details` element and a table containing feature named.
+ * @returns {boolean} Always returns `false` so callers can prevent the default click behavior.
+ */
+function copyFeatureNamesToClipboard(element) {
+    var detailsElem = element.closest('.features').querySelector('details');
+    var wasOpen = detailsElem.open;
+    detailsElem.open = true;
+    var content = element.closest('.features').querySelector('tbody')
+                  .innerText.trim();
+    if (!wasOpen) detailsElem.open = false;
+    const rows = content.split('\n').map(row => `    "${row}"`);
+    const formattedText = `[\n${rows.join(',\n')},\n]`;
+    const originalHTML = element.innerHTML.replace('✔', '');
+    const originalStyle = element.style;
+    const copyMark = document.createElement('span');
+    copyMark.innerHTML = '✔';
+    copyMark.style.color = 'blue';
+    copyMark.style.fontSize = '1em';
+
+    navigator.clipboard.writeText(formattedText)
+        .then(() => {
+            element.style.display = 'none';
+            element.parentElement.appendChild(copyMark);
+
+            setTimeout(() => {
+                copyMark.remove();
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'orange';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 1000);
+        });
+    return false;
+}
+/**
+ * Adapted from Skrub
+ * https://github.com/skrub-data/skrub/blob/403466d1d5d4dc76a7ef569b3f8228db59a31dc3/skrub/_reporting/_data/templates/report.js#L789
+ * @returns "light" or "dark"
+ */
+function detectTheme(element) {
+    const body = document.querySelector('body');
+
+    // Check VSCode theme
+    const themeKindAttr = body.getAttribute('data-vscode-theme-kind');
+    const themeNameAttr = body.getAttribute('data-vscode-theme-name');
+
+    if (themeKindAttr && themeNameAttr) {
+        const themeKind = themeKindAttr.toLowerCase();
+        const themeName = themeNameAttr.toLowerCase();
+
+        if (themeKind.includes("dark") || themeName.includes("dark")) {
+            return "dark";
+        }
+        if (themeKind.includes("light") || themeName.includes("light")) {
+            return "light";
+        }
+    }
+
+    // Check Jupyter theme
+    if (body.getAttribute('data-jp-theme-light') === 'false') {
+        return 'dark';
+    } else if (body.getAttribute('data-jp-theme-light') === 'true') {
+        return 'light';
+    }
+
+    // Guess based on a parent element's color
+    const color = window.getComputedStyle(element.parentNode, null).getPropertyValue('color');
+    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$/i);
+    if (match) {
+        const [r, g, b] = [
+            parseFloat(match[1]),
+            parseFloat(match[2]),
+            parseFloat(match[3])
+        ];
+
+        // https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+        const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+
+        if (luma > 180) {
+            // If the text is very bright we have a dark theme
+            return 'dark';
+        }
+        if (luma < 75) {
+            // If the text is very dark we have a light theme
+            return 'light';
+        }
+        // Otherwise fall back to the next heuristic.
+    }
+
+    // Fallback to system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+
+function forceTheme(elementId) {
+    const estimatorElement = document.querySelector(`#${elementId}`);
+    if (estimatorElement === null) {
+        console.error(`Element with id ${elementId} not found.`);
+    } else {
+        const theme = detectTheme(estimatorElement);
+        estimatorElement.classList.add(theme);
+    }
+}
+
+forceTheme('sk-container-id-1');</script></body></div></div>
+</div>
+</section>
+<section id="methods">
+<span id="glm-population-methods"></span><h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
+<p>The inputs are the same as for the <a class="reference internal" href="single_neuron.html#glm-input-types"><span class="std std-ref">single neuron GLM</span></a>. <code class="docutils literal notranslate"><span class="pre">y</span></code> is now two-dimensional, with shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>.</p>
+<section id="fit">
+<h3>Fit<a class="headerlink" href="#fit" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># X of shape (n_samples, n_features), y of shape (n_samples, n_neurons)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">tuned_poisson</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_neurons</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_html">
         <div style="
             font-family: sans-serif;
@@ -1356,13 +2440,13 @@ a.param-doc-link::before {
   justify-content: center;
   margin-top: 0.5em;
 }
-</style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>PopulationGLM(
+</style><body><div id="sk-container-id-2" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>PopulationGLM(
     observation_model=PoissonObservations(),
     inverse_link_function=exp,
     regularizer=UnRegularized(),
     fit_intercept=True,
-    solver_name=&#x27;Newton&#x27;
-)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>PopulationGLM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+    solver_name=&#x27;LBFGS&#x27;
+)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>PopulationGLM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1387,7 +2471,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f7c400e16c0&gt;</td>
+            <td class="value">&lt;function exp...x7fbc96ffe660&gt;</td>
         </tr>
     
 
@@ -1420,7 +2504,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">solver_name</td>
-            <td class="value">&#x27;Newton&#x27;</td>
+            <td class="value">&#x27;LBFGS&#x27;</td>
         </tr>
     
 
@@ -1495,7 +2579,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](8, 2)</td>
-           <td>Array([[ 3.54...dtype=float32)</td>
+           <td>Array([[ 1.13...dtype=float32)</td>
 
 
        </tr>
@@ -1513,7 +2597,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](2,)</td>
-           <td>Array([-1.224...dtype=float32)</td>
+           <td>Array([0.4532...dtype=float32)</td>
 
 
        </tr>
@@ -1530,9 +2614,9 @@ a.param-doc-link::before {
 
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">solver_state_</a></td>
-           <td class="fitted-att-type">NewtonState</td>
-           <td>NewtonState(
-...shift=f32[2]
+           <td class="fitted-att-type">OptimistixAdapterState</td>
+           <td>OptimistixAda...k_bool[]
+  )
 )</td>
 
 
@@ -1712,35 +2796,111 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-1');</script></body></div></div>
+forceTheme('sk-container-id-2');</script></body></div></div>
 </div>
-<p>The neuron axis comes last in the fitted parameters.</p>
+<section id="pynapple-inputs">
+<h4>Pynapple Inputs<a class="headerlink" href="#pynapple-inputs" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">y</span></code> can be a pynapple <code class="docutils literal notranslate"><span class="pre">TsdFrame</span></code>, one column per neuron. <code class="docutils literal notranslate"><span class="pre">fit</span></code> stores its column names and metadata. <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.predict" title="nemos.glm.PopulationGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> and <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.simulate" title="nemos.glm.PopulationGLM.simulate"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">simulate</span></code></span></a> attach them to their outputs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"coef_ shape:      </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"intercept_ shape: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nap</span>
+
+<span class="c1"># suppress jax to numpy conversion warning</span>
+<span class="n">nap</span><span class="o">.</span><span class="n">nap_config</span><span class="o">.</span><span class="n">suppress_conversion_warnings</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># 10 ms bins</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="n">predictors</span> <span class="o">=</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">(</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"unit0"</span><span class="p">,</span> <span class="s2">"unit1"</span><span class="p">],</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"region"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"M1"</span><span class="p">,</span> <span class="s2">"PFC"</span><span class="p">]},</span>
+<span class="p">)</span>
+
+<span class="n">model_nap</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">predictors</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pytree-inputs">
+<h4>PyTree Inputs<a class="headerlink" href="#pytree-inputs" title="Link to this heading">#</a></h4>
+<p>With <code class="docutils literal notranslate"><span class="pre">X</span></code> a PyTree, each leaf of <code class="docutils literal notranslate"><span class="pre">coef_</span></code> has the shape of its predictors and a trailing neuron axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the coupling filters play the role of the single neuron history</span>
+<span class="n">X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"stimulus"</span><span class="p">:</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="s2">"coupling"</span><span class="p">:</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:]}</span>
+
+<span class="n">model_dict</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_dict</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">coef</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="n">model_dict</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef_ shape:      (8, 2)
-intercept_ shape: (2,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'coupling': (4, 2), 'stimulus': (4, 2)}
 </pre></div>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">coef_</span></code> is <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons)</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> is <code class="docutils literal notranslate"><span class="pre">(n_neurons,)</span></code>, so column <code class="docutils literal notranslate"><span class="pre">j</span></code> of <code class="docutils literal notranslate"><span class="pre">coef_</span></code> holds the entire weight vector of neuron <code class="docutils literal notranslate"><span class="pre">j</span></code>. The single neuron <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a> stores the same quantities without that trailing axis: <code class="docutils literal notranslate"><span class="pre">coef_</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(n_features,)</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(1,)</span></code>.</p>
-<p>Predicting the rate works in the same way,</p>
+</section>
+<section id="fitted-attributes">
+<h4>Fitted Attributes<a class="headerlink" href="#fitted-attributes" title="Link to this heading">#</a></h4>
+<p>Every fitted attribute has one entry per neuron, along the last axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"coef_:       </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"intercept_:  </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"scale_:      </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">scale_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dof_resid_:  </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">dof_resid_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef_:       (8, 2)
+intercept_:  (2,)
+scale_:      [1. 1.]
+dof_resid_:  [991. 991.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Column <code class="docutils literal notranslate"><span class="pre">j</span></code> of <code class="docutils literal notranslate"><span class="pre">coef_</span></code> holds the weights of neuron <code class="docutils literal notranslate"><span class="pre">j</span></code>. Entry <code class="docutils literal notranslate"><span class="pre">j</span></code> of <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>, <code class="docutils literal notranslate"><span class="pre">scale_</span></code> and <code class="docutils literal notranslate"><span class="pre">dof_resid_</span></code> holds its baseline, dispersion and residual degrees of freedom. The single neuron <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a> stores the same quantities without the neuron axis.</p>
+</section>
+<section id="nan-treatment">
+<h4>NaN Treatment<a class="headerlink" href="#nan-treatment" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">fit</span></code> drops a sample when <code class="docutils literal notranslate"><span class="pre">X</span></code> or any column of <code class="docutils literal notranslate"><span class="pre">y</span></code> contains a NaN. A NaN in a single neuron therefore drops that sample for the whole population.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># a gap in the recording of the first neuron only</span>
+<span class="n">y_nan</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="n">Xnew</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">tuned_poisson</span><span class="p">(</span>
-    <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_neurons</span><span class="o">=</span><span class="n">n_neurons</span><span class="p">,</span> <span class="n">random_key</span><span class="o">=</span><span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="c1"># rate in spikes/bin</span>
-<span class="n">rate</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
-<span class="n">rate</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">model_nan</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_nan</span><span class="p">)</span>
+<span class="n">model_dropped</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">10</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">10</span><span class="p">:])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">model_nan</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">model_dropped</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>To keep the samples of the other neurons, fit the neuron with the gap on its own using a <a class="reference internal" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM" title="nemos.glm.GLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GLM</span></code></span></a>.</p>
+</section>
+</section>
+<section id="predict">
+<h3>Predict<a class="headerlink" href="#predict" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.predict" title="nemos.glm.PopulationGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> returns one rate per sample and neuron, in counts per bin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1750,28 +2910,138 @@ intercept_ shape: (2,)
 </div>
 </div>
 </div>
-</section>
-<section id="scoring-neuron-by-neuron">
-<h2>Scoring neuron by neuron<a class="headerlink" href="#scoring-neuron-by-neuron" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.score" title="nemos.glm.PopulationGLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a> returns a single number, the average over samples and neurons, which is what scikit-learn cross-validation expects from an estimator.</p>
+<p>With pynapple predictors, <code class="docutils literal notranslate"><span class="pre">predict</span></code> returns a <code class="docutils literal notranslate"><span class="pre">TsdFrame</span></code>, one column per unit, where the single neuron GLM returns a <code class="docutils literal notranslate"><span class="pre">Tsd</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spikes</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s2">"pseudo-r2-McFadden"</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate</span> <span class="o">=</span> <span class="n">model_nap</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">predictors</span><span class="p">)</span>
+<span class="n">rate</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array(0.65117335, dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time (s)    unit0                unit1
+----------  -------------------  -------------------
+0.0         5.155981063842773    0.03784782066941261
+0.01        5.667296409606934    0.05499938130378723
+0.02        3.1670897006988525   7.369950771331787
+0.03        9.125699996948242    2.2817256450653076
+0.04        9.851353645324707    0.663364052772522
+0.05        8.616137504577637    0.2864370346069336
+0.06        8.737861633300781    0.304229736328125
+...
+9.93        6.120498180389404    4.760712623596191
+9.94        7.940459728240967    0.20547819137573242
+9.95        5.640016555786133    5.137512683868408
+9.96        0.8056718111038208   10.362226486206055
+9.97        0.08909513801336288  7.548639297485352
+9.98        9.97890853881836     0.8808091282844543
+9.99        9.360177993774414    2.0353920459747314
+Metadata
+region      M1                   PFC
+dtype: float32, shape: (1000, 2)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Samples are aggregated by <code class="docutils literal notranslate"><span class="pre">aggregate_sample_scores</span></code>, which is applied to an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>. Averaging over the sample axis alone leaves one score per neuron.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">TsdFrame</span></code> can carry metadata labeling its columns, which here are the units of the population. <code class="docutils literal notranslate"><span class="pre">predict</span></code> carries over the metadata of the counts the model was fit on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>unit0</th>
+      <td>M1</td>
+    </tr>
+    <tr>
+      <th>unit1</th>
+      <td>PFC</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The rate can then be split by any of those labels, without matching columns back to units by hand.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rate</span><span class="p">[:,</span> <span class="n">rate</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="s2">"M1"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time (s)    unit0
+----------  -------------------
+0.0         5.155981063842773
+0.01        5.667296409606934
+0.02        3.1670897006988525
+0.03        9.125699996948242
+0.04        9.851353645324707
+0.05        8.616137504577637
+0.06        8.737861633300781
+...
+9.93        6.120498180389404
+9.94        7.940459728240967
+9.95        5.640016555786133
+9.96        0.8056718111038208
+9.97        0.08909513801336288
+9.98        9.97890853881836
+9.99        9.360177993774414
+Metadata
+region      M1
+dtype: float32, shape: (1000, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The column names and the metadata are the only part of the output that comes from the fit. The type and the timestamps follow the predictors passed to <code class="docutils literal notranslate"><span class="pre">predict</span></code>.</p>
+</section>
+<section id="score">
+<h3>Score<a class="headerlink" href="#score" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.score" title="nemos.glm.PopulationGLM.score"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">score</span></code></span></a> returns a single number, the average over samples and neurons, which is what scikit-learn cross-validation expects from an estimator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_type</span><span class="o">=</span><span class="s2">"pseudo-r2-McFadden"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array(0.5044401, dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">score</span></code> applies <code class="docutils literal notranslate"><span class="pre">aggregate_sample_scores</span></code> to an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>. Averaging over the sample axis alone leaves one score per neuron.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
     <span class="n">X</span><span class="p">,</span>
-    <span class="n">spikes</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
     <span class="n">score_type</span><span class="o">=</span><span class="s2">"pseudo-r2-McFadden"</span><span class="p">,</span>
     <span class="n">aggregate_sample_scores</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
 <span class="p">)</span>
@@ -1779,68 +3049,105 @@ intercept_ shape: (2,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([0.653775  , 0.64844847], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([0.5064955, 0.502414 ], dtype=float32)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="neuron-specific-features">
-<span id="id1"></span><h2>Neuron-specific features<a class="headerlink" href="#neuron-specific-features" title="Link to this heading">#</a></h2>
-<p>With <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a>, one can set up a model that fits a different set of predictors for each neuron. The way to do so is to specify a <code class="docutils literal notranslate"><span class="pre">feature_mask</span></code>.</p>
-<p>Let’s assume that we have two neurons, share one shared input, and have an extra private one, for a total of
-3 inputs.</p>
+<section id="simulate">
+<h3>Simulate<a class="headerlink" href="#simulate" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.simulate" title="nemos.glm.PopulationGLM.simulate"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">simulate</span></code></span></a> draws counts for every neuron and returns them with the rate they were drawn from, both of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let's take the first three input</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">input_features</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s assume that:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">input_features[:,</span> <span class="pre">0]</span></code> is shared.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input_features[:,</span> <span class="pre">1]</span></code> is an input only for the first neuron.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input_features[:,</span> <span class="pre">2]</span></code> is an input only for the second neuron.</p></li>
-</ul>
-<p>We can impose the same constraint to the <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM" title="nemos.glm.PopulationGLM"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">PopulationGLM</span></code></span></a> by masking the weights.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the mask to a matrix of 1s.</span>
-<span class="n">feature_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 
-<span class="c1"># remove the 3rd feature from the predictors of the first neuron</span>
-<span class="n">feature_mask</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">counts_sim</span><span class="p">,</span> <span class="n">rate_sim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">X</span><span class="p">)</span>
 
-<span class="c1"># remove the 2nd feature from the predictors of the second neuron</span>
-<span class="n">feature_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># visualize the mask</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">feature_mask</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"counts: </span><span class="si">{</span><span class="n">counts_sim</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"rate:   </span><span class="si">{</span><span class="n">rate_sim</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 1.]
- [1. 0.]
- [0. 1.]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>counts: (1000, 2)
+rate:   (1000, 2)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The mask can be passed at initialization or set after the model is initialized, but cannot be changed after the model is fit.</p>
+<p>The simulation is feed-forward: the counts drawn do not feed back into the rate through the coupling filters. For a recurrently coupled population, use <a class="reference internal" href="../../../api/generated/simulation/nemos.simulation.simulate_recurrent.html#nemos.simulation.simulate_recurrent" title="nemos.simulation.simulate_recurrent"><span class="xref myst py py-func"><code class="docutils literal notranslate"><span class="pre">simulate_recurrent</span></code></span></a>, shown in <a class="reference internal" href="../../../how_to_guide/simulate_coupled_population.html"><span class="std std-doc">simulate a coupled population</span></a>.</p>
+</section>
+<section id="fitting-out-of-memory">
+<h3>Fitting out of memory<a class="headerlink" href="#fitting-out-of-memory" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.stochastic_fit" title="nemos.glm.PopulationGLM.stochastic_fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">stochastic_fit</span></code></span></a> and <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.update" title="nemos.glm.PopulationGLM.update"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">update</span></code></span></a> take the same arguments and behave as for the <a class="reference internal" href="single_neuron.html#glm-out-of-memory"><span class="std std-ref">single neuron GLM</span></a>. The loader serves batches of <code class="docutils literal notranslate"><span class="pre">y</span></code> with all the neurons in them.</p>
+</section>
+</section>
+<section id="model-configurations">
+<span id="glm-population-model-configuration"></span><h2>Model Configurations<a class="headerlink" href="#model-configurations" title="Link to this heading">#</a></h2>
+<p>You set observation models, inverse link functions, regularizers and solvers exactly as in the <a class="reference internal" href="single_neuron.html#glm-model-configuration"><span class="std std-ref">single neuron GLM</span></a>.</p>
+<p>A parameter-wise <code class="docutils literal notranslate"><span class="pre">regularizer_strength</span></code> is the one argument whose shape changes: it has the shape of the parameters, neuron axis included. The array of one strength per feature that the single neuron GLM takes is rejected here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set a quasi-newton solver and low tolerance for better numerical precision</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"Newton"</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_neurons</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="c1"># set the mask</span>
-<span class="n">model</span><span class="o">.</span><span class="n">feature_mask</span> <span class="o">=</span> <span class="n">feature_mask</span>
+<span class="c1"># penalize the second neuron heavily, the first one barely</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">),</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">strength</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span>
 
-<span class="c1"># fit the model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_features</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+<span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="n">strength</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[ 7.4665946e-01, -2.9338736e-03],
+       [ 1.2706635e+00, -5.2223615e-03],
+       [ 1.5138890e+00, -5.3804168e-03],
+       [ 1.4782633e+00, -2.5246902e-03],
+       [ 2.6855415e-01,  4.9726772e-03],
+       [-1.3527025e+00,  6.8241996e-03],
+       [-2.2507617e+00,  3.3665833e-03],
+       [-1.6745650e+00,  8.9788315e-04]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The group-wise and parameter-wise forms, and the special cases of ElasticNet and GroupLasso, are covered in <a class="reference internal" href="../../regularizers.html"><span class="std std-doc">regularizers</span></a>.</p>
+<section id="grouplasso">
+<h3>GroupLasso<a class="headerlink" href="#grouplasso" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../../../api/generated/regularizer/nemos.regularizer.GroupLasso.html#nemos.regularizer.GroupLasso" title="nemos.regularizer.GroupLasso"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">GroupLasso</span></code></span></a> defines its groups per neuron. With the default mask, each leaf of <code class="docutils literal notranslate"><span class="pre">coef</span></code> is a separate group for each neuron. A group of predictors can then shrink to zero for one neuron and stay for another.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_group</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="s2">"GroupLasso"</span><span class="p">,</span>
+    <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_dict</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># norm of each group, one entry per neuron</span>
+<span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="n">model_group</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'coupling': array([0.      , 1.067085], dtype=float32),
+ 'stimulus': array([1.0269294, 0.       ], dtype=float32)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>With 2 leaves and 2 neurons there are 4 groups. Here, the first neuron keeps its stimulus weights and drops its coupling. The second neuron does the opposite.</p>
+<p>A mask of your own has shape <code class="docutils literal notranslate"><span class="pre">(n_groups,</span> <span class="pre">n_features,</span> <span class="pre">n_neurons)</span></code> for each leaf, with the neuron axis like the parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># group 0: the stimulus of every neuron; group 1: the coupling of every neuron</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="n">nmo</span><span class="o">.</span><span class="n">regularizer</span><span class="o">.</span><span class="n">GroupLasso</span><span class="p">(</span><span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">),</span>
+    <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1864,7 +3171,7 @@ intercept_ shape: (2,)
                 <span style="margin-right: 15px;"><strong>Neurons:</strong> 2</span>
             </div>
             <div style="margin-top: 8px;">
-                <span style="margin-right: 15px;"><strong>Features:</strong> 3</span>
+                <span style="margin-right: 15px;"><strong>Features:</strong> 8</span>
                 <span><strong>Converged:</strong> <span style="color: #28a745;">Yes</span></span>
             </div>
         </div>
@@ -2573,13 +3880,14 @@ a.param-doc-link::before {
   justify-content: center;
   margin-top: 0.5em;
 }
-</style><body><div id="sk-container-id-2" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>PopulationGLM(
+</style><body><div id="sk-container-id-3" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>PopulationGLM(
     observation_model=PoissonObservations(),
     inverse_link_function=exp,
-    regularizer=UnRegularized(),
+    regularizer=GroupLasso(mask=GLMParams(coef=f32[2,8,2], intercept=None)),
+    regularizer_strength=0.3,
     fit_intercept=True,
-    solver_name=&#x27;Newton&#x27;
-)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>PopulationGLM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+    solver_name=&#x27;ProximalGradient&#x27;
+)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>PopulationGLM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2604,7 +3912,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f7c400e16c0&gt;</td>
+            <td class="value">&lt;function exp...x7fbc96ffe660&gt;</td>
         </tr>
     
 
@@ -2615,7 +3923,18 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">regularizer</td>
-            <td class="value">UnRegularized()</td>
+            <td class="value">GroupLasso(ma...tercept=None))</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer_strength to clipboard"
+                 onclick="copyToClipboard('regularizer_strength',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">regularizer_strength</td>
+            <td class="value">0.3</td>
         </tr>
     
 
@@ -2637,7 +3956,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">solver_name</td>
-            <td class="value">&#x27;Newton&#x27;</td>
+            <td class="value">&#x27;ProximalGradient&#x27;</td>
         </tr>
     
 
@@ -2654,23 +3973,12 @@ a.param-doc-link::before {
 
         <tr class="user-set">
             <td><button type="button" class="copy-paste-icon"
-                 aria-label="Copy feature_mask to clipboard"
-                 onclick="copyToClipboard('feature_mask',
+                 aria-label="Copy regularizer__mask to clipboard"
+                 onclick="copyToClipboard('regularizer__mask',
                           this.parentElement.nextElementSibling)"
             ></button></td>
-            <td class="param">feature_mask</td>
-            <td class="value">Array([[1., 1...dtype=float32)</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><button type="button" class="copy-paste-icon"
-                 aria-label="Copy regularizer_strength to clipboard"
-                 onclick="copyToClipboard('regularizer_strength',
-                          this.parentElement.nextElementSibling)"
-            ></button></td>
-            <td class="param">regularizer_strength</td>
-            <td class="value">None</td>
+            <td class="param">regularizer__mask</td>
+            <td class="value">GLMParams(coe...ntercept=None)</td>
         </tr>
     
 
@@ -2682,6 +3990,17 @@ a.param-doc-link::before {
             ></button></td>
             <td class="param">fit_intercept</td>
             <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy feature_mask to clipboard"
+                 onclick="copyToClipboard('feature_mask',
+                          this.parentElement.nextElementSibling)"
+            ></button></td>
+            <td class="param">feature_mask</td>
+            <td class="value">None</td>
         </tr>
     
                   </tbody>
@@ -2711,8 +4030,8 @@ a.param-doc-link::before {
 
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
-           <td class="fitted-att-type">ArrayImpl[float32](3, 2)</td>
-           <td>Array([[  1.5...dtype=float32)</td>
+           <td class="fitted-att-type">ArrayImpl[float32](8, 2)</td>
+           <td>Array([[ 0.04...dtype=float32)</td>
 
 
        </tr>
@@ -2720,8 +4039,8 @@ a.param-doc-link::before {
 
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">dof_resid_</a></td>
-           <td class="fitted-att-type">ArrayImpl[float32](2,)</td>
-           <td>Array([997., ...dtype=float32)</td>
+           <td class="fitted-att-type">ArrayImpl[int32](2,)</td>
+           <td>Array([991, 991], dtype=int32)</td>
 
 
        </tr>
@@ -2730,7 +4049,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](2,)</td>
-           <td>Array([0.1611...dtype=float32)</td>
+           <td>Array([1.5760...dtype=float32)</td>
 
 
        </tr>
@@ -2747,9 +4066,9 @@ a.param-doc-link::before {
 
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">solver_state_</a></td>
-           <td class="fitted-att-type">NewtonState</td>
-           <td>NewtonState(
-...shift=f32[2]
+           <td class="fitted-att-type">OptimistixAdapterState</td>
+           <td>OptimistixAda...k_bool[]
+  )
 )</td>
 
 
@@ -2929,32 +4248,99 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-2');</script></body></div></div>
+forceTheme('sk-container-id-3');</script></body></div></div>
 </div>
-<p>If we print the model coefficients, we can see the effect of the mask.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A group that spans several neurons, like the two above, couples their fits. The joint fit then differs from fitting each neuron on its own.</p>
+</div>
+</section>
+</section>
+<section id="parameter-specification">
+<span id="glm-population-parameter-specification"></span><h2>Parameter specification<a class="headerlink" href="#parameter-specification" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fit_intercept</span></code> and <code class="docutils literal notranslate"><span class="pre">fix_params</span></code> work as in the <a class="reference internal" href="single_neuron.html#glm-parameter-specification"><span class="std std-ref">single neuron GLM</span></a>. The values held fixed have the shape of the parameters, with the neuron axis last.</p>
+<section id="fix-parameter-values">
+<h3>Fix parameter values<a class="headerlink" href="#fix-parameter-values" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hold one intercept per neuron, learn the weights</span>
+<span class="n">model_fixed</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span>
+    <span class="n">fix_params</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]))</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"intercept_: </span><span class="si">{</span><span class="n">model_fixed</span><span class="o">.</span><span class="n">intercept_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[  1.5499523, -14.685068 ],
-       [  3.403083 ,   0.       ],
-       [  0.       , -20.089802 ]], dtype=float32)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intercept_: [0.5 1. ]
 </pre></div>
 </div>
 </div>
 </div>
-<p>The coefficient for the first neuron corresponding to the last feature is zero, as well as the coefficient of the second neuron corresponding to the second feature.</p>
-<p>The mask has the same shape as <code class="docutils literal notranslate"><span class="pre">coef_</span></code>, and <code class="docutils literal notranslate"><span class="pre">coef_[i,</span> <span class="pre">j]</span></code> is zero wherever <code class="docutils literal notranslate"><span class="pre">feature_mask[i,</span> <span class="pre">j]</span></code> is zero. The mask is stored as the <code class="docutils literal notranslate"><span class="pre">feature_mask</span></code> attribute. It can be accessed after fitting, but not reassigned.</p>
-<p>A masked coefficient is not estimated, so it does not count towards the residual degrees of freedom.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">X</span></code> a PyTree, the model holds or learns each leaf of <code class="docutils literal notranslate"><span class="pre">coef</span></code> on its own, for all the neurons together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same design, no mask</span>
-<span class="n">unmasked</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"Newton"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_features</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hold the coupling weights of every neuron at zero, learn the stimulus ones</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="p">({</span><span class="s2">"stimulus"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"coupling"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))},</span> <span class="kc">None</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"masked:   </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">dof_resid_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">model_fixed</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">fix_params</span><span class="o">=</span><span class="n">fixed</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_dict</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">model_fixed</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="s2">"coupling"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0., 0.],
+       [0., 0.],
+       [0., 0.],
+       [0., 0.]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To remove a group of predictors from some neurons only, use a feature mask.</p>
+</section>
+<section id="neuron-specific-features">
+<span id="id1"></span><h3>Neuron-specific features<a class="headerlink" href="#neuron-specific-features" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">feature_mask</span></code> selects which predictors enter the model of each neuron. It has the shape of <code class="docutils literal notranslate"><span class="pre">coef_</span></code>, with a 1 where the model learns the weight and a 0 where it holds the weight at zero.</p>
+<p>Take three predictors and two neurons:</p>
+<ul class="simple">
+<li><p>predictor 0 drives both neurons,</p></li>
+<li><p>predictor 1 drives only the first neuron,</p></li>
+<li><p>predictor 2 drives only the second neuron.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_features</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">feature_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+<span class="c1"># drop predictor 2 from the first neuron</span>
+<span class="n">feature_mask</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># drop predictor 1 from the second neuron</span>
+<span class="n">feature_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">model_masked</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">feature_mask</span><span class="o">=</span><span class="n">feature_mask</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_features</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">model_masked</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[ -0.36547473, -11.535214  ],
+       [  1.7087805 ,   0.        ],
+       [  0.        ,  -4.8226867 ]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">coef_[i,</span> <span class="pre">j]</span></code> is zero wherever <code class="docutils literal notranslate"><span class="pre">feature_mask[i,</span> <span class="pre">j]</span></code> is zero. You can pass the mask at initialization or set it as an attribute before fitting. After fitting, the attribute still returns the mask, but assigning to it raises.</p>
+<p>A masked weight is not estimated, so it does not count towards the residual degrees of freedom of its neuron.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unmasked</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_features</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"masked:   </span><span class="si">{</span><span class="n">model_masked</span><span class="o">.</span><span class="n">dof_resid_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"unmasked: </span><span class="si">{</span><span class="n">unmasked</span><span class="o">.</span><span class="n">dof_resid_</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2966,123 +4352,35 @@ unmasked: [996. 996.]
 </div>
 </div>
 </div>
-<p>Each neuron estimates one parameter fewer under the mask. <code class="docutils literal notranslate"><span class="pre">dof_resid_</span></code> has one entry per neuron, since every neuron has its own set of predictors.</p>
 <section id="masking-groups-of-features">
-<h3>Masking groups of features<a class="headerlink" href="#masking-groups-of-features" title="Link to this heading">#</a></h3>
-<p>When the predictors are a dictionary, one entry per basis or per group of features, the mask mirrors that same structure, each leaf shaped like its own coefficients.</p>
+<h4>Masking groups of features<a class="headerlink" href="#masking-groups-of-features" title="Link to this heading">#</a></h4>
+<p>With <code class="docutils literal notranslate"><span class="pre">X</span></code> a PyTree, the mask has the same structure, each leaf shaped like its coefficients.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split the design in two groups of features</span>
-<span class="n">X_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"stimulus"</span><span class="p">:</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="s2">"coupling"</span><span class="p">:</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:]}</span>
-
-<span class="c1"># the stimulus drives both neurons, the coupling only the second one</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the stimulus drives both neurons, the coupling only the second one</span>
 <span class="n">feature_mask</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"stimulus"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">)),</span>
     <span class="s2">"coupling"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="n">model_dict</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span>
-    <span class="n">solver_name</span><span class="o">=</span><span class="s2">"Newton"</span><span class="p">,</span>
-    <span class="n">feature_mask</span><span class="o">=</span><span class="n">feature_mask</span>
-<span class="p">)</span>
-<span class="n">model_dict</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_dict</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+<span class="n">model_dict</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">feature_mask</span><span class="o">=</span><span class="n">feature_mask</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_dict</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="n">model_dict</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="s2">"coupling"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.       , 1.7963035],
-       [0.       , 3.2630816],
-       [0.       , 3.1967776],
-       [0.       , 3.4996161]], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[0.       , 1.4873959],
+       [0.       , 1.9396404],
+       [0.       , 1.2631433],
+       [0.       , 1.1648017]], dtype=float32)
 </pre></div>
 </div>
 </div>
 </div>
-<p>A single column of zeros removes the entire <code class="docutils literal notranslate"><span class="pre">&quot;coupling&quot;</span></code> group from the predictors of the first neuron, without indexing the columns of the design one by one. This is the form to use when the mask encodes a hypothesis about which inputs reach which neuron, for example dropping self-coupling or restricting coupling to a sub-population.</p>
+<p>A single column of zeros removes the entire <code class="docutils literal notranslate"><span class="pre">&quot;coupling&quot;</span></code> group from the predictors of the first neuron. You do not have to index the columns of the design one by one. Use this form when the mask encodes a hypothesis about which inputs reach which neuron. Examples are dropping self-coupling or restricting coupling to a sub-population.</p>
 </section>
 </section>
-<section id="keeping-track-of-the-units-with-pynapple">
-<h2>Keeping track of the units with pynapple<a class="headerlink" href="#keeping-track-of-the-units-with-pynapple" title="Link to this heading">#</a></h2>
-<p>NeMoS does not require <a class="reference external" href="https://pynapple-org.github.io/pynapple/">pynapple</a>, but it accepts its objects wherever an array is accepted. The column names and the metadata of <code class="docutils literal notranslate"><span class="pre">y</span></code> are stored at fit time, and are attached again to the output of <a class="reference internal" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.predict" title="nemos.glm.PopulationGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nap</span>
-
-<span class="c1"># suppress jax to numpy conversion warning</span>
-<span class="n">nap</span><span class="o">.</span><span class="n">nap_config</span><span class="o">.</span><span class="n">suppress_conversion_warnings</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># 10 ms bins</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-
-<span class="n">counts</span> <span class="o">=</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">(</span>
-    <span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
-    <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spikes</span><span class="p">),</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"unit0"</span><span class="p">,</span> <span class="s2">"unit1"</span><span class="p">],</span>
-    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"region"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"M1"</span><span class="p">,</span> <span class="s2">"PFC"</span><span class="p">]},</span>
-<span class="p">)</span>
-<span class="n">predictors</span> <span class="o">=</span> <span class="n">nap</span><span class="o">.</span><span class="n">TsdFrame</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-
-<span class="n">model_nap</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">solver_name</span><span class="o">=</span><span class="s2">"Newton"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">predictors</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
-<span class="n">model_nap</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">predictors</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time (s)    unit0                 unit1
-----------  --------------------  ----------------------
-0.0         10.20599365234375     0.00039424494025297463
-0.01        10.212350845336914    0.0006758866365998983
-0.02        0.31285005807876587   1.7939475774765015
-0.03        2.6048085689544678    0.1931508332490921
-0.04        6.006680488586426     0.025241946801543236
-0.05        8.830866813659668     0.007185642141848803
-0.06        8.682580947875977     0.007835089229047298
-...
-9.93        0.9882677793502808    0.7167073488235474
-9.94        9.450751304626465     0.00446936022490263
-9.95        0.8448644280433655    0.830068826675415
-9.96        0.05821801349520683   5.674983978271484
-9.97        0.007209195755422115  8.756499290466309
-9.98        5.111685752868652     0.039694204926490784
-9.99        2.876103401184082     0.15897193551063538
-Metadata
-region      M1                    PFC
-dtype: float32, shape: (1000, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The predicted rate is a <code class="docutils literal notranslate"><span class="pre">TsdFrame</span></code> carrying the unit names and the region of each unit, so it can be restricted to an epoch or split by region without matching the columns back to the units.</p>
-<p>Only the column names and the metadata are taken from the fit. The timestamps and the time support of the output are those of the predictors passed to <code class="docutils literal notranslate"><span class="pre">predict</span></code>, which can cover any interval.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_nap</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">predictors</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time (s)    unit0                  unit1
-----------  ---------------------  ----------------------
-0.0         10.20599365234375      0.00039424494025297463
-0.01        10.212350845336914     0.0006758866365998983
-0.02        0.31285005807876587    1.7939475774765015
-0.03        2.6048085689544678     0.1931508332490921
-0.04        6.006680488586426      0.025241946801543236
-0.05        8.830866813659668      0.007185642141848803
-0.06        8.682580947875977      0.007835089229047298
-0.07        0.21551942825317383    2.3344826698303223
-0.08        9.362674713134766      0.004858120810240507
-0.09        7.996185013325885e-05  10.636783599853516
-Metadata
-region      M1                     PFC
-dtype: float32, shape: (10, 2)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The same rule decides the type of the output: predictors passed as a plain array return a plain array, even for a model that was fit on pynapple objects.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
@@ -3137,13 +4435,33 @@ dtype: float32, shape: (10, 2)
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-population-glm">Fitting a Population GLM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoring-neuron-by-neuron">Scoring neuron by neuron</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neuron-specific-features">Neuron-specific features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-groups-of-features">Masking groups of features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-a-populationglm-object">Initializing a PopulationGLM object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pynapple-inputs">Pynapple Inputs</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pytree-inputs">PyTree Inputs</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fitted-attributes">Fitted Attributes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-treatment">NaN Treatment</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keeping-track-of-the-units-with-pynapple">Keeping track of the units with pynapple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">Predict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score">Score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate">Simulate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-out-of-memory">Fitting out of memory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-configurations">Model Configurations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grouplasso">GroupLasso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-specification">Parameter specification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fix-parameter-values">Fix parameter values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neuron-specific-features">Neuron-specific features</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-groups-of-features">Masking groups of features</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
