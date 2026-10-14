@@ -1,0 +1,38 @@
+﻿nemos.solvers.\_optimistix\_solvers.OptimistixAdapter
+=====================================================
+
+.. currentmodule:: nemos.solvers._optimistix_solvers
+
+.. autoclass:: OptimistixAdapter
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OptimistixAdapter.DEFAULT_MAXITER
+      ~OptimistixAdapter.maxiter
+      ~OptimistixAdapter.tol
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OptimistixAdapter.__init__
+      ~OptimistixAdapter.adjust_solver_init_kwargs
+      ~OptimistixAdapter.get_accepted_arguments
+      ~OptimistixAdapter.init_state
+      ~OptimistixAdapter.run
+      ~OptimistixAdapter.stochastic_convergence_criterion
+      ~OptimistixAdapter.stochastic_run
+      ~OptimistixAdapter.update
+   
