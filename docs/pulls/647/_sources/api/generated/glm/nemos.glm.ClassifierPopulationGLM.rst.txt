@@ -14,6 +14,7 @@
    .. autosummary::
    
       ~ClassifierPopulationGLM.classes
+      ~ClassifierPopulationGLM.classes_
       ~ClassifierPopulationGLM.feature_mask
       ~ClassifierPopulationGLM.fit_intercept
       ~ClassifierPopulationGLM.fix_params
