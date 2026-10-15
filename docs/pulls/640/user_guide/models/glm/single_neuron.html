@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Single Neuron GLM &#8212; nemos 0.2.10.dev557 documentation</title>
+    <title>Single Neuron GLM &#8212; nemos 0.2.10.dev558 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=9f0a234e"></script>
+    <script src="../../../_static/documentation_options.js?v=7710808c"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev557 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev557 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev558 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev558 documentation - Home"/>
   
   
 </a></div>
@@ -1362,7 +1362,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6a61a06520&gt;</td>
+            <td class="value">&lt;function exp...x7fe670eda520&gt;</td>
         </tr>
     
 
@@ -2445,7 +2445,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function one...x7f6a61a05760&gt;</td>
+            <td class="value">&lt;function one...x7fe670ed9760&gt;</td>
         </tr>
     
 
@@ -3541,7 +3541,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6a61a06520&gt;</td>
+            <td class="value">&lt;function exp...x7fe670eda520&gt;</td>
         </tr>
     
 
@@ -4646,7 +4646,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6a61a06520&gt;</td>
+            <td class="value">&lt;function exp...x7fe670eda520&gt;</td>
         </tr>
     
 
@@ -6021,7 +6021,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6a61a06520&gt;</td>
+            <td class="value">&lt;function exp...x7fe670eda520&gt;</td>
         </tr>
     
 
@@ -6136,7 +6136,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float32](1,)</td>
-           <td>Array([1.3634...dtype=float32)</td>
+           <td>Array([1.3619...dtype=float32)</td>
 
 
        </tr>
@@ -7132,7 +7132,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function one...x7f6a61a05760&gt;</td>
+            <td class="value">&lt;function one...x7fe670ed9760&gt;</td>
         </tr>
     
 
@@ -8210,7 +8210,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6a61a06520&gt;</td>
+            <td class="value">&lt;function exp...x7fe670eda520&gt;</td>
         </tr>
     
 
@@ -9340,7 +9340,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;PjitFunction...7f6a83d58680&gt;&gt;</td>
+            <td class="value">&lt;PjitFunction...7fe692d50680&gt;&gt;</td>
         </tr>
     
 
@@ -9694,107 +9694,47 @@ forceTheme('sk-container-id-8');</script></body></div></div>
 </div>
 </div>
 </div>
-<p>The keys <code class="docutils literal notranslate"><span class="pre">solver_kwargs</span></code> takes are the arguments of the solver itself, which it can be asked for. Anything else raises.</p>
+<p>The keys <code class="docutils literal notranslate"><span class="pre">solver_kwargs</span></code> takes are the arguments of the solver itself; anything else raises. To inspect which parameters can be specified, print the solver docstring with <a class="reference internal" href="../../../api/generated/solvers/nemos.solvers.get_solver_documentation.html#nemos.solvers.get_solver_documentation" title="nemos.solvers.get_solver_documentation"><span class="xref myst py py-func"><code class="docutils literal notranslate"><span class="pre">get_solver_documentation</span></code></span></a>. Below is the top of the <code class="docutils literal notranslate"><span class="pre">LBFGS</span></code> one, up to its accepted arguments.</p>
 <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.solvers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_solver</span>
-
-<span class="nb">sorted</span><span class="p">(</span><span class="n">get_solver</span><span class="p">(</span><span class="s2">"Newton"</span><span class="p">)</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">get_accepted_arguments</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['identity_shift_beta',
- 'identity_shift_max_steps',
- 'jit',
- 'linear_solver',
- 'maxiter',
- 'rtol',
- 'tol']
-</pre></div>
-</div>
-</div>
-</div>
-<p><a class="reference internal" href="../../../api/generated/solvers/nemos.solvers.get_solver_documentation.html#nemos.solvers.get_solver_documentation" title="nemos.solvers.get_solver_documentation"><span class="xref myst py py-func"><code class="docutils literal notranslate"><span class="pre">get_solver_documentation</span></code></span></a> returns the solver’s docstring, which says what each argument does. Expand the cell below for the <code class="docutils literal notranslate"><span class="pre">Newton</span></code> one.</p>
-<div class="cell tag_hide-cell docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell content</p>
-<p class="expanded admonition-title">Hide code cell content</p>
-</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.solvers</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_solver_documentation</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">get_solver_documentation</span><span class="p">(</span><span class="s2">"Newton"</span><span class="p">))</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">get_solver_documentation</span><span class="p">(</span><span class="s2">"LBFGS"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[:</span><span class="mi">27</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Showing docstring of nemos.solvers._newton.Newton.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Showing docstring of nemos.solvers._optax_optimistix_solvers.OptimistixOptaxLBFGS.
 For potentially more info, use `show_help=True`.
 
-Newton solver with backtracking and Hessian-aware linear solves.
+L-BFGS implementation using optax.lbfgs wrapped by optimistix.OptaxMinimiser.
 
-At each iteration, the solver computes a Newton direction from
+Convergence criterion is implemented by Optimistix, so the Cauchy criterion is used.
 
-.. math::
-    H d = -g,
+Accepted arguments:
+-------------------
+- adjoint
+- has_aux
+- init_params
+- maxiter
+- memory_size
+- norm
+- optim
+- options
+- rtol
+- scale_init_precond
+- stepsize
+- tags
+- throw
+- tol
+- verbose
 
-modifying the Hessian when necessary to obtain a finite descent direction.
-
-``linear_solver`` controls how this system is solved:
-
-``"auto"``
-
-    Selects a strategy from the resolved Hessian properties. Positive-definite
-    Hessians use Cholesky directly, positive-semidefinite Hessians use Cholesky
-    with a small numerical shift, and Hessians without a positivity guarantee
-    use spectral eigenvalue modification.
-
-``"cholesky"``
-
-    Solves the system using a Cholesky factorization. A positive-definite
-    Hessian is used directly. For a positive-semidefinite Hessian, a small
-    dtype-dependent diagonal shift is added to avoid numerical singularity.
-    This is the cheapest strategy when the Hessian is known to be positive.
-
-``"eigh"``
-
-    Computes ``H = Q diag(lambda) Q.T`` and replaces each eigenvalue by
-    .. math::
-        \\widetilde{\\lambda}_i
-        = \\max(|\\lambda_i|, \\delta).
-    The direction is then
-    .. math::
-        d = -Q\\widetilde{\\Lambda}^{-1}Q^T g.
-    This handles positive-definite, singular, and indefinite symmetric
-    Hessians in one eigendecomposition. It follows the spectral modification
-    in Nocedal and Wright, 2nd ed., section 3.4, equation (3.49), p. 50.
-
-``"identity_shift"``
-
-    Attempts Cholesky factorizations of ``H + tau I`` until one succeeds.
-    The initial shift accounts for the smallest diagonal entry and is
-    warm-started one ladder step below the shift accepted at the preceding
-    iteration. Failed attempts increase the shift by a factor of ten, up to
-    ``identity_shift_max_steps`` retries.
-    This is an adaptation of Nocedal and Wright, Algorithm 3.3, pp. 51--52.
-
-Block-diagonal Hessians apply the selected strategy independently to each
-block. Accepted directions are passed through a backtracking line search.
-
-References
-----------
-Jorge Nocedal and Stephen J. Wright, *Numerical Optimization*, 2nd ed.,
-Springer, 2006, section 3.4, equation (3.49) and Algorithm 3.3.
-
-More info from Newton.__init__
-------------------------------
-Initialize self.  See help(type(self)) for accurate signature.
+Note that for backward compatibility the `atol` parameter used in Optimistix
+is referred to as `tol` in NeMoS.
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <p>Left unset, NeMoS picks a solver that the regularizer admits: <code class="docutils literal notranslate"><span class="pre">Newton</span></code> for Ridge, <code class="docutils literal notranslate"><span class="pre">LBFGS</span></code> without regularization, and <code class="docutils literal notranslate"><span class="pre">ProximalGradient</span></code> for the non-smooth penalties.</p>
 <div class="cell docutils container">
