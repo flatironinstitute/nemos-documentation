@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev538 documentation</title>
+    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev539 documentation</title>
   
   
   
@@ -44,7 +44,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../../../_static/documentation_options.js?v=52b9e34c"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev539 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev539 documentation - Home"/>
   
   
 </a></div>
@@ -616,7 +616,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        y</span>
-<span class="sd">            If an array that must contain all the class labels,</span>
+<span class="sd">            An array that must contain all the class labels,</span>
 <span class="sd">            i.e. ``len(np.unique(y)) == n_classes``. If None, it resets the labels.</span>
 
 <span class="sd">        Raises</span>
@@ -626,10 +626,11 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        Calling ``set_classes`` declares the labels: :meth:`fit` then keeps them instead of</span>
-<span class="sd">        inferring its own, so its ``y`` may hold any subset of them, and a label outside the</span>
-<span class="sd">        set raises. Passing ``None`` clears the declaration, and the next :meth:`fit` infers</span>
-<span class="sd">        the labels from ``y`` again.</span>
+<span class="sd">        If ``set_classes`` is used to declare class labels, :meth:`fit` keeps them instead of</span>
+<span class="sd">        inferring labels from the input ``y``. Manually setting class labels allows the input </span>
+<span class="sd">        ``y`` to fit to hold any subset of possible classes. A label outside the set raises an</span>
+<span class="sd">        error. Passing ``None`` clears the labels, and the next :meth:`fit` infers the labels </span>
+<span class="sd">        from ``y`` again.</span>
 
 <span class="sd">        :meth:`initialize_optimizer_and_state` and :meth:`update` do not infer labels. Declare</span>
 <span class="sd">        them with ``set_classes`` before an :meth:`update` loop, since a single batch need not</span>
@@ -1224,13 +1225,13 @@
 
 <span class="sd">    **Setting Class Labels**</span>
 
-<span class="sd">    :meth:`fit` infers the class labels from its ``y``, which must therefore hold every one</span>
-<span class="sd">    of the ``n_classes`` labels. Declaring them instead with :meth:`set_classes` lifts that</span>
-<span class="sd">    requirement: ``y`` may then hold any subset of the declared labels, and a label outside</span>
-<span class="sd">    the set raises. Every other method requires the labels to be set already, so after</span>
-<span class="sd">    assigning ``coef_`` and ``intercept_`` by hand, call :meth:`set_classes` before</span>
-<span class="sd">    :meth:`predict`, :meth:`predict_proba`, :meth:`simulate`, :meth:`score`,</span>
-<span class="sd">    :meth:`compute_loss`, :meth:`initialize_optimizer_and_state` or :meth:`update`.</span>
+<span class="sd">    :meth:`fit` infers the class labels from input ``y``, which must contain the full set</span>
+<span class="sd">    of ``n_classes`` labels. Declaring them instead with :meth:`set_classes` lifts that</span>
+<span class="sd">    requirement: ``y`` can hold any subset of the declared labels, and a label outside</span>
+<span class="sd">    the set raises. Every other method requires the labels to be set already. If assigning</span>
+<span class="sd">    ``coef_`` and ``intercept_`` by hand, call :meth:`set_classes` before :meth:`predict`,</span>
+<span class="sd">    :meth:`predict_proba`, :meth:`simulate`, :meth:`score`, :meth:`compute_loss`,</span>
+<span class="sd">    :meth:`initialize_optimizer_and_state` or :meth:`update`.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
@@ -1377,9 +1378,9 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        When the labels have not been declared with :meth:`set_classes`, ``fit`` infers them</span>
-<span class="sd">        from ``y``, which must then hold all ``n_classes`` of them. Declared labels are kept</span>
-<span class="sd">        as they are: ``y`` may hold any subset of them, and a label outside the set raises.</span>
+<span class="sd">        When the labels have not been set with :meth:`set_classes`, ``fit`` infers them</span>
+<span class="sd">        from ``y``, which must contain all ``n_classes``. Declared labels are kept</span>
+<span class="sd">        as they are: ``y`` can have any subset of them, and a label outside the set raises.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1535,11 +1536,11 @@
 
 <span class="sd">    **Setting Class Labels**</span>
 
-<span class="sd">    :meth:`fit` infers the class labels from its ``y``, which must therefore hold every one</span>
-<span class="sd">    of the ``n_classes`` labels, across all the neurons. Declaring them instead with</span>
-<span class="sd">    :meth:`set_classes` lifts that requirement: ``y`` may then hold any subset of the</span>
-<span class="sd">    declared labels, and a label outside the set raises. Every other method requires the</span>
-<span class="sd">    labels to be set already, so after assigning ``coef_`` and ``intercept_`` by hand, call</span>
+<span class="sd">    :meth:`fit` infers the class labels from input ``y``, which must contain the full set</span>
+<span class="sd">    of ``n_classes`` labels, across all observations. Declaring them instead with</span>
+<span class="sd">    :meth:`set_classes` lifts that requirement: ``y`` can hold any subset of the declared</span>
+<span class="sd">    labels, and a label outside the set raises. Every other method requires the labels to</span>
+<span class="sd">    be set already. If assigning ``coef_`` and ``intercept_`` by hand, call</span>
 <span class="sd">    :meth:`set_classes` before :meth:`predict`, :meth:`predict_proba`, :meth:`simulate`,</span>
 <span class="sd">    :meth:`score`, :meth:`compute_loss`, :meth:`initialize_optimizer_and_state` or</span>
 <span class="sd">    :meth:`update`.</span>
@@ -1728,9 +1729,9 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        When the labels have not been declared with :meth:`set_classes`, ``fit`` infers them</span>
-<span class="sd">        from ``y``, which must then hold all ``n_classes`` of them across the neurons.</span>
-<span class="sd">        Declared labels are kept as they are: ``y`` may hold any subset of them, and a label</span>
+<span class="sd">        When the labels have not been set with :meth:`set_classes`, ``fit`` infers them</span>
+<span class="sd">        from ``y``, which must contain all ``n_classes`` across all observations.</span>
+<span class="sd">        Declared labels are kept as they are: ``y`` can have any subset of them, and a label</span>
 <span class="sd">        outside the set raises.</span>
 
 <span class="sd">        Examples</span>

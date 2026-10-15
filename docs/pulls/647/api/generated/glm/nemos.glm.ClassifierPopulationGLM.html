@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.ClassifierPopulationGLM &#8212; nemos 0.2.10.dev538 documentation</title>
+    <title>nemos.glm.ClassifierPopulationGLM &#8212; nemos 0.2.10.dev539 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../../../_static/documentation_options.js?v=52b9e34c"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev539 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev539 documentation - Home"/>
   
   
 </a></div>
@@ -728,11 +728,11 @@ labels follow this convention, the model skips the encoding/decoding steps entir
 Using other label formats (e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;cat&quot;,</span> <span class="pre">&quot;dog&quot;]</span></code> or <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">10,</span> <span class="pre">15]</span></code>) incurs a
 small overhead for label translation.</p>
 <p><strong>Setting Class Labels</strong></p>
-<p><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> infers the class labels from its <code class="docutils literal notranslate"><span class="pre">y</span></code>, which must therefore hold every one
-of the <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> labels, across all the neurons. Declaring them instead with
-<a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.set_classes" title="nemos.glm.ClassifierPopulationGLM.set_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_classes()</span></code></a> lifts that requirement: <code class="docutils literal notranslate"><span class="pre">y</span></code> may then hold any subset of the
-declared labels, and a label outside the set raises. Every other method requires the
-labels to be set already, so after assigning <code class="docutils literal notranslate"><span class="pre">coef_</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> by hand, call
+<p><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> infers the class labels from input <code class="docutils literal notranslate"><span class="pre">y</span></code>, which must contain the full set
+of <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> labels, across all observations. Declaring them instead with
+<a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.set_classes" title="nemos.glm.ClassifierPopulationGLM.set_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_classes()</span></code></a> lifts that requirement: <code class="docutils literal notranslate"><span class="pre">y</span></code> can hold any subset of the declared
+labels, and a label outside the set raises. Every other method requires the labels to
+be set already. If assigning <code class="docutils literal notranslate"><span class="pre">coef_</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> by hand, call
 <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.set_classes" title="nemos.glm.ClassifierPopulationGLM.set_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_classes()</span></code></a> before <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.predict" title="nemos.glm.ClassifierPopulationGLM.predict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict()</span></code></a>, <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.predict_proba" title="nemos.glm.ClassifierPopulationGLM.predict_proba"><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_proba()</span></code></a>, <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.simulate" title="nemos.glm.ClassifierPopulationGLM.simulate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">simulate()</span></code></a>,
 <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.score" title="nemos.glm.ClassifierPopulationGLM.score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">score()</span></code></a>, <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.compute_loss" title="nemos.glm.ClassifierPopulationGLM.compute_loss"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_loss()</span></code></a>, <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.initialize_optimizer_and_state" title="nemos.glm.ClassifierPopulationGLM.initialize_optimizer_and_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_optimizer_and_state()</span></code></a> or
 <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.update" title="nemos.glm.ClassifierPopulationGLM.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a>.</p>
@@ -1064,9 +1064,9 @@ parameters are initialized automatically.</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>When the labels have not been declared with <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.set_classes" title="nemos.glm.ClassifierPopulationGLM.set_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_classes()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">fit</span></code> infers them
-from <code class="docutils literal notranslate"><span class="pre">y</span></code>, which must then hold all <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> of them across the neurons.
-Declared labels are kept as they are: <code class="docutils literal notranslate"><span class="pre">y</span></code> may hold any subset of them, and a label
+<p>When the labels have not been set with <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.set_classes" title="nemos.glm.ClassifierPopulationGLM.set_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_classes()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">fit</span></code> infers them
+from <code class="docutils literal notranslate"><span class="pre">y</span></code>, which must contain all <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> across all observations.
+Declared labels are kept as they are: <code class="docutils literal notranslate"><span class="pre">y</span></code> can have any subset of them, and a label
 outside the set raises.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
@@ -1483,7 +1483,7 @@ encoding/decoding machinery. When labels are the default <code class="docutils l
 encoding is skipped for performance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[ArrayLike]</span>) – If an array that must contain all the class labels,
+<dd class="field-odd"><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[ArrayLike]</span>) – An array that must contain all the class labels,
 i.e. <code class="docutils literal notranslate"><span class="pre">len(np.unique(y))</span> <span class="pre">==</span> <span class="pre">n_classes</span></code>. If None, it resets the labels.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1494,10 +1494,11 @@ i.e. <code class="docutils literal notranslate"><span class="pre">len(np.unique(
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Calling <code class="docutils literal notranslate"><span class="pre">set_classes</span></code> declares the labels: <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> then keeps them instead of
-inferring its own, so its <code class="docutils literal notranslate"><span class="pre">y</span></code> may hold any subset of them, and a label outside the
-set raises. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> clears the declaration, and the next <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> infers
-the labels from <code class="docutils literal notranslate"><span class="pre">y</span></code> again.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">set_classes</span></code> is used to declare class labels, <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> keeps them instead of
+inferring labels from the input <code class="docutils literal notranslate"><span class="pre">y</span></code>. Manually setting class labels allows the input
+<code class="docutils literal notranslate"><span class="pre">y</span></code> to fit to hold any subset of possible classes. A label outside the set raises an
+error. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> clears the labels, and the next <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.fit" title="nemos.glm.ClassifierPopulationGLM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> infers the labels
+from <code class="docutils literal notranslate"><span class="pre">y</span></code> again.</p>
 <p><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.initialize_optimizer_and_state" title="nemos.glm.ClassifierPopulationGLM.initialize_optimizer_and_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_optimizer_and_state()</span></code></a> and <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.update" title="nemos.glm.ClassifierPopulationGLM.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a> do not infer labels. Declare
 them with <code class="docutils literal notranslate"><span class="pre">set_classes</span></code> before an <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.update" title="nemos.glm.ClassifierPopulationGLM.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a> loop, since a single batch need not
 contain every class.</p>
