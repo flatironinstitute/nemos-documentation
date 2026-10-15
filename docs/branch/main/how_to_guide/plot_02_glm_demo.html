@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -8,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GLM Demo: Toy Model Examples &#8212; nemos 0.2.10.dev465 documentation</title>
+    <title>GLM Demo: Toy Model Examples &#8212; nemos 0.2.10.dev469 documentation</title>
   
   
   
@@ -27,8 +26,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -41,12 +40,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../_static/documentation_options.js?v=d00f17a8"></script>
+    <script src="../_static/documentation_options.js?v=0fed3e00"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -69,6 +68,7 @@
     <link rel="next" title="Population GLM" href="plot_03_population_glm.html" />
     <link rel="prev" title="Saving and Loading" href="save_and_load.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.2.10" />
   
@@ -118,7 +118,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev465 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev465 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev469 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev469 documentation - Home"/>
   
   
 </a></div>
@@ -248,7 +248,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -259,15 +259,15 @@
         <div class="navbar-item">
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
     <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
     <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
     <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
   </ul>
 </div></div>
       
@@ -304,7 +304,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -313,7 +313,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -425,15 +425,15 @@
           <div class="navbar-item">
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
     <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
     <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
     <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
   </ul>
 </div></div>
         
@@ -493,7 +493,7 @@
 <li class="toctree-l1"><a class="reference internal" href="save_and_load.html">Saving and Loading</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">GLM Demo: Toy Model Examples</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">GLM Demo: Toy Model Examples</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
@@ -758,7 +758,7 @@ Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GLM model parameters:
 	- fit_intercept: True
 	- fix_params: (None, None)
-	- inverse_link_function: &lt;function exp at 0x7faae016f740&gt;
+	- inverse_link_function: &lt;function exp at 0x7ff836fc0ea0&gt;
 	- observation_model: PoissonObservations()
 	- regularizer: UnRegularized()
 	- regularizer_strength: None
@@ -809,7 +809,7 @@ Observation model: &lt;class 'nemos.observation_models.PoissonObservations'&gt;
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated regularizer:  Lasso()
-Updated NL:  &lt;PjitFunction of &lt;function exp at 0x7fab1bf9a020&gt;&gt;
+Updated NL:  &lt;PjitFunction of &lt;function exp at 0x7ff8b0688cc0&gt;&gt;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_main/venv/lib/python3.12/site-packages/nemos/base_class.py:83: UserWarning: Solver ``LBFGS`` is not allowed for regularizer Lasso(). Overriding solver with the default allowed solver ProximalGradient.
@@ -966,10 +966,10 @@ through the <code class="docutils literal notranslate"><span class="pre">model.s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.collections.EventCollection at 0x7faab0933410&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.collections.EventCollection at 0x7ff7e97a7560&gt;]
 </pre></div>
 </div>
-<img alt="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" src="../_images/e1faecbdbad4577ae6bdc501e35e950c057c39b62215b69351596f8f9b28ebf2.png" />
+<img alt="../_images/46b1e7bd4b7c1514125fe0337f7ed5bccb4ca811e8895be50c71f48abcbcc3bb.png" src="../_images/46b1e7bd4b7c1514125fe0337f7ed5bccb4ca811e8895be50c71f48abcbcc3bb.png" />
 </div>
 </div>
 </section>
@@ -1058,7 +1058,7 @@ and the basis expansion</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2c3aa796b64183b23c1009e6a17c159f7d261c4cee811d55708d73a54838b0e0.png" src="../_images/2c3aa796b64183b23c1009e6a17c159f7d261c4cee811d55708d73a54838b0e0.png" />
+<img alt="../_images/0ab7f81e8b503a07e3bfa8ab955b26fb5b1c6e23a8b57f51370116a1acb600ea.png" src="../_images/0ab7f81e8b503a07e3bfa8ab955b26fb5b1c6e23a8b57f51370116a1acb600ea.png" />
 </div>
 </div>
 <p>Define a squared stimulus current for the first neuron, and no stimulus for
@@ -1099,7 +1099,7 @@ the second neuron</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e84efefd751845110a6c097009f10c4dd747d8be5a3a97ad0b372b809e24bb3.png" src="../_images/8e84efefd751845110a6c097009f10c4dd747d8be5a3a97ad0b372b809e24bb3.png" />
+<img alt="../_images/c69a65b1ffdba2ef899c7e0ca34de616f527ec0597404fd2957720332ac07f97.png" src="../_images/c69a65b1ffdba2ef899c7e0ca34de616f527ec0597404fd2957720332ac07f97.png" />
 </div>
 </div>
 <p>We can now simulate spikes by calling the <code class="docutils literal notranslate"><span class="pre">simulate_recurrent</span></code> function for the <code class="docutils literal notranslate"><span class="pre">nemos.simulate</span></code> module.</p>
@@ -1146,10 +1146,10 @@ the second neuron</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faab043a7b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff7e91e4800&gt;
 </pre></div>
 </div>
-<img alt="../_images/b9f9e0add51f11540d4097224cdc463de1a8c23bf0be592843f971b620a990a7.png" src="../_images/b9f9e0add51f11540d4097224cdc463de1a8c23bf0be592843f971b620a990a7.png" />
+<img alt="../_images/6344832ac74a467d14b2943c56298cab8306f71688ecf5f5e17e35a602d9d8d8.png" src="../_images/6344832ac74a467d14b2943c56298cab8306f71688ecf5f5e17e35a602d9d8d8.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1271,8 +1271,8 @@ the second neuron</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
 <footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
   <div class="container">
