@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -8,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Infer behavioral strategies during decision making with GLM-HMMs &#8212; nemos 0.2.10.dev465 documentation</title>
+    <title>Infer behavioral strategies during decision making with GLM-HMMs &#8212; nemos 0.2.10.dev469 documentation</title>
   
   
   
@@ -27,8 +26,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -41,12 +40,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../_static/documentation_options.js?v=d00f17a8"></script>
+    <script src="../_static/documentation_options.js?v=0fed3e00"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -69,6 +68,7 @@
     <link rel="next" title="API Reference" href="../api/index.html" />
     <link rel="prev" title="Fit Calcium Imaging" href="plot_06_calcium_imaging.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.2.10" />
   
@@ -118,7 +118,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev465 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev465 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev469 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev469 documentation - Home"/>
   
   
 </a></div>
@@ -248,7 +248,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -259,15 +259,15 @@
         <div class="navbar-item">
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
     <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
     <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
     <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
   </ul>
 </div></div>
       
@@ -304,7 +304,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -313,7 +313,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -425,15 +425,15 @@
           <div class="navbar-item">
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
     <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
     <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
     <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
   </ul>
 </div></div>
         
@@ -508,7 +508,7 @@
 <li class="toctree-l1"><a class="reference internal" href="plot_06_calcium_imaging.html">Fit Calcium Imaging</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Infer behavioral strategies during decision making with GLM-HMMs</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Infer behavioral strategies during decision making with GLM-HMMs</a></li>
 </ul>
 </div>
 </nav></div>
@@ -725,7 +725,7 @@ one weight vector (highlighted for <span class="math notranslate nohighlight">\(
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate the ONE object</span>
 <span class="n">ONE</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s1">'https://openalyx.internationalbrainlab.org'</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">one</span> <span class="o">=</span> <span class="n">ONE</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s1">'international'</span><span class="p">)</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">ONE</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">"intbrainlab"</span> <span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">'international'</span><span class="p">)</span>
 
 <span class="c1"># Then we need to choose our subject and run load_aggregate</span>
 <span class="n">subject</span> <span class="o">=</span> <span class="s2">"CSHL_008"</span>
@@ -853,7 +853,7 @@ Length: 5, dtype: str, data type: str
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/eccd6875755955520f1f59bf11273e6c6f20fb2ff9a957d75d60ae0cc9674bb9.png" src="../_images/eccd6875755955520f1f59bf11273e6c6f20fb2ff9a957d75d60ae0cc9674bb9.png" />
+<img alt="../_images/2ffccf0e0a35031de9656692bb22f9a8e08df25cc1db5975bdab2a9a23b6a1bf.png" src="../_images/2ffccf0e0a35031de9656692bb22f9a8e08df25cc1db5975bdab2a9a23b6a1bf.png" />
 </div>
 </div>
 <p>The probability of a stimulus appearing on the left is 50% for the first 90 trials and then shifts, biasing toward one side.</p>
@@ -1246,7 +1246,7 @@ Length: 5, dtype: str, data type: str
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/23c8fbf0ea2efe0efd09e49be44d27c36c799b0c30df6af14796f03ffc722393.png" src="../_images/23c8fbf0ea2efe0efd09e49be44d27c36c799b0c30df6af14796f03ffc722393.png" />
+<img alt="../_images/538a1fd199e67185414b27985a0fda8283d2aac686824241c3974a10896b934d.png" src="../_images/538a1fd199e67185414b27985a0fda8283d2aac686824241c3974a10896b934d.png" />
 </div>
 </div>
 </section>
@@ -1976,6 +1976,14 @@ a.param-doc-link::before {
     width: 14px;
     height: 14px;
     cursor: pointer;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.copy-paste-icon:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 1px;
 }
 
 .features {
@@ -2034,7 +2042,6 @@ a.param-doc-link::before {
 }
 
 .features .features-container {
-  max-width: 15em;
   max-height: 10em;
   overflow: auto;
   scrollbar-width: thin;
@@ -2107,8 +2114,8 @@ a.param-doc-link::before {
     solver_name=&#x27;LBFGS&#x27;,
     maxiter=1000,
     tol=1e-08,
-    hmm_initialization_funcs={&#x27;initial_proba_init&#x27;: &lt;function uniform_initial_proba_init at 0x7fe41041fba0&gt;, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;initial_proba_init_custom&#x27;: False, &#x27;transition_proba_init&#x27;: &lt;function sticky_transition_proba_init at 0x7fe41041f7e0&gt;, &#x27;transition_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init_custom&#x27;: False},
-    model_initialization_funcs={&#x27;glm_params_init&#x27;: &lt;function random_glm_params_init at 0x7fe40fbdd120&gt;, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;glm_params_init_custom&#x27;: False, &#x27;scale_init&#x27;: &lt;function constant_scale_init at 0x7fe40fbdd6c0&gt;, &#x27;scale_init_kwargs&#x27;: {}, &#x27;scale_init_custom&#x27;: False}
+    hmm_initialization_funcs={&#x27;initial_proba_init&#x27;: &lt;function uniform_initial_proba_init at 0x7fb0d82f5b20&gt;, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;initial_proba_init_custom&#x27;: False, &#x27;transition_proba_init&#x27;: &lt;function sticky_transition_proba_init at 0x7fb0d82f5760&gt;, &#x27;transition_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init_custom&#x27;: False},
+    model_initialization_funcs={&#x27;glm_params_init&#x27;: &lt;function random_glm_params_init at 0x7fb0d828f060&gt;, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;glm_params_init_custom&#x27;: False, &#x27;scale_init&#x27;: &lt;function constant_scale_init at 0x7fb0d828f600&gt;, &#x27;scale_init_kwargs&#x27;: {}, &#x27;scale_init_custom&#x27;: False}
 )</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GLMHMM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
@@ -2117,140 +2124,154 @@ a.param-doc-link::before {
                   <tbody>
                     
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy n_states to clipboard"
                  onclick="copyToClipboard('n_states',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">n_states</td>
             <td class="value">3</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy observation_model to clipboard"
                  onclick="copyToClipboard('observation_model',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">observation_model</td>
             <td class="value">BernoulliObservations()</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy inverse_link_function to clipboard"
                  onclick="copyToClipboard('inverse_link_function',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function log...x7fe410086340&gt;</td>
+            <td class="value">&lt;function log...x7fb0d816bd80&gt;</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer to clipboard"
                  onclick="copyToClipboard('regularizer',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">regularizer</td>
             <td class="value">Ridge()</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_name to clipboard"
                  onclick="copyToClipboard('solver_name',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">solver_name</td>
             <td class="value">&#x27;LBFGS&#x27;</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_kwargs to clipboard"
                  onclick="copyToClipboard('solver_kwargs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">solver_kwargs</td>
             <td class="value">{}</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy seed to clipboard"
                  onclick="copyToClipboard('seed',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">seed</td>
             <td class="value">Array([ 0, 12], dtype=uint32)</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy hmm_initialization_funcs to clipboard"
                  onclick="copyToClipboard('hmm_initialization_funcs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">hmm_initialization_funcs</td>
-            <td class="value">{&#x27;initial_proba_init&#x27;: &lt;function uni...x7fe41041fba0&gt;, &#x27;initial_proba_init_custom&#x27;: False, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init&#x27;: &lt;function sti...x7fe41041f7e0&gt;, ...}</td>
+            <td class="value">{&#x27;initial_proba_init&#x27;: &lt;function uni...x7fb0d82f5b20&gt;, &#x27;initial_proba_init_custom&#x27;: False, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init&#x27;: &lt;function sti...x7fb0d82f5760&gt;, ...}</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy model_initialization_funcs to clipboard"
                  onclick="copyToClipboard('model_initialization_funcs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">model_initialization_funcs</td>
-            <td class="value">{&#x27;glm_params_init&#x27;: &lt;function ran...x7fe40fbdd120&gt;, &#x27;glm_params_init_custom&#x27;: False, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;scale_init&#x27;: &lt;function con...x7fe40fbdd6c0&gt;, ...}</td>
+            <td class="value">{&#x27;glm_params_init&#x27;: &lt;function ran...x7fb0d828f060&gt;, &#x27;glm_params_init_custom&#x27;: False, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;scale_init&#x27;: &lt;function con...x7fb0d828f600&gt;, ...}</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer_strength to clipboard"
                  onclick="copyToClipboard('regularizer_strength',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">regularizer_strength</td>
             <td class="value">1.0</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy dirichlet_initial_proba to clipboard"
                  onclick="copyToClipboard('dirichlet_initial_proba',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">dirichlet_initial_proba</td>
             <td class="value">None</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy dirichlet_transition_proba to clipboard"
                  onclick="copyToClipboard('dirichlet_transition_proba',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">dirichlet_transition_proba</td>
             <td class="value">None</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy maxiter to clipboard"
                  onclick="copyToClipboard('maxiter',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">maxiter</td>
             <td class="value">1000</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy tol to clipboard"
                  onclick="copyToClipboard('tol',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">tol</td>
             <td class="value">1e-08</td>
         </tr>
@@ -3116,6 +3137,14 @@ a.param-doc-link::before {
     width: 14px;
     height: 14px;
     cursor: pointer;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.copy-paste-icon:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 1px;
 }
 
 .features {
@@ -3174,7 +3203,6 @@ a.param-doc-link::before {
 }
 
 .features .features-container {
-  max-width: 15em;
   max-height: 10em;
   overflow: auto;
   scrollbar-width: thin;
@@ -3247,8 +3275,8 @@ a.param-doc-link::before {
     solver_name=&#x27;LBFGS&#x27;,
     maxiter=1000,
     tol=1e-08,
-    hmm_initialization_funcs={&#x27;initial_proba_init&#x27;: &lt;function uniform_initial_proba_init at 0x7fe41041fba0&gt;, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;initial_proba_init_custom&#x27;: False, &#x27;transition_proba_init&#x27;: &lt;function sticky_transition_proba_init at 0x7fe41041f7e0&gt;, &#x27;transition_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init_custom&#x27;: False},
-    model_initialization_funcs={&#x27;glm_params_init&#x27;: &lt;function random_glm_params_init at 0x7fe40fbdd120&gt;, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;glm_params_init_custom&#x27;: False, &#x27;scale_init&#x27;: &lt;function constant_scale_init at 0x7fe40fbdd6c0&gt;, &#x27;scale_init_kwargs&#x27;: {}, &#x27;scale_init_custom&#x27;: False}
+    hmm_initialization_funcs={&#x27;initial_proba_init&#x27;: &lt;function uniform_initial_proba_init at 0x7fb0d82f5b20&gt;, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;initial_proba_init_custom&#x27;: False, &#x27;transition_proba_init&#x27;: &lt;function sticky_transition_proba_init at 0x7fb0d82f5760&gt;, &#x27;transition_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init_custom&#x27;: False},
+    model_initialization_funcs={&#x27;glm_params_init&#x27;: &lt;function random_glm_params_init at 0x7fb0d828f060&gt;, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;glm_params_init_custom&#x27;: False, &#x27;scale_init&#x27;: &lt;function constant_scale_init at 0x7fb0d828f600&gt;, &#x27;scale_init_kwargs&#x27;: {}, &#x27;scale_init_custom&#x27;: False}
 )</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GLMHMM</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
@@ -3257,140 +3285,154 @@ a.param-doc-link::before {
                   <tbody>
                     
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy n_states to clipboard"
                  onclick="copyToClipboard('n_states',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">n_states</td>
             <td class="value">3</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy observation_model to clipboard"
                  onclick="copyToClipboard('observation_model',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">observation_model</td>
             <td class="value">BernoulliObservations()</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy inverse_link_function to clipboard"
                  onclick="copyToClipboard('inverse_link_function',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function log...x7fe410086340&gt;</td>
+            <td class="value">&lt;function log...x7fb0d816bd80&gt;</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer to clipboard"
                  onclick="copyToClipboard('regularizer',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">regularizer</td>
             <td class="value">Ridge()</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_name to clipboard"
                  onclick="copyToClipboard('solver_name',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">solver_name</td>
             <td class="value">&#x27;LBFGS&#x27;</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy solver_kwargs to clipboard"
                  onclick="copyToClipboard('solver_kwargs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">solver_kwargs</td>
             <td class="value">{}</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy seed to clipboard"
                  onclick="copyToClipboard('seed',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">seed</td>
             <td class="value">Array([ 0, 12], dtype=uint32)</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy hmm_initialization_funcs to clipboard"
                  onclick="copyToClipboard('hmm_initialization_funcs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">hmm_initialization_funcs</td>
-            <td class="value">{&#x27;initial_proba_init&#x27;: &lt;function uni...x7fe41041fba0&gt;, &#x27;initial_proba_init_custom&#x27;: False, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init&#x27;: &lt;function sti...x7fe41041f7e0&gt;, ...}</td>
+            <td class="value">{&#x27;initial_proba_init&#x27;: &lt;function uni...x7fb0d82f5b20&gt;, &#x27;initial_proba_init_custom&#x27;: False, &#x27;initial_proba_init_kwargs&#x27;: {}, &#x27;transition_proba_init&#x27;: &lt;function sti...x7fb0d82f5760&gt;, ...}</td>
         </tr>
     
 
         <tr class="user-set">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy model_initialization_funcs to clipboard"
                  onclick="copyToClipboard('model_initialization_funcs',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">model_initialization_funcs</td>
-            <td class="value">{&#x27;glm_params_init&#x27;: &lt;function ran...x7fe40fbdd120&gt;, &#x27;glm_params_init_custom&#x27;: False, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;scale_init&#x27;: &lt;function con...x7fe40fbdd6c0&gt;, ...}</td>
+            <td class="value">{&#x27;glm_params_init&#x27;: &lt;function ran...x7fb0d828f060&gt;, &#x27;glm_params_init_custom&#x27;: False, &#x27;glm_params_init_kwargs&#x27;: {}, &#x27;scale_init&#x27;: &lt;function con...x7fb0d828f600&gt;, ...}</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy regularizer_strength to clipboard"
                  onclick="copyToClipboard('regularizer_strength',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">regularizer_strength</td>
             <td class="value">1.0</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy dirichlet_initial_proba to clipboard"
                  onclick="copyToClipboard('dirichlet_initial_proba',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">dirichlet_initial_proba</td>
             <td class="value">None</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy dirichlet_transition_proba to clipboard"
                  onclick="copyToClipboard('dirichlet_transition_proba',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">dirichlet_transition_proba</td>
             <td class="value">None</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy maxiter to clipboard"
                  onclick="copyToClipboard('maxiter',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">maxiter</td>
             <td class="value">1000</td>
         </tr>
     
 
         <tr class="default">
-            <td><i class="copy-paste-icon"
+            <td><button type="button" class="copy-paste-icon"
+                 aria-label="Copy tol to clipboard"
                  onclick="copyToClipboard('tol',
                           this.parentElement.nextElementSibling)"
-            ></i></td>
+            ></button></td>
             <td class="param">tol</td>
             <td class="value">1e-08</td>
         </tr>
@@ -3737,7 +3779,7 @@ initial probabilities
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5a4cf5e198169debbb89f385bc7c1bb8976dcf1c6dc3960690b49cb8ac20ab4e.png" src="../_images/5a4cf5e198169debbb89f385bc7c1bb8976dcf1c6dc3960690b49cb8ac20ab4e.png" />
+<img alt="../_images/38a4e83b5938812172380759a09671da7ce5cdf56e6cb6b6b516843c96bbebcf.png" src="../_images/38a4e83b5938812172380759a09671da7ce5cdf56e6cb6b6b516843c96bbebcf.png" />
 </div>
 </div>
 <p>State 1 (“engaged”) has a large positive weight on the stimulus and weights close to zero on all other predictors, suggesting the animal is primarily driven by sensory information in this state. States 2 (“biased left”) and 3 (“biased right”) show large bias weights of opposite sign (positive for state 2 and negative for state 3), which indicates a systematic tendency to choose left or right regardless of the stimulus. Since the sign of our predictors indicates the side of evidence (&gt;0: left; &lt;0: right) and their magnitude indicates its strength, State 2 coefficients suggest a bias toward leftward choice while State 3 coefficients suggest a bias toward rightward choice. All three states have very low weights on previous choice and WSLS, with State 1 showing the smallest of them.</p>
@@ -3753,7 +3795,7 @@ initial probabilities
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c7b11ad78413ff51d63ad5469d7470548ff9ef8e51da5ca2dbd61e5808f5d82e.png" src="../_images/c7b11ad78413ff51d63ad5469d7470548ff9ef8e51da5ca2dbd61e5808f5d82e.png" />
+<img alt="../_images/9e78e683015548370fc8b18e782512c9136b1d5c388bbc41d8e0fe56de7767a0.png" src="../_images/9e78e683015548370fc8b18e782512c9136b1d5c388bbc41d8e0fe56de7767a0.png" />
 </div>
 </div>
 <p>The diagonal entries are all high, which indicates that each state is highly self-persistent: once the animal enters a state, it is very likely to remain in that state on the next trial. Off-diagonal transitions are rare, meaning switches between states occur infrequently.</p>
@@ -3804,7 +3846,7 @@ Each row sums to 1: True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06c572daafdc4d01b461474a5867f38fa5ac5933822ce256a6ff4d5448ef8197.png" src="../_images/06c572daafdc4d01b461474a5867f38fa5ac5933822ce256a6ff4d5448ef8197.png" />
+<img alt="../_images/e17f9be597ebc5974cc62bfabe65ea63405af4170c807c0714d5d32a1511e5d0.png" src="../_images/e17f9be597ebc5974cc62bfabe65ea63405af4170c807c0714d5d32a1511e5d0.png" />
 </div>
 </div>
 <p>In these sessions, the posterior over latent states can be tracked at each trial, revealing strong confidence in state assignments and extended periods where a single state persists across consecutive trials. This pattern is inconsistent with the short, transient lapses assumed in lapse-based models.</p>
@@ -3908,7 +3950,7 @@ Each row sums to 1: True
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08a2fbe7a508dc76d1fdd940cc80299a13ab60ac9681009010fab4e9bffeda08.png" src="../_images/08a2fbe7a508dc76d1fdd940cc80299a13ab60ac9681009010fab4e9bffeda08.png" />
+<img alt="../_images/eecb6957a1fe41f1eb0cd9fdafa292407b5dd40b48bff4278b4270976d3aca19.png" src="../_images/eecb6957a1fe41f1eb0cd9fdafa292407b5dd40b48bff4278b4270976d3aca19.png" />
 </div>
 </div>
 <p>According to state occupancy derived with the Viterbi algorithm, this mouse spent the majority of the trials (73%) in the engaged state and a smaller portion (27%) in the other two states. Even though this mouse had an overall accuracy of 80.36%, it achieved a higher accuracy of 86.76% in the “engaged” state compared to 64.37% and 61.69% in the “biased left” and “biased right” states, respectively. This makes sense, considering that the information needed to perform the task well was the signed contrast.</p>
@@ -3962,7 +4004,7 @@ Each row sums to 1: True
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall and per-state accuracy: [0.80355936 0.87150293 0.64925373 0.63410853]
 </pre></div>
 </div>
-<img alt="../_images/bb79a97687342fc234d9237c5b23c2663a277e856db1bacbd341aeeb4cd5eb91.png" src="../_images/bb79a97687342fc234d9237c5b23c2663a277e856db1bacbd341aeeb4cd5eb91.png" />
+<img alt="../_images/1283d2c9dd2d92d1f355a1f06462a0712ee6a0558a72e434d9fcf796c41c5a6b.png" src="../_images/1283d2c9dd2d92d1f355a1f06462a0712ee6a0558a72e434d9fcf796c41c5a6b.png" />
 </div>
 </div>
 <p>According to state occupancy derived by assigning each trial to its most likely state under the posterior, this mouse again spent the majority of the trials (69%) in the engaged state and a smaller portion (31%) in the other two states. As before, the overall accuracy is 80.36%, while the “engaged” state reaches 87.26% compared to 65.22% and 63.49% in the “biased left” and “biased right” states, respectively.</p>
@@ -4116,8 +4158,8 @@ Each row sums to 1: True
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
 <footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
   <div class="container">
