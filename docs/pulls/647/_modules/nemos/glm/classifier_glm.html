@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev539 documentation</title>
+    <title>nemos.glm.classifier_glm &#8212; nemos 0.2.10.dev543 documentation</title>
   
   
   
@@ -44,7 +44,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=52b9e34c"></script>
+    <script src="../../../_static/documentation_options.js?v=07b4e9ad"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -137,8 +137,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev539 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev539 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev543 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev543 documentation - Home"/>
   
   
 </a></div>
@@ -545,6 +545,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation_models</span> <span class="k">as</span> <span class="n">obs</span>
@@ -607,7 +608,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClassifierMixin</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Infer unique class labels and set the ``classes_`` attribute.</span>
+<span class="sd">        Infer unique class labels and set the ``classes`` attribute.</span>
 
 <span class="sd">        This method infers class labels from ``y`` and sets up the internal</span>
 <span class="sd">        encoding/decoding machinery. When labels are the default ``[0, 1, ..., n_classes-1]``,</span>
@@ -627,9 +628,9 @@
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
 <span class="sd">        If ``set_classes`` is used to declare class labels, :meth:`fit` keeps them instead of</span>
-<span class="sd">        inferring labels from the input ``y``. Manually setting class labels allows the input </span>
+<span class="sd">        inferring labels from the input ``y``. Manually setting class labels allows the input</span>
 <span class="sd">        ``y`` to fit to hold any subset of possible classes. A label outside the set raises an</span>
-<span class="sd">        error. Passing ``None`` clears the labels, and the next :meth:`fit` infers the labels </span>
+<span class="sd">        error. Passing ``None`` clears the labels, and the next :meth:`fit` infers the labels</span>
 <span class="sd">        from ``y`` again.</span>
 
 <span class="sd">        :meth:`initialize_optimizer_and_state` and :meth:`update` do not infer labels. Declare</span>
@@ -680,12 +681,16 @@
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">classes_</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">classes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Class labels, or None if not set."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">classes_</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">declared</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">classes_</span>
+        <span class="p">)</span>
 
-    <span class="nd">@classes_</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">classes_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nd">@classes</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">set_classes</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">declared</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -712,7 +717,7 @@
 <span class="sd">        X</span>
 <span class="sd">            Input data, array of shape ``(n_time_bins, n_features)`` or pytree of same.</span>
 <span class="sd">        y</span>
-<span class="sd">            Target class labels in the same format as ``classes_``.</span>
+<span class="sd">            Target class labels in the same format as ``classes``.</span>
 <span class="sd">        *args</span>
 <span class="sd">            Additional positional arguments passed to the model-specific loss function.</span>
 <span class="sd">        **kwargs</span>
@@ -726,7 +731,7 @@
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        RuntimeError</span>
-<span class="sd">            If ``classes_`` has not been set.</span>
+<span class="sd">            If ``classes`` has not been set.</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If inputs or parameters have incompatible shapes or invalid values.</span>
 <span class="sd">        """</span>
@@ -747,7 +752,8 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">"The number of classes must be an integer greater than or equal to 2."</span>
+                <span class="s2">"The number of classes must be an integer greater than or equal to 2.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"Classes ``</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">`` provided instead."</span>
             <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
@@ -802,7 +808,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; predictions = model.predict(X)</span>
 <span class="sd">        &gt;&gt;&gt; predictions.shape</span>
 <span class="sd">        (4,)</span>
@@ -845,7 +851,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; proba = model.predict_proba(X, return_type="proba")</span>
 <span class="sd">        &gt;&gt;&gt; proba.shape</span>
 <span class="sd">        (4, 2)</span>
@@ -855,7 +861,7 @@
         <span class="c1"># One could assume default labels 0,...,n-1</span>
         <span class="c1"># but requiring to be explicit makes the mapping between</span>
         <span class="c1"># the class labels and the probability index less ambiguous:</span>
-        <span class="c1">#   `log_proba[:, i]` is the log-proba of class `self.classes_[i]`</span>
+        <span class="c1">#   `log_proba[:, i]` is the log-proba of class `self.classes[i]`</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">check_classes_is_set</span><span class="p">(</span><span class="s2">"predict_proba"</span><span class="p">)</span>
         <span class="c1"># log-proba for categorical, proba for Bernoulli</span>
         <span class="n">log_proba</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -962,14 +968,14 @@
 <span class="sd">        :</span>
 <span class="sd">            A tuple ``(y, log_prob)`` where:</span>
 <span class="sd">            - ``y`` is an array of shape ``(n_samples,)`` containing the</span>
-<span class="sd">              simulated class labels (in the same format as ``classes_``).</span>
+<span class="sd">              simulated class labels (in the same format as ``classes``).</span>
 <span class="sd">            - ``log_prob`` is an array of shape ``(n_samples,)`` containing the</span>
 <span class="sd">              log-probability of the simulated responses under the model.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        RuntimeError</span>
-<span class="sd">            If ``classes_`` has not been set. Call :meth:`set_classes` or :meth:`fit`</span>
+<span class="sd">            If ``classes`` has not been set. Call :meth:`set_classes` or :meth:`fit`</span>
 <span class="sd">            before calling this method.</span>
 
 <span class="sd">        Examples</span>
@@ -979,7 +985,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; key = jax.random.key(0)</span>
 <span class="sd">        &gt;&gt;&gt; simulated_y, log_prob = model.simulate(key, X)</span>
 <span class="sd">        &gt;&gt;&gt; simulated_y.shape</span>
@@ -1044,7 +1050,7 @@
 <span class="sd">        y :</span>
 <span class="sd">            Class labels, array of shape ``(n_time_bins,)`` for single neuron</span>
 <span class="sd">            models or ``(n_time_bins, n_neurons)`` for population models. Labels</span>
-<span class="sd">            must be a subset of ``classes_``.</span>
+<span class="sd">            must be a subset of ``classes``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1053,8 +1059,8 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        All labels in ``y`` must be present in ``classes_``. Passing labels not</span>
-<span class="sd">        in ``classes_`` will raise an error.</span>
+<span class="sd">        All labels in ``y`` must be present in ``classes``. Passing labels not</span>
+<span class="sd">        in ``classes`` will raise an error.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1062,7 +1068,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2)</span>
 <span class="sd">        &gt;&gt;&gt; model.set_classes(y)</span>
 <span class="sd">        ClassifierGLM(...)</span>
 <span class="sd">        &gt;&gt;&gt; coef, intercept = model.initialize_params(X, y)</span>
@@ -1093,7 +1099,7 @@
 <span class="sd">        encoding before the update.</span>
 
 <span class="sd">        **Important**: Labels of any dtype (integers, floats, strings, etc.) are</span>
-<span class="sd">        supported and will be encoded using the ``classes_`` attribute set via</span>
+<span class="sd">        supported and will be encoded using the ``classes`` attribute set via</span>
 <span class="sd">        :meth:`set_classes`. For best performance, use integer labels ``[0, n_classes - 1]``.</span>
 
 <span class="sd">        Parameters</span>
@@ -1109,7 +1115,7 @@
 <span class="sd">        y :</span>
 <span class="sd">            Class labels, array of shape ``(n_time_bins,)`` for single neuron</span>
 <span class="sd">            models or ``(n_time_bins, n_neurons)`` for population models. Labels must</span>
-<span class="sd">            match those defined in ``classes_``.</span>
+<span class="sd">            match those defined in ``classes``.</span>
 <span class="sd">        *args :</span>
 <span class="sd">            Additional positional arguments to be passed to the solver's update method.</span>
 <span class="sd">        n_samples :</span>
@@ -1131,7 +1137,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2)</span>
 <span class="sd">        &gt;&gt;&gt; model.set_classes(y)</span>
 <span class="sd">        ClassifierGLM(...)</span>
 <span class="sd">        &gt;&gt;&gt; params = model.initialize_params(X, y)</span>
@@ -1147,6 +1153,21 @@
             <span class="n">params</span><span class="p">,</span> <span class="n">opt_state</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">ArrayLike</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">=</span> <span class="n">classes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">set_classes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">classes</span><span class="p">),</span> <span class="n">declared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">classes_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">classes_array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"``classes`` must be a 1-D array-like. "</span>
+                    <span class="sa">f</span><span class="s2">"The provided </span><span class="si">{</span><span class="n">classes</span><span class="si">}</span><span class="s2"> were casted to a </span><span class="si">{</span><span class="n">classes_array</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">-D array instead."</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">classes_array</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_classes</span><span class="p">(</span><span class="n">classes_array</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="ClassifierGLM">
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM">[docs]</a>
@@ -1161,7 +1182,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    n_classes</span>
+<span class="sd">    classes</span>
 <span class="sd">        The number of classes. Must be &gt;= 2.</span>
 <span class="sd">    inverse_link_function</span>
 <span class="sd">        The inverse link function. Default is ``log_softmax``.</span>
@@ -1249,7 +1270,7 @@
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">    &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
 <span class="sd">    (2, 2)</span>
 
@@ -1277,8 +1298,8 @@
 <span class="sd">    Class labels can be strings or any hashable type:</span>
 
 <span class="sd">    &gt;&gt;&gt; y_str = np.array(["cat", "cat", "dog", "dog"])</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y_str)</span>
-<span class="sd">    &gt;&gt;&gt; model.classes_</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y_str)</span>
+<span class="sd">    &gt;&gt;&gt; model.classes</span>
 <span class="sd">    array(['cat', 'dog'], dtype='&lt;U3')</span>
 <span class="sd">    &gt;&gt;&gt; model.predict(X)  # doctest: +NORMALIZE_WHITESPACE</span>
 <span class="sd">    array(['cat', 'cat', 'dog', 'dog'], dtype='&lt;U3')</span>
@@ -1291,7 +1312,7 @@
 <span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1, 2, 2])</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=3).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
 <span class="sd">    (2, 3)</span>
 
@@ -1300,7 +1321,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(</span>
-<span class="sd">    ...     n_classes=2, regularizer="Ridge", regularizer_strength=0.5</span>
+<span class="sd">    ...     classes=2, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1311,7 +1332,7 @@
 <span class="sd">    ``coef_`` will share the same pytree structure:</span>
 
 <span class="sd">    &gt;&gt;&gt; X_dict = {"feature_1": X[:, :1], "feature_2": X[:, 1:]}</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=3).fit(X_dict, y)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=3).fit(X_dict, y)</span>
 <span class="sd">    &gt;&gt;&gt; # The coefficient structure matches the input</span>
 <span class="sd">    &gt;&gt;&gt; type(model.coef_)</span>
 <span class="sd">    &lt;class 'dict'&gt;</span>
@@ -1323,7 +1344,7 @@
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">n_classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">inverse_link_function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">regularizer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">regularizer_strength</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1332,7 +1353,7 @@
         <span class="n">solver_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">solver_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">=</span> <span class="n">n_classes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
         <span class="n">observation_model</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">CategoricalObservations</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">regularizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">regularizer</span> <span class="o">=</span> <span class="s2">"Ridge"</span>
@@ -1388,7 +1409,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2)</span>
 <span class="sd">        &gt;&gt;&gt; model = model.fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; model.coef_.shape</span>
 <span class="sd">        (2, 2)</span>
@@ -1419,7 +1440,7 @@
 <span class="sd">            Test input samples of shape ``(n_samples, n_features)`` or a pytree of arrays of the same shape.</span>
 <span class="sd">        y</span>
 <span class="sd">            True class labels of shape ``(n_samples,)``. Labels must be a subset</span>
-<span class="sd">            of ``classes_``.</span>
+<span class="sd">            of ``classes``.</span>
 <span class="sd">        score_type</span>
 <span class="sd">            The type of score to compute.</span>
 <span class="sd">        aggregate_sample_scores</span>
@@ -1432,8 +1453,8 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        All labels in ``y`` must be present in ``classes_``. Passing labels not</span>
-<span class="sd">        in ``classes_`` will raise an error.</span>
+<span class="sd">        All labels in ``y`` must be present in ``classes``. Passing labels not</span>
+<span class="sd">        in ``classes`` will raise an error.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1441,7 +1462,7 @@
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; X = jnp.array([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [7.0, 8.0]])</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([0, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(n_classes=2).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierGLM(classes=2).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; score = model.score(X, y)</span>
 <span class="sd">        """</span>
         <span class="c1"># check if classes are not set, aka user set the coef and intercept</span>
@@ -1468,7 +1489,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    n_classes</span>
+<span class="sd">    classes</span>
 <span class="sd">        The number of classes. Must be &gt;= 2.</span>
 <span class="sd">    inverse_link_function</span>
 <span class="sd">        The inverse link function. Default is ``log_softmax``.</span>
@@ -1563,7 +1584,7 @@
 <span class="sd">    ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(classes=3).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_.shape</span>
 <span class="sd">    (2, 2, 3)</span>
 
@@ -1590,8 +1611,8 @@
 <span class="sd">    &gt;&gt;&gt; y_str = np.array(</span>
 <span class="sd">    ...     [["a", "a"], ["a", "b"], ["b", "a"], ["b", "c"], ["c", "b"], ["c", "c"]]</span>
 <span class="sd">    ... )</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y_str)</span>
-<span class="sd">    &gt;&gt;&gt; model.classes_</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(classes=3).fit(X, y_str)</span>
+<span class="sd">    &gt;&gt;&gt; model.classes</span>
 <span class="sd">    array(['a', 'b', 'c'], dtype='&lt;U1')</span>
 <span class="sd">    &gt;&gt;&gt; model.predict(X).shape</span>
 <span class="sd">    (6, 2)</span>
@@ -1603,7 +1624,7 @@
 <span class="sd">    &gt;&gt;&gt; feature_mask = jnp.array([[1, 0], [1, 1]])</span>
 <span class="sd">    &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3, feature_mask=feature_mask</span>
+<span class="sd">    ...     classes=3, feature_mask=feature_mask</span>
 <span class="sd">    ... ).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_</span>
 <span class="sd">    Array(...)</span>
@@ -1613,7 +1634,7 @@
 <span class="sd">    Change regularization strength:</span>
 
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(</span>
-<span class="sd">    ...     n_classes=3, regularizer="Ridge", regularizer_strength=0.5</span>
+<span class="sd">    ...     classes=3, regularizer="Ridge", regularizer_strength=0.5</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
@@ -1624,7 +1645,7 @@
 <span class="sd">    ``coef_`` will share the same pytree structure:</span>
 
 <span class="sd">    &gt;&gt;&gt; X_dict = {"feature_1": X[:, :1], "feature_2": X[:, 1:]}</span>
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X_dict, y)</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(classes=3).fit(X_dict, y)</span>
 <span class="sd">    &gt;&gt;&gt; type(model.coef_)</span>
 <span class="sd">    &lt;class 'dict'&gt;</span>
 <span class="sd">    """</span>
@@ -1638,7 +1659,7 @@
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.ClassifierPopulationGLM.html#nemos.glm.ClassifierPopulationGLM.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">n_classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">inverse_link_function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">regularizer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">regularizer_strength</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1648,7 +1669,7 @@
         <span class="n">solver_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">feature_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_classes</span> <span class="o">=</span> <span class="n">n_classes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_classes</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
         <span class="n">observation_model</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">CategoricalObservations</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">regularizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">regularizer</span> <span class="o">=</span> <span class="s2">"Ridge"</span>
@@ -1742,7 +1763,7 @@
 <span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(classes=3)</span>
 <span class="sd">        &gt;&gt;&gt; model = model.fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; model.coef_.shape</span>
 <span class="sd">        (2, 2, 3)</span>
@@ -1773,7 +1794,7 @@
 <span class="sd">            Test input samples of shape ``(n_samples, n_features)`` or a pytree of arrays of the same shape.</span>
 <span class="sd">        y</span>
 <span class="sd">            True class labels of shape ``(n_samples, n_neurons)``. Labels must</span>
-<span class="sd">            be a subset of ``classes_``.</span>
+<span class="sd">            be a subset of ``classes``.</span>
 <span class="sd">        score_type</span>
 <span class="sd">            The type of score to compute.</span>
 <span class="sd">        aggregate_sample_scores</span>
@@ -1786,8 +1807,8 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">        All labels in ``y`` must be present in ``classes_``. Passing labels not</span>
-<span class="sd">        in ``classes_`` will raise an error.</span>
+<span class="sd">        All labels in ``y`` must be present in ``classes``. Passing labels not</span>
+<span class="sd">        in ``classes`` will raise an error.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -1797,7 +1818,7 @@
 <span class="sd">        ...     [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0], [5.0, 6.0], [6.0, 7.0]]</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.array([[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]])</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(n_classes=3).fit(X, y)</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.ClassifierPopulationGLM(classes=3).fit(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; score = model.score(X, y)</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">check_classes_is_set</span><span class="p">(</span><span class="s2">"score"</span><span class="p">)</span>

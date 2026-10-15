@@ -13,7 +13,7 @@
 
    .. autosummary::
    
-      ~ClassifierPopulationGLM.classes_
+      ~ClassifierPopulationGLM.classes
       ~ClassifierPopulationGLM.feature_mask
       ~ClassifierPopulationGLM.fit_intercept
       ~ClassifierPopulationGLM.fix_params
