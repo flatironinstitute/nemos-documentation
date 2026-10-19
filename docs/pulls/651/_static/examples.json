@@ -1,0 +1,466 @@
+[
+  {
+    "title": "Compute the AIC",
+    "url": "how_to_guide/compute_aic.html",
+    "model": [
+      "GLM",
+      "ClassifierGLM"
+    ],
+    "observation_model": [
+      "Poisson",
+      "Gamma",
+      "Categorical"
+    ],
+    "signal": [
+      "spike counts",
+      "continuous",
+      "behavior choices"
+    ],
+    "topic": [
+      "model comparison"
+    ],
+    "data": "simulated",
+    "description": "Penalize the log-likelihood with the parameter count, for a Poisson, a Gamma and a Categorical fit."
+  },
+  {
+    "title": "Convolve Large Arrays",
+    "url": "how_to_guide/convolve_large_arrays.html",
+    "model": [],
+    "observation_model": [],
+    "signal": [
+      "continuous"
+    ],
+    "topic": [
+      "scalability",
+      "feature design"
+    ],
+    "data": "simulated",
+    "description": "Batch convolutions over channels, basis kernels or samples to keep large arrays within GPU memory."
+  },
+  {
+    "title": "Stopping on convergence and custom callbacks",
+    "url": "how_to_guide/custom_callbacks_and_termination.html",
+    "model": [
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "stochastic fit"
+    ],
+    "data": "simulated",
+    "description": "Write a custom callback that stops a stochastic fit once the optimization has converged."
+  },
+  {
+    "title": "Creating a custom DataLoader",
+    "url": "how_to_guide/custom_dataloader.html",
+    "model": [
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "stochastic fit",
+      "scalability"
+    ],
+    "data": "simulated",
+    "description": "Custom pre-processing of batches during a stochastic fit."
+  },
+  {
+    "title": "Precomputed Features",
+    "url": "how_to_guide/custom_predictors.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "feature design"
+    ],
+    "data": "simulated",
+    "description": "Add precomputed features, such as principal components, to a GLM design with the IdentityEval basis."
+  },
+  {
+    "title": "Creating custom solvers for use with NeMoS",
+    "url": "how_to_guide/custom_solvers.html",
+    "model": [
+      "GLM",
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "custom components"
+    ],
+    "data": "simulated",
+    "description": "Scipy solvers in NeMoS - wrap a scipy optimizer and register it as a solver."
+  },
+  {
+    "title": "How to Define A Custom Basis Class",
+    "url": "how_to_guide/define_a_custom_basis.html",
+    "model": [],
+    "observation_model": [],
+    "signal": [
+      "continuous"
+    ],
+    "topic": [
+      "custom components",
+      "feature design"
+    ],
+    "data": "simulated",
+    "description": "Define a basis from a list of functions with CustomBasis, using Laguerre polynomials as the example."
+  },
+  {
+    "title": "Fit GLM for Classification",
+    "url": "how_to_guide/glm_for_classification.html",
+    "model": [
+      "ClassifierGLM"
+    ],
+    "observation_model": [
+      "Categorical"
+    ],
+    "signal": [
+      "behavior choices"
+    ],
+    "topic": [],
+    "data": "simulated",
+    "description": "Fit a ClassifierGLM to simulated categorical choices and predict class labels and probabilities."
+  },
+  {
+    "title": "Handle Silent Neurons During Initialization",
+    "url": "how_to_guide/handle_silent_neurons.html",
+    "model": [
+      "GLM",
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "initialization"
+    ],
+    "data": "simulated",
+    "description": "Start a fit from finite parameters when a neuron never fires, and pick a solver that converges on it."
+  },
+  {
+    "title": "Compute the Log-Likelihood in Bits per Spike",
+    "url": "how_to_guide/log_likelihood_bits_per_spike.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "model comparison"
+    ],
+    "data": "simulated",
+    "description": "Express the fit quality as the information a model carries about each spike."
+  },
+  {
+    "title": "Manual update loop for more control",
+    "url": "how_to_guide/manual_batching_loop.html",
+    "model": [
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "stochastic fit"
+    ],
+    "data": "simulated",
+    "description": "Write a stochastic gradient descent loop by hand with GLM.update for full control over each step."
+  },
+  {
+    "title": "Compute the Null-Model Log-Likelihood",
+    "url": "how_to_guide/null_model_log_likelihood.html",
+    "model": [],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "model comparison"
+    ],
+    "data": "simulated",
+    "description": "Score the constant-rate model with an observation model object alone, without fitting a GLM."
+  },
+  {
+    "title": "JAX Pytrees for Structuring Multiple Predictors",
+    "url": "how_to_guide/pytree_predictors.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "feature design"
+    ],
+    "data": "simulated",
+    "description": "Organize multiple predictors and their coefficients as JAX pytrees."
+  },
+  {
+    "title": "Fit GLMs For Neural Coupling",
+    "url": "how_to_guide/raw_history_feature.html",
+    "model": [
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "functional connectivity"
+    ],
+    "data": "simulated",
+    "description": "Fit a fully coupled population GLM on raw spike history, then reduce its parameters with a basis."
+  },
+  {
+    "title": "Simulate Spike Trains",
+    "url": "how_to_guide/simulate_coupled_population.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "simulation",
+      "functional connectivity"
+    ],
+    "data": "simulated",
+    "description": "Simulate spike trains from a fitted GLM and from a recurrently coupled population."
+  },
+  {
+    "title": "Stochastic optimization basics",
+    "url": "how_to_guide/stochastic_fit.html",
+    "model": [
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "stochastic fit",
+      "scalability"
+    ],
+    "data": "simulated",
+    "description": "Fit a population GLM by mini-batch stochastic optimization on data loaded from an NWB file."
+  },
+  {
+    "title": "Selecting Covariates via Group Lasso",
+    "url": "how_to_guide/variable_selection_group_lasso.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "variable selection",
+      "regularization"
+    ],
+    "data": "simulated",
+    "description": "Select informative covariates with Group Lasso, which sets whole groups of basis coefficients to zero."
+  },
+  {
+    "title": "Model Selection: Cross-validate over Inputs",
+    "url": "how_to_guide/variable_selection_zero_basis.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "variable selection",
+      "cross-validation",
+      "model comparison"
+    ],
+    "data": "recorded",
+    "description": "Cross-validate over combinations of inputs with the Zero basis to find which ones a place cell needs."
+  },
+  {
+    "title": "Fit injected current",
+    "url": "tutorials/glm/plot_01_current_injection.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "receptive fields",
+      "feature design",
+      "model comparison"
+    ],
+    "data": "recorded",
+    "description": "Fit a neuron's spiking to the current injected in a patch-clamp recording, then add a filter on the current's history."
+  },
+  {
+    "title": "Fit head-direction population",
+    "url": "tutorials/glm/plot_02_head_direction.html",
+    "model": [
+      "GLM",
+      "PopulationGLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "functional connectivity",
+      "feature design",
+      "model comparison"
+    ],
+    "data": "recorded",
+    "description": "Fit a population of head-direction cells with spike-history and coupling filters built from a convolutional basis."
+  },
+  {
+    "title": "Fit grid cell",
+    "url": "tutorials/glm/plot_03_grid_cells.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "receptive fields",
+      "feature design"
+    ],
+    "data": "recorded",
+    "description": "Fit a grid cell's spatial firing with a two-dimensional basis over position."
+  },
+  {
+    "title": "Fit V1 cell",
+    "url": "tutorials/glm/plot_04_v1_cells.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "receptive fields"
+    ],
+    "data": "recorded",
+    "description": "Fit a V1 neuron's response to a white-noise stimulus, starting from its spike-triggered average."
+  },
+  {
+    "title": "Fit place cell",
+    "url": "tutorials/glm/plot_05_place_cells.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Poisson"
+    ],
+    "signal": [
+      "spike counts"
+    ],
+    "topic": [
+      "receptive fields",
+      "variable selection",
+      "cross-validation",
+      "model comparison"
+    ],
+    "data": "recorded",
+    "description": "Fit place cells to position, theta phase and speed, and select among these inputs by cross-validation."
+  },
+  {
+    "title": "Fit Calcium Imaging",
+    "url": "tutorials/glm/plot_06_calcium_imaging.html",
+    "model": [
+      "GLM"
+    ],
+    "observation_model": [
+      "Gamma",
+      "Gaussian"
+    ],
+    "signal": [
+      "calcium imaging"
+    ],
+    "topic": [
+      "receptive fields",
+      "model comparison"
+    ],
+    "data": "recorded",
+    "description": "Fit the calcium transients of postsubiculum head-direction cells with Gamma and Gaussian GLMs."
+  },
+  {
+    "title": "Infer behavioral strategies during decision making with GLM-HMMs",
+    "url": "tutorials/glm_hmm/plot_07_behavioral_states.html",
+    "model": [
+      "GLMHMM"
+    ],
+    "observation_model": [
+      "Bernoulli"
+    ],
+    "signal": [
+      "behavior choices"
+    ],
+    "topic": [
+      "latent states"
+    ],
+    "data": "recorded",
+    "description": "Infer latent decision-making strategies from mouse choices in the IBL task with a Bernoulli GLM-HMM."
+  }
+]

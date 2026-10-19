@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Generalized Linear Models &#8212; nemos 0.2.10.dev547 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8ed43af3" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../../_static/documentation_options.js?v=fbc5f30a"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/models/glm/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Generalized Linear Model (GLM)" href="single_neuron.html" />
+    <link rel="prev" title="Generalized Linear Model (GLM)" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev547 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev547 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../README.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../reference/README.html">
+    Reference
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../README.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference/README.html">
+    Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">GLM</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a aria-current="page" class="current reference internal" href="#">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_neuron.html">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="population.html">PopulationGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classifier.html">ClassifierGLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="population_classifier.html">ClassifierPopulationGLM</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../glm_hmm/README.html">GLM-HMM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model components</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../observation_models.html">Observation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../regularizers.html">Regularizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solvers.html">Solvers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../basis/README.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pynapple.html">Pynapple Compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basis/eval_vs_conv.html">Basis types: eval vs conv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basis/disjoint_epochs.html">Handling disjoint epochs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basis/addition.html">Multiple predictors: basis addition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basis/multiplication.html">Multi-dim predictors: basis multiplication</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../basis/advanced.html">Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basis/jit_performance.html">Performance: JIT-compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basis/custom.html">Custom basis object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basis/transformers.html">sklearn transformers</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model selection and pipelining with sklearn</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sklearn_compatibility/basis_transformer.html">Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sklearn_compatibility/pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sklearn_compatibility/cross_validation.html">Grid searches</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scalability &amp; Performance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../scalability/README.html">Stochastic fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scalability/custom_update.html">Custom update</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../README.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">Generalized Linear Model (GLM)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Generalized Linear Models</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="important admonition">
+<p class="admonition-title">Download</p>
+<p>Download this notebook: <strong><a class="reference download internal" download="" href="../../../_downloads/e54febab9e0511d3a8b9d780df4a69eb/intro.ipynb"><code class="xref download myst-nb docutils literal notranslate"><span class="pre">intro.ipynb</span></code></a></strong>!</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Ignore the first specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"plotting functions contained within `_documentation_utils` are intended for nemos's documentation."</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Ignore the second specific warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s2">"Ignoring cached namespace 'core'"</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">"invalid value encountered in div "</span>
+    <span class="p">),</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="generalized-linear-models">
+<span id="glm-intro-background"></span><h1>Generalized Linear Models<a class="headerlink" href="#generalized-linear-models" title="Link to this heading">#</a></h1>
+<p>This page explains the simplest GLM in neuroscience: the linear-nonlinear-Poisson (LNP) model. In this model, the firing rate of a neuron at time <span class="math notranslate nohighlight">\(t\)</span> depends only on the input at time <span class="math notranslate nohighlight">\(t\)</span>. The <a class="reference internal" href="#glm-intro-more-general"><span class="std std-ref">last section</span></a> lists extensions of this model.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#glm-components" id="id1">GLM components</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linear-step" id="id2">Linear step</a></p></li>
+<li><p><a class="reference internal" href="#nonlinear-step" id="id3">Nonlinear step</a></p></li>
+<li><p><a class="reference internal" href="#poisson-step" id="id4">Poisson step</a></p></li>
+<li><p><a class="reference internal" href="#log-likelihood" id="id5">Log-likelihood</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#more-general-glms" id="id6">More general GLMs</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id7">References</a></p></li>
+</ul>
+</nav>
+<section id="glm-components">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">GLM components</a><a class="headerlink" href="#glm-components" title="Link to this heading">#</a></h2>
+<p>The LNP model has three steps.</p>
+<figure markdown>
+<!-- note that the src here has an extra ../ compared to other images, necessary when specifying path directly in html -->
+<img src="../../../_static/lnp_model.svg" style="width: 100%", alt="Linear-Non Linear-Poisson illustration."/>
+<figcaption>LNP model schematic. Modified from Pillow et al., 2008.</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>A linear transformation of the input.</p></li>
+<li><p>A nonlinearity that gives the <em>firing rate</em>.</p></li>
+<li><p>A Poisson process with the firing rate as its mean, which generates <em>spikes</em>.</p></li>
+</ol>
+<section id="linear-step">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Linear step</a><a class="headerlink" href="#linear-step" title="Link to this heading">#</a></h3>
+<p>The linear transformation scales and shifts the input feature(s): <span class="math notranslate nohighlight">\( \boldsymbol{W X} + \boldsymbol{c} \)</span>. In the one-dimensional case, this is a multiplication by a constant plus an intercept.</p>
+<p>In the 1-d case, the model has two parameters. The weight <span class="math notranslate nohighlight">\(w\)</span> scales the input. The intercept <span class="math notranslate nohighlight">\(c\)</span> shifts the input. The linear step computes:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x(t)) = w x(t) + c \tag{1}
+\]</div>
+<p>The next plots show the three steps for three example neurons. Each neuron has a different value of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># first import things</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nap</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
+
+<span class="c1"># some helper plotting functions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="kn">import</span> <span class="n">_documentation_utils</span> <span class="k">as</span> <span class="n">doc_plots</span>
+
+<span class="c1"># configure plots some</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">nmo</span><span class="o">.</span><span class="n">styles</span><span class="o">.</span><span class="n">plot_style</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first plot shows the linear transformation of the input <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">intercepts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># make a step function with some noise riding on top</span>
+<span class="n">input_feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">input_feature</span><span class="p">[</span><span class="mi">50</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">input_feature</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">input_feature</span> <span class="o">=</span> <span class="n">nap</span><span class="o">.</span><span class="n">Tsd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">input_feature</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">doc_plots</span><span class="o">.</span><span class="n">lnp_schematic</span><span class="p">(</span><span class="n">input_feature</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">intercepts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/f91469a30d766d0a329e9ff5e36013106e7fa6e3e67aa97354bbd266bee659b4.png" src="../../../_images/f91469a30d766d0a329e9ff5e36013106e7fa6e3e67aa97354bbd266bee659b4.png" />
+</div>
+</div>
+<p>The weight stretches or shrinks the input. The intercept moves the baseline up or down. The model predicts the firing rate, so the intercept sets the baseline firing rate: the rate when the input is zero.</p>
+</section>
+<section id="nonlinear-step">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Nonlinear step</a><a class="headerlink" href="#nonlinear-step" title="Link to this heading">#</a></h3>
+<p>The output of the linear step can be negative, but a firing rate cannot be negative. The nonlinearity makes the firing rate positive. To show this step, set <code class="docutils literal notranslate"><span class="pre">plot_nonlinear=True</span></code> in <code class="docutils literal notranslate"><span class="pre">lnp_schematic()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">doc_plots</span><span class="o">.</span><span class="n">lnp_schematic</span><span class="p">(</span><span class="n">input_feature</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">intercepts</span><span class="p">,</span>
+                              <span class="n">plot_nonlinear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/acad32b3c47a3ef124ea78714d0424d04e3784608101b94dc03d8439c8097779.png" src="../../../_images/acad32b3c47a3ef124ea78714d0424d04e3784608101b94dc03d8439c8097779.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NeMoS keeps the nonlinearity fixed. The default is the exponential.
+A small number of other choices, such as soft-plus, are also available.
+Each of these choices makes the firing rate non-negative and keeps the
+problem convex. A convex problem has a single optimal solution. A more
+complex nonlinearity is possible in principle, but convexity is not
+guaranteed in general.</p>
+</div>
+<p>With the exponential nonlinearity, the firing rate is:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda (t) = \exp (L(x(t))) = \exp (w x(t) + c) \tag{2}
+\]</div>
+<p>The output of the nonlinearity is always positive. Note that the scale of the y-axis also changes.</p>
+</section>
+<section id="poisson-step">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Poisson step</a><a class="headerlink" href="#poisson-step" title="Link to this heading">#</a></h3>
+<p>The last step generates spikes from the firing rate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mkdocs_gallery_thumbnail_number = 3</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">doc_plots</span><span class="o">.</span><span class="n">lnp_schematic</span><span class="p">(</span><span class="n">input_feature</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">intercepts</span><span class="p">,</span>
+                              <span class="n">plot_nonlinear</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_spikes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/7ae5c4e9096dad75b1b93fed057a82d8b95b54ddbed457398593a1b4821111c9.png" src="../../../_images/7ae5c4e9096dad75b1b93fed057a82d8b95b54ddbed457398593a1b4821111c9.png" />
+</div>
+</div>
+<p>Spiking is a stochastic process. One firing rate can generate many different spike trains. The plot shows three spike trains for each neuron. Each spike train is a sample from a Poisson process. The mean of this process is the firing rate, that is, the output of the linear and nonlinear steps.</p>
+</section>
+<section id="log-likelihood">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Log-likelihood</a><a class="headerlink" href="#log-likelihood" title="Link to this heading">#</a></h3>
+<p>The model can generate many spike trains, but the data contain one observed spike train. To compare the model with the data, use the <em>log-likelihood</em>. The log-likelihood measures how probable the observed spike train is for a given firing rate. If <span class="math notranslate nohighlight">\(y(t)\)</span> is the spike count and <span class="math notranslate nohighlight">\(\lambda(t)\)</span> is the firing rate, the log-likelihood is:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_t \log P(y(t) | \lambda(t)) = \sum_t y(t) \log(\lambda(t)) -
+\lambda(t) - \log (y(t)!)\tag{3}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\log(y(t)!)\)</span> term does not depend on <span class="math notranslate nohighlight">\(\lambda(t)\)</span>, so it does not change with the model. This term is usually dropped:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_t \log P(y(t) | \lambda(t)) \propto \sum_t y(t) \log(\lambda(t)) -
+\lambda(t)\tag{4}\]</div>
+<p>Equation (4) is the objective function of the GLM. The fit finds the firing rate that maximizes the likelihood of the observed spike train.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In NeMoS, the <code class="docutils literal notranslate"><span class="pre">score</span></code> method computes the log-likelihood from the
+predictors and the counts. The method first computes the rate
+<span class="math notranslate nohighlight">\(\lambda(t)\)</span> with equation (2). Then it computes the likelihood with
+equation (4). The optimization also uses this method.</p>
+</div>
+</section>
+</section>
+<section id="more-general-glms">
+<span id="glm-intro-more-general"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">More general GLMs</a><a class="headerlink" href="#more-general-glms" title="Link to this heading">#</a></h2>
+<p>The LNP model is a special case of a GLM. It has known limitations<a class="reference internal" href="#ref-1"><span class="math notranslate nohighlight">\(^{[1]}\)</span></a>. For example, the LNP model ignores the refractory period and other effects of spike history. Other pages show how to add <em>spike history filters</em> to a GLM to get more accurate results. For a population of neurons recorded at the same time, a GLM can also include <em>coupling filters</em> between neurons. Coupling filters can help show how much of the activity comes from the input <span class="math notranslate nohighlight">\(X\)</span>, and how much comes from the other neurons in the population.</p>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p id="ref-1">[1] <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2684455/">Pillow, JW, Shlens, J, Paninski, L, Sher, A,  Litke, AM, Chichilnisky, EJ, Simoncelli, EP (2008),  “Spatio-temporal correlations and visual signalling in a complete neuronal population.” Nature 454: 995-9.</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Generalized Linear Model (GLM)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="single_neuron.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Generalized Linear Model (GLM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glm-components">GLM components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-step">Linear step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-step">Nonlinear step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-step">Poisson step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood">Log-likelihood</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-general-glms">More general GLMs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/user_guide/models/glm/intro.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
