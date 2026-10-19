@@ -2,8 +2,12 @@ import jax
 import matplotlib.pyplot as plt
 import numpy as np
 import nemos as nmo
-obs_low = nmo.observation_models.NegativeBinomialObservations(scale=0.05)
-obs_high = nmo.observation_models.NegativeBinomialObservations(scale=2.0)
+obs_low = nmo.observation_models.NegativeBinomialObservations(
+    dispersion=0.05
+)
+obs_high = nmo.observation_models.NegativeBinomialObservations(
+    dispersion=2.0
+)
 rate = np.full(1000, fill_value=10.0)
 key = jax.random.PRNGKey(123)
 samples_low = obs_low.sample_generator(key, rate)
@@ -13,9 +17,9 @@ bool(samples_high.var() > samples_low.var())
 ## True
 _ = plt.subplot(211)
 _, edges, _ = plt.hist(samples_high, bins=50)
-_ = plt.title("scale = 2.0")
+_ = plt.title("dispersion = 2.0")
 _ = plt.subplot(212)
 _ = plt.hist(samples_low, bins=edges)
-_ = plt.title("scale = 0.05")
+_ = plt.title("dispersion = 0.05")
 plt.tight_layout()
 plt.show()

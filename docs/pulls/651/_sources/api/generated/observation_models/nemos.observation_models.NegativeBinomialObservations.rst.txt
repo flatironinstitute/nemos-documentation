@@ -14,9 +14,9 @@
    .. autosummary::
    
       ~NegativeBinomialObservations.default_inverse_link_function
+      ~NegativeBinomialObservations.dispersion
       ~NegativeBinomialObservations.glm_convexity_preserving_links
       ~NegativeBinomialObservations.rate_range
-      ~NegativeBinomialObservations.scale
    
 
 

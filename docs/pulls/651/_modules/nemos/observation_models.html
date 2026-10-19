@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.observation_models &#8212; nemos 0.2.10.dev547 documentation</title>
+    <title>nemos.observation_models &#8212; nemos 0.2.10.dev563 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=fbc5f30a"></script>
+    <script src="../../_static/documentation_options.js?v=ce2b4925"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -136,8 +136,8 @@
     
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev547 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev547 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev563 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev563 documentation - Home"/>
   
   
 </a></div>
@@ -495,6 +495,7 @@
 <span></span><span class="sd">"""Observation model classes for GLMs."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numbers</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
@@ -558,7 +559,6 @@
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
@@ -575,19 +575,6 @@
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">default_inverse_link_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Getter for the scale parameter of the model."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span>
-
-    <span class="nd">@scale</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">"""Setter for the scale parameter of the model."""</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The `scale` parameter must be of numeric type."</span><span class="p">)</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_negative_log_likelihood</span><span class="p">(</span>
@@ -983,7 +970,6 @@
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
@@ -1253,7 +1239,6 @@
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
@@ -1498,7 +1483,6 @@
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.BernoulliObservations.html#nemos.observation_models.BernoulliObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
@@ -1771,11 +1755,11 @@
 <span class="sd">    This model represents a Negative Binomial distribution [4]_ commonly used to model overdispersed</span>
 <span class="sd">    count data [5]_ [6]_ (i.e., data where the variance exceeds the mean), which cannot be captured by a</span>
 <span class="sd">    standard Poisson model. The distribution is parameterized by the predicted mean rate</span>
-<span class="sd">    (:math:`\mu`) and a fixed dispersion parameter (:math:`\phi`) or `scale` of the model.</span>
+<span class="sd">    (:math:`\mu`) and a fixed dispersion parameter (:math:`\phi`) of the model.</span>
 
-<span class="sd">    **Important:** the scale parameter must be estimated from the data for accurately capturing the</span>
-<span class="sd">    dispersion. In the context of NeMoS GLM, estimation can be achieved by cross-validating the</span>
-<span class="sd">    ``scale`` parameter. One may use scikit-learn :ref:`GridSearchCV &lt;sklearn-how-to&gt;` for example.</span>
+<span class="sd">    **Important:** the dispersion parameter must be estimated from the data.</span>
+<span class="sd">    In the context of NeMoS GLM, estimation can be achieved by cross-validating the</span>
+<span class="sd">    ``dispersion`` parameter. One may use scikit-learn :ref:`GridSearchCV &lt;sklearn-how-to&gt;` for example.</span>
 
 <span class="sd">    The variance of the Negative Binomial distribution under this parameterization is:</span>
 
@@ -1786,7 +1770,7 @@
 <span class="sd">    where :math:`\mu` is the predicted mean, and :math:`\phi` is the dispersion parameter. This</span>
 <span class="sd">    formulation corresponds to the Negative Binomial as a Gamma–Poisson mixture.</span>
 
-<span class="sd">    The scale parameter :math:`\phi` is related to the canonical Negative Binomial</span>
+<span class="sd">    The dispersion parameter :math:`\phi` is related to the canonical Negative Binomial</span>
 <span class="sd">    shape parameter `r` as:</span>
 
 <span class="sd">    .. math::</span>
@@ -1799,16 +1783,16 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    scale :</span>
+<span class="sd">    dispersion :</span>
 <span class="sd">        The dispersion parameter :math:`\phi`. Lower values correspond to lower overdispersion, and as</span>
 <span class="sd">        :math:`\phi \to 0`, the model behaves like a Poisson. The shape parameter of</span>
-<span class="sd">        the Negative Binomial is given by `r = 1 / scale`.</span>
+<span class="sd">        the Negative Binomial is given by `r = 1 / dispersion`.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    This class is not meant to be used on its own. It is intended to be passed to a model</span>
 <span class="sd">    such as :class:`~nemos.glm.GLM`, which relies on it to compute the log-likelihood and</span>
-<span class="sd">    to set the default inverse link function. Note that ``scale`` is not estimated during the</span>
+<span class="sd">    to set the default inverse link function. Note that ``dispersion`` is not estimated during the</span>
 <span class="sd">    fit: the value provided at initialization is used as-is, so it has to be chosen beforehand,</span>
 <span class="sd">    for example by cross-validation as described above.</span>
 
@@ -1826,29 +1810,33 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import nemos as nmo</span>
 
-<span class="sd">    Select the observation model by name, which uses the default ``scale``:</span>
+<span class="sd">    Select the observation model by name, which uses the default ``dispersion``:</span>
 
 <span class="sd">    &gt;&gt;&gt; nmo.glm.GLM(observation_model="NegativeBinomial").observation_model</span>
-<span class="sd">    NegativeBinomialObservations(scale=1.0)</span>
+<span class="sd">    NegativeBinomialObservations(dispersion=1.0)</span>
 
 <span class="sd">    Pass an instance instead to set the dispersion explicitly:</span>
 
-<span class="sd">    &gt;&gt;&gt; obs_model = nmo.observation_models.NegativeBinomialObservations(scale=2.0)</span>
+<span class="sd">    &gt;&gt;&gt; obs_model = nmo.observation_models.NegativeBinomialObservations(dispersion=2.0)</span>
 <span class="sd">    &gt;&gt;&gt; nmo.glm.GLM(observation_model=obs_model).observation_model</span>
-<span class="sd">    NegativeBinomialObservations(scale=2.0)</span>
+<span class="sd">    NegativeBinomialObservations(dispersion=2.0)</span>
 
-<span class="sd">    A larger ``scale`` yields more variable counts for the same mean rate:</span>
+<span class="sd">    A larger ``dispersion`` yields more variable counts for the same mean rate:</span>
 
 <span class="sd">    .. plot::</span>
 <span class="sd">        :include-source: True</span>
-<span class="sd">        :caption: Effect of the scale parameter on the sampled counts.</span>
+<span class="sd">        :caption: Effect of the dispersion parameter on the sampled counts.</span>
 
 <span class="sd">        &gt;&gt;&gt; import jax</span>
 <span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; obs_low = nmo.observation_models.NegativeBinomialObservations(scale=0.05)</span>
-<span class="sd">        &gt;&gt;&gt; obs_high = nmo.observation_models.NegativeBinomialObservations(scale=2.0)</span>
+<span class="sd">        &gt;&gt;&gt; obs_low = nmo.observation_models.NegativeBinomialObservations(</span>
+<span class="sd">        ...     dispersion=0.05</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; obs_high = nmo.observation_models.NegativeBinomialObservations(</span>
+<span class="sd">        ...     dispersion=2.0</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; rate = np.full(1000, fill_value=10.0)</span>
 <span class="sd">        &gt;&gt;&gt; key = jax.random.PRNGKey(123)</span>
 <span class="sd">        &gt;&gt;&gt; samples_low = obs_low.sample_generator(key, rate)</span>
@@ -1857,10 +1845,10 @@
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.subplot(211)</span>
 <span class="sd">        &gt;&gt;&gt; _, edges, _ = plt.hist(samples_high, bins=50)</span>
-<span class="sd">        &gt;&gt;&gt; _ = plt.title("scale = 2.0")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.title("dispersion = 2.0")</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.subplot(212)</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.hist(samples_low, bins=edges)</span>
-<span class="sd">        &gt;&gt;&gt; _ = plt.title("scale = 0.05")</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.title("dispersion = 0.05")</span>
 <span class="sd">        &gt;&gt;&gt; plt.tight_layout()</span>
 <span class="sd">        &gt;&gt;&gt; plt.show()</span>
 
@@ -1875,12 +1863,21 @@
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">dispersion</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="n">dispersion</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dispersion</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dispersion</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"``dispersion`` must be a positive real number. </span><span class="si">{</span><span class="n">dispersion</span><span class="si">}</span><span class="s2"> provided instead."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispersion</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dispersion</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">False</span></div>
 
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dispersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispersion</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">default_inverse_link_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1916,7 +1913,7 @@
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
 <span class="sd">        The Negative Binomial distribution models overdispersed count data.</span>
-<span class="sd">        The likelihood assumes the mean-parameterized form with dispersion `r = 1 / scale`.</span>
+<span class="sd">        The likelihood assumes the mean-parameterized form with dispersion `r = 1 / dispersion`.</span>
 
 <span class="sd">        The log-likelihood is computed (up to a constant) using:</span>
 
@@ -1926,16 +1923,16 @@
 <span class="sd">            + y \log\left(\frac{\mu}{r + \mu}\right)</span>
 
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">estimate_scale</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">predicted_rate</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="n">predicted_rate</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
             <span class="n">predicted_rate</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">predicted_rate</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
         <span class="p">)</span>
         <span class="c1"># robust log1p forms of log(mu / (r + mu)) and log(r / (r + mu)).</span>
-        <span class="n">scaled_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">predicted_rate</span>
+        <span class="n">scaled_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispersion</span> <span class="o">*</span> <span class="n">predicted_rate</span>
         <span class="n">log_ratio_mu</span> <span class="o">=</span> <span class="o">-</span><span class="n">jnp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">scaled_rate</span><span class="p">)</span>
         <span class="n">log_ratio_r</span> <span class="o">=</span> <span class="o">-</span><span class="n">jnp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">scaled_rate</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">aggregate_sample_scores</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">log_ratio_mu</span> <span class="o">+</span> <span class="n">log_ratio_r</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">aggregate_sample_scores</span><span class="p">(</span>
+            <span class="n">y</span> <span class="o">*</span> <span class="n">log_ratio_mu</span> <span class="o">+</span> <span class="n">log_ratio_r</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispersion</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="NegativeBinomialObservations.log_likelihood">
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations.log_likelihood">[docs]</a>
@@ -1959,8 +1956,7 @@
 <span class="sd">            The predicted mean of the Negative Binomial distribution. Shape ``(n_time_bins,)`` or</span>
 <span class="sd">            ``(n_time_bins, n_observations)``.</span>
 <span class="sd">        scale :</span>
-<span class="sd">            The scale (dispersion) parameter of the distribution. It is related to the shape ``r`` as ``r = 1 / scale``.</span>
-<span class="sd">            Default is the scale provided at initialization ``self.scale``.</span>
+<span class="sd">            The scale parameter of the distribution, unused since it is constant and equals to 1.</span>
 <span class="sd">        aggregate_sample_scores :</span>
 <span class="sd">            Function that aggregates the log-likelihood across samples (e.g., jnp.mean or jnp.sum).</span>
 
@@ -1969,14 +1965,14 @@
 <span class="sd">        :</span>
 <span class="sd">            The log-likelihood of the Negative Binomial model. Shape ``(1,)``.</span>
 <span class="sd">        """</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">scale</span>
+        <span class="n">dispersion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispersion</span>
         <span class="n">ll_unnormalized</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_negative_log_likelihood</span><span class="p">(</span>
             <span class="n">y</span><span class="p">,</span> <span class="n">predicted_rate</span><span class="p">,</span> <span class="n">aggregate_sample_scores</span>
         <span class="p">)</span>
         <span class="n">norm</span> <span class="o">=</span> <span class="n">aggregate_sample_scores</span><span class="p">(</span>
-            <span class="n">jax</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span>
+            <span class="n">jax</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">dispersion</span><span class="p">)</span>
             <span class="o">-</span> <span class="n">jax</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="o">-</span> <span class="n">jax</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">jax</span><span class="o">.</span><span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">dispersion</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">ll_unnormalized</span> <span class="o">+</span> <span class="n">norm</span></div>
 
@@ -1992,8 +1988,7 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Sample from the Negative Binomial distribution.</span>
 
-<span class="sd">        This method generates random count data from the Negative Binomial distribution based on the predicted rate</span>
-<span class="sd">        and scale (dispersion).</span>
+<span class="sd">        This method generates random count data from the Negative Binomial distribution based on the predicted rate.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2003,7 +1998,7 @@
 <span class="sd">            The predicted mean of the Negative Binomial distribution. Shape ``(n_time_bins,)`` or</span>
 <span class="sd">            ``(n_time_bins, n_observations)``.</span>
 <span class="sd">        scale :</span>
-<span class="sd">            Dispersion parameter of the distribution. Smaller values imply higher variance.</span>
+<span class="sd">            Scale parameter of the distribution, unused, kept for api consistency.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2023,8 +2018,8 @@
 <span class="sd">        For more information, see the `Negative Binomial distribution on Wikipedia</span>
 <span class="sd">        &lt;https://en.wikipedia.org/wiki/Negative_binomial_distribution#Gamma%E2%80%93Poisson_mixture&gt;`_.</span>
 <span class="sd">        """</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">scale</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">scale</span>
+        <span class="n">dispersion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispersion</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">dispersion</span>
         <span class="n">gamma_key</span><span class="p">,</span> <span class="n">poisson_key</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
         <span class="c1"># Gamma with shape=r, rate=r/mu → scale=mu/r</span>
@@ -2056,7 +2051,7 @@
 <span class="sd">        predicted_rate:</span>
 <span class="sd">            Predicted mean count of the Negative Binomial distribution. Shape matches `observations`.</span>
 <span class="sd">        scale:</span>
-<span class="sd">            Dispersion parameter of the distribution.</span>
+<span class="sd">            Scale parameter of the distribution, unused, kept for api consistency.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2079,12 +2074,12 @@
 <span class="sd">        where :math:`y` is the observed data, :math:`\hat{y}` is the predicted data, and :math:`\text{LL}` is</span>
 <span class="sd">        the model log-likelihood.</span>
 <span class="sd">        """</span>
-        <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">scale</span>
-        <span class="n">factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">predicted_rate</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">observations</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dispersion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispersion</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">predicted_rate</span> <span class="o">*</span> <span class="n">dispersion</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">observations</span> <span class="o">*</span> <span class="n">dispersion</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">y_mu</span> <span class="o">=</span> <span class="n">observations</span> <span class="o">/</span> <span class="n">predicted_rate</span>
         <span class="n">y_mu</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">y_mu</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">predicted_rate</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
         <span class="n">term1</span> <span class="o">=</span> <span class="n">observations</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_mu</span> <span class="o">*</span> <span class="n">factor</span><span class="p">)</span>
-        <span class="n">term2</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span> <span class="o">/</span> <span class="n">dispersion</span>
         <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span><span class="p">)</span></div>
 
 
@@ -2099,10 +2094,7 @@
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Return the scale parameter of the distribution.</span>
 
-<span class="sd">        The ``scale`` parameter of the Negative Binomial distribution is set</span>
-<span class="sd">        at initialization and affect the likelihood landscape. This implies</span>
-<span class="sd">        that the ``scale`` parameter cannot be estimated post-hoc without</span>
-<span class="sd">        re-fitting a model.</span>
+<span class="sd">        The ``scale`` parameter of the Negative Binomial distribution is 1.</span>
 
 <span class="sd">        Note that the arguments of this method are not used but are kept for</span>
 <span class="sd">        API consistency—i.e., all ``Observations.estimate_scale`` methods</span>
@@ -2117,14 +2109,8 @@
 <span class="sd">        dof_resid :</span>
 <span class="sd">            The DOF of the residuals.</span>
 
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
-<span class="sd">        NeMoS currently does not support joint estimation of scale and mean for the negative binomial.</span>
-<span class="sd">        For alternatives, see the R package MASS</span>
-<span class="sd">        `glm.nb &lt;https://www.rdocumentation.org/packages/MASS/versions/7.3-65/topics/glm.nb&gt;`_</span>
-<span class="sd">        for more details.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></div>
 </div>
 
 
@@ -2172,7 +2158,6 @@
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
@@ -2584,7 +2569,6 @@
 <a class="viewcode-back" href="../../api/generated/observation_models/nemos.observation_models.CategoricalObservations.html#nemos.observation_models.CategoricalObservations.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_separable_scale</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
