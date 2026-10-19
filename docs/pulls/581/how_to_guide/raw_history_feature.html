@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fit GLMs For Neural Coupling &#8212; nemos 0.2.10.dev552 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../_static/documentation_options.js?v=c703bdf0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'how_to_guide/raw_history_feature';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fit GLM for Classification" href="glm_for_classification.html" />
+    <link rel="prev" title="Population GLM" href="plot_03_population_glm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev552 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev552 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="save_and_load.html">Saving and Loading</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_02_glm_demo.html">GLM Demo: Toy Model Examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Fit GLMs For Neural Coupling</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glm_for_classification.html">Fit GLM for Classification</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="finegrained_regularization.html">Regularizing parameters with different strengths</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handling_composite_bases.html">Handling Composite Bases</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="define_a_custom_basis.html">How to Define A Custom Basis Class</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="categorical_predictors/README.html">Categorical Predictors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_predictors.html">Design Matrices Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="categorical_predictors/categorical_identifiability.html">Technical Note: Redundancy in Categorical Designs</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_predictors.html">Precomputed Features</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_05_transformer_basis.html">Using bases as scikit-learn transformers</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plot_06_sklearn_pipeline_cv_demo.html">Selecting basis by cross-validation with scikit-learn</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_zero_basis.html">Model Selection: Cross-validate over Inputs</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_group_lasso.html">Selecting Covariates via Group Lasso</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="convolve_large_arrays.html">Convolve Large Arrays</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="batching/README.html">Stochastic optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="batching/stochastic_fit.html">Stochastic optimization basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_dataloader.html">Creating a custom <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/custom_callbacks_and_termination.html">Stopping on convergence and custom callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batching/manual_batching_loop.html">Manual update loop for more control</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="custom_solvers.html">Creating custom solvers for use with NeMoS</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link">How-To Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Fit GLMs For Neural Coupling</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="important admonition">
+<p class="admonition-title">Download</p>
+<p>Download this notebook: <strong><a class="reference download internal" download="" href="../_downloads/37e3401af8b01d619b588dc659194370/raw_history_feature.ipynb"><code class="xref download myst-nb docutils literal notranslate"><span class="pre">raw_history_feature.ipynb</span></code></a></strong>!</p>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="fit-glms-for-neural-coupling">
+<h1>Fit GLMs For Neural Coupling<a class="headerlink" href="#fit-glms-for-neural-coupling" title="Link to this heading">#</a></h1>
+<p>GLMs can be used to capture pairwise interactions (couplings) between simultaneously recorded neurons. Let’s see how to do this in NeMoS.</p>
+<div class="admonition-learn-more admonition">
+<p class="admonition-title">Learn More</p>
+<p>You can learn more about GLMs for pairwise interactions by following our <a class="reference internal" href="../tutorials/plot_02_head_direction.html#head-direction-tutorial"><span class="std std-ref">head direction</span></a> tutorial.</p>
+</div>
+<section id="setting-up-a-fully-coupled-glm">
+<span id="fully-coupled-glm-how-to"></span><h2>Setting up a Fully Coupled GLM<a class="headerlink" href="#setting-up-a-fully-coupled-glm" title="Link to this heading">#</a></h2>
+<section id="raw-spike-history-as-a-feature">
+<h3>Raw Spike History as a Feature<a class="headerlink" href="#raw-spike-history-as-a-feature" title="Link to this heading">#</a></h3>
+<p>We will start by learning how to model the pairwise interaction using the raw spike history. Let’s first generate some
+population counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nemos</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nmo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">n_neurons</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># generate population counts</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">HistoryConv</span></code> basis to construct a feature matrix capturing the effect of 10 samples of spiking history.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">HistoryConv</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"spike-history"</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape of the feature matrix: "</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># visualize the output (skip the first window_size of nans)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Features"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">10</span><span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Greys"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neurons"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Samples"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of the feature matrix:  (100, 40)
+</pre></div>
+</div>
+<img alt="../_images/c6aa24ac5e1c759e7ebc4ceb95a23f124425b82ccea8e4b2e9f6fc1a1bd5717f.png" src="../_images/c6aa24ac5e1c759e7ebc4ceb95a23f124425b82ccea8e4b2e9f6fc1a1bd5717f.png" />
+</div>
+</div>
+<p>This is all you need to fit a fully coupled GLM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([[ 0.14054742, -0.18131429, -0.23787907,  0.13592476],
+       [-0.303423  , -0.18098311, -0.06985071,  0.06613076],
+       [-0.35039487,  0.04835945,  0.28965583,  0.14428909],
+       [-0.03180717,  0.17398098,  0.1602021 , -0.02512386],
+       [-0.2716237 , -0.01246088, -0.11096233, -0.05208599],
+       [-0.0246716 , -0.14311925,  0.15982132, -0.09245186],
+       [-0.09106754, -0.01452435, -0.11152451, -0.06967099],
+       [-0.01675103,  0.02325992, -0.07749538, -0.34680468],
+       [-0.03462132,  0.22461668,  0.10236738, -0.09807716],
+       [-0.29135004,  0.23934774, -0.20102406, -0.01818336],
+       [ 0.04547206, -0.0652931 , -0.22479498,  0.00161329],
+       [ 0.11083759, -0.04534451, -0.09175405, -0.07735059],
+       [-0.10427654,  0.19774798,  0.16142008, -0.12846853],
+       [-0.24655794,  0.06186355, -0.17487481,  0.07909111],
+       [-0.15938242,  0.17797992,  0.00082204,  0.21496727],
+       [ 0.16265006, -0.10514393, -0.05818283,  0.04835081],
+       [-0.3713899 , -0.06233042, -0.04022077, -0.11869262],
+       [ 0.1679887 , -0.23887736, -0.26485297,  0.09998317],
+       [-0.22491823,  0.05926855, -0.10778327, -0.1564009 ],
+       [-0.03745507, -0.17948553,  0.10576957, -0.10572667],
+       [ 0.09101029,  0.14336908, -0.17667103, -0.01341592],
+       [ 0.14139618,  0.18195607,  0.22821306, -0.02715888],
+       [-0.11414887,  0.09784327, -0.0087107 ,  0.11167023],
+       [-0.05777729, -0.10392512, -0.39651242,  0.09969307],
+       [ 0.33459473, -0.39876664, -0.01803717,  0.01261187],
+       [ 0.2626005 , -0.23451075,  0.18247399,  0.0380476 ],
+       [ 0.08058103,  0.07007375,  0.01065434,  0.11942368],
+       [ 0.00289417,  0.08240185, -0.23679839,  0.17038295],
+       [-0.3514649 ,  0.0884719 ,  0.08488072, -0.18458834],
+       [ 0.41150278, -0.16308963,  0.19135942,  0.1934019 ],
+       [ 0.14113013, -0.02632038, -0.11541489, -0.18993355],
+       [ 0.13726373, -0.08511806, -0.0186991 , -0.03916812],
+       [ 0.04969938,  0.06143272,  0.02855006,  0.0371445 ],
+       [ 0.07474899,  0.1668608 , -0.00232445,  0.18577564],
+       [-0.15225047,  0.24511373,  0.28775796,  0.10983279],
+       [-0.02538727,  0.00367114, -0.2760763 ,  0.30420458],
+       [ 0.08032645, -0.2115201 ,  0.20611154,  0.10608282],
+       [ 0.333548  ,  0.07709876,  0.06798178, -0.00734028],
+       [-0.02796909, -0.07383117,  0.008293  , -0.16004457],
+       [ 0.13220836,  0.17275584,  0.13597596, -0.14323756]],      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reducing-dimensionality-with-basis">
+<h3>Reducing Dimensionality With Basis<a class="headerlink" href="#reducing-dimensionality-with-basis" title="Link to this heading">#</a></h3>
+<p>Alternatively, one can use basis to reduce the number of parameters (useful when you have a history filter the spans hundreds of samples).
+Reducing the dimensionality of the features helps to prevent overfitting and speeds up computation, particularly for long history windows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raised_cos</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLogConv</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">X2</span> <span class="o">=</span> <span class="n">raised_cos</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># 12 Features: 3 basis funcs x 4 neurons</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape of the feature matrix: "</span><span class="p">,</span> <span class="n">X2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Basis Feature Matrix"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X2</span><span class="p">[</span><span class="mi">10</span><span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Greys"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neurons"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Samples"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of the feature matrix:  (100, 12)
+</pre></div>
+</div>
+<img alt="../_images/6c0539ff6dd7b909554b5b342e52d1d0b11033c091ccada8b569a0aa311d094b.png" src="../_images/6c0539ff6dd7b909554b5b342e52d1d0b11033c091ccada8b569a0aa311d094b.png" />
+</div>
+</div>
+<p>This model can be fit with the usual <code class="docutils literal notranslate"><span class="pre">model_reduced</span> <span class="pre">=</span> <span class="pre">nmo.glm.PopulationGLM().fit(X2,</span> <span class="pre">counts)</span></code>.</p>
+</section>
+</section>
+<section id="interpreting-the-coefficients">
+<h2>Interpreting the coefficients<a class="headerlink" href="#interpreting-the-coefficients" title="Link to this heading">#</a></h2>
+<p>The learned model coefficients are stored in a 2D array of shape <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons)</span></code>. This array concatenates the coefficients representing pairwise couplings along the first dimension. Using the <code class="docutils literal notranslate"><span class="pre">split_by_feature</span></code> method of the basis object, the coefficients can be reshaped into a 3D array of shape <code class="docutils literal notranslate"><span class="pre">(n_neurons,</span> <span class="pre">n_basis_funcs,</span> <span class="pre">n_neurons)</span></code>, where the first dimension corresponds to sender neurons, the second dimension contains the basis function coefficients, and the third dimension corresponds to receiver neurons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the dictionary (1 key per basis component, here there is single basis component)</span>
+<span class="n">split_coef</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">split_coef</span><span class="p">[</span><span class="s2">"spike-history"</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 10, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This makes it easy to retrieve the coefficients capturing how the spike history of the neuron <code class="docutils literal notranslate"><span class="pre">i</span></code> affects the firing of neuron <code class="docutils literal notranslate"><span class="pre">j</span></code>,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sender_neuron_i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">receiver_neuron_j</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">coeff_ij</span> <span class="o">=</span> <span class="n">split_coef</span><span class="p">[</span><span class="s2">"spike-history"</span><span class="p">][</span><span class="n">sender_neuron_i</span><span class="p">,</span> <span class="p">:,</span> <span class="n">receiver_neuron_j</span><span class="p">]</span>
+
+<span class="n">coeff_ij</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Array([-0.22479498, -0.09175405,  0.16142008, -0.17487481,  0.00082204,
+       -0.05818283, -0.04022077, -0.26485297, -0.10778327,  0.10576957],      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="selecting-the-connectivity-map">
+<h2>Selecting The Connectivity Map<a class="headerlink" href="#selecting-the-connectivity-map" title="Link to this heading">#</a></h2>
+<p>It is also possible select which couplings we want to learn by specifying a boolean mask (a mask of 0s and 1s) of shape <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons)</span></code>. The mask will be elementwise multiplied to the coefficients, selecting which will be included in the GLM.
+For instance, if <code class="docutils literal notranslate"><span class="pre">mask[i,</span> <span class="pre">j]</span> <span class="pre">==</span> <span class="pre">0</span></code>, the i-th feature won’t be included in the GLM fit of the <code class="docutils literal notranslate"><span class="pre">j-th</span></code> neuron.</p>
+<p>For example, we can exclude the bi-directional coupling between neuron 0 and 1, and the directional coupling between neuron 2 (sender) and neuron 3 (receiver).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize a neuron x neuron mask</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_neurons</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">))</span>
+
+<span class="c1"># remove the bi-directional coupling between 0 and 1</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># remove the directional coupling from 2 to 3</span>
+<span class="n">mask</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># repeat over the rows by the number of basis functions</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">basis</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to fit the GLM masking the coefficients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_with_mask</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">PopulationGLM</span><span class="p">(</span><span class="n">feature_mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model_with_mask</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.04627921  0.         -0.23792893  0.06809961]
+ [-0.27400362  0.         -0.07004794  0.14302826]
+ [-0.26984236  0.          0.2898604   0.20101653]
+ [ 0.06343435  0.          0.16014738 -0.06748948]
+ [-0.06826106  0.         -0.11083931  0.08260174]
+ [-0.08306935  0.          0.15966032 -0.10685129]
+ [-0.15973823  0.         -0.11130194 -0.00045624]
+ [ 0.03463584  0.         -0.07753833 -0.31695548]
+ [-0.09089086  0.          0.10249799 -0.10739248]
+ [-0.18619592  0.         -0.20099963  0.0047523 ]
+ [ 0.          0.05497953 -0.22486207  0.03456702]
+ [ 0.         -0.0526346  -0.09175647 -0.08447043]
+ [ 0.          0.15176253  0.16135073 -0.09866844]
+ [ 0.          0.01654706 -0.17482896  0.08633819]
+ [ 0.          0.22078434  0.00065076  0.17820138]
+ [ 0.         -0.08276503 -0.05829692  0.05250559]
+ [ 0.         -0.03634286 -0.0402506  -0.10386969]
+ [ 0.         -0.21659906 -0.26489735  0.02637066]
+ [ 0.          0.06626931 -0.10803962 -0.12586027]
+ [ 0.         -0.16934183  0.10582828 -0.0997455 ]
+ [ 0.12471956  0.2313688  -0.17687984  0.        ]
+ [ 0.09229012  0.07700503  0.2282805   0.        ]
+ [ 0.13446324 -0.07055274 -0.0088573   0.        ]
+ [-0.13305803 -0.06465956 -0.39680946  0.        ]
+ [ 0.29951325 -0.15369812 -0.01841294  0.        ]
+ [ 0.16714415 -0.11497045  0.18241668  0.        ]
+ [ 0.13906875 -0.03041368  0.01055914  0.        ]
+ [-0.06446614 -0.00307724 -0.23702422  0.        ]
+ [-0.248348    0.23923798  0.08478043  0.        ]
+ [ 0.24441427 -0.01030801  0.19141378  0.        ]
+ [ 0.0602616   0.01669803 -0.1153046  -0.17213391]
+ [ 0.10657359 -0.08724184 -0.01866486 -0.04801646]
+ [ 0.00245077 -0.00626713  0.02861487  0.07818002]
+ [ 0.08085821  0.08471853 -0.00226678  0.20324895]
+ [-0.12605783  0.19376296  0.28758928  0.09118395]
+ [-0.01691741 -0.00862342 -0.27610192  0.2659834 ]
+ [ 0.22025935 -0.10146712  0.2059877   0.13835694]
+ [ 0.1178482   0.09284781  0.06806611  0.02481608]
+ [ 0.09319863 -0.1843538   0.00833603 -0.22409675]
+ [ 0.04325948  0.07400376  0.1360951  -0.13392629]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check that the coefficient for the connection we removed, are actually null.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_coef</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">model_with_mask</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s2">"spike-history"</span><span class="p">]</span>
+
+<span class="c1"># check sender=2 receiver=3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Coupling 2 -&gt; 3: "</span><span class="p">,</span> <span class="n">split_coef</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># check that we kept the sender=3, receiver=2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coupling 3 -&gt; 2: "</span><span class="p">,</span> <span class="n">split_coef</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coupling 2 -&gt; 3:  [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.] 
+
+Coupling 3 -&gt; 2:  [-0.1153046  -0.01866486  0.02861487 -0.00226678  0.28758928 -0.27610192
+  0.2059877   0.06806611  0.00833603  0.1360951 ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_03_population_glm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Population GLM</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="glm_for_classification.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fit GLM for Classification</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-fully-coupled-glm">Setting up a Fully Coupled GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-spike-history-as-a-feature">Raw Spike History as a Feature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-dimensionality-with-basis">Reducing Dimensionality With Basis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-coefficients">Interpreting the coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-connectivity-map">Selecting The Connectivity Map</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/how_to_guide/raw_history_feature.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

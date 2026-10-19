@@ -1,0 +1,44 @@
+﻿nemos.basis.CyclicBSplineEval
+=============================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: CyclicBSplineEval
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CyclicBSplineEval.bounds
+      ~CyclicBSplineEval.input_shape
+      ~CyclicBSplineEval.is_complex
+      ~CyclicBSplineEval.label
+      ~CyclicBSplineEval.n_basis_funcs
+      ~CyclicBSplineEval.n_output_features
+      ~CyclicBSplineEval.order
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CyclicBSplineEval.__init__
+      ~CyclicBSplineEval.compute_features
+      ~CyclicBSplineEval.evaluate
+      ~CyclicBSplineEval.evaluate_on_grid
+      ~CyclicBSplineEval.get_params
+      ~CyclicBSplineEval.set_input_shape
+      ~CyclicBSplineEval.set_params
+      ~CyclicBSplineEval.setup_basis
+      ~CyclicBSplineEval.split_by_feature
+      ~CyclicBSplineEval.to_transformer
+   
