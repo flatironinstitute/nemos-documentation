@@ -1,0 +1,44 @@
+﻿nemos.basis.\_custom\_basis.CustomBasis
+=======================================
+
+.. currentmodule:: nemos.basis._custom_basis
+
+.. autoclass:: CustomBasis
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CustomBasis.basis_kwargs
+      ~CustomBasis.funcs
+      ~CustomBasis.input_shape
+      ~CustomBasis.is_complex
+      ~CustomBasis.label
+      ~CustomBasis.n_basis_funcs
+      ~CustomBasis.n_output_features
+      ~CustomBasis.output_shape
+      ~CustomBasis.pynapple_support
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CustomBasis.__init__
+      ~CustomBasis.compute_features
+      ~CustomBasis.evaluate
+      ~CustomBasis.get_params
+      ~CustomBasis.set_input_shape
+      ~CustomBasis.set_params
+      ~CustomBasis.split_by_feature
+      ~CustomBasis.to_transformer
+   

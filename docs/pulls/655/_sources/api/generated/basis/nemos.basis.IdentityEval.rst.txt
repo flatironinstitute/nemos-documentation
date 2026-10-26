@@ -1,0 +1,43 @@
+﻿nemos.basis.IdentityEval
+========================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: IdentityEval
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~IdentityEval.bounds
+      ~IdentityEval.input_shape
+      ~IdentityEval.is_complex
+      ~IdentityEval.label
+      ~IdentityEval.n_basis_funcs
+      ~IdentityEval.n_output_features
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~IdentityEval.__init__
+      ~IdentityEval.compute_features
+      ~IdentityEval.evaluate
+      ~IdentityEval.evaluate_on_grid
+      ~IdentityEval.get_params
+      ~IdentityEval.set_input_shape
+      ~IdentityEval.set_params
+      ~IdentityEval.setup_basis
+      ~IdentityEval.split_by_feature
+      ~IdentityEval.to_transformer
+   
