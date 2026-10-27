@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.basis.BSplineEval &#8212; nemos 0.2.10.dev538 documentation</title>
+    <title>nemos.basis.BSplineEval &#8212; nemos 0.2.10.dev542 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../../../_static/documentation_options.js?v=a3cc6db4"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev542 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev542 documentation - Home"/>
   
   
 </a></div>
@@ -674,7 +674,7 @@ The B-splines have (order-2) continuous derivatives at each interior knot.
 The higher this number, the smoother the basis representation will be.</p></li>
 <li><p><strong>bounds</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</span>) – The bounds for the basis domain. The default <code class="docutils literal notranslate"><span class="pre">bounds[0]</span></code> and <code class="docutils literal notranslate"><span class="pre">bounds[1]</span></code> are the
 minimum and the maximum of the samples provided when evaluating the basis.
-If a sample is outside the bounds, the basis will return NaN.</p></li>
+If a sample is outside the bounds, the basis returns <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> for that sample.</p></li>
 <li><p><strong>fill_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The value to fill when samples are outside the bounds. Default is NaN.</p></li>
 <li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – The label of the basis, intended to be descriptive of the task variable being processed.
 For example: velocity, position, spike_counts.</p></li>

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fourier Basis &#8212; nemos 0.2.10.dev538 documentation</title>
+    <title>Fourier Basis &#8212; nemos 0.2.10.dev542 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../../_static/documentation_options.js?v=a3cc6db4"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -143,8 +143,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev542 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev542 documentation - Home"/>
   
   
 </a></div>
@@ -1872,21 +1872,18 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg></span><span class="sd-summary-text">More on the Bounds</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">When bounds <span class="math notranslate nohighlight">\(b_{\min} &lt; b_{\max}\)</span>, are provided, the mapping from input <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,\ldots,x_T)\)</span> to the <span class="math notranslate nohighlight">\(n\text{-th}\)</span> basis element works as follows.,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
+\[
 a_n(x_j)
 =
-\begin{cases}
 \cos\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right)
-\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right) &amp;&amp; \text{if } x_j \in [b_{\min}, b_{\max}] \\
-\text{NaN} &amp;&amp; \text{otherwise}
-\end{cases}
-\end{split}\]</div>
+\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right)
+\]</div>
 <p class="sd-card-text">for <span class="math notranslate nohighlight">\(j=1,\ldots,T\)</span>.</p>
 <p class="sd-card-text">In other words,</p>
 <ul class="simple">
 <li><p class="sd-card-text">The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=b_{\max} - b_{\min}\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(b_{\min}\)</span> to <span class="math notranslate nohighlight">\(b_{\max}\)</span>.</p></li>
 <li><p class="sd-card-text">The phase is zero at <span class="math notranslate nohighlight">\(b_{\min}\)</span>: <span class="math notranslate nohighlight">\(\;a_n(b_{\min})=1+0i\)</span>.</p></li>
-<li><p class="sd-card-text">The basis evaluated at samples lying outside the bounds will return a NaN.</p></li>
+<li><p class="sd-card-text">Samples outside the bounds are not filled: the basis is periodic, so <span class="math notranslate nohighlight">\(a_n(x_j + P) = a_n(x_j)\)</span>.</p></li>
 </ul>
 </div>
 </details></section>
@@ -2023,9 +2020,7 @@ shape of the `masked_frequencies` array: (2, 31)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>frequency mask
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 1 0 0 0 1 1 0 0 0 0]
+[0 0 1 0 0 0 1 1 0 0 0 0]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked frequencies

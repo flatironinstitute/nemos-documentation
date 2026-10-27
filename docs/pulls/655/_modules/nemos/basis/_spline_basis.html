@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis._spline_basis &#8212; nemos 0.2.10.dev538 documentation</title>
+    <title>nemos.basis._spline_basis &#8212; nemos 0.2.10.dev542 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../../_static/documentation_options.js?v=f6c16755"></script>
+    <script src="../../../_static/documentation_options.js?v=a3cc6db4"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev538 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev538 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev542 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev542 documentation - Home"/>
   
   
 </a></div>
@@ -1148,8 +1148,10 @@
         <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="c1"># Special base case of first-order spline basis.</span>
+    <span class="c1"># The last interval is closed on the right, so that the upper bound is in the support.</span>
     <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">upper</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">)</span>
 
     <span class="c1"># General case, defined recursively</span>
     <span class="k">else</span><span class="p">:</span>
@@ -1293,8 +1295,8 @@
 <span class="sd">    Knots are kept in NumPy so that every span is a scalar constant of the</span>
 <span class="sd">    compiled graph. Sub-expressions are shared across basis elements: without</span>
 <span class="sd">    it the recursion spawns :math:`2^p` calls per element, which costs</span>
-<span class="sd">    compilation time (up to ~5x on the sizes we benchmarked) and buys nothing,</span>
-<span class="sd">    since XLA merges the duplicated branches anyway.</span>
+<span class="sd">    compilation time (up to ~5x on the sizes we benchmarked) with no runtime</span>
+<span class="sd">    gain, since XLA merges the duplicated branches anyway.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1358,9 +1360,13 @@
                 <span class="n">spline</span> <span class="o">-=</span> <span class="n">deg</span> <span class="o">/</span> <span class="n">span_right</span> <span class="o">*</span> <span class="n">basis_element</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">deg</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">der</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">deg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-                <span class="p">(</span><span class="n">sample_pts</span> <span class="o">&gt;=</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">&lt;</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span>
+            <span class="c1"># the last non-empty interval is closed on the right, so that the upper</span>
+            <span class="c1"># bound is in the support</span>
+            <span class="n">closed</span> <span class="o">=</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">knots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">upper</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">&lt;</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span>
+                <span class="n">closed</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample_pts</span> <span class="o">==</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
             <span class="p">)</span>
+            <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">sample_pts</span> <span class="o">&gt;=</span> <span class="n">knots</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">upper</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">spline</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">)</span>
