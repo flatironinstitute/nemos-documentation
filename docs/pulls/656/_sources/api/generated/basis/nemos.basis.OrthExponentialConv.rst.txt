@@ -1,0 +1,45 @@
+﻿nemos.basis.OrthExponentialConv
+===============================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: OrthExponentialConv
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OrthExponentialConv.conv_kwargs
+      ~OrthExponentialConv.decay_rates
+      ~OrthExponentialConv.input_shape
+      ~OrthExponentialConv.is_complex
+      ~OrthExponentialConv.label
+      ~OrthExponentialConv.n_basis_funcs
+      ~OrthExponentialConv.n_output_features
+      ~OrthExponentialConv.window_size
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OrthExponentialConv.__init__
+      ~OrthExponentialConv.compute_features
+      ~OrthExponentialConv.evaluate
+      ~OrthExponentialConv.evaluate_on_grid
+      ~OrthExponentialConv.get_params
+      ~OrthExponentialConv.set_input_shape
+      ~OrthExponentialConv.set_params
+      ~OrthExponentialConv.setup_basis
+      ~OrthExponentialConv.split_by_feature
+      ~OrthExponentialConv.to_transformer
+   

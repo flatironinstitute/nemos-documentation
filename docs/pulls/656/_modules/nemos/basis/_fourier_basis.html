@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nemos.basis._fourier_basis &#8212; nemos 0.2.10.dev539 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../../_static/documentation_options.js?v=52b9e34c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nemos/basis/_fourier_basis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="icon" href="../../../_static/NeMoS_favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.10" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev539 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev539 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../quickstart.html">
+    Quickstart
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background/README.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../how_to_guide/README.html">
+    How-To Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/README.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../benchmarking.html">
+    Benchmarking
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_help.html">
+    Getting Help
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citation.html">
+    Citation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developers_notes/README.html">
+    For Developers
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/flatironinstitute/nemos/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://x.com/nemos_neuro" title="X" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-square-x-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">X</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nemos.basis._fourier_basis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nemos.basis._fourier_basis</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Module for ND fourier basis class."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TYPE_CHECKING</span><span class="p">,</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">Generator</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Literal</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">Tuple</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy._typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pynapple</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tsd</span><span class="p">,</span> <span class="n">TsdFrame</span><span class="p">,</span> <span class="n">TsdTensor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_at_least_1d_numpy_array_like</span><span class="p">,</span> <span class="n">support_pynapple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">FeatureMatrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">Basis</span><span class="p">,</span> <span class="n">check_transform_input</span><span class="p">,</span> <span class="n">min_max_rescale_samples</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._basis_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">AtomicBasisMixin</span><span class="p">,</span> <span class="n">BoundedEvalBasisMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._composition_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_docstring</span>
+
+<span class="c1"># A collection of frequency arrays only needs to be indexable/sliceable and</span>
+<span class="c1"># iterable, hence ``Sequence``; each element is a NumPy or JAX ``Array``.</span>
+<span class="n">FreqArrays</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Array</span><span class="p">]</span>
+
+<span class="n">FREQUENCY_ERROR_MSGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"has_negative_values"</span><span class="p">:</span> <span class="s2">"The provided frequencies contain negative values. Valid frequencies must be"</span>
+    <span class="s2">"non-negative integers."</span><span class="p">,</span>
+    <span class="s2">"not_int_like"</span><span class="p">:</span> <span class="s2">"Some frequency values are not integers. Valid frequencies must be"</span>
+    <span class="s2">"non-negative integers."</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_array_properties</span><span class="p">(</span><span class="o">*</span><span class="n">arrays</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">):</span>
+    <span class="n">is_int_like</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">)</span>
+    <span class="n">is_positive</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">arrays</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">is_int_like</span><span class="p">,</span> <span class="n">is_positive</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_format_error_message</span><span class="p">(</span>
+    <span class="n">is_positive</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">is_int_like</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Invalid frequencies provided. The following issues were detected:</span><span class="se">\n\n</span><span class="s2">"</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_positive</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="s2">"</span><span class="se">\t</span><span class="s2">- "</span>
+            <span class="o">+</span> <span class="n">FREQUENCY_ERROR_MSGS</span><span class="p">[</span><span class="s2">"has_negative_values"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">  "</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_int_like</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="s2">"</span><span class="se">\t</span><span class="s2">- "</span>
+            <span class="o">+</span> <span class="n">FREQUENCY_ERROR_MSGS</span><span class="p">[</span><span class="s2">"not_int_like"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">  "</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">msg</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_and_sort_frequencies</span><span class="p">(</span><span class="o">*</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="n">is_int_like</span><span class="p">,</span> <span class="n">is_positive</span> <span class="o">=</span> <span class="n">_check_array_properties</span><span class="p">(</span><span class="o">*</span><span class="n">frequencies</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">is_int_like</span> <span class="ow">and</span> <span class="n">is_positive</span><span class="p">:</span>
+        <span class="n">sorted_freqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frequencies</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="ow">not</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span> <span class="k">for</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">sorted_freqs</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Unsorted frequencies provided! Frequencies will be sorted."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sorted_freqs</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">_format_error_message</span><span class="p">(</span><span class="n">is_positive</span><span class="p">,</span> <span class="n">is_int_like</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">arange_constructor</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="n">NDArray</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create an array of frequencies from different types of input.</span>
+
+<span class="sd">    This function accepts either:</span>
+<span class="sd">    - An array-like object of frequencies (returned after sorting and checking),</span>
+<span class="sd">    - A single positive integer (returns an array from 0 to `arg - 1`),</span>
+<span class="sd">    - A tuple of two integers `(start, stop)` (returns an array from `start` to `stop - 1`).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arg :</span>
+<span class="sd">        Specifies how to create the frequency array:</span>
+<span class="sd">        * If array-like, it is validated and sorted before returning.</span>
+<span class="sd">        * If int, must be &gt; 0, and the result is `jnp.arange(arg, dtype=float)`.</span>
+<span class="sd">        * If tuple of two ints `(start, stop)`, must satisfy `0 &lt;= start &lt; stop`,</span>
+<span class="sd">        and the result is `jnp.arange(start, stop, dtype=float)`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        A 1D array of frequencies as floats.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the integer input is not positive, or if the tuple does not satisfy</span>
+<span class="sd">        `0 &lt;= start &lt; stop`.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If the tuple elements are not integers or if the input is of an unsupported type.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    If an array-like input is provided, it is first validated and sorted using</span>
+<span class="sd">    `_check_and_sort_frequencies`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; arange_constructor(3)</span>
+<span class="sd">    Array([0., 1., 2.], dtype=float32)</span>
+
+<span class="sd">    &gt;&gt;&gt; arange_constructor((2, 5))</span>
+<span class="sd">    Array([2., 3., 4.], dtype=float32)</span>
+
+<span class="sd">    &gt;&gt;&gt; arange_constructor(jnp.array([3, 1, 2]))</span>
+<span class="sd">    Array([1., 2., 3.], dtype=float32)</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">is_at_least_1d_numpy_array_like</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">_check_and_sort_frequencies</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Integer frequencies must be &gt;= 0, </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> provided instead."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">arg</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stop</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Tuple frequencies must be integers."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">stop</span> <span class="o">&lt;=</span> <span class="n">start</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Tuple frequencies must satisfy 0 &lt;= start &lt; stop. "</span>
+                <span class="sa">f</span><span class="s2">"Start is ``</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2">`` and stop is ``</span><span class="si">{</span><span class="n">stop</span><span class="si">}</span><span class="s2">`` instead."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Each frequency must be an int or a 2-element tuple of ints."</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_process_tuple_frequencies</span><span class="p">(</span>
+    <span class="n">frequencies</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Process a tuple of frequencies and return the corresponding frequency arrays.</span>
+
+<span class="sd">    The tuple must be a 2-element tuple of integers, i.e. both elements must be</span>
+<span class="sd">    numeric and equal to their integer representation. It is interpreted as a</span>
+<span class="sd">    single range specification and broadcast to all ``ndim`` dimensions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frequencies :</span>
+<span class="sd">        The input tuple specifying frequencies. It must be a 2-element tuple of integers.</span>
+
+<span class="sd">    ndim :</span>
+<span class="sd">        The number of input dimensions the range is broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        A list of ``ndim`` frequency arrays, one per input dimension.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the tuple does not match the expected format.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; _process_tuple_frequencies((2, 5), 1)</span>
+<span class="sd">    [Array([2., 3., 4.], dtype=float32)]</span>
+
+<span class="sd">    &gt;&gt;&gt; _process_tuple_frequencies((2, 5), 2)</span>
+<span class="sd">    [Array([2., 3., 4.], dtype=float32), Array([2., 3., 4.], dtype=float32)]</span>
+
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frequencies</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">arange_constructor</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)]</span> <span class="o">*</span> <span class="n">ndim</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="s2">"Invalid frequencies specification. If ``frequencies`` are provided as a tuple, "</span>
+        <span class="sa">f</span><span class="s2">"it must be a 2-element tuple of non-negative integers. Tuple </span><span class="si">{</span><span class="n">frequencies</span><span class="si">}</span><span class="s2"> provided instead."</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_all_frequency_pairs</span><span class="p">(</span><span class="n">frequencies</span><span class="p">):</span>
+    <span class="n">grids</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">freqs</span> <span class="k">for</span> <span class="n">freqs</span> <span class="ow">in</span> <span class="n">frequencies</span><span class="p">],</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">"ij"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">g</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_frequency_pairs_from_callable</span><span class="p">(</span>
+    <span class="n">frequency_mask</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">frequencies</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Apply the callable assigned to `frequency_mask` to all frequency tuples.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frequency_mask :</span>
+<span class="sd">        A function with signature: frequency_mask(*freqs) -&gt; bool (or 0/1).</span>
+<span class="sd">    frequencies :</span>
+<span class="sd">        Non-negative 1D frequency arrays (one per dimension).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        Shape (D, K): columns are the selected frequency tuples, taken from the</span>
+<span class="sd">        half-space combinations (DC first when kept).</span>
+<span class="sd">    """</span>
+    <span class="n">combinations</span> <span class="o">=</span> <span class="n">_combinator_builder</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>  <span class="c1"># (D, K), DC first</span>
+
+    <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">combinations</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">include</span> <span class="o">=</span> <span class="n">frequency_mask</span><span class="p">(</span><span class="o">*</span><span class="n">freqs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">"Error while applying the callable assigned to `frequency_mask`.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Expected signature: frequency_mask(*frequencies) -&gt; bool.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"Failed at index </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> with frequencies=</span><span class="si">{</span><span class="n">freqs</span><span class="si">!r}</span><span class="s2">."</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="c1"># Normalize/validate the result to a single boolean</span>
+        <span class="n">is_valid_number</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">include</span><span class="p">,</span> <span class="p">(</span><span class="n">Number</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">))</span> <span class="ow">and</span> <span class="n">include</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">is_valid_array</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">isinstance</span><span class="p">(</span><span class="n">include</span><span class="p">,</span> <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span>
+            <span class="ow">and</span> <span class="n">include</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="ow">and</span> <span class="n">include</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_valid_number</span> <span class="ow">or</span> <span class="n">is_valid_array</span><span class="p">:</span>
+            <span class="n">include</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">include</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">string_vals</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"`frequency_mask(*freqs)` must return a single boolean or 0/1.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"``frequency_mask(</span><span class="si">{</span><span class="n">string_vals</span><span class="si">}</span><span class="s2">)`` returned </span><span class="si">{</span><span class="n">include</span><span class="si">!r}</span><span class="s2"> "</span>
+                <span class="sa">f</span><span class="s2">"of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">include</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">."</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">selected</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">combinations</span><span class="p">[:,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">selected</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_signed_box_axes</span><span class="p">(</span><span class="n">freq_arrays</span><span class="p">:</span> <span class="n">FreqArrays</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Array</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Mirror every axis except the first to include negative frequencies.</span>
+
+<span class="sd">    The first axis stays non-negative; every other axis is extended symmetrically</span>
+<span class="sd">    with the negatives of its positive entries (the zero/DC entry, if present, is</span>
+<span class="sd">    not duplicated). Keeping the first axis non-negative is what lets</span>
+<span class="sd">    :func:`_half_space_selection` pick exactly one of each ``{J, -J}`` pair later.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freq_arrays:</span>
+<span class="sd">        Non-negative, ascending frequency arrays, one per dimension.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        Per-axis arrays defining the signed bounding box of the half-space. The</span>
+<span class="sd">        first axis is unchanged; each remaining axis runs from ``-max`` to ``max``.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">freq_arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="n">f</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">])</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">freq_arrays</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_half_space_selection</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Keep one frequency from each redundant ``{J, -J}`` pair.</span>
+
+<span class="sd">    A frequency multi-index ``J`` and its negation ``-J`` produce the same pair</span>
+<span class="sd">    of Fourier features (cosine is even, sine is odd), so only one of each pair</span>
+<span class="sd">    is kept: the origin, or whichever of ``J``/``-J`` has its first non-zero</span>
+<span class="sd">    coordinate positive (scanning coordinates left to right). For example, of</span>
+<span class="sd">    ``(0, 1)`` and ``(0, -1)`` it keeps ``(0, 1)``; of ``(1, -2)`` and</span>
+<span class="sd">    ``(-1, 2)`` it keeps ``(1, -2)``. The retained set is known formally as the</span>
+<span class="sd">    lexicographically positive half-space.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid:</span>
+<span class="sd">        Array of shape ``(ndim, n_combinations)`` whose columns are frequency</span>
+<span class="sd">        multi-indices.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        Boolean array of shape ``(n_combinations,)``, ``True`` for the columns to</span>
+<span class="sd">        keep.</span>
+<span class="sd">    """</span>
+    <span class="n">non_zero</span> <span class="o">=</span> <span class="n">grid</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">first_nonzero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">non_zero</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">first_val</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">first_nonzero</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">~</span><span class="n">non_zero</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">first_val</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_move_dc_first</span><span class="p">(</span><span class="n">freq_combinations</span><span class="p">:</span> <span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Move the all-zero (DC) combination to the first column when present.</span>
+
+<span class="sd">    ``evaluate`` and ``_has_zero_phase`` assume the DC term is the first column,</span>
+<span class="sd">    because its sine contribution is identically zero and is dropped.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freq_combinations:</span>
+<span class="sd">        Array of shape ``(ndim, n_combinations)``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        The same columns with the DC column first, when present.</span>
+<span class="sd">    """</span>
+    <span class="n">is_dc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">freq_combinations</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_dc</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">is_dc</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="o">~</span><span class="n">is_dc</span><span class="p">)])</span>
+        <span class="n">freq_combinations</span> <span class="o">=</span> <span class="n">freq_combinations</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">freq_combinations</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_combinator_builder</span><span class="p">(</span><span class="n">freq_arrays</span><span class="p">:</span> <span class="n">FreqArrays</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Generate the half-space frequency combinations from non-negative axes.</span>
+
+<span class="sd">    Mirrors every axis but the first to a signed bounding box, takes the full</span>
+<span class="sd">    Cartesian product, and keeps one representative of each redundant ``J``/``-J``</span>
+<span class="sd">    pair (see :func:`_half_space_selection`). The DC term, if present, is placed</span>
+<span class="sd">    first.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freq_arrays:</span>
+<span class="sd">        Non-negative, ascending frequency arrays, one per dimension.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        Array of shape ``(ndim, n_combinations)`` whose columns are the retained</span>
+<span class="sd">        frequency multi-indices.</span>
+<span class="sd">    """</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">_get_all_frequency_pairs</span><span class="p">(</span><span class="n">_signed_box_axes</span><span class="p">(</span><span class="n">freq_arrays</span><span class="p">))</span>
+    <span class="n">combinations</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[:,</span> <span class="n">_half_space_selection</span><span class="p">(</span><span class="n">grid</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">_move_dc_first</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FourierBasis</span><span class="p">(</span><span class="n">AtomicBasisMixin</span><span class="p">,</span> <span class="n">Basis</span><span class="p">):</span>
+    <span class="n">_is_complex</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">freq_combinations</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_ndim</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_fourier_params</span><span class="p">(</span><span class="n">freq_combinations</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="n">Basis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">AtomicBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_basis_funcs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_basis_funcs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ndim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The dimensionality of the basis."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_ndim</span><span class="p">(</span><span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">is_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span> <span class="o">==</span> <span class="n">ndim</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot convert ndim </span><span class="si">{</span><span class="n">ndim</span><span class="si">!r}</span><span class="s2"> to type int."</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="n">is_positive</span> <span class="o">=</span> <span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_int</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_positive</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"ndim must be a positive integer. </span><span class="si">{</span><span class="n">ndim</span><span class="si">!r}</span><span class="s2"> provided instead."</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weights</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Per-output-column weights applied inside :meth:`evaluate`.</span>
+
+<span class="sd">        ``None`` when no weights were provided at construction, in which case no</span>
+<span class="sd">        reweighting is applied.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_fourier_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">freq_combinations</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">freq_combinations</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">freq_combinations</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">freq_combinations</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"``freq_combinations`` must be 2D with shape "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="si">}</span><span class="s2">, n_combinations); "</span>
+                <span class="sa">f</span><span class="s2">"got an array with </span><span class="si">{</span><span class="n">freq_combinations</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> axes instead."</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">freq_combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"``freq_combinations`` must have the same number of rows as the input dimension "</span>
+                <span class="sa">f</span><span class="s2">"(``ndim`` = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="si">}</span><span class="s2">); "</span>
+                <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="n">freq_combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> instead."</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">freq_combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">freq_combinations</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">zero_phase_flag</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">zero_phase_flag</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_basis_functions</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">freq_combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">zero_phase_flag</span>
+        <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">weights</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"``weights`` must be 1D with shape "</span>
+                    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">n_basis_functions</span><span class="si">}</span><span class="s2">, ); "</span>
+                    <span class="sa">f</span><span class="s2">"got an array with </span><span class="si">{</span><span class="n">weights</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> axes instead."</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_basis_functions</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"``weights`` must have one entry per basis function "</span>
+                    <span class="sa">f</span><span class="s2">"(``n_basis_funcs`` = </span><span class="si">{</span><span class="n">n_basis_functions</span><span class="si">}</span><span class="s2">); "</span>
+                    <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> instead."</span>
+                <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span> <span class="o">=</span> <span class="n">freq_combinations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span> <span class="o">=</span> <span class="n">zero_phase_flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">=</span> <span class="n">weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span> <span class="o">=</span> <span class="n">n_basis_functions</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">freq_combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_zero_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_basis_funcs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span>
+
+    <span class="nd">@support_pynapple</span><span class="p">(</span><span class="n">conv_type</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)</span>
+    <span class="nd">@check_transform_input</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span>  <span class="c1"># call these _evaluate</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">sample_pts</span><span class="p">:</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="n">Tsd</span> <span class="o">|</span> <span class="n">TsdFrame</span> <span class="o">|</span> <span class="n">TsdTensor</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Evaluate the Fourier basis at the sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sample_pts :</span>
+<span class="sd">            Spacing for basis functions, holding elements on interval [0, 1].</span>
+<span class="sd">            `sample_pts` is a n-dimensional (n &gt;= 1) array with first axis being the samples, i.e.</span>
+<span class="sd">            `sample_pts.shape[0] == n_samples`.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the sample provided do not lie in [0,1].</span>
+
+<span class="sd">        """</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">sample_pts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds_per_dim</span><span class="p">()</span>
+
+        <span class="c1"># min/max rescale to [0,1]:</span>
+        <span class="c1"># The function does so over the time axis (each extra dim is</span>
+        <span class="c1"># normalized independently)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_flat_samples_to_angles</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+            <span class="n">scaled_samples</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="mi">2</span>
+                    <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">pi</span>
+                    <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shift_angles</span><span class="p">(</span><span class="n">min_max_rescale_samples</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+                <span class="p">),</span>
+                <span class="n">xs</span><span class="p">,</span>
+                <span class="n">bounds</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">scaled_samples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">sample_pts</span> <span class="o">=</span> <span class="n">_flat_samples_to_angles</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">))</span>
+        <span class="n">angles</span> <span class="o">=</span> <span class="n">sample_pts</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">),</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_zero_phase</span> <span class="p">:])],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weights</span>
+        <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Evaluate the basis set on a grid of equi-spaced sample points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_samples :</span>
+<span class="sd">            The number of points in the uniformly spaced grid. A higher number of</span>
+<span class="sd">            samples will result in a more detailed visualization of the basis functions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        X :</span>
+<span class="sd">            Array of shape (n_samples,) containing the equi-spaced sample</span>
+<span class="sd">            points where we've evaluated the basis.</span>
+<span class="sd">        basis_funcs :</span>
+<span class="sd">            Fourier basis functions, shape (n_samples, n_basis_funcs)</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_shift_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_pts</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArrayLike</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Shift angles.</span>
+
+<span class="sd">        Reimplemented for ``FourierConv``, shifting the angles to</span>
+<span class="sd">        match the Fourier coefficients when the basis is used for convolutions.</span>
+<span class="sd">        This shift must not be applied for ``FourierEval`` basis, therefore the</span>
+<span class="sd">        super-class implements an identity function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sample_pts :</span>
+<span class="sd">            The samples.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sample_pts :</span>
+<span class="sd">            The samples as provided, identity function.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">sample_pts</span>
+
+
+<div class="viewcode-block" id="FourierEval">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">FourierEval</span><span class="p">(</span><span class="n">BoundedEvalBasisMixin</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    N-dimensional Fourier basis for feature expansion.</span>
+
+<span class="sd">    This class generates a set of sine and cosine basis functions defined over</span>
+<span class="sd">    an ``n``-dimensional input space. The basis functions are constructed from</span>
+<span class="sd">    a Cartesian product of frequencies specified for each input dimension.</span>
+<span class="sd">    Each selected frequency combination contributes two basis functions</span>
+<span class="sd">    (cosine and sine), except for the all-zero frequency (DC component),</span>
+<span class="sd">    which contributes only a cosine term.</span>
+
+<span class="sd">    The class supports flexible frequency specification (integers, ranges, or</span>
+<span class="sd">    arrays per dimension) and optional masking to include or exclude specific</span>
+<span class="sd">    frequency combinations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    frequencies :</span>
+<span class="sd">        Frequency specification(s).</span>
+
+<span class="sd">        Single specification (broadcasted to all dimensions when ``ndim &gt; 1``):</span>
+
+<span class="sd">            * :class:`int`: An integer ``k`` with ``k &gt;= 0``.</span>
+
+<span class="sd">            * :class:`tuple`: ``(low, high)``, a 2-element tuple of integers with ``0 &lt;= low &lt; high``.</span>
+
+<span class="sd">            * :class:`~numpy.ndarray`: 1-D NumPy array of non-negative integers. If not sorted ascending,</span>
+<span class="sd">              a ``UserWarning`` is issue for non-sorted arrays.</span>
+
+<span class="sd">        Per-dimension container:</span>
+
+<span class="sd">            * A :class:`list` of length ``ndim`` whose elements are each a valid single specification.</span>
+<span class="sd">              For ``ndim == 1``, a length-1 :class:`list` is also accepted.</span>
+
+<span class="sd">    ndim :</span>
+<span class="sd">        Dimensionality of the basis. Default is 1.</span>
+
+<span class="sd">    bounds :</span>
+<span class="sd">        Period bounds for each dimension. Unlike other basis classes where bounds define</span>
+<span class="sd">        a valid domain (with out-of-bounds samples set to ``fill_value``), for the Fourier basis</span>
+<span class="sd">        the bounds define the period of the basis functions. Samples outside these bounds</span>
+<span class="sd">        are still valid and will be evaluated using the periodic nature of the basis.</span>
+
+<span class="sd">        * :class:`tuple`: ``(low, high)`` of floats: applies to all dimensions.</span>
+<span class="sd">        * :class:`list` of :class:`tuple`: ``[(low, high), ...]``, one tuple per dimension,</span>
+<span class="sd">        length must match ``ndim``.</span>
+<span class="sd">        * :class:`None &lt;NoneType&gt;`: the period is inferred from the input data (minimum to maximum values).</span>
+
+<span class="sd">        In all cases, ``low`` must be strictly less than ``high``, and values must be convertible to floats.</span>
+
+<span class="sd">    frequency_mask :</span>
+<span class="sd">        Optional mask specifying which frequency components to include.</span>
+<span class="sd">        Can be:</span>
+
+<span class="sd">        * :class:`~typing.Literal`: either ``"no-intercept"`` - default - which drops</span>
+<span class="sd">          the 0-frequency DC term, or ``"all"`` which keeps all the frequencies -</span>
+<span class="sd">          equivalent to :class:`None &lt;NoneType&gt;`. The default excludes the intercept</span>
+<span class="sd">          because these basis objects are most commonly used to generate design matrices</span>
+<span class="sd">          for NeMoS GLMs, which already include an intercept term by default, making an</span>
+<span class="sd">          additional intercept in the design matrix redundant.</span>
+
+<span class="sd">        * Array-like of integers {0, 1} or booleans: A 1D mask with one entry</span>
+<span class="sd">          per column of ``masked_frequencies``, keeping (1/True) or dropping</span>
+<span class="sd">          (0/False) that frequency combination. At construction it filters the</span>
+<span class="sd">          combinations left by the default ``"no-intercept"`` selection; print</span>
+<span class="sd">          ``masked_frequencies`` to see the combinations in column order.</span>
+
+<span class="sd">        * :class:`~typing.Callable`: A function applied to each retained frequency</span>
+<span class="sd">          combination (one scalar per dimension, signed), returning a single</span>
+<span class="sd">          boolean or {0, 1} indicating whether to keep that frequency.</span>
+
+<span class="sd">        * :class:`None &lt;NoneType&gt;`: All frequencies are kept.</span>
+
+<span class="sd">        Values must be 0/1 or boolean. Callables must return a single boolean or</span>
+<span class="sd">        {0, 1} value for each frequency coordinate.</span>
+
+<span class="sd">    weights :</span>
+<span class="sd">        Optional per-output-column weights, with one entry per basis function</span>
+<span class="sd">        (``n_basis_funcs``), applied inside ``evaluate``. The columns are ordered</span>
+<span class="sd">        as the cosine terms followed by the sine terms. When ``None`` (default),</span>
+<span class="sd">        no reweighting is applied.</span>
+
+<span class="sd">    label :</span>
+<span class="sd">        Descriptive label for the basis (e.g., to use in plots or summaries).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - If ``frequency_mask`` is provided, only the selected frequency</span>
+<span class="sd">      combinations are used to build the basis.</span>
+<span class="sd">    - The output of ``compute_features`` contains both cosine and sine components for</span>
+<span class="sd">      each active frequency combination, except that the all-zero frequency</span>
+<span class="sd">      includes only a cosine term.</span>
+<span class="sd">    - When a :class:`tuple` is provided as a frequency, it is interpreted</span>
+<span class="sd">      as a single range specification. Tuples that are not exactly a 2-element</span>
+<span class="sd">      tuple of non-negative integers are invalid.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from nemos.basis import FourierEval</span>
+<span class="sd">    &gt;&gt;&gt; rng = np.random.default_rng(0)</span>
+
+<span class="sd">    **1D: basic usage**</span>
+
+<span class="sd">    &gt;&gt;&gt; n_freq = 5</span>
+<span class="sd">    &gt;&gt;&gt; fourier_1d = FourierEval(n_freq)</span>
+<span class="sd">    &gt;&gt;&gt; # cos at 0..4 (5) + sin at 1..4 (4) = 9</span>
+<span class="sd">    &gt;&gt;&gt; fourier_1d.n_basis_funcs</span>
+<span class="sd">    8</span>
+<span class="sd">    &gt;&gt;&gt; x = rng.normal(size=8)</span>
+<span class="sd">    &gt;&gt;&gt; X = fourier_1d.compute_features(x)</span>
+<span class="sd">    &gt;&gt;&gt; X.shape  # (n_samples, n_basis_funcs)</span>
+<span class="sd">    (8, 8)</span>
+
+<span class="sd">    **2D: unmasked grid of frequency pairs**</span>
+
+<span class="sd">    &gt;&gt;&gt; fourier_2d = FourierEval(n_freq, ndim=2)</span>
+<span class="sd">    &gt;&gt;&gt; # half-space of the 5x5 grid has 41 pairs (incl. DC); DC dropped -&gt; 40; *2</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d.n_basis_funcs</span>
+<span class="sd">    80</span>
+<span class="sd">    &gt;&gt;&gt; x, y = rng.normal(size=(2, 6))</span>
+<span class="sd">    &gt;&gt;&gt; X = fourier_2d.compute_features(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; X.shape</span>
+<span class="sd">    (6, 80)</span>
+
+<span class="sd">    **2D: masking with an array (drop 3 pairs)**</span>
+
+<span class="sd">    &gt;&gt;&gt; # one mask entry per retained pair: the default "no-intercept"</span>
+<span class="sd">    &gt;&gt;&gt; # selection drops the DC and leaves 40 pairs</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d.masked_frequencies.shape</span>
+<span class="sd">    (2, 40)</span>
+<span class="sd">    &gt;&gt;&gt; mask = np.ones(40)</span>
+<span class="sd">    &gt;&gt;&gt; mask[:3] = 0  # drop the first 3 pairs</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d_masked = FourierEval(n_freq, ndim=2, frequency_mask=mask)</span>
+<span class="sd">    &gt;&gt;&gt; # (40 pairs - 3 dropped) * 2 (cos+sin) = 74</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d_masked.n_basis_funcs</span>
+<span class="sd">    74</span>
+
+<span class="sd">    **2D: masking with a callable**</span>
+
+<span class="sd">    &gt;&gt;&gt; # keep pairs inside a circle of radius 3.5 in frequency space</span>
+<span class="sd">    &gt;&gt;&gt; keep_circle = lambda fx, fy: (fx**2 + fy**2) ** 0.5 &lt; 3.5</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d_funcmask = FourierEval(n_freq, ndim=2, frequency_mask=keep_circle)</span>
+<span class="sd">    &gt;&gt;&gt; fourier_2d_funcmask.n_basis_funcs</span>
+<span class="sd">    37</span>
+
+<span class="sd">    **Explicit frequency specifications**</span>
+
+<span class="sd">    &gt;&gt;&gt; # mix forms per-dimension: an explicit array</span>
+<span class="sd">    &gt;&gt;&gt; # and an inclusive tuple (low, high)</span>
+<span class="sd">    &gt;&gt;&gt; fourier_mixed = FourierEval(frequencies=[np.arange(3), (1, 4)], ndim=2)</span>
+<span class="sd">    &gt;&gt;&gt; # 15 half-space pairs (no DC, since the y-axis omits 0) -&gt; 2*15 = 30</span>
+<span class="sd">    &gt;&gt;&gt; fourier_mixed.n_basis_funcs</span>
+<span class="sd">    30</span>
+
+<span class="sd">    """</span>
+
+    <span class="c1"># Fourier basis is defined over the entire real line; out-of-bounds</span>
+    <span class="c1"># samples should not be filled with a sentinel value.</span>
+    <span class="n">_apply_bounds_fill</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="FourierEval.__init__">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">frequencies</span><span class="p">:</span> <span class="p">(</span>
+            <span class="nb">int</span>
+            <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+            <span class="o">|</span> <span class="n">NDArray</span>
+            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">NDArray</span><span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">frequency_mask</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Literal</span><span class="p">[</span><span class="s2">"all"</span><span class="p">,</span> <span class="s2">"no-intercept"</span><span class="p">]</span> <span class="o">|</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="s2">"no-intercept"</span><span class="p">,</span>
+        <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"FourierEval"</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_ndim</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">frequencies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="n">frequency_mask</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+        <span class="n">FourierBasis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">ndim</span><span class="o">=</span><span class="n">ndim</span><span class="p">,</span>
+            <span class="n">freq_combinations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="p">,</span>
+            <span class="n">weights</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">frequency_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span> <span class="o">|</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"all"</span><span class="p">,</span> <span class="s2">"no-intercept"</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Get the frequency mask for the Fourier basis.</span>
+
+<span class="sd">        The frequency mask can be either:</span>
+
+<span class="sd">        - a 1D boolean array with one entry per column of the ``masked_frequencies``</span>
+<span class="sd">          it was applied to, or</span>
+<span class="sd">        - a callable with signature ``frequency_mask(*freqs) -&gt; bool`` (or 0/1) applied</span>
+<span class="sd">          to each frequency tuple, or</span>
+<span class="sd">        - a string, either ``"all"``, if all possible frequency combinations are included, or</span>
+<span class="sd">          ``"no-intercept"``, if the intercept term is dropped (DC component).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The string, callable, or boolean JAX array mask that was last</span>
+<span class="sd">            assigned (``None`` is stored as ``"all"``).</span>
+<span class="sd">        """</span>
+        <span class="c1"># safe get when getter is called at init initialization</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_frequency_mask"</span><span class="p">,</span> <span class="s2">"no-intercept"</span><span class="p">)</span>
+
+    <span class="nd">@frequency_mask</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">frequency_mask</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">values</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Literal</span><span class="p">[</span><span class="s2">"all"</span><span class="p">,</span> <span class="s2">"no-intercept"</span><span class="p">]</span>
+            <span class="o">|</span> <span class="n">ArrayLike</span>
+            <span class="o">|</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span>
+            <span class="o">|</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+            <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Set the frequency mask for the Fourier basis.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        values :</span>
+<span class="sd">            One of:</span>
+<span class="sd">            - :class:`Literal &lt;typing.Literal&gt;`: either `"no-intercept"`` - default - which drops</span>
+<span class="sd">              the 0-frequency DC term, or ``"all"`` which keeps all the frequencies -</span>
+<span class="sd">              equivalent to :class:`None &lt;NoneType&gt;`.</span>
+<span class="sd">            - **Array / array-like (bool or 0/1)**: a 1D mask with one entry per</span>
+<span class="sd">              column of the current ``masked_frequencies``; the retained columns</span>
+<span class="sd">              become the new ``masked_frequencies``.</span>
+<span class="sd">            - :class:`callable`: A function with signature</span>
+<span class="sd">              ``frequency_mask(*freqs) -&gt; bool`` (or 0/1). It is applied to each</span>
+<span class="sd">              frequency tuple ``(f1, f2, ..., f_n)`` to build the mask. The callable is</span>
+<span class="sd">              **not required to be vectorized**; ``n`` is the input dimensionality.</span>
+<span class="sd">            - :class:`None &lt;NoneType&gt;`: Include all frequency combinations.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If an array mask has values other than {0, 1}/booleans, or if its</span>
+<span class="sd">            length does not match the current number of frequency combinations.</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If ``values`` is neither array-like, callable, nor ``None``; or if</span>
+<span class="sd">            the callable returns a value that is not a single boolean or 0/1.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - Setting this property updates ``frequency_mask`` and</span>
+<span class="sd">          ``masked_frequencies`` (and, through the latter, ``n_basis_funcs``).</span>
+<span class="sd">        - An array mask filters the *current* ``masked_frequencies``: assigning a</span>
+<span class="sd">          second array mask filters the already-filtered combinations. Assign</span>
+<span class="sd">          ``"all"`` or ``"no-intercept"`` to start from the full half-space again.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">values</span> <span class="o">==</span> <span class="s2">"no-intercept"</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="s2">"no-intercept"</span>
+            <span class="n">combinations</span> <span class="o">=</span> <span class="n">_combinator_builder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequencies</span><span class="p">)</span>
+            <span class="c1"># the DC term, if present, is the first column; drop it.</span>
+            <span class="k">if</span> <span class="n">combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">combinations</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">combinations</span> <span class="o">=</span> <span class="n">combinations</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+        <span class="k">elif</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">values</span> <span class="o">==</span> <span class="s2">"all"</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="s2">"all"</span>
+            <span class="n">combinations</span> <span class="o">=</span> <span class="n">_combinator_builder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequencies</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">callable</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+            <span class="n">combinations</span> <span class="o">=</span> <span class="n">_get_frequency_pairs_from_callable</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequencies</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_array_frequency_mask</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_weights"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">"Resetting ``weights`` to ``None``. </span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"To re-weight chosen frequencies, please provide new ``weights``."</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_fourier_params</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency_mask</span> <span class="o">=</span> <span class="n">mask</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_array_frequency_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Validate a boolean array mask and filter the frequency combinations.</span>
+
+<span class="sd">        The mask is checked for 0/1 values and for shape ``(K,)``, with ``K``</span>
+<span class="sd">        the current number of columns of ``masked_frequencies``. The columns</span>
+<span class="sd">        where the mask is ``True`` become the new ``_freq_combinations``, and</span>
+<span class="sd">        the boolean mask is stored as ``_frequency_mask``.</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"``frequency_mask`` </span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2"> cannot be converted to a jax array of boolean."</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">jnp</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">values</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">values</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Frequency mask must be an array-like of 0s and 1s."</span><span class="p">)</span>
+
+        <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">expected_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">masked_frequencies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">expected_len</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Mis-shaped ``frequency_mask``. An array mask must have shape "</span>
+                <span class="sa">f</span><span class="s2">"``(</span><span class="si">{</span><span class="n">expected_len</span><span class="si">}</span><span class="s2">,)``, one entry per frequency combination: "</span>
+                <span class="sa">f</span><span class="s2">"entry ``i`` keeps (1/True) or drops (0/False) the combination "</span>
+                <span class="sa">f</span><span class="s2">"``masked_frequencies[:, i]``. Print the ``masked_frequencies`` "</span>
+                <span class="s2">"attribute to see the combinations currently included."</span>
+            <span class="p">)</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="n">combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">[:,</span> <span class="n">values</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">mask</span><span class="p">,</span> <span class="n">combinations</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Frequencies for the basis.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A tuple of arrays with the fourier frequencies, one per</span>
+<span class="sd">            dimension of the basis.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frequencies</span>
+
+    <span class="nd">@frequencies</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">frequencies</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">frequencies</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ndim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">frequencies</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)):</span>
+            <span class="n">frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">arange_constructor</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)]</span> <span class="o">*</span> <span class="n">ndim</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">frequencies</span> <span class="o">=</span> <span class="n">_process_tuple_frequencies</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">is_at_least_1d_numpy_array_like</span><span class="p">(</span><span class="n">frequencies</span><span class="p">):</span>
+            <span class="n">frequencies</span> <span class="o">=</span> <span class="n">_check_and_sort_frequencies</span><span class="p">(</span><span class="o">*</span><span class="p">([</span><span class="n">frequencies</span><span class="p">]</span> <span class="o">*</span> <span class="n">ndim</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"Length of frequencies list must match input dimensionality."</span>
+                <span class="p">)</span>
+            <span class="n">frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="n">arange_constructor</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frequencies</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span>
+                <span class="n">frequencies</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span>
+            <span class="p">):</span>
+                <span class="n">type_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"NDArray[</span><span class="si">{</span><span class="n">frequencies</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">]"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">type_string</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">frequencies</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Unrecognized type </span><span class="si">{</span><span class="n">type_string</span><span class="si">}</span><span class="s2"> for the ``frequencies`` parameter. ``frequencies`` "</span>
+                <span class="s2">"must be one of:</span><span class="se">\n\n</span><span class="s2">"</span>
+                <span class="s2">"  - int</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"  - tuple[int, int]</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"  - NDArray[int]</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"  - list[int | tuple[int, int] | NDArray[int] | NDArray[int]]</span><span class="se">\n\n</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"If a list is provided, the list should be of length ``</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2">``, "</span>
+                <span class="s2">"one entry for each dimension of the Fourier basis."</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Skip update if same as current</span>
+        <span class="n">current_freqs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_frequencies"</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_freqs</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span> <span class="k">for</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">current_freqs</span><span class="p">,</span> <span class="n">frequencies</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequencies</span> <span class="o">=</span> <span class="n">frequencies</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency_mask</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">"Resetting ``frequency_mask`` to ``'no-intercept'`` (all frequencies "</span>
+                <span class="s2">"except the intercept - DC term - will be included).</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"To sub-select frequencies, please provide a new ``frequency_mask``."</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="s2">"no-intercept"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># call the setter to re-calculate frequency pairs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frequency_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency_mask</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">masked_frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        The retained frequency combinations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            The retained frequency combinations, shape</span>
+<span class="sd">            ``(ndim, n_frequency_combinations)``. Column ``i`` is the frequency</span>
+<span class="sd">            multi-index of the i-th combination; each column contributes a</span>
+<span class="sd">            cosine and a sine feature (cosine only for the DC term). It cannot be</span>
+<span class="sd">            set directly; assign ``frequency_mask`` to change it.</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span>
+
+    <span class="nd">@FourierBasis</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_fourier_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_freq_combinations</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FourierEval.set_params">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.set_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Set params handling correctly the frequencies and their mask."""</span>
+        <span class="n">has_weights</span> <span class="o">=</span> <span class="s2">"weights"</span> <span class="ow">in</span> <span class="n">params</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"weights"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="c1"># if both frequencies and mask are set ignore warning</span>
+            <span class="k">if</span> <span class="s2">"frequencies"</span> <span class="ow">in</span> <span class="n">params</span> <span class="ow">and</span> <span class="s2">"frequency_mask"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+                    <span class="s2">"ignore"</span><span class="p">,</span>
+                    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+                    <span class="n">message</span><span class="o">=</span><span class="s2">"Resetting ``frequency_mask``.*"</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">has_weights</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+                    <span class="s2">"ignore"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"Resetting ``weights``.*"</span>
+                <span class="p">)</span>
+            <span class="c1"># check for frequencies first</span>
+            <span class="k">if</span> <span class="s2">"frequencies"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"frequencies"</span><span class="p">)</span>
+            <span class="c1"># then set everything else (so that the mask is</span>
+            <span class="c1"># checked against the new frequencies)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="c1"># only set weights once everything else has been set</span>
+        <span class="k">if</span> <span class="n">has_weights</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="FourierEval.evaluate_on_grid">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.evaluate_on_grid">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate_on_grid"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        .. plot::</span>
+<span class="sd">            :include-source: True</span>
+<span class="sd">            :caption: FourierEval</span>
+
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; from nemos.basis import FourierEval</span>
+<span class="sd">            &gt;&gt;&gt; n_frequencies = 5</span>
+<span class="sd">            &gt;&gt;&gt; fourier_basis = FourierEval(n_frequencies)</span>
+<span class="sd">            &gt;&gt;&gt; sample_points, basis_values = fourier_basis.evaluate_on_grid(100)</span>
+<span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
+<span class="sd">            [&lt;matplotlib.lines.Line2D object at ...</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FourierEval.compute_features">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.compute_features">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"_compute_features"</span><span class="p">,</span> <span class="n">BoundedEvalBasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
+
+<span class="sd">        &gt;&gt;&gt; # Generate data</span>
+<span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierEval(10)</span>
+<span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
+<span class="sd">        &gt;&gt;&gt; features.shape</span>
+<span class="sd">        (1000, 18)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FourierEval.split_by_feature">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.split_by_feature">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"split_by_feature"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierEval(6, label="one_input")</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         20,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        one_input, shape (20, 10)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FourierEval.set_input_shape">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.set_input_shape">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"set_input_shape"</span><span class="p">,</span> <span class="n">AtomicBasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.FourierEval(5)</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        24</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with a tuple:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape((4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        160</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an array:</span>
+<span class="sd">        &gt;&gt;&gt; x = np.ones((10, 4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(x)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        160</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FourierEval.evaluate">
+<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.evaluate">[docs]</a>
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">sample_pts</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierEval(4)</span>
+<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(np.random.randn(100, 5, 2))</span>
+<span class="sd">        &gt;&gt;&gt; out.shape</span>
+<span class="sd">        (100, 5, 2, 6)</span>
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">sample_pts</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_nodes_weights</span><span class="p">(</span>
+    <span class="n">lengthscale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">variance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">L</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Find the nodes of the equispaced quadrature in Fourier domain.</span>
+
+<span class="sd">    Operates on the discretized inverse Fourier transform for a 1-D</span>
+<span class="sd">    squared-exponential kernel. This involves finding the spacing between</span>
+<span class="sd">    nodes ``h`` and the number of nodes ``2m + 1``. This is done from a</span>
+<span class="sd">    formula in [1]_.</span>
+
+<span class="sd">    Returns the non-negative frequency grid ``xi_j = j * h`` for</span>
+<span class="sd">    ``j = 0, 1, ..., m``, the weights corresponding to each column</span>
+<span class="sd">    (also prior standard deviations from the GP perspective) in</span>
+<span class="sd">    ``[cos columns, sin columns]`` so that an i.i.d. ``N(0, 1)`` prior</span>
+<span class="sd">    on coefficients gives an approximate squared-exponential covariance</span>
+<span class="sd">    kernel. also returns the frequency spacing ``h``, and the number of</span>
+<span class="sd">    non-negative frequencies, ``m``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lengthscale, variance :</span>
+<span class="sd">        se kernel hyperparameters.</span>
+<span class="sd">    eps :</span>
+<span class="sd">        error tolerance on kernel approximation</span>
+<span class="sd">    L :</span>
+<span class="sd">        time domain length ``t1 - t0``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xis :</span>
+<span class="sd">        non-negative frequencies of shape ``(m + 1,)``.</span>
+<span class="sd">    weights :</span>
+<span class="sd">        weights of shape ``(2 * m + 1,)`` corresponding to the columns</span>
+<span class="sd">        ``[cos columns, sin columns]``: cos columns first</span>
+<span class="sd">        (``j = 0, 1, ..., m``), then sin columns (``j = 1, ..., m``).</span>
+<span class="sd">    h :</span>
+<span class="sd">        spacing between frequencies</span>
+<span class="sd">    m :</span>
+<span class="sd">        number of positive frequencies</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Barnett, A. H., Greengard, P., &amp; Rachh, M. (2024). Uniform</span>
+<span class="sd">        approximation of common Gaussian process kernels using equispaced Fourier</span>
+<span class="sd">        grids. Applied and Computational Harmonic Analysis, 71, 101640.</span>
+<span class="sd">    """</span>
+    <span class="n">lengthscale</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lengthscale</span><span class="p">)</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+    <span class="n">eps_use</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="o">/</span> <span class="n">var</span>
+
+    <span class="c1"># Heuristic for h and m</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">lengthscale</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">12.0</span> <span class="o">/</span> <span class="n">eps_use</span><span class="p">)))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">16.0</span> <span class="o">/</span> <span class="n">eps_use</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">lengthscale</span> <span class="o">/</span> <span class="n">h</span><span class="p">)</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">xis</span> <span class="o">=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">h</span>
+
+    <span class="c1"># 1d se spectral density: S(xi) = var * sqrt(2*pi*l^2) * exp(-2*pi^2*l^2*xi^2)</span>
+    <span class="n">prefactor</span> <span class="o">=</span> <span class="n">var</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">lengthscale</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">lengthscale</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xis</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>  <span class="c1"># efgp per-mode weight, shape (m + 1,)</span>
+
+    <span class="c1"># convert standard efgp xis with +/- modes into a positive-only modes.</span>
+    <span class="n">sqrt2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">w_cos</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sqrt2</span><span class="p">)</span>  <span class="c1"># cos columns: w_0, sqrt(2)*w_1, ...</span>
+    <span class="n">w_sin</span> <span class="o">=</span> <span class="n">sqrt2</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># sin columns: sqrt(2)*w_1, ...</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">w_cos</span><span class="p">,</span> <span class="n">w_sin</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">xis</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_grid_params_from_nodes</span><span class="p">(</span><span class="n">xis</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Recover the grid spacing ``h`` and max index ``m`` from the node grid.</span>
+
+<span class="sd">    The nodes are the non-negative, equispaced frequencies ``xi_j = j * h`` for</span>
+<span class="sd">    ``j = 0, 1, ..., m`` produced by :func:`_get_nodes_weights`, so the spacing</span>
+<span class="sd">    is ``h = xis[1] - xis[0]`` and the number of positive frequencies is</span>
+<span class="sd">    ``m = len(xis) - 1``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xis :</span>
+<span class="sd">        Non-negative, equispaced frequency grid, shape ``(m + 1,)``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    h :</span>
+<span class="sd">        Spacing between consecutive frequencies.</span>
+<span class="sd">    m :</span>
+<span class="sd">        Number of positive frequencies.</span>
+<span class="sd">    """</span>
+    <span class="n">xis</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xis</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xis</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">xis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xis</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FourierGP</span><span class="p">(</span><span class="n">BoundedEvalBasisMixin</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""1d Fourier basis with an approximate squared-exponential GP prior.</span>
+
+<span class="sd">    Generates ``cos`` and ``sin`` basis functions on a domain ``[t0, t1]``</span>
+<span class="sd">    whose frequencies and per-column weights are picked so that an i.i.d.</span>
+<span class="sd">    ``N(0, 1)`` prior on the basis coefficients corresponds to a Gaussian</span>
+<span class="sd">    process with approximately squared-exponential (SE) covariance:</span>
+
+<span class="sd">    .. code-block:: text</span>
+
+<span class="sd">        k(r) = variance * exp(-r^2 / (2 * lengthscale^2))</span>
+
+<span class="sd">    The equispaced frequency grid for Gaussian processes is from [1]_. Given</span>
+<span class="sd">    the error tolerance ``eps``, the basis has ``2 * m + 1`` functions: cosines</span>
+<span class="sd">    at frequencies ``j * h`` for ``j = 0, ..., m`` and sines at ``j * h`` for</span>
+<span class="sd">    ``j = 1, ..., m``; the spacing ``h`` and node count ``m`` follow the kernel</span>
+<span class="sd">    approximation bounds in [2]_.</span>
+
+<span class="sd">    This basis reuses :class:`FourierBasis`: it is built on the integer</span>
+<span class="sd">    harmonics ``j = 0, ..., m`` whose effective frequency is rescaled to</span>
+<span class="sd">    ``j * h`` (see :meth:`_shift_angles`), and the SE spectral density enters</span>
+<span class="sd">    through the inherited per-column ``weights``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lengthscale :</span>
+<span class="sd">        SE kernel lengthscale, in the same units as ``bounds``.</span>
+<span class="sd">    bounds :</span>
+<span class="sd">        Pair ``(t0, t1)`` with ``t0 &lt; t1`` defining the construction domain.</span>
+<span class="sd">    eps :</span>
+<span class="sd">        kernel approximation error tolerance.</span>
+<span class="sd">    variance :</span>
+<span class="sd">        SE kernel variance (prefactor). Default is ``1.0``.</span>
+<span class="sd">    label :</span>
+<span class="sd">        descriptive label for the basis. Defaults to the class name.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Greengard, P., Rachh, M., &amp; Barnett, A. H. (2025). Equispaced Fourier</span>
+<span class="sd">        representations for efficient Gaussian process regression from a billion</span>
+<span class="sd">        data points. SIAM/ASA Journal on Uncertainty Quantification, 13(1).</span>
+<span class="sd">    .. [2] Barnett, A. H., Greengard, P., &amp; Rachh, M. (2024). Uniform</span>
+<span class="sd">        approximation of common Gaussian process kernels using equispaced Fourier</span>
+<span class="sd">        grids. Applied and Computational Harmonic Analysis, 71, 101640.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from nemos.basis import FourierGP</span>
+<span class="sd">    &gt;&gt;&gt; basis = FourierGP(lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4, variance=2.0)</span>
+<span class="sd">    &gt;&gt;&gt; basis.n_frequencies</span>
+<span class="sd">    8</span>
+<span class="sd">    &gt;&gt;&gt; basis.n_basis_funcs</span>
+<span class="sd">    17</span>
+<span class="sd">    &gt;&gt;&gt; x = np.linspace(0, 1, 100)</span>
+<span class="sd">    &gt;&gt;&gt; X = basis.compute_features(x)</span>
+<span class="sd">    &gt;&gt;&gt; X.shape  # (n_samples, n_basis_funcs)</span>
+<span class="sd">    (100, 17)</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">lengthscale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">variance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"FourierGP"</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ndim</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_ndim</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_grid</span><span class="p">(</span><span class="n">lengthscale</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+        <span class="n">FourierBasis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">ndim</span><span class="o">=</span><span class="n">ndim</span><span class="p">,</span>
+            <span class="n">freq_combinations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_combinations</span><span class="p">,</span>
+            <span class="n">weights</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lengthscale</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lengthscale</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"``lengthscale`` must be positive, got </span><span class="si">{</span><span class="n">lengthscale</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">variance</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"``variance`` must be positive, got </span><span class="si">{</span><span class="n">variance</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">eps</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"``eps`` must be positive, got </span><span class="si">{</span><span class="n">eps</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"``bounds`` must not be ``None``."</span><span class="p">)</span>
+        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+        <span class="p">((</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">),)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounds_per_dim</span><span class="p">()</span>
+        <span class="n">xis</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_nodes_weights</span><span class="p">(</span><span class="n">lengthscale</span><span class="p">,</span> <span class="n">variance</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_fourier_params</span><span class="p">(</span><span class="n">xis</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_inputs</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lengthscale</span> <span class="o">=</span> <span class="n">lengthscale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_variance</span> <span class="o">=</span> <span class="n">variance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eps</span> <span class="o">=</span> <span class="n">eps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xis</span> <span class="o">=</span> <span class="n">xis</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lengthscale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""SE kernel lengthscale."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lengthscale</span>
+
+    <span class="nd">@lengthscale</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lengthscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_grid</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounds</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">variance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""SE kernel variance (prefactor)."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variance</span>
+
+    <span class="nd">@variance</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">variance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lengthscale</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounds</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Kernel error approximation tolerance."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eps</span>
+
+    <span class="nd">@eps</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lengthscale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variance</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounds</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounds</span>
+
+    <span class="nd">@bounds</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lengthscale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eps</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">xis</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Non-negative frequencies ``j * h`` for ``j = 0, ..., m``."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xis</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">frequency_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Frequency spacing, recovered from :attr:`xis`."""</span>
+        <span class="k">return</span> <span class="n">_grid_params_from_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xis</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Number of positive frequencies ``m``.</span>
+
+<span class="sd">        The underlying grid :attr:`xis` holds ``m + 1`` non-negative</span>
+<span class="sd">        frequencies ``j * h`` for ``j = 0, ..., m``; this excludes the</span>
+<span class="sd">        ``j = 0`` (DC) term, so ``n_frequencies == len(xis) - 1``.</span>
+<span class="sd">        The basis has ``2 * n_frequencies + 1`` functions.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xis</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_shift_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_pts</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArrayLike</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Rescale ``[0, 1]`` samples so frequency ``j`` evaluates at ``j * h``.</span>
+
+<span class="sd">        :meth:`FourierBasis.evaluate` maps samples to</span>
+<span class="sd">        ``2 * pi * _shift_angles(x_scaled)`` and multiplies by the frequency</span>
+<span class="sd">        ``xi``.</span>
+<span class="sd">        """</span>
+        <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="k">return</span> <span class="n">sample_pts</span> <span class="o">*</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Produce equispaced samples over the construction domain."""</span>
+        <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]),)</span>
+
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate_on_grid"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        .. plot::</span>
+<span class="sd">            :include-source: True</span>
+<span class="sd">            :caption: FourierGP</span>
+
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt; from nemos.basis import FourierGP</span>
+<span class="sd">            &gt;&gt;&gt; gp_basis = FourierGP(lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4)</span>
+<span class="sd">            &gt;&gt;&gt; sample_points, basis_values = gp_basis.evaluate_on_grid(100)</span>
+<span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
+<span class="sd">            [&lt;matplotlib.lines.Line2D object at ...</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span>
+
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"_compute_features"</span><span class="p">,</span> <span class="n">BoundedEvalBasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierGP</span>
+
+<span class="sd">        &gt;&gt;&gt; # Generate data</span>
+<span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.uniform(size=(num_samples,))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierGP(lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4)</span>
+<span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
+<span class="sd">        &gt;&gt;&gt; features.shape</span>
+<span class="sd">        (1000, 17)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"split_by_feature"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierGP</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierGP(</span>
+<span class="sd">        ...     lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4, label="one_input"</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.uniform(size=(20,)))</span>
+<span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
+<span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        one_input, shape (20, 17)</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"set_input_shape"</span><span class="p">,</span> <span class="n">AtomicBasisMixin</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.FourierGP(lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4)</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        51</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with a tuple:</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape((4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        340</span>
+<span class="sd">        &gt;&gt;&gt; # Configure with an array:</span>
+<span class="sd">        &gt;&gt;&gt; x = np.ones((10, 4, 5))</span>
+<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(x)</span>
+<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
+<span class="sd">        340</span>
+
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>
+
+    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">sample_pts</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierGP</span>
+<span class="sd">        &gt;&gt;&gt; basis = FourierGP(lengthscale=0.2, bounds=(0.0, 1.0), eps=1e-4)</span>
+<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(np.random.uniform(size=(100, 5, 2)))</span>
+<span class="sd">        &gt;&gt;&gt; out.shape</span>
+<span class="sd">        (100, 5, 2, 17)</span>
+<span class="sd">        """</span>
+        <span class="c1"># ruff: noqa: D205, D400</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">sample_pts</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+<footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
+  <div class="container">
+    <div id="credits" style="width: 50%; float: left">
+      <p>
+      &#169; Copyright 2024, <a href="https://www.simonsfoundation.org/people/edoardo-balzani/">nemos authors</a>.<br/>
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">PyData Theme</a>.<br/>
+      </p>
+    </div>
+    <div id="version" style="color: #999; float: right; margin: 15px">v0.2.10</div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
