@@ -1,0 +1,45 @@
+﻿nemos.basis.RaisedCosineLogEval
+===============================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: RaisedCosineLogEval
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RaisedCosineLogEval.bounds
+      ~RaisedCosineLogEval.input_shape
+      ~RaisedCosineLogEval.is_complex
+      ~RaisedCosineLogEval.label
+      ~RaisedCosineLogEval.n_basis_funcs
+      ~RaisedCosineLogEval.n_output_features
+      ~RaisedCosineLogEval.time_scaling
+      ~RaisedCosineLogEval.width
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RaisedCosineLogEval.__init__
+      ~RaisedCosineLogEval.compute_features
+      ~RaisedCosineLogEval.evaluate
+      ~RaisedCosineLogEval.evaluate_on_grid
+      ~RaisedCosineLogEval.get_params
+      ~RaisedCosineLogEval.set_input_shape
+      ~RaisedCosineLogEval.set_params
+      ~RaisedCosineLogEval.setup_basis
+      ~RaisedCosineLogEval.split_by_feature
+      ~RaisedCosineLogEval.to_transformer
+   
