@@ -1,0 +1,35 @@
+﻿nemos.solvers.\_jaxopt\_solvers.JaxoptAdapter
+=============================================
+
+.. currentmodule:: nemos.solvers._jaxopt_solvers
+
+.. autoclass:: JaxoptAdapter
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~JaxoptAdapter.maxiter
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~JaxoptAdapter.__init__
+      ~JaxoptAdapter.get_accepted_arguments
+      ~JaxoptAdapter.init_state
+      ~JaxoptAdapter.run
+      ~JaxoptAdapter.stochastic_convergence_criterion
+      ~JaxoptAdapter.stochastic_run
+      ~JaxoptAdapter.update
+   
