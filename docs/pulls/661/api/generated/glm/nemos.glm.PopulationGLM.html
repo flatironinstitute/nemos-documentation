@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.PopulationGLM &#8212; nemos 0.2.10.dev544 documentation</title>
+    <title>nemos.glm.PopulationGLM &#8212; nemos 0.2.10.dev545 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=cc3d7960"></script>
+    <script src="../../../_static/documentation_options.js?v=6845fd79"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -143,8 +143,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev544 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev544 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev545 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev545 documentation - Home"/>
   
   
 </a></div>
@@ -757,7 +757,9 @@ values that are theoretically guaranteed to ensure fast convergence.</p>
 <li><p><strong>observation_model</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="../observation_models/nemos.observation_models.BernoulliObservations.html#nemos.observation_models.BernoulliObservations" title="nemos.observation_models.BernoulliObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">BernoulliObservations</span></code></a>, <a class="reference internal" href="../observation_models/nemos.observation_models.GammaObservations.html#nemos.observation_models.GammaObservations" title="nemos.observation_models.GammaObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">GammaObservations</span></code></a>, <a class="reference internal" href="../observation_models/nemos.observation_models.GaussianObservations.html#nemos.observation_models.GaussianObservations" title="nemos.observation_models.GaussianObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">GaussianObservations</span></code></a>, <a class="reference internal" href="../observation_models/nemos.observation_models.NegativeBinomialObservations.html#nemos.observation_models.NegativeBinomialObservations" title="nemos.observation_models.NegativeBinomialObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">NegativeBinomialObservations</span></code></a>, <a class="reference internal" href="../observation_models/nemos.observation_models.PoissonObservations.html#nemos.observation_models.PoissonObservations" title="nemos.observation_models.PoissonObservations"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoissonObservations</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'Poisson'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'Gamma'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'Bernoulli'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'NegativeBinomial'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'Gaussian'</span></span></code></span>]]</span>) – Observation model to use. The model describes the distribution of the neural activity.
 Default is the Poisson model.</p></li>
 <li><p><strong>inverse_link_function</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]</span>) – A function that maps the linear combination of predictors into a firing rate. The default depends
-on the observation model, see the table above.</p></li>
+on the observation model, see the table above. Can be a callable or one of the following
+strings: <code class="docutils literal notranslate"><span class="pre">&quot;exp&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;softplus&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;logistic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;expit&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;norm_cdf&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;one_over_x&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;identity&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;log_softmax&quot;</span></code>.</p></li>
 <li><p><strong>regularizer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Regularizer</span></code></a>]</span>) – Regularization to use for model optimization. Defines the regularization scheme
 and related parameters.
 Default is UnRegularized regression.</p></li>
