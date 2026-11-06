@@ -1,0 +1,59 @@
+﻿nemos.glm.ClassifierPopulationGLM
+=================================
+
+.. currentmodule:: nemos.glm
+
+.. autoclass:: ClassifierPopulationGLM
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ClassifierPopulationGLM.classes_
+      ~ClassifierPopulationGLM.feature_mask
+      ~ClassifierPopulationGLM.fit_intercept
+      ~ClassifierPopulationGLM.fix_params
+      ~ClassifierPopulationGLM.inverse_link_function
+      ~ClassifierPopulationGLM.n_classes
+      ~ClassifierPopulationGLM.observation_model
+      ~ClassifierPopulationGLM.optimizer_init_state
+      ~ClassifierPopulationGLM.optimizer_run
+      ~ClassifierPopulationGLM.optimizer_update
+      ~ClassifierPopulationGLM.regularizer
+      ~ClassifierPopulationGLM.regularizer_strength
+      ~ClassifierPopulationGLM.solver
+      ~ClassifierPopulationGLM.solver_kwargs
+      ~ClassifierPopulationGLM.solver_name
+      ~ClassifierPopulationGLM.solver_spec
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ClassifierPopulationGLM.__init__
+      ~ClassifierPopulationGLM.compute_loss
+      ~ClassifierPopulationGLM.fit
+      ~ClassifierPopulationGLM.get_model_params
+      ~ClassifierPopulationGLM.get_params
+      ~ClassifierPopulationGLM.initialize_optimizer_and_state
+      ~ClassifierPopulationGLM.initialize_params
+      ~ClassifierPopulationGLM.predict
+      ~ClassifierPopulationGLM.predict_proba
+      ~ClassifierPopulationGLM.save_params
+      ~ClassifierPopulationGLM.score
+      ~ClassifierPopulationGLM.set_classes
+      ~ClassifierPopulationGLM.set_params
+      ~ClassifierPopulationGLM.simulate
+      ~ClassifierPopulationGLM.stochastic_fit
+      ~ClassifierPopulationGLM.update
+   

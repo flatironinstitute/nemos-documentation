@@ -1,0 +1,29 @@
+﻿nemos.callbacks.Callback
+========================
+
+.. currentmodule:: nemos.callbacks
+
+.. autoclass:: Callback
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Callback.__init__
+      ~Callback.on_batch_begin
+      ~Callback.on_batch_end
+      ~Callback.on_pass_begin
+      ~Callback.on_pass_end
+      ~Callback.on_train_begin
+      ~Callback.on_train_end
+   

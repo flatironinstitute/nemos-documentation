@@ -1,0 +1,38 @@
+﻿nemos.observation\_models.NegativeBinomialObservations
+======================================================
+
+.. currentmodule:: nemos.observation_models
+
+.. autoclass:: NegativeBinomialObservations
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NegativeBinomialObservations.default_inverse_link_function
+      ~NegativeBinomialObservations.scale
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NegativeBinomialObservations.__init__
+      ~NegativeBinomialObservations.deviance
+      ~NegativeBinomialObservations.estimate_scale
+      ~NegativeBinomialObservations.get_params
+      ~NegativeBinomialObservations.likelihood
+      ~NegativeBinomialObservations.log_likelihood
+      ~NegativeBinomialObservations.pseudo_r2
+      ~NegativeBinomialObservations.sample_generator
+      ~NegativeBinomialObservations.set_params
+   

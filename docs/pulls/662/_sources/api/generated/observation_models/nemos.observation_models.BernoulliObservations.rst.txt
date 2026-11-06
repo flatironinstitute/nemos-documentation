@@ -1,0 +1,38 @@
+﻿nemos.observation\_models.BernoulliObservations
+===============================================
+
+.. currentmodule:: nemos.observation_models
+
+.. autoclass:: BernoulliObservations
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BernoulliObservations.default_inverse_link_function
+      ~BernoulliObservations.scale
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BernoulliObservations.__init__
+      ~BernoulliObservations.deviance
+      ~BernoulliObservations.estimate_scale
+      ~BernoulliObservations.get_params
+      ~BernoulliObservations.likelihood
+      ~BernoulliObservations.log_likelihood
+      ~BernoulliObservations.pseudo_r2
+      ~BernoulliObservations.sample_generator
+      ~BernoulliObservations.set_params
+   
