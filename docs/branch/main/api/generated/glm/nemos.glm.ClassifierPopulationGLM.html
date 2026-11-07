@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.glm.ClassifierPopulationGLM &#8212; nemos 0.2.10.dev469 documentation</title>
+    <title>nemos.glm.ClassifierPopulationGLM &#8212; nemos 0.2.10.dev470 documentation</title>
   
   
   
@@ -26,13 +26,14 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -40,12 +41,12 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3b02c751" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=0fed3e00"></script>
+    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,7 +117,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -140,8 +141,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev469 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev469 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
   
   
 </a></div>
@@ -258,14 +259,14 @@
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
   <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
   </ul>
 </div></div>
       
@@ -321,7 +322,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
@@ -420,14 +421,14 @@
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
   <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
   </ul>
 </div></div>
         
@@ -630,7 +631,7 @@
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../../index.html" class="nav-link" aria-label="Home">
-        <i class="fa-solid fa-home"></i>
+        <i class="fa-solid fa-house"></i>
       </a>
     </li>
     
@@ -673,14 +674,14 @@ and intercept shape <code class="docutils literal notranslate"><span class="pre"
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_classes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – The number of classes. Must be &gt;= 2.</p></li>
 <li><p><strong>inverse_link_function</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]</span>) – The inverse link function. Default is <code class="docutils literal notranslate"><span class="pre">log_softmax</span></code>.</p></li>
-<li><p><strong>regularizer</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Regularizer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</span>) – The regularization scheme. Default is <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>. Note that the
+<li><p><strong>regularizer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Regularizer</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – The regularization scheme. Default is <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>. Note that the
 model is over-parameterized: one set of coefficients for each class.
 Regularization makes the parameters identifiable. Setting <code class="docutils literal notranslate"><span class="pre">UnRegularized</span></code>
 will result in non-identifiable coefficients, see note below.</p></li>
 <li><p><strong>regularizer_strength</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – The strength of the regularization.</p></li>
 <li><p><strong>fit_intercept</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When True (default), an intercept term is fit. When False, only the coefficients are fit.
 An intercept pinned through <code class="docutils literal notranslate"><span class="pre">fix_params</span></code> takes precedence over this flag.</p></li>
-<li><p><strong>fix_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, NDArray, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]]]</span>) – Parameters to hold fixed during fitting, as a <code class="docutils literal notranslate"><span class="pre">(coef,</span> <span class="pre">intercept)</span></code> tuple with
+<li><p><strong>fix_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, NDArray, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]]]</span>) – Parameters to hold fixed during fitting, as a <code class="docutils literal notranslate"><span class="pre">(coef,</span> <span class="pre">intercept)</span></code> tuple with
 <code class="docutils literal notranslate"><span class="pre">coef</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">n_neurons,</span> <span class="pre">n_classes)</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept</span></code> of
 shape <code class="docutils literal notranslate"><span class="pre">(n_neurons,</span> <span class="pre">n_classes)</span></code>. An array pins that parameter at the value
 provided, <code class="docutils literal notranslate"><span class="pre">None</span></code> leaves it to be learned. When <code class="docutils literal notranslate"><span class="pre">X</span></code> is a pytree, <code class="docutils literal notranslate"><span class="pre">coef</span></code>
@@ -984,7 +985,7 @@ which are different from the default <code class="docutils literal notranslate">
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.classes_">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">classes_</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAliasForwardRef</span><span class="p"><span class="pre">(</span></span><span class="s"><span class="pre">'NDArray'</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.classes_" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">classes_</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.classes_" title="Link to this definition">#</a></dt>
 <dd><p>Class labels, or None if not set.</p>
 </dd></dl>
 
@@ -1021,7 +1022,7 @@ and computes the loss (negative log-likelihood).</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.feature_mask">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">feature_mask</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.feature_mask" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">feature_mask</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.feature_mask" title="Link to this definition">#</a></dt>
 <dd><p>Mask indicating which weights are used, matching the coefficients shape.</p>
 <p>The feature mask has the same structure and shape as the coefficients (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>):</p>
 <ul class="simple">
@@ -1036,6 +1037,9 @@ Each leaf array has the same shape as the corresponding coefficient leaf
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The feature mask, or None if not set.</p>
 </dd>
+<dt class="field-even">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[Union[jnp.ndarray, Pytree, nap.TsdFrame], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</span></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1046,11 +1050,11 @@ Each leaf array has the same shape as the corresponding coefficient leaf
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[DESIGN_INPUT_TYPE, ArrayLike]</span>) – Training input samples of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code> or a pytree of arrays of the same shape.</p></li>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[Union[jnp.ndarray, Pytree, nap.TsdFrame], ArrayLike]</span>) – Training input samples of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code> or a pytree of arrays of the same shape.</p></li>
 <li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">ArrayLike</span>) – Target class labels of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>. Labels can be
 any hashable type (integers, strings, etc.). Float arrays with integer
 values are accepted and converted automatically.</p></li>
-<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type">Optional[GLMUserParams[jnp.ndarray | NDArray]]</span>) – Initial parameter values as tuple of <code class="docutils literal notranslate"><span class="pre">(coef,</span> <span class="pre">intercept)</span></code>. If None,
+<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> | NDArray]]</span>) – Initial parameter values as tuple of <code class="docutils literal notranslate"><span class="pre">(coef,</span> <span class="pre">intercept)</span></code>. If None,
 parameters are initialized automatically.</p></li>
 </ul>
 </dd>
@@ -1082,8 +1086,13 @@ consistent with the labels in <code class="docutils literal notranslate"><span c
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.fix_params">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fix_params</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">GLMUserParams</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TypeAliasForwardRef</span><span class="p"><span class="pre">(</span></span><span class="s"><span class="pre">'NDArray'</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.fix_params" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fix_params</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">GLMUserParams</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.fix_params" title="Link to this definition">#</a></dt>
 <dd><p>Parameters held fixed during fitting, as a <code class="docutils literal notranslate"><span class="pre">(coef,</span> <span class="pre">intercept)</span></code> tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, NDArray, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1112,7 +1121,7 @@ routing information.</p>
 <a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM.initialize_params" title="nemos.glm.ClassifierPopulationGLM.initialize_params"><code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_params()</span></code></a> returns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">UserProvidedParamsT</span></code>)</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <code class="docutils literal notranslate"><span class="pre">LeafT</span></code>]</span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The fitted parameters in user-facing form.</p>
@@ -1148,9 +1157,9 @@ It sets up the solver with the provided initial parameters and data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type">UserProvidedParamsT</span>) – Initial parameter tuple of (coefficients, intercept).</p></li>
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – Input data, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code> or pytree of same.</p></li>
-<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">jnp.ndarray</span>) – Target labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron/subject models or
+<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type"><code class="docutils literal notranslate"><span class="pre">UserProvidedParamsT</span></code></span>) – Initial parameter tuple of (coefficients, intercept).</p></li>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – Input data, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code> or pytree of same.</p></li>
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span>) – Target labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron/subject models or
 <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_neurons)</span></code> for population models.</p></li>
 </ul>
 </dd>
@@ -1158,7 +1167,7 @@ It sets up the solver with the provided initial parameters and data.</p>
 <dd class="field-even"><p>Initial solver state.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type">SolverState</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="docutils literal notranslate"><span class="pre">SolverState</span></code></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If inputs or parameters have incompatible shapes or invalid values.</p>
@@ -1175,14 +1184,14 @@ proportions. Class labels are automatically converted to one-hot encoding.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – Input data, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code> or pytree of same.</p></li>
-<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">jnp.ndarray</span>) – Class labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – Input data, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code> or pytree of same.</p></li>
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span>) – Class labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron
 models or <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_neurons)</span></code> for population models. Labels
 must be a subset of <code class="docutils literal notranslate"><span class="pre">classes_</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">UserProvidedParamsT</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="docutils literal notranslate"><span class="pre">UserProvidedParamsT</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Initial parameter tuple of (coefficients, intercept).</p>
@@ -1213,26 +1222,41 @@ in <code class="docutils literal notranslate"><span class="pre">classes_</span><
 <p>Always a callable. If <code class="docutils literal notranslate"><span class="pre">None</span></code> was passed at construction time, this is
 resolved to the observation model’s default (e.g. <code class="docutils literal notranslate"><span class="pre">jnp.exp</span></code> for Poisson,
 <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">x</span></code> for Gamma, <code class="docutils literal notranslate"><span class="pre">jax.nn.sigmoid</span></code> for Bernoulli).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.n_classes">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n_classes</span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.n_classes" title="Link to this definition">#</a></dt>
 <dd><p>Number of classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.observation_model">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">observation_model</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations" title="nemos.observation_models.Observations"><span class="pre">Observations</span></a></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.observation_model" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">observation_model</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations" title="nemos.observation_models.Observations"><span class="pre">Observations</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.observation_model" title="Link to this definition">#</a></dt>
 <dd><p>The observation model governing the conditional distribution of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
 <p>Always an instance of an <a class="reference internal" href="../observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations" title="nemos.observation_models.Observations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observations</span></code></a>
 subclass. If a string alias was passed at construction time it is
 resolved to the corresponding instance here.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../observation_models/nemos.observation_models.Observations.html#nemos.observation_models.Observations" title="nemos.observation_models.Observations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observations</span></code></a></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.optimizer_init_state">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_init_state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_init_state" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_init_state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_init_state" title="Link to this definition">#</a></dt>
 <dd><p>Provides the initialization function for the optimizer state.</p>
 <p>This function is responsible for initializing the optimizer state, necessary for the start
 of the optimizer process. It sets up initial values for parameters like gradients and step
@@ -1247,7 +1271,7 @@ the optimizer has not yet been instantiated.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.optimizer_run">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_run</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Aux</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_run" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_run</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Aux</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_run" title="Link to this definition">#</a></dt>
 <dd><p>Provides the function to execute the optimization process.</p>
 <p>This function runs the optimizer using the initialized parameters and state, performing the
 optimization to fit the model to the data. It iteratively updates the model parameters until
@@ -1262,7 +1286,7 @@ the optimizer has not yet been instantiated.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.optimizer_update">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_update</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple" title="(in Python v3.15)"><span class="pre">NamedTuple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Aux</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_update" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">optimizer_update</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple" title="(in Python v3.15)"><span class="pre">NamedTuple</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SolverState</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Aux</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.optimizer_update" title="Link to this definition">#</a></dt>
 <dd><p>Provides the function for updating the state during the optimization process.</p>
 <p>This function is used to perform a single update step in the optimization process. It updates
 the model’s parameters based on the current state, data, and gradients. It is typically used
@@ -1282,11 +1306,11 @@ the optimizer has not yet been instantiated.</p>
 <dd><p>Predict class labels for samples in X.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – The input samples. Can be an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>
+<dd class="field-odd"><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – The input samples. Can be an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>
 or a pytree of arrays of the same shape.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">jnp.ndarray</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Predicted class labels for each sample.
@@ -1314,15 +1338,15 @@ Returns an integer array of shape  <code class="docutils literal notranslate"><s
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – The input samples. Can be an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – The input samples. Can be an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>
 or a pytree of arrays of the same shape.</p></li>
-<li><p><strong>return_type</strong> (<span class="sphinx_autodoc_typehints-type">Literal[‘log-proba’, ‘proba’]</span>) – The format of the returned probabilities. If <code class="docutils literal notranslate"><span class="pre">&quot;log-proba&quot;</span></code>, returns
+<li><p><strong>return_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'log-proba'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'proba'</span></span></code></span>]</span>) – The format of the returned probabilities. If <code class="docutils literal notranslate"><span class="pre">&quot;log-proba&quot;</span></code>, returns
 log-probabilities. If <code class="docutils literal notranslate"><span class="pre">&quot;proba&quot;</span></code>, returns probabilities. Defaults to
 <code class="docutils literal notranslate"><span class="pre">&quot;log-proba&quot;</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">jnp.ndarray</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Predicted class probabilities. Returns an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code>
@@ -1344,8 +1368,13 @@ where each row sums to 1 (for probabilities) or to 0 in log-space (for log-proba
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.regularizer">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">regularizer</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><span class="pre">Regularizer</span></a></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.regularizer" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">regularizer</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><span class="pre">Regularizer</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.regularizer" title="Link to this definition">#</a></dt>
 <dd><p>Getter for the regularizer attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="../regularizer/nemos.regularizer.Regularizer.html#nemos.regularizer.Regularizer" title="nemos.regularizer.Regularizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Regularizer</span></code></a>]</span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -1362,7 +1391,7 @@ where each row sums to 1 (for probabilities) or to 0 in log-space (for log-proba
 into a GLM instance using the <cite>load_params</cite> function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>]</span>) – The name of the file where the model parameters will be saved. The file will be saved in <cite>.npz</cite> format.</p>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>]</span>) – The name of the file where the model parameters will be saved. The file will be saved in <cite>.npz</cite> format.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1436,15 +1465,15 @@ into a GLM instance using the <cite>load_params</cite> function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[DESIGN_INPUT_TYPE, ArrayLike]</span>) – Test input samples of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code> or a pytree of arrays of the same shape.</p></li>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[Union[jnp.ndarray, Pytree, nap.TsdFrame], ArrayLike]</span>) – Test input samples of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code> or a pytree of arrays of the same shape.</p></li>
 <li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">ArrayLike</span>) – True class labels of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_neurons)</span></code>. Labels must
 be a subset of <code class="docutils literal notranslate"><span class="pre">classes_</span></code>.</p></li>
-<li><p><strong>score_type</strong> (<span class="sphinx_autodoc_typehints-type">Literal[‘log-likelihood’, ‘pseudo-r2-McFadden’, ‘pseudo-r2-Cohen’]</span>) – The type of score to compute.</p></li>
-<li><p><strong>aggregate_sample_scores</strong> (<span class="sphinx_autodoc_typehints-type">Optional[Callable]</span>) – Function to aggregate per-sample scores.</p></li>
+<li><p><strong>score_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'log-likelihood'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'pseudo-r2-McFadden'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'pseudo-r2-Cohen'</span></span></code></span>]</span>) – The type of score to compute.</p></li>
+<li><p><strong>aggregate_sample_scores</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]</span>) – Function to aggregate per-sample scores.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">jnp.ndarray</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The computed score.</p>
@@ -1548,7 +1577,7 @@ parameters and not others.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>init_params</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">init_params</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">init_params</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
 <li><p><strong>self</strong> (<a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><em>ClassifierPopulationGLM</em></a>)</p></li>
 </ul>
 </dd>
@@ -1556,7 +1585,7 @@ parameters and not others.</p>
 <dd class="field-even"><p><strong>self</strong> – The updated object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)">object</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1597,7 +1626,7 @@ parameters and not others.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>return_type</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">return_type</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>.</p></li>
+<li><p><strong>return_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">return_type</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>.</p></li>
 <li><p><strong>self</strong> (<a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><em>ClassifierPopulationGLM</em></a>)</p></li>
 </ul>
 </dd>
@@ -1605,7 +1634,7 @@ parameters and not others.</p>
 <dd class="field-even"><p><strong>self</strong> – The updated object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)">object</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1635,8 +1664,8 @@ parameters and not others.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>aggregate_sample_scores</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">aggregate_sample_scores</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
-<li><p><strong>score_type</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">score_type</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
+<li><p><strong>aggregate_sample_scores</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">aggregate_sample_scores</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
+<li><p><strong>score_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">score_type</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
 <li><p><strong>self</strong> (<a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><em>ClassifierPopulationGLM</em></a>)</p></li>
 </ul>
 </dd>
@@ -1644,7 +1673,7 @@ parameters and not others.</p>
 <dd class="field-even"><p><strong>self</strong> – The updated object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)">object</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#nemos.glm.ClassifierPopulationGLM" title="nemos.glm.classifier_glm.ClassifierPopulationGLM"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierPopulationGLM</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1656,14 +1685,14 @@ parameters and not others.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>random_key</strong> (<span class="sphinx_autodoc_typehints-type">jax.Array</span>) – A JAX random key used to generate the simulated responses.</p></li>
-<li><p><strong>feedforward_input</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – The input samples used to generate the responses. Can be an array of
+<li><p><strong>random_key</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span>) – A JAX random key used to generate the simulated responses.</p></li>
+<li><p><strong>feedforward_input</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – The input samples used to generate the responses. Can be an array of
 shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code> or a pytree of arrays of the same
 shape.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">Tuple[jnp.ndarray, jnp.ndarray]</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><p>A tuple <code class="docutils literal notranslate"><span class="pre">(y,</span> <span class="pre">log_prob)</span></code> where:
@@ -1707,12 +1736,22 @@ log-probability of the simulated responses under the model.</p></li>
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.solver_kwargs">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">solver_kwargs</span></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.solver_kwargs" title="Link to this definition">#</a></dt>
 <dd><p>Getter for the solver_kwargs attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.glm.ClassifierPopulationGLM.solver_name">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">solver_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><a class="headerlink" href="#nemos.glm.ClassifierPopulationGLM.solver_name" title="Link to this definition">#</a></dt>
 <dd><p>Getter for the solver_name attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -1738,7 +1777,7 @@ will be re-compiled for each unique batch size, slowing down computation.
 If your data contains NaNs, it’s best to drop them before or in the
 dataloader, so that batches have mostly the same size after dropping NaNs.</p>
 </p></li>
-<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, NDArray]]]</span>) – Initial parameters (coefficients, intercept).
+<li><p><strong>init_params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> | NDArray]]</span>) – Initial parameters (coefficients, intercept).
 If None, initialized from <code class="docutils literal notranslate"><span class="pre">sample_batch()</span></code>.
 To continue fitting, pass the current parameters (<code class="docutils literal notranslate"><span class="pre">model.get_model_params()</span></code>)</p></li>
 <li><p><strong>n_passes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <p>Maximum number of passes over the data. Must be &gt;= 1.
@@ -1750,7 +1789,7 @@ automatically when the solver’s convergence criterion is met,
 pass <code class="docutils literal notranslate"><span class="pre">callbacks=SolverConvergenceCallback()</span></code>. Otherwise the
 fit will run for the full <code class="docutils literal notranslate"><span class="pre">n_passes</span></code>.</p>
 </p></li>
-<li><p><strong>callbacks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.Callback.html#nemos.callbacks.Callback" title="nemos.callbacks.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="../stochastic_optimization/nemos.callbacks.Callback.html#nemos.callbacks.Callback" title="nemos.callbacks.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>) – <p>Training callbacks. Accepts a single <code class="docutils literal notranslate"><span class="pre">Callback</span></code>, a list of
+<li><p><strong>callbacks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../stochastic_optimization/nemos.callbacks.Callback.html#nemos.callbacks.Callback" title="nemos.callbacks.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="../stochastic_optimization/nemos.callbacks.Callback.html#nemos.callbacks.Callback" title="nemos.callbacks.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – <p>Training callbacks. Accepts a single <code class="docutils literal notranslate"><span class="pre">Callback</span></code>, a list of
 <code class="docutils literal notranslate"><span class="pre">Callback</span></code> objects, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (default, no callbacks).</p>
 <p>To stop optimization when the solver’s built-in convergence
 criterion is met pass <code class="docutils literal notranslate"><span class="pre">nmo.callbacks.SolverConvergenceCallback()</span></code>.
@@ -1804,22 +1843,22 @@ supported and will be encoded using the <code class="docutils literal notranslat
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> (<span class="sphinx_autodoc_typehints-type">GLMUserParams[jnp.ndarray | NDArray]</span>) – The current model parameters, typically a tuple of coefficients and intercepts.</p></li>
-<li><p><strong>opt_state</strong> (<span class="sphinx_autodoc_typehints-type">SolverState</span>) – The current state of the optimizer, encapsulating information necessary for the
+<li><p><strong>params</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTree[LeafT]</span></code>, <a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> | NDArray]</span>) – The current model parameters, typically a tuple of coefficients and intercepts.</p></li>
+<li><p><strong>opt_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="docutils literal notranslate"><span class="pre">SolverState</span></code></span>) – The current state of the optimizer, encapsulating information necessary for the
 optimization algorithm to continue from the current state.</p></li>
-<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">DESIGN_INPUT_TYPE</span>) – The predictors used in the model fitting process. Shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code>
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type">Union[jnp.ndarray, Pytree, nap.TsdFrame]</span>) – The predictors used in the model fitting process. Shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_features)</span></code>
 or a pytree of arrays of the same shape.</p></li>
-<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type">jnp.ndarray</span>) – Class labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span>) – Class labels, array of shape <code class="docutils literal notranslate"><span class="pre">(n_time_bins,)</span></code> for single neuron
 models or <code class="docutils literal notranslate"><span class="pre">(n_time_bins,</span> <span class="pre">n_neurons)</span></code> for population models. Labels must
 match those defined in <code class="docutils literal notranslate"><span class="pre">classes_</span></code>.</p></li>
 <li><p><strong>*args</strong> – Additional positional arguments to be passed to the solver’s update method.</p></li>
-<li><p><strong>n_samples</strong> (<span class="sphinx_autodoc_typehints-type">Optional[int]</span>) – The total number of samples. Usually larger than the samples of an individual batch,
+<li><p><strong>n_samples</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – The total number of samples. Usually larger than the samples of an individual batch,
 used to estimate the scale parameter of the GLM.</p></li>
 <li><p><strong>**kwargs</strong> – Additional keyword arguments to be passed to the solver’s update method.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">StepResult</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <code class="docutils literal notranslate"><span class="pre">SolverState</span></code>, <code class="docutils literal notranslate"><span class="pre">Aux</span></code>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
@@ -1894,8 +1933,8 @@ used to estimate the scale parameter of the GLM.</p></li>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
 
 <footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
   <div class="container">

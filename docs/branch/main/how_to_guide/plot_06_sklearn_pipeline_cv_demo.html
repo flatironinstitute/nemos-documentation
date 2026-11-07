@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Selecting basis by cross-validation with scikit-learn &#8212; nemos 0.2.10.dev469 documentation</title>
+    <title>Selecting basis by cross-validation with scikit-learn &#8212; nemos 0.2.10.dev470 documentation</title>
   
   
   
@@ -26,13 +26,14 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_contributors.css?v=fe9086e2" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -40,12 +41,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=0fed3e00"></script>
+    <script src="../_static/documentation_options.js?v=ecc95952"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -116,7 +117,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -140,8 +141,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev469 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev469 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
   
   
 </a></div>
@@ -258,14 +259,14 @@
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
   <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
   </ul>
 </div></div>
       
@@ -311,7 +312,7 @@
   
 
   
-    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -325,7 +326,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
@@ -424,14 +425,14 @@
 
 <div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
   <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
   </ul>
 </div></div>
         
@@ -584,7 +585,7 @@
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../index.html" class="nav-link" aria-label="Home">
-        <i class="fa-solid fa-home"></i>
+        <i class="fa-solid fa-house"></i>
       </a>
     </li>
     
@@ -764,7 +765,7 @@ In particular, we will learn:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/efa4b943bf74942990fb59eb4c002c57c6561f0bf2fc1bc6a45c9b27f2da98ea.png" src="../_images/efa4b943bf74942990fb59eb4c002c57c6561f0bf2fc1bc6a45c9b27f2da98ea.png" />
+<img alt="../_images/66edf50ab3b5b17adf9463e8b0e57c1010729bffd93c5646676071c30c099840.png" src="../_images/66edf50ab3b5b17adf9463e8b0e57c1010729bffd93c5646676071c30c099840.png" />
 </div>
 </div>
 <section id="converting-nemos-basis-to-a-transformer">
@@ -1525,7 +1526,7 @@ a.param-doc-link::before {
 </style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                  Transformer(RaisedCosineLinearEval(n_basis_funcs=6, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                 (&#x27;glm&#x27;,
-                 GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f046635a7a0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+                 GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fe9d648bce0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1705,7 +1706,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f046635a7a0&gt;</td>
+            <td class="value">&lt;function exp...x7fe9d648bce0&gt;</td>
         </tr>
     
 
@@ -1802,7 +1803,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](6,)</td>
-           <td>Array([-0.145...dtype=float64)</td>
+           <td>Array([-0.180...dtype=float64)</td>
 
 
        </tr>
@@ -1820,7 +1821,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([1.1843...dtype=float64)</td>
+           <td>Array([1.2300...dtype=float64)</td>
 
 
        </tr>
@@ -2058,7 +2059,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bc0b9dc7ff21f1dfae07809685752a2cbaa8eb612b85890cc17220c4ba5ded15.png" src="../_images/bc0b9dc7ff21f1dfae07809685752a2cbaa8eb612b85890cc17220c4ba5ded15.png" />
+<img alt="../_images/14e7f61afe3086ed3d86f858683e4fb3ec75fe96017042295bfa72ba37d660b1.png" src="../_images/14e7f61afe3086ed3d86f858683e4fb3ec75fe96017042295bfa72ba37d660b1.png" />
 </div>
 </div>
 <p>The current model captures the bimodal distribution of responses, appropriately picking out the peaks. However, it doesn’t do a good job capturing the actual firing rate: the peaks are too low and the valleys are not low enough. This might be because of our choice of basis and/or regularizer strength, so let’s see if tuning those parameters results in a better fit! We could do this manually, but doing this with the sklearn pipeline will make everything much easier!</p>
@@ -2930,7 +2931,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f046635a7a0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))]),
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fe9d648bce0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))]),
              param_grid={&#x27;glm__regularizer_strength&#x27;: (0.1, 0.01, 0.001, 1e-06),
                          &#x27;transformerbasis__n_basis_funcs&#x27;: (3, 5, 10, 20,
                                                              100)})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GridSearchCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
@@ -3185,7 +3186,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">int64</td>
-           <td>np.int64(12)</td>
+           <td>np.int64(17)</td>
 
 
        </tr>
@@ -3203,7 +3204,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;gl...th&#x27;: 0.001, &#x27;tr...cs&#x27;: 10}</td>
+           <td>{&#x27;gl...th&#x27;: 1e-06, &#x27;tr...cs&#x27;: 10}</td>
 
 
        </tr>
@@ -3221,7 +3222,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>-1.85</td>
+           <td>-1.894</td>
 
 
        </tr>
@@ -3239,7 +3240,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([0.8196..., 0.37032566]), &#x27;me...me&#x27;: array([0.4098..., 0.00916867]), &#x27;me...re&#x27;: array([-2.947... -1.91498432]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.7571..., 0.35273719]), &#x27;me...me&#x27;: array([0.4291..., 0.00806026]), &#x27;me...re&#x27;: array([-2.851... -1.98957347]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -3293,7 +3294,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>1.187</td>
+           <td>1.051</td>
 
 
        </tr>
@@ -3410,7 +3411,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f046635a7a0&gt;</td>
+            <td class="value">&lt;function exp...x7fe9d648bce0&gt;</td>
         </tr>
     
 
@@ -3432,7 +3433,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">regularizer_strength</td>
-            <td class="value">0.001</td>
+            <td class="value">1e-06</td>
         </tr>
     
 
@@ -3507,7 +3508,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-1.255...dtype=float64)</td>
+           <td>Array([1.7855...dtype=float64)</td>
 
 
        </tr>
@@ -3525,7 +3526,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([0.1173...dtype=float64)</td>
+           <td>Array([-4.844...dtype=float64)</td>
 
 
        </tr>
@@ -3811,7 +3812,7 @@ we can see how this cross-validation will look like in a manual loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3c90643ab92788e2ef365e5239aaa45c915d2baeedc089a7ca1ba34e3c8f09cf.png" src="../_images/3c90643ab92788e2ef365e5239aaa45c915d2baeedc089a7ca1ba34e3c8f09cf.png" />
+<img alt="../_images/82017419ecd1a0b3bc65e8c65e173bfd9f9709097ab4dd1768a7c677946a8751.png" src="../_images/82017419ecd1a0b3bc65e8c65e173bfd9f9709097ab4dd1768a7c677946a8751.png" />
 </div>
 </div>
 <p>The plot displays the model’s log-likelihood for each parameter combination in the grid. The parameter combination with the highest score, which is the one selected by the procedure, is highlighted with a blue rectangle. We can thus see that we need 10 or more basis functions, and that all of the tested regularization strengths agree with each other. In general, we want the fewest number of basis functions required to get a good fit, so we’ll choose 10 here.</p>
@@ -3850,7 +3851,7 @@ we can see how this cross-validation will look like in a manual loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6b5d4bceb60b8ad24e9e665a0d635d1abe406ef68cc9b64af78ed1bc9611f53a.png" src="../_images/6b5d4bceb60b8ad24e9e665a0d635d1abe406ef68cc9b64af78ed1bc9611f53a.png" />
+<img alt="../_images/32b46285eb1d0c0c9b90edb59bcc0e9203e60c56af9768a5f3e50d5c420b33c8.png" src="../_images/32b46285eb1d0c0c9b90edb59bcc0e9203e60c56af9768a5f3e50d5c420b33c8.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -4631,7 +4632,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f046635a7a0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fe9d648bce0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
                          &#x27;transformerbasis__basis&#x27;: (RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=5),
                                                      RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=10),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=5, time_scaling=50.0),
@@ -4889,7 +4890,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">int64</td>
-           <td>np.int64(13)</td>
+           <td>np.int64(19)</td>
 
 
        </tr>
@@ -4907,7 +4908,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;gl...th&#x27;: 0.001, &#x27;tr...is&#x27;: RaisedCosineL...ill_value=nan)}</td>
+           <td>{&#x27;gl...th&#x27;: 1e-06, &#x27;tr...is&#x27;: RaisedCosineL...ill_value=nan)}</td>
 
 
        </tr>
@@ -4925,7 +4926,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>-1.85</td>
+           <td>-1.894</td>
 
 
        </tr>
@@ -4943,7 +4944,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([0.3197..., 0.33206887]), &#x27;me...me&#x27;: array([0.0055..., 0.01131654]), &#x27;me...re&#x27;: array([-2.765... -1.86557304]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.2957..., 0.31858091]), &#x27;me...me&#x27;: array([0.0057..., 0.01121478]), &#x27;me...re&#x27;: array([-2.709... -1.90714903]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -4997,7 +4998,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>0.346</td>
+           <td>0.3304</td>
 
 
        </tr>
@@ -5114,7 +5115,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f046635a7a0&gt;</td>
+            <td class="value">&lt;function exp...x7fe9d648bce0&gt;</td>
         </tr>
     
 
@@ -5136,7 +5137,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">regularizer_strength</td>
-            <td class="value">0.001</td>
+            <td class="value">1e-06</td>
         </tr>
     
 
@@ -5211,7 +5212,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-1.255...dtype=float64)</td>
+           <td>Array([1.7855...dtype=float64)</td>
 
 
        </tr>
@@ -5229,7 +5230,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([0.1173...dtype=float64)</td>
+           <td>Array([-4.844...dtype=float64)</td>
 
 
        </tr>
@@ -5454,7 +5455,7 @@ forceTheme('sk-container-id-3');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3180385df35f377933e00ba3633f2e7bf152f59a4ba293bf46d4ad261998e400.png" src="../_images/3180385df35f377933e00ba3633f2e7bf152f59a4ba293bf46d4ad261998e400.png" />
+<img alt="../_images/32df2cb1b97baee2fc6f9f6492e29531ad0882106c80da316bd382ba5f04ec9f.png" src="../_images/32df2cb1b97baee2fc6f9f6492e29531ad0882106c80da316bd382ba5f04ec9f.png" />
 </div>
 </div>
 <p>As shown in the table, the model with the highest score, highlighted in blue, used a RaisedCosineLinearEval basis (as used above), which appears to be a suitable choice for our toy data.
@@ -5489,7 +5490,7 @@ We can confirm that by plotting the firing rate predictions:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6b5d4bceb60b8ad24e9e665a0d635d1abe406ef68cc9b64af78ed1bc9611f53a.png" src="../_images/6b5d4bceb60b8ad24e9e665a0d635d1abe406ef68cc9b64af78ed1bc9611f53a.png" />
+<img alt="../_images/32b46285eb1d0c0c9b90edb59bcc0e9203e60c56af9768a5f3e50d5c420b33c8.png" src="../_images/32b46285eb1d0c0c9b90edb59bcc0e9203e60c56af9768a5f3e50d5c420b33c8.png" />
 </div>
 </div>
 <p>The plot confirms that the firing rate distribution is accurately captured by our model predictions.</p>
@@ -6253,7 +6254,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f046635a7a0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fe9d648bce0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
                                                      RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=10),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=5, time_scaling=50.0),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=10, time_scaling=50.0),
@@ -6511,7 +6512,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">int64</td>
-           <td>np.int64(13)</td>
+           <td>np.int64(19)</td>
 
 
        </tr>
@@ -6529,7 +6530,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;gl...th&#x27;: 0.001, &#x27;tr...is&#x27;: RaisedCosineL...ill_value=nan)}</td>
+           <td>{&#x27;gl...th&#x27;: 1e-06, &#x27;tr...is&#x27;: RaisedCosineL...ill_value=nan)}</td>
 
 
        </tr>
@@ -6547,7 +6548,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>0.3709</td>
+           <td>0.3307</td>
 
 
        </tr>
@@ -6565,7 +6566,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([0.3328..., 0.44894681]), &#x27;me...me&#x27;: array([0.0527..., 0.00960178]), &#x27;me...re&#x27;: array([0.0595..., 0.36568681]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.3110..., 0.31491704]), &#x27;me...me&#x27;: array([0.0470..., 0.00959425]), &#x27;me...re&#x27;: array([0.0427..., 0.32622451]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -6619,7 +6620,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>0.3521</td>
+           <td>0.3486</td>
 
 
        </tr>
@@ -6736,7 +6737,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f046635a7a0&gt;</td>
+            <td class="value">&lt;function exp...x7fe9d648bce0&gt;</td>
         </tr>
     
 
@@ -6758,7 +6759,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">regularizer_strength</td>
-            <td class="value">0.001</td>
+            <td class="value">1e-06</td>
         </tr>
     
 
@@ -6833,7 +6834,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-1.255...dtype=float64)</td>
+           <td>Array([1.7855...dtype=float64)</td>
 
 
        </tr>
@@ -6851,7 +6852,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([0.1173...dtype=float64)</td>
+           <td>Array([-4.844...dtype=float64)</td>
 
 
        </tr>
@@ -7077,7 +7078,7 @@ forceTheme('sk-container-id-4');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/922a76c8f84bcecebbe5d94e520cf2393da78f1d15e147bea6365ca3462560f3.png" src="../_images/922a76c8f84bcecebbe5d94e520cf2393da78f1d15e147bea6365ca3462560f3.png" />
+<img alt="../_images/6ba3e2e4e4dd1ffc2922c73d5d7cdb55a02d5f9d1d2ca737c923b0810821fb61.png" src="../_images/6ba3e2e4e4dd1ffc2922c73d5d7cdb55a02d5f9d1d2ca737c923b0810821fb61.png" />
 </div>
 </div>
 <p>As you can see, the results with pseudo-R2 agree with those of the negative log-likelihood. Note that this new metric is normalized between 0 and 1, with a higher score indicating better performance.</p>
@@ -7119,7 +7120,7 @@ forceTheme('sk-container-id-4');</script></body></div></div>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
@@ -7172,8 +7173,8 @@ forceTheme('sk-container-id-4');</script></body></div></div>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
 
 <footer class="footer" style="border-top: 1px solid #ccc; padding-top: 10px">
   <div class="container">
