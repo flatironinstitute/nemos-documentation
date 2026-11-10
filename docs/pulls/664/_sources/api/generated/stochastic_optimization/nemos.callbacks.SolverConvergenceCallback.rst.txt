@@ -1,0 +1,29 @@
+﻿nemos.callbacks.SolverConvergenceCallback
+=========================================
+
+.. currentmodule:: nemos.callbacks
+
+.. autoclass:: SolverConvergenceCallback
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SolverConvergenceCallback.__init__
+      ~SolverConvergenceCallback.on_batch_begin
+      ~SolverConvergenceCallback.on_batch_end
+      ~SolverConvergenceCallback.on_pass_begin
+      ~SolverConvergenceCallback.on_pass_end
+      ~SolverConvergenceCallback.on_train_begin
+      ~SolverConvergenceCallback.on_train_end
+   

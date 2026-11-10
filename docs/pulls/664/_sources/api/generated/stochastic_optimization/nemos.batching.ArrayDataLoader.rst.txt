@@ -1,0 +1,31 @@
+﻿nemos.batching.ArrayDataLoader
+==============================
+
+.. currentmodule:: nemos.batching
+
+.. autoclass:: ArrayDataLoader
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ArrayDataLoader.batch_size
+      ~ArrayDataLoader.n_samples
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ArrayDataLoader.__init__
+      ~ArrayDataLoader.sample_batch
+   
