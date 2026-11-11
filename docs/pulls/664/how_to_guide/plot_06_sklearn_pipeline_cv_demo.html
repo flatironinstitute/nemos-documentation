@@ -768,7 +768,7 @@ In particular, we will learn:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab00e884c660f8e22e15963ed0c1d5c96af4551e72282077d4441430b1465815.png" src="../_images/ab00e884c660f8e22e15963ed0c1d5c96af4551e72282077d4441430b1465815.png" />
+<img alt="../_images/5e8a016c5ae3afe8321fee4671fa312db366fe8dc877ea1cd2849c8824fa2f8e.png" src="../_images/5e8a016c5ae3afe8321fee4671fa312db366fe8dc877ea1cd2849c8824fa2f8e.png" />
 </div>
 </div>
 <section id="converting-nemos-basis-to-a-transformer">
@@ -1529,7 +1529,7 @@ a.param-doc-link::before {
 </style><body><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                  Transformer(RaisedCosineLinearEval(n_basis_funcs=6, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                 (&#x27;glm&#x27;,
-                 GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fa9e12ec2c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+                 GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f8e787582c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1709,7 +1709,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7fa9e12ec2c0&gt;</td>
+            <td class="value">&lt;function exp...x7f8e787582c0&gt;</td>
         </tr>
     
 
@@ -1806,7 +1806,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](6,)</td>
-           <td>Array([-0.152...dtype=float64)</td>
+           <td>Array([-0.179...dtype=float64)</td>
 
 
        </tr>
@@ -1824,7 +1824,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([1.1797...dtype=float64)</td>
+           <td>Array([1.1783...dtype=float64)</td>
 
 
        </tr>
@@ -2059,7 +2059,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ec9841253851737cb3de8879f92153a9934749819bb60cb4f59ba3053f3979e7.png" src="../_images/ec9841253851737cb3de8879f92153a9934749819bb60cb4f59ba3053f3979e7.png" />
+<img alt="../_images/7ef80c4773086af47f79f0ba47261ce43052ee87a389e4d7a661e114f06c8bdf.png" src="../_images/7ef80c4773086af47f79f0ba47261ce43052ee87a389e4d7a661e114f06c8bdf.png" />
 </div>
 </div>
 <p>The current model captures the bimodal distribution of responses, appropriately picking out the peaks. However, it doesn’t do a good job capturing the actual firing rate: the peaks are too low and the valleys are not low enough. This might be because of our choice of basis and/or regularizer strength, so let’s see if tuning those parameters results in a better fit! We could do this manually, but doing this with the sklearn pipeline will make everything much easier!</p>
@@ -2931,7 +2931,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fa9e12ec2c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))]),
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f8e787582c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;maxiter&#x27;: 50}, solver_name=&#x27;Newton&#x27;))]),
              param_grid={&#x27;glm__regularizer_strength&#x27;: (0.1, 0.01, 0.001, 1e-06),
                          &#x27;transformerbasis__n_basis_funcs&#x27;: (3, 5, 10, 20,
                                                              100)})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GridSearchCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
@@ -3222,7 +3222,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>-1.89</td>
+           <td>-1.916</td>
 
 
        </tr>
@@ -3240,7 +3240,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([1.1472..., 0.80926142]), &#x27;me...me&#x27;: array([0.4697..., 0.01132345]), &#x27;me...re&#x27;: array([-2.821... -1.96784039]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.6828..., 0.41497622]), &#x27;me...me&#x27;: array([0.4020..., 0.0087358 ]), &#x27;me...re&#x27;: array([-2.883... -1.9923056 ]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -3294,7 +3294,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>1.658</td>
+           <td>1.172</td>
 
 
        </tr>
@@ -3411,7 +3411,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7fa9e12ec2c0&gt;</td>
+            <td class="value">&lt;function exp...x7f8e787582c0&gt;</td>
         </tr>
     
 
@@ -3508,7 +3508,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-0.715...dtype=float64)</td>
+           <td>Array([0.6521...dtype=float64)</td>
 
 
        </tr>
@@ -3526,7 +3526,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([-2.495...dtype=float64)</td>
+           <td>Array([-3.971...dtype=float64)</td>
 
 
        </tr>
@@ -3809,7 +3809,7 @@ we can see how this cross-validation will look like in a manual loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/28611c4bcc03d196f7b32a84c3fcc30f3371b5ffb794ae8c7e88770faa190680.png" src="../_images/28611c4bcc03d196f7b32a84c3fcc30f3371b5ffb794ae8c7e88770faa190680.png" />
+<img alt="../_images/8f99adc31906fd75f73aa47521745abe84807121099157085afdd99db6ceb5f2.png" src="../_images/8f99adc31906fd75f73aa47521745abe84807121099157085afdd99db6ceb5f2.png" />
 </div>
 </div>
 <p>The plot displays the model’s log-likelihood for each parameter combination in the grid. The parameter combination with the highest score, which is the one selected by the procedure, is highlighted with a blue rectangle. We can thus see that we need 10 or more basis functions, and that all of the tested regularization strengths agree with each other. In general, we want the fewest number of basis functions required to get a good fit, so we’ll choose 10 here.</p>
@@ -3848,7 +3848,7 @@ we can see how this cross-validation will look like in a manual loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c63e95ec2020bc266743396a3c17f246a491a3a39e66daba759d186f2af6cb56.png" src="../_images/c63e95ec2020bc266743396a3c17f246a491a3a39e66daba759d186f2af6cb56.png" />
+<img alt="../_images/4c2bd9f57d0abe5503bd8703ba8becc0e5970707f115dafa615c8a0631f22a2c.png" src="../_images/4c2bd9f57d0abe5503bd8703ba8becc0e5970707f115dafa615c8a0631f22a2c.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -4629,7 +4629,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fa9e12ec2c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f8e787582c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
                          &#x27;transformerbasis__basis&#x27;: (RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=5),
                                                      RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=10),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=5, time_scaling=50.0),
@@ -4923,7 +4923,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>-1.89</td>
+           <td>-1.916</td>
 
 
        </tr>
@@ -4941,7 +4941,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([0.6892..., 0.74492669]), &#x27;me...me&#x27;: array([0.0107..., 0.02260628]), &#x27;me...re&#x27;: array([-2.696... -1.91144464]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.3284..., 0.3456893 ]), &#x27;me...me&#x27;: array([0.0060..., 0.01145563]), &#x27;me...re&#x27;: array([-2.757... -1.92831909]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -4995,7 +4995,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>0.7238</td>
+           <td>0.3578</td>
 
 
        </tr>
@@ -5112,7 +5112,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7fa9e12ec2c0&gt;</td>
+            <td class="value">&lt;function exp...x7f8e787582c0&gt;</td>
         </tr>
     
 
@@ -5209,7 +5209,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-0.715...dtype=float64)</td>
+           <td>Array([0.6521...dtype=float64)</td>
 
 
        </tr>
@@ -5227,7 +5227,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([-2.495...dtype=float64)</td>
+           <td>Array([-3.971...dtype=float64)</td>
 
 
        </tr>
@@ -5449,7 +5449,7 @@ forceTheme('sk-container-id-3');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b7011d41198f7d60f22701530a732151a64d5ff1be8e90514d5abce54766731.png" src="../_images/7b7011d41198f7d60f22701530a732151a64d5ff1be8e90514d5abce54766731.png" />
+<img alt="../_images/8ee5614629c06fef62e469d1bbfe82b65d6aeb54c507d403048ecefdc24da3df.png" src="../_images/8ee5614629c06fef62e469d1bbfe82b65d6aeb54c507d403048ecefdc24da3df.png" />
 </div>
 </div>
 <p>As shown in the table, the model with the highest score, highlighted in blue, used a RaisedCosineLinearEval basis (as used above), which appears to be a suitable choice for our toy data.
@@ -5484,7 +5484,7 @@ We can confirm that by plotting the firing rate predictions:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c63e95ec2020bc266743396a3c17f246a491a3a39e66daba759d186f2af6cb56.png" src="../_images/c63e95ec2020bc266743396a3c17f246a491a3a39e66daba759d186f2af6cb56.png" />
+<img alt="../_images/4c2bd9f57d0abe5503bd8703ba8becc0e5970707f115dafa615c8a0631f22a2c.png" src="../_images/4c2bd9f57d0abe5503bd8703ba8becc0e5970707f115dafa615c8a0631f22a2c.png" />
 </div>
 </div>
 <p>The plot confirms that the firing rate distribution is accurately captured by our model predictions.</p>
@@ -6248,7 +6248,7 @@ a.param-doc-link::before {
              estimator=Pipeline(steps=[(&#x27;transformerbasis&#x27;,
                                         Transformer(RaisedCosineLinearEval(n_basis_funcs=8, width=2.0, bounds=(0.0, 1.0), fill_value=nan))),
                                        (&#x27;glm&#x27;,
-                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7fa9e12ec2c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
+                                        GLM(fix_params=(None, None), inverse_link_function=&lt;function exp at 0x7f8e787582c0&gt;, observation_model=PoissonObservations(), regularizer=Ridge(), regularizer_strength=0.5, solver_kwargs={&#x27;max...
                                                      RaisedCosineLinearEval(bounds=(0.0, 1.0), n_basis_funcs=10),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=5, time_scaling=50.0),
                                                      RaisedCosineLogEval(bounds=(0.0, 1.0), n_basis_funcs=10, time_scaling=50.0),
@@ -6542,7 +6542,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float64</td>
-           <td>0.3323</td>
+           <td>0.3419</td>
 
 
        </tr>
@@ -6560,7 +6560,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;me...me&#x27;: array([0.6951..., 0.96463709]), &#x27;me...me&#x27;: array([0.0618..., 0.01988473]), &#x27;me...re&#x27;: array([0.0490..., 0.32472219]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
+           <td>{&#x27;me...me&#x27;: array([0.3323..., 0.51179175]), &#x27;me...me&#x27;: array([0.0508..., 0.01072412]), &#x27;me...re&#x27;: array([0.0535..., 0.33748293]), &#x27;pa...th&#x27;: masked_array(...l_value=1e+20), ...}</td>
 
 
        </tr>
@@ -6614,7 +6614,7 @@ a.param-doc-link::before {
         </a>
     </td>
            <td class="fitted-att-type">float</td>
-           <td>0.7459</td>
+           <td>0.3569</td>
 
 
        </tr>
@@ -6731,7 +6731,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7fa9e12ec2c0&gt;</td>
+            <td class="value">&lt;function exp...x7f8e787582c0&gt;</td>
         </tr>
     
 
@@ -6828,7 +6828,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-0.715...dtype=float64)</td>
+           <td>Array([0.6521...dtype=float64)</td>
 
 
        </tr>
@@ -6846,7 +6846,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](1,)</td>
-           <td>Array([-2.495...dtype=float64)</td>
+           <td>Array([-3.971...dtype=float64)</td>
 
 
        </tr>
@@ -7069,7 +7069,7 @@ forceTheme('sk-container-id-4');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a03ed747a8f97df20f7ac7b89711aeaf25b20d412f9e805e79d2dac86a5c9990.png" src="../_images/a03ed747a8f97df20f7ac7b89711aeaf25b20d412f9e805e79d2dac86a5c9990.png" />
+<img alt="../_images/b1b7c1690db2bc243be77c4b7b9ab5998709e885a1ec0261a7d58fdfcd1da476.png" src="../_images/b1b7c1690db2bc243be77c4b7b9ab5998709e885a1ec0261a7d58fdfcd1da476.png" />
 </div>
 </div>
 <p>As you can see, the results with pseudo-R2 agree with those of the negative log-likelihood. Note that this new metric is normalized between 0 and 1, with a higher score indicating better performance.</p>
