@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -606,8 +606,8 @@
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="generalized-linear-models-an-introduction">
-<span id="glm-intro-background"></span><h1>Generalized Linear Models: An Introduction<a class="headerlink" href="#generalized-linear-models-an-introduction" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="glm-intro-background">
+<span id="generalized-linear-models-an-introduction"></span><h1>Generalized Linear Models: An Introduction<a class="headerlink" href="#glm-intro-background" title="Link to this heading">#</a></h1>
 <p>Before we dive into using NeMoS, you might wonder: why model at all? Why not
 just make a bunch of tuning curves and submit to <em>Science</em>? Modeling is
 helpful because:</p>
@@ -683,9 +683,7 @@ throughout.</p>
 can make it bigger or smaller, or we can shift it up or down. That is, we
 compute:</p>
 <div class="math notranslate nohighlight">
-\[
-L(x(t)) = w x(t) + c \tag{1}
-\]</div>
+\[L(x(t)) = w x(t) + c \tag{1}\]</div>
 <p>for some value of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(c\)</span>. Let’s visualize some possible transformations
 that our model can make with three cartoon neurons:</p>
 <div class="cell docutils container">
@@ -726,7 +724,7 @@ plot the linear transformation of the input x:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5d47ab057c52141b270c16a7b2018117d99bf797048aa0ed061ec6a407889fc1.png" src="../_images/5d47ab057c52141b270c16a7b2018117d99bf797048aa0ed061ec6a407889fc1.png" />
+<img alt="../_images/c0d489586d6f2486320826e076b917bd062242b3416885e1bca5b6b9f4a799f7.png" src="../_images/c0d489586d6f2486320826e076b917bd062242b3416885e1bca5b6b9f4a799f7.png" />
 </div>
 </div>
 <p>With these linear transformations, we see that we can stretch or shrink the
@@ -747,7 +745,7 @@ by adding the <code class="docutils literal notranslate"><span class="pre">plot_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7f7fd9517129740abe1faa565cc6bee284f7abc5a5c20f0d09ede18dd4f85a78.png" src="../_images/7f7fd9517129740abe1faa565cc6bee284f7abc5a5c20f0d09ede18dd4f85a78.png" />
+<img alt="../_images/51061a55a77be4aa88bb0d38e4781254503607461fe88707114d4a9680da76c2.png" src="../_images/51061a55a77be4aa88bb0d38e4781254503607461fe88707114d4a9680da76c2.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -761,9 +759,7 @@ is not guaranteed in general.</p>
 </div>
 <p>Specifically, our firing rate is:</p>
 <div class="math notranslate nohighlight">
-\[
-\lambda (t) = \exp (L(x(t)) = \exp (w x(t) + c) \tag{2}
-\]</div>
+\[\lambda (t) = \exp (L(x(t)) = \exp (w x(t) + c) \tag{2}\]</div>
 <p>We can see that the output of the nonlinear transformation is always
 positive, though note that the y-values have changed drastically.</p>
 <p>Now we’re ready to look at the third step of the LNP model, and see what
@@ -777,7 +773,7 @@ the generated spikes spikes look like!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/87e23ee7517ae16ed9eedfdd450ff4f737ac451a1b7352110418a71618166307.png" src="../_images/87e23ee7517ae16ed9eedfdd450ff4f737ac451a1b7352110418a71618166307.png" />
+<img alt="../_images/2c2ea9ab0cc8d5ffb53fc7c1967e1b6a941b2538ad2cc8ae56860d13e7cf9d14.png" src="../_images/2c2ea9ab0cc8d5ffb53fc7c1967e1b6a941b2538ad2cc8ae56860d13e7cf9d14.png" />
 </div>
 </div>
 <p>Remember, spiking is a stochastic process. That means that a given firing

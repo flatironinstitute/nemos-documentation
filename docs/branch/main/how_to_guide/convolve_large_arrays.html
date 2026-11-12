@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'how_to_guide/convolve_large_arrays';</script>
@@ -771,7 +771,7 @@
  Text(1, 1.0, 'direct faster')]
 </pre></div>
 </div>
-<img alt="../_images/be38e796aaeeb5cfc953f35ae20298c0a6cf03996cd128adeb9b46e4b5ca5913.png" src="../_images/be38e796aaeeb5cfc953f35ae20298c0a6cf03996cd128adeb9b46e4b5ca5913.png" />
+<img alt="../_images/89ccdff4ecb6a9c18b4e9d533a9ea1a4421e51202d187f7834c75e72de34d48f.png" src="../_images/89ccdff4ecb6a9c18b4e9d533a9ea1a4421e51202d187f7834c75e72de34d48f.png" />
 </div>
 </div>
 <p>The boundary between the two regimes is nearly vertical: the window size decides the winner at almost any recording length. Direct convolution is faster for windows up to roughly 64 samples, the two are comparable between 64 and 128, and from a few hundred samples on the FFT wins at every recording length we tested, reaching a several-fold advantage for windows in the thousands. The dashed line is the rule the default <code class="docutils literal notranslate"><span class="pre">use_fft=None</span></code> applies, and it tracks the white band, so in most cases you can leave <code class="docutils literal notranslate"><span class="pre">use_fft</span></code> unset; pass an explicit value to force a backend, for example <code class="docutils literal notranslate"><span class="pre">use_fft=True</span></code> when convolving long windows inside a <code class="docutils literal notranslate"><span class="pre">jax.jit</span></code>-compiled function, where the automatic selection falls back to direct.</p>
