@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -609,16 +609,14 @@
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="fourier-basis">
-<span id="fourier-basis-doc"></span><h1>Fourier Basis<a class="headerlink" href="#fourier-basis" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="fourier-basis-doc">
+<span id="fourier-basis"></span><h1>Fourier Basis<a class="headerlink" href="#fourier-basis-doc" title="Link to this heading">#</a></h1>
 <p>The Fourier basis uses a slightly different API from other bases in NeMoS. This page covers everything you need to use it.</p>
 <section id="one-dimensional-fourier-basis">
 <h2>One-Dimensional Fourier Basis<a class="headerlink" href="#one-dimensional-fourier-basis" title="Link to this heading">#</a></h2>
 <p>A one-dimensional Fourier basis is a complex basis whose elements are</p>
 <div class="math notranslate nohighlight">
-\[
-a_n(x) \;=\; \cos\!\Bigl(2\pi \frac{n}{P}\,x\Bigr) \;+\; i\,\sin\!\Bigl(2\pi \frac{n}{P}\,x\Bigr),
-\]</div>
+\[a_n(x) \;=\; \cos\!\Bigl(2\pi \frac{n}{P}\,x\Bigr) \;+\; i\,\sin\!\Bigl(2\pi \frac{n}{P}\,x\Bigr),\]</div>
 <p>where <span class="math notranslate nohighlight">\(P&gt;0\)</span> is the period, <span class="math notranslate nohighlight">\(x\)</span> is the input variable, and <span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span> is the frequency index.</p>
 <section id="fourier-basis-in-nemos">
 <h3>Fourier Basis in NeMoS<a class="headerlink" href="#fourier-basis-in-nemos" title="Link to this heading">#</a></h3>
@@ -656,16 +654,12 @@ design matrix shape: (400, 9)
 <ul>
 <li><p><span class="math notranslate nohighlight">\(n_1=0\)</span> (with DC):</p>
 <div class="math notranslate nohighlight">
-\[
-  \bigl[\;1,\,\cos(2\pi \frac{n_2}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_2}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],
-  \]</div>
+\[  \bigl[\;1,\,\cos(2\pi \frac{n_2}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_2}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],\]</div>
 <p>total columns <span class="math notranslate nohighlight">\(=2K-1\)</span>.</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(n_1&gt;0\)</span> (without DC):</p>
 <div class="math notranslate nohighlight">
-\[
-  \bigl[\;\cos(2\pi \frac{n_1}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_1}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],
-  \]</div>
+\[  \bigl[\;\cos(2\pi \frac{n_1}{P}x),\,\ldots,\,\cos(2\pi \frac{n_K}{P}x),\ \ \sin(2\pi \frac{n_1}{P}x),\,\ldots,\,\sin(2\pi \frac{n_K}{P}x)\;\bigr],\]</div>
 <p>total columns <span class="math notranslate nohighlight">\(=2K\)</span>.</p>
 </li>
 </ul>
@@ -829,23 +823,21 @@ output features: 5 * 2 =  10
 </div>
 </div>
 </section>
-<section id="setting-the-period-of-the-basis">
-<span id="fourier-period"></span><h3>Setting the Period of the Basis<a class="headerlink" href="#setting-the-period-of-the-basis" title="Link to this heading">#</a></h3>
+<section id="fourier-period">
+<span id="setting-the-period-of-the-basis"></span><h3>Setting the Period of the Basis<a class="headerlink" href="#fourier-period" title="Link to this heading">#</a></h3>
 <p>When evaluating the basis at some values <span class="math notranslate nohighlight">\(\boldsymbol{x} = \{x_1,...,x_t\}\)</span>, NeMoS assumes that the period of the basis is <span class="math notranslate nohighlight">\(P = \max(\boldsymbol{x}) - \min(\boldsymbol{x})\)</span>. The basis element with frequency equal to <span class="math notranslate nohighlight">\(n\)</span> will therefore oscillate <span class="math notranslate nohighlight">\(n\)</span> times over the range of values covered by <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header sd-bg-info sd-bg-text-info">
 <span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg></span><span class="sd-summary-text">More on the Fourier Mapping</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">More precisely, let <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,\ldots,x_T)\)</span>. For an integer <span class="math notranslate nohighlight">\(n\ge 0\)</span>, the <span class="math notranslate nohighlight">\(n\)</span>-th Fourier basis element maps each <span class="math notranslate nohighlight">\(x_j\)</span> to</p>
 <div class="math notranslate nohighlight">
-\[
-a_n(x_j)
+\[a_n(x_j)
 = \cos\!\left(2\pi n\,\frac{x_j-\min(\boldsymbol{x})}{\max(\boldsymbol{x})-\min(\boldsymbol{x})}\right)
-\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-\min(\boldsymbol{x})}{\max(\boldsymbol{x})-\min(\boldsymbol{x})}\right).
-\]</div>
+\;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-\min(\boldsymbol{x})}{\max(\boldsymbol{x})-\min(\boldsymbol{x})}\right).\]</div>
 <p class="sd-card-text">for <span class="math notranslate nohighlight">\(j=1,\ldots,T\)</span>.</p>
 <ul class="simple">
-<li><p class="sd-card-text">The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=\max(\boldsymbol{x})-\min(\boldsymbol{x})\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(\max(\boldsymbol{x})\)</span>.</p></li>
-<li><p class="sd-card-text">The phase is zero at <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span>: <span class="math notranslate nohighlight">\(a_n(\min(\boldsymbol{x}))=1+0i\)</span>.</p></li>
+<li><p>The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=\max(\boldsymbol{x})-\min(\boldsymbol{x})\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(\max(\boldsymbol{x})\)</span>.</p></li>
+<li><p>The phase is zero at <span class="math notranslate nohighlight">\(\min(\boldsymbol{x})\)</span>: <span class="math notranslate nohighlight">\(a_n(\min(\boldsymbol{x}))=1+0i\)</span>.</p></li>
 </ul>
 </div>
 </details><div class="cell docutils container">
@@ -1858,21 +1850,19 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg></span><span class="sd-summary-text">More on the Bounds</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">When bounds <span class="math notranslate nohighlight">\(b_{\min} &lt; b_{\max}\)</span>, are provided, the mapping from input <span class="math notranslate nohighlight">\(\boldsymbol{x}=(x_1,\ldots,x_T)\)</span> to the <span class="math notranslate nohighlight">\(n\text{-th}\)</span> basis element works as follows.,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-a_n(x_j)
+\[\begin{split}a_n(x_j)
 =
 \begin{cases}
 \cos\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right)
 \;+\; i\,\sin\!\left(2\pi n\,\frac{x_j-b_{\min}}{b_{\max}-b_{\min}}\right) &amp;&amp; \text{if } x_j \in [b_{\min}, b_{\max}] \\
 \text{NaN} &amp;&amp; \text{otherwise}
-\end{cases}
-\end{split}\]</div>
+\end{cases}\end{split}\]</div>
 <p class="sd-card-text">for <span class="math notranslate nohighlight">\(j=1,\ldots,T\)</span>.</p>
 <p class="sd-card-text">In other words,</p>
 <ul class="simple">
-<li><p class="sd-card-text">The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=b_{\max} - b_{\min}\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(b_{\min}\)</span> to <span class="math notranslate nohighlight">\(b_{\max}\)</span>.</p></li>
-<li><p class="sd-card-text">The phase is zero at <span class="math notranslate nohighlight">\(b_{\min}\)</span>: <span class="math notranslate nohighlight">\(\;a_n(b_{\min})=1+0i\)</span>.</p></li>
-<li><p class="sd-card-text">The basis evaluated at samples lying outside the bounds will return a NaN.</p></li>
+<li><p>The fundamental period over <span class="math notranslate nohighlight">\(x\)</span> is <span class="math notranslate nohighlight">\(P=b_{\max} - b_{\min}\)</span>: the <span class="math notranslate nohighlight">\(n\)</span>-th basis element completes <span class="math notranslate nohighlight">\(n\)</span> full cycles as <span class="math notranslate nohighlight">\(x\)</span> runs from <span class="math notranslate nohighlight">\(b_{\min}\)</span> to <span class="math notranslate nohighlight">\(b_{\max}\)</span>.</p></li>
+<li><p>The phase is zero at <span class="math notranslate nohighlight">\(b_{\min}\)</span>: <span class="math notranslate nohighlight">\(\;a_n(b_{\min})=1+0i\)</span>.</p></li>
+<li><p>The basis evaluated at samples lying outside the bounds will return a NaN.</p></li>
 </ul>
 </div>
 </details></section>
@@ -1882,16 +1872,14 @@ a_n(x_j)
 <p>Fourier bases extend to <span class="math notranslate nohighlight">\(D\)</span> dimensions. Let <span class="math notranslate nohighlight">\(\mathbf{x}=(x_1,\dots,x_D)\)</span>, per-axis periods <span class="math notranslate nohighlight">\(\mathbf{P}=(P_1,\dots,P_D)\)</span>, and multi-index <span class="math notranslate nohighlight">\(\mathbf{n}=(n_1,\dots,n_D)\)</span> (the set of multi-indices actually retained is described in <a class="reference internal" href="#redundant-fourier-freqs"><span class="std std-ref">Avoiding redundant frequencies</span></a> below).</p>
 <p>A <span class="math notranslate nohighlight">\(D\)</span>-dimensional <strong>basis element</strong> is</p>
 <div class="math notranslate nohighlight">
-\[
-a_{\mathbf{n}}(\mathbf{x}) \;=\; \cos\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right)
-\;+\; i\,\sin\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right).
-\]</div>
+\[a_{\mathbf{n}}(\mathbf{x}) \;=\; \cos\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right)
+\;+\; i\,\sin\!\left( 2\pi \sum_{d=1}^{D} \frac{n_d}{P_d}\, x_d \right).\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For simplicity, in the rest of the session we will focus on a 2D example, but everything holds true for a general D-dimensional basis.</p>
 </div>
-<section id="avoiding-redundant-frequencies">
-<span id="redundant-fourier-freqs"></span><h3>Avoiding redundant frequencies<a class="headerlink" href="#avoiding-redundant-frequencies" title="Link to this heading">#</a></h3>
+<section id="redundant-fourier-freqs">
+<span id="avoiding-redundant-frequencies"></span><h3>Avoiding redundant frequencies<a class="headerlink" href="#redundant-fourier-freqs" title="Link to this heading">#</a></h3>
 <p>In one dimension only non-negative frequencies are needed: <span class="math notranslate nohighlight">\(a_{-n}\)</span> adds nothing to <span class="math notranslate nohighlight">\(a_n\)</span>, since the cosine is even and the sine is odd. The same redundancy holds for the multi-index when <span class="math notranslate nohighlight">\(D \ge 2\)</span> — <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> and <span class="math notranslate nohighlight">\(-\mathbf{n}\)</span> give the same cosine and a sign-flipped sine, so their feature pairs are linearly dependent. NeMoS therefore keeps one representative of each <span class="math notranslate nohighlight">\(\{\mathbf{n},-\mathbf{n}\}\)</span> pair: the all-zero index (DC), or the index whose <strong>first non-zero coordinate is positive</strong>.</p>
 <p>You still pass <strong>non-negative</strong> frequencies per axis; NeMoS mirrors the trailing axes to add their negative frequencies and keeps that half-space. In practice:</p>
 <ul class="simple">
@@ -1967,8 +1955,8 @@ shape of the `masked_frequencies` array: (2, 31)
 <p>You can check for the presence of the DC term by assessing if <code class="docutils literal notranslate"><span class="pre">fourier_2d.masked_frequencies[:,</span> <span class="pre">0]</span></code> is all zeros.</p>
 </div>
 </section>
-<section id="selecting-the-frequencies">
-<span id="select-fourier-freqs-ndim"></span><h3>Selecting The Frequencies<a class="headerlink" href="#selecting-the-frequencies" title="Link to this heading">#</a></h3>
+<section id="select-fourier-freqs-ndim">
+<span id="selecting-the-frequencies"></span><h3>Selecting The Frequencies<a class="headerlink" href="#select-fourier-freqs-ndim" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">frequencies</span></code> argument specifies, <strong>per axis</strong>, which <strong>non-negative</strong> integer frequencies to use. NeMoS mirrors the trailing axes to add negative frequencies and keeps the half-space (see <a class="reference internal" href="#redundant-fourier-freqs"><span class="std std-ref">Avoiding redundant frequencies</span></a>); the retained multi-indices <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> are listed in <code class="docutils literal notranslate"><span class="pre">masked_frequencies</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2388,13 +2376,13 @@ shape of the `masked_frequencies` array: (2, 31)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-dimensional-fourier-basis">One-Dimensional Fourier Basis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-basis-in-nemos">Fourier Basis in NeMoS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-frequencies">Selecting frequencies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-period-of-the-basis">Setting the Period of the Basis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-period">Setting the Period of the Basis</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-dimensional-fourier-basis">Multi-Dimensional Fourier Basis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-redundant-frequencies">Avoiding redundant frequencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redundant-fourier-freqs">Avoiding redundant frequencies</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-in-nemos">Definition in NeMoS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-frequencies">Selecting The Frequencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-fourier-freqs-ndim">Selecting The Frequencies</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-with-a-boolean-array">Mask With a Boolean Array</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mask-with-a-callable">Mask With a Callable</a></li>
 </ul>

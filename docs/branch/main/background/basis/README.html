@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -700,9 +700,7 @@
 <p>In a GLM, we assume a non-linear mapping exists between task variables and neuronal firing rates. This mapping isn’t something we can directly observe—what we do see are the inputs (task covariates) and the resulting neural activity. The challenge is to infer a “good” approximation of this hidden relationship.</p>
 <p>Basis functions help simplify this process by representing the non-linearity as a weighted sum of fixed functions, <span class="math notranslate nohighlight">\(\psi_1(x), \dots, \psi_n(x)\)</span>, with weights <span class="math notranslate nohighlight">\(\alpha_1, \dots, \alpha_n\)</span>. Mathematically:</p>
 <div class="math notranslate nohighlight">
-\[
-f(x) \approx \alpha_1 \psi_1(x) + \dots + \alpha_n \psi_n(x)
-\]</div>
+\[f(x) \approx \alpha_1 \psi_1(x) + \dots + \alpha_n \psi_n(x)\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\approx\)</span> means “approximately equal”.</p>
 <p>Instead of tackling the hard problem of learning an unknown function <span class="math notranslate nohighlight">\(f(x)\)</span> directly, we reduce it to the simpler task of learning the weights <span class="math notranslate nohighlight">\(\{\alpha_i\}\)</span>. This preserves convexity, resulting in a much simpler optimization problem.</p>
 </section>
@@ -751,7 +749,7 @@ f(x) \approx \alpha_1 \psi_1(x) + \dots + \alpha_n \psi_n(x)
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="plot_02_ND_basis_function.html">Composing Basis Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#background">Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#d-basis-functions">2D Basis Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#composite-basis-2d">2D Basis Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_02_ND_basis_function.html#n-dimensional-basis">N-Dimensional Basis</a></li>
 </ul>
 </li>

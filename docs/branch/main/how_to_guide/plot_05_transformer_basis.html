@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'how_to_guide/plot_05_transformer_basis';</script>
@@ -614,8 +614,8 @@
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="using-bases-as-scikit-learn-transformers">
 <h1>Using bases as scikit-learn transformers<a class="headerlink" href="#using-bases-as-scikit-learn-transformers" title="Link to this heading">#</a></h1>
-<section id="scikit-learn-transformers-and-nemos-basis">
-<span id="tansformer-vs-nemos-basis"></span><h2>scikit-learn Transformers and NeMoS Basis<a class="headerlink" href="#scikit-learn-transformers-and-nemos-basis" title="Link to this heading">#</a></h2>
+<section id="tansformer-vs-nemos-basis">
+<span id="scikit-learn-transformers-and-nemos-basis"></span><h2>scikit-learn Transformers and NeMoS Basis<a class="headerlink" href="#tansformer-vs-nemos-basis" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> is a powerful machine learning library that provides advanced tools for creating data analysis pipelines, from input transformations to model fitting and cross-validation.</p>
 <p>All of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s machinery relies on strict assumptions about input structure. In particular, all <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>
 objects require inputs to be arrays of at most two dimensions, where the first dimension represents the time (or samples)
@@ -857,8 +857,8 @@ and the <code class="docutils literal notranslate"><span class="pre">Transformer
 </div>
 </section>
 </section>
-<section id="setting-up-the-bounds">
-<span id="transformer-basis-bounds"></span><h3>Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code><a class="headerlink" href="#setting-up-the-bounds" title="Link to this heading">#</a></h3>
+<section id="transformer-basis-bounds">
+<span id="setting-up-the-bounds"></span><h3>Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code><a class="headerlink" href="#transformer-basis-bounds" title="Link to this heading">#</a></h3>
 <section id="id1">
 <h4>The Problem<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>Any basis that derives its domain from <code class="docutils literal notranslate"><span class="pre">bounds</span></code> must have <code class="docutils literal notranslate"><span class="pre">bounds</span></code> set explicitly before it can be used as a transformer. This is a deliberate safety choice. With <code class="docutils literal notranslate"><span class="pre">bounds</span></code> left unset, the domain is inferred from the data, so during cross-validation each fold would re-fit the domain to its own data range. The transformation would then differ from fold to fold, which is rarely what you want when cross-validating.</p>
@@ -1014,7 +1014,7 @@ and the <code class="docutils literal notranslate"><span class="pre">Transformer
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn-transformers-and-nemos-basis">scikit-learn Transformers and NeMoS Basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tansformer-vs-nemos-basis">scikit-learn Transformers and NeMoS Basis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-basis-to-transformerbasis">From Basis to TransformerBasis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-nemos-basis-to-a-transformer">Converting NeMoS <code class="docutils literal notranslate"><span class="pre">Basis</span></code> to a transformer</a></li>
 </ul>
@@ -1025,7 +1025,7 @@ and the <code class="docutils literal notranslate"><span class="pre">Transformer
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-defining-the-input-shape">The Solution: Defining the Input Shape</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-bounds">Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-basis-bounds">Setting up the <code class="docutils literal notranslate"><span class="pre">bounds</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Problem</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution">The Solution</a></li>
 </ul>

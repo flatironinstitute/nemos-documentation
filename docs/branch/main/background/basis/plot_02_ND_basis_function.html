@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3b02c751" />
   
@@ -55,7 +55,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=b8b12719"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script src="../../_static/code-tabs.js?v=c983d12e"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -609,8 +609,8 @@
 </div>
 </details>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="composing-basis-functions">
-<span id="composing-basis-function"></span><h1>Composing Basis Functions<a class="headerlink" href="#composing-basis-functions" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="composing-basis-function">
+<span id="composing-basis-functions"></span><h1>Composing Basis Functions<a class="headerlink" href="#composing-basis-function" title="Link to this heading">#</a></h1>
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
 <p>In many cases, it’s necessary to model the response of a neuron to multiple different inputs
@@ -629,37 +629,25 @@ Let’s say we’ve defined two basis functions for these inputs:</p>
 <ol class="arabic">
 <li><p><strong>Addition:</strong> If we assume that there is no interaction between the stimuli, the response function can be adequately described by the sum of the individual components. The function is defined as:</p>
 <div class="math notranslate nohighlight">
-\[
-   f(\mathbf{x}, \mathbf{y}) \approx \sum_{i=0}^{k-1} \alpha_{i} \, a_i (\mathbf{x})  + \sum_{j=0}^{h-1} \beta_j b_j(\mathbf{y}).
-   \]</div>
+\[   f(\mathbf{x}, \mathbf{y}) \approx \sum_{i=0}^{k-1} \alpha_{i} \, a_i (\mathbf{x})  + \sum_{j=0}^{h-1} \beta_j b_j(\mathbf{y}).\]</div>
 <p>The resulting additive basis simply consists of the concatenation of the two basis sets:</p>
 <div class="math notranslate nohighlight">
-\[
-   [A_0 (\mathbf{x}, \mathbf{y}), ..., A_{k+h-1} (\mathbf{x}, \mathbf{y})],
-   \]</div>
+\[   [A_0 (\mathbf{x}, \mathbf{y}), ..., A_{k+h-1} (\mathbf{x}, \mathbf{y})],\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-   A_j(\mathbf{x}, \mathbf{y}) = \begin{cases} a_j(\mathbf{x}) &amp;\text{if }\; j \leq k-1 \\
-   b_{j-k+1}(\mathbf{y}) &amp;\text{otherwise.} \end{cases}
-   \end{split}\]</div>
+\[\begin{split}   A_j(\mathbf{x}, \mathbf{y}) = \begin{cases} a_j(\mathbf{x}) &amp;\text{if }\; j \leq k-1 \\
+   b_{j-k+1}(\mathbf{y}) &amp;\text{otherwise.} \end{cases}\end{split}\]</div>
 <p>Note that we have a total of <span class="math notranslate nohighlight">\(k+h\)</span> basis elements, and that each element is constant in one of the axis.</p>
 </li>
 <li><p><strong>Multiplication:</strong> If we expect the response function to capture arbitrary interactions between the inputs, we can approximate it as the external product of the two bases:</p>
 <div class="math notranslate nohighlight">
-\[
-   f(\mathbf{x}, \mathbf{y}) \approx \sum_{i=0}^{k-1}\sum_{j=0}^{h-1} \alpha_{ij} \, a_i (\mathbf{x}) b_j(\mathbf{y}).
-   \]</div>
+\[   f(\mathbf{x}, \mathbf{y}) \approx \sum_{i=0}^{k-1}\sum_{j=0}^{h-1} \alpha_{ij} \, a_i (\mathbf{x}) b_j(\mathbf{y}).\]</div>
 <p>In this case, the resulting basis consists of the <span class="math notranslate nohighlight">\(h \cdot k\)</span> products of the individual bases:</p>
 <div class="math notranslate nohighlight">
-\[
-   [A_0(\mathbf{x}, \mathbf{y}),..., A_{k \cdot h-1}(\mathbf{x}, \mathbf{y})],
-   \]</div>
+\[   [A_0(\mathbf{x}, \mathbf{y}),..., A_{k \cdot h-1}(\mathbf{x}, \mathbf{y})],\]</div>
 <p>where,</p>
 <div class="math notranslate nohighlight">
-\[
-   A_{i \cdot h + j}(\mathbf{x}, \mathbf{y}) = a_i(\mathbf{x})b_{j}(\mathbf{y}), \; \text{for} \; i=0,\dots, k-1 \; \text{ and } \; j=0,\dots,h-1.
-   \]</div>
+\[   A_{i \cdot h + j}(\mathbf{x}, \mathbf{y}) = a_i(\mathbf{x})b_{j}(\mathbf{y}), \; \text{for} \; i=0,\dots, k-1 \; \text{ and } \; j=0,\dots,h-1.\]</div>
 </li>
 </ol>
 <p>In the subsequent sections, we will:</p>
@@ -668,8 +656,8 @@ Let’s say we’ve defined two basis functions for these inputs:</p>
 <li><p>Illustrate how to iteratively apply addition and multiplication operations to extend to dimensions beyond two.</p></li>
 </ol>
 </section>
-<section id="d-basis-functions">
-<span id="composite-basis-2d"></span><h2>2D Basis Functions<a class="headerlink" href="#d-basis-functions" title="Link to this heading">#</a></h2>
+<section id="composite-basis-2d">
+<span id="d-basis-functions"></span><h2>2D Basis Functions<a class="headerlink" href="#composite-basis-2d" title="Link to this heading">#</a></h2>
 <p>Consider an instance where we want to capture a neuron’s response to an animal’s position within a given arena.
 In this scenario, the stimuli are the 2D coordinates (x, y) that represent the animal’s position at each time point.</p>
 <section id="additive-basis-object">
@@ -677,9 +665,7 @@ In this scenario, the stimuli are the 2D coordinates (x, y) that represent the a
 <p>One way to model the response to our 2D stimuli is to hypothesize that it decomposes into two factors:
 one due to the x-coordinate and another due to the y-coordinate. We can express this relationship as:</p>
 <div class="math notranslate nohighlight">
-\[
-f(x,y) \approx \sum_i \alpha_i \cdot a_i(x) + \sum_j \beta_j \cdot b_j(y).
-\]</div>
+\[f(x,y) \approx \sum_i \alpha_i \cdot a_i(x) + \sum_j \beta_j \cdot b_j(y).\]</div>
 <p>Here, we simply add two basis objects, <code class="docutils literal notranslate"><span class="pre">a_basis</span></code> and <code class="docutils literal notranslate"><span class="pre">b_basis</span></code>, together to define the additive basis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1882,9 +1868,7 @@ We use the <code class="docutils literal notranslate"><span class="pre">evaluate
 <p>If the aim is to capture interactions between the coordinates, the response function can be modeled as the external
 product of two 1D basis functions. The approximation of the response function in this scenario would be:</p>
 <div class="math notranslate nohighlight">
-\[
-f(x, y) \approx \sum_{ij} \alpha_{ij} \, a_i (x) b_j(y).
-\]</div>
+\[f(x, y) \approx \sum_{ij} \alpha_{ij} \, a_i (x) b_j(y).\]</div>
 <p>In this model, we define the 2D basis function as the product of two 1D basis objects.
 This allows the response to capture non-linear and interaction effects between the x and y coordinates.</p>
 <div class="cell docutils container">
@@ -2127,7 +2111,7 @@ This is achieved using the power operator with an integer exponent.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-basis-functions">2D Basis Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composite-basis-2d">2D Basis Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additive-basis-object">Additive Basis Object</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-2d-additive-basis-elements">Plotting 2D Additive Basis Elements</a></li>
 </ul>
