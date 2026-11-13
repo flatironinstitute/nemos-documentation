@@ -1,0 +1,45 @@
+﻿nemos.basis.MSplineConv
+=======================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: MSplineConv
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MSplineConv.conv_kwargs
+      ~MSplineConv.input_shape
+      ~MSplineConv.is_complex
+      ~MSplineConv.label
+      ~MSplineConv.n_basis_funcs
+      ~MSplineConv.n_output_features
+      ~MSplineConv.order
+      ~MSplineConv.window_size
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MSplineConv.__init__
+      ~MSplineConv.compute_features
+      ~MSplineConv.evaluate
+      ~MSplineConv.evaluate_on_grid
+      ~MSplineConv.get_params
+      ~MSplineConv.set_input_shape
+      ~MSplineConv.set_params
+      ~MSplineConv.setup_basis
+      ~MSplineConv.split_by_feature
+      ~MSplineConv.to_transformer
+   
