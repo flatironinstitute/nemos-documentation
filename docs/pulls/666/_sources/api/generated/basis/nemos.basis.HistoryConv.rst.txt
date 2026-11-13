@@ -1,0 +1,44 @@
+﻿nemos.basis.HistoryConv
+=======================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: HistoryConv
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HistoryConv.conv_kwargs
+      ~HistoryConv.input_shape
+      ~HistoryConv.is_complex
+      ~HistoryConv.label
+      ~HistoryConv.n_basis_funcs
+      ~HistoryConv.n_output_features
+      ~HistoryConv.window_size
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~HistoryConv.__init__
+      ~HistoryConv.compute_features
+      ~HistoryConv.evaluate
+      ~HistoryConv.evaluate_on_grid
+      ~HistoryConv.get_params
+      ~HistoryConv.set_input_shape
+      ~HistoryConv.set_params
+      ~HistoryConv.setup_basis
+      ~HistoryConv.split_by_feature
+      ~HistoryConv.to_transformer
+   
