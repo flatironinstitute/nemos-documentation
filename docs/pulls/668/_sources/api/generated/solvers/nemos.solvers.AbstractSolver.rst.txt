@@ -1,0 +1,29 @@
+﻿nemos.solvers.AbstractSolver
+============================
+
+.. currentmodule:: nemos.solvers
+
+.. autoclass:: AbstractSolver
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AbstractSolver.__init__
+      ~AbstractSolver.get_accepted_arguments
+      ~AbstractSolver.init_state
+      ~AbstractSolver.run
+      ~AbstractSolver.stochastic_convergence_criterion
+      ~AbstractSolver.stochastic_run
+      ~AbstractSolver.update
+   
