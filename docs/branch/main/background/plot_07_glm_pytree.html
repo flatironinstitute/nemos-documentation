@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>JAX Pytrees for Structuring Multiple Predictors &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>JAX Pytrees for Structuring Multiple Predictors &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -504,6 +504,9 @@
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="plot_03_1D_convolution.html">Convolution</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="efgp.html">Gaussian Process Regression in NeMoS!</a></li>
 </ul>
 </div>
 </nav></div>
@@ -1493,7 +1496,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f8b0eb2d8a0&gt;</td>
+            <td class="value">&lt;function exp...x7f9109175c60&gt;</td>
         </tr>
     
 
@@ -1590,7 +1593,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">coef_</a></td>
            <td class="fitted-att-type">dict</td>
-           <td>{&#x27;he...on&#x27;: Array([-1.112...dtype=float32), &#x27;po...on&#x27;: Array([-0.251...dtype=float32), &#x27;speed&#x27;: Array([-0.100...dtype=float32)}</td>
+           <td>{&#x27;he...on&#x27;: Array([-1.113...dtype=float32), &#x27;po...on&#x27;: Array([-0.251...dtype=float32), &#x27;speed&#x27;: Array([-0.100...dtype=float32)}</td>
 
 
        </tr>
@@ -1625,11 +1628,8 @@ a.param-doc-link::before {
 
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">solver_state_</a></td>
-           <td class="fitted-att-type">NewtonState</td>
-           <td>NewtonState(
-...[]
-    )
-  )
+           <td class="fitted-att-type">SecondOrderState</td>
+           <td>SecondOrderSt..._state=f32[]
 )</td>
 
 

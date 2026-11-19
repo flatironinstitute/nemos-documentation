@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.basis.basis &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>nemos.basis.basis &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -541,7 +541,7 @@
 <span class="c1"># required to get ArrayLike to render correctly</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">NDArray</span>
@@ -555,7 +555,6 @@
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._composition_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_docstring</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._decaying_exponential</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrthExponentialBasis</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._fourier_basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">FourierBasis</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._identity</span><span class="w"> </span><span class="kn">import</span> <span class="n">HistoryBasis</span><span class="p">,</span> <span class="n">IdentityBasis</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._raised_cosine_basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">RaisedCosineBasisLinear</span><span class="p">,</span> <span class="n">RaisedCosineBasisLog</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">._spline_basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">BSplineBasis</span><span class="p">,</span> <span class="n">CyclicBSplineBasis</span><span class="p">,</span> <span class="n">MSplineBasis</span>
@@ -581,7 +580,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -643,10 +642,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import BSplineEval</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis = BSplineEval(n_basis_funcs=6, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20,))</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         20,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        one_input, shape (20, 6)</span>
 
 <span class="sd">        """</span>
@@ -665,7 +668,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = BSplineEval(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -693,12 +696,14 @@
 <span class="sd">            &gt;&gt;&gt; bspline_basis = BSplineEval(n_basis_funcs=4, order=3)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = bspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">            ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">            &gt;&gt;&gt; plt.title('B-Spline Basis Functions')</span>
+<span class="sd">            ...     p = plt.plot(</span>
+<span class="sd">            ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">            ...     )</span>
+<span class="sd">            &gt;&gt;&gt; plt.title("B-Spline Basis Functions")</span>
 <span class="sd">            Text(0.5, 1.0, 'B-Spline Basis Functions')</span>
-<span class="sd">            &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">            &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">            Text(0.5, 0, 'Domain')</span>
-<span class="sd">            &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">            &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">            Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">            &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">            &gt;&gt;&gt; plt.show()</span>
@@ -840,7 +845,7 @@
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -860,7 +865,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = BSplineConv(10, window_size=11)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -888,12 +893,14 @@
 <span class="sd">            &gt;&gt;&gt; bspline_basis = BSplineConv(n_basis_funcs=4, order=3, window_size=10)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = bspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">            ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">            &gt;&gt;&gt; plt.title('B-Spline Basis Functions')</span>
+<span class="sd">            ...     p = plt.plot(</span>
+<span class="sd">            ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">            ...     )</span>
+<span class="sd">            &gt;&gt;&gt; plt.title("B-Spline Basis Functions")</span>
 <span class="sd">            Text(0.5, 1.0, 'B-Spline Basis Functions')</span>
-<span class="sd">            &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">            &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">            Text(0.5, 0, 'Domain')</span>
-<span class="sd">            &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">            &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">            Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">            &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">            &gt;&gt;&gt; plt.show()</span>
@@ -966,11 +973,9 @@
 <span class="sd">        The B-splines have (order-2) continuous derivatives at each interior knot.</span>
 <span class="sd">        The higher this number, the smoother the basis representation will be.</span>
 <span class="sd">    bounds :</span>
-<span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
+<span class="sd">        The bounds of one period of the basis. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
-<span class="sd">    fill_value :</span>
-<span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
+<span class="sd">        Samples outside the bounds are wrapped around the period ``bounds[1] - bounds[0]``.</span>
 <span class="sd">    label :</span>
 <span class="sd">        The label of the basis, intended to be descriptive of the task variable being processed.</span>
 <span class="sd">        For example: velocity, position, spike_counts.</span>
@@ -988,6 +993,8 @@
 <span class="sd">    &gt;&gt;&gt; features = cyclic_bspline_basis.compute_features(sample_points)</span>
 <span class="sd">    """</span>
 
+    <span class="n">_apply_bounds_fill</span> <span class="o">=</span> <span class="kc">False</span>
+
 <div class="viewcode-block" id="CyclicBSplineEval.__init__">
 <a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.CyclicBSplineEval.html#nemos.basis.CyclicBSplineEval.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -995,7 +1002,6 @@
         <span class="n">n_basis_funcs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">order</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">fill_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"CyclicBSplineEval"</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="n">CyclicBSplineBasis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -1004,7 +1010,7 @@
             <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">)</span></div>
+        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CyclicBSplineEval.split_by_feature">
@@ -1022,10 +1028,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import CyclicBSplineEval</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis = CyclicBSplineEval(n_basis_funcs=6, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20,))</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         20,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        one_input, shape (20, 6)</span>
 
 <span class="sd">        """</span>
@@ -1045,7 +1055,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = CyclicBSplineEval(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -1075,12 +1085,14 @@
 <span class="sd">            &gt;&gt;&gt; cbspline_basis = CyclicBSplineEval(n_basis_funcs=4, order=3)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = cbspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">            ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">            &gt;&gt;&gt; plt.title('Cyclic B-Spline Basis Functions')</span>
+<span class="sd">            ...     p = plt.plot(</span>
+<span class="sd">            ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">            ...     )</span>
+<span class="sd">            &gt;&gt;&gt; plt.title("Cyclic B-Spline Basis Functions")</span>
 <span class="sd">            Text(0.5, 1.0, 'Cyclic B-Spline Basis Functions')</span>
-<span class="sd">            &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">            &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">            Text(0.5, 0, 'Domain')</span>
-<span class="sd">            &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">            &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">            Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">            &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">            &gt;&gt;&gt; plt.show()</span>
@@ -1170,7 +1182,9 @@
 <span class="sd">    &gt;&gt;&gt; from nemos.basis import CyclicBSplineConv</span>
 <span class="sd">    &gt;&gt;&gt; n_basis_funcs = 5</span>
 <span class="sd">    &gt;&gt;&gt; order = 3</span>
-<span class="sd">    &gt;&gt;&gt; cyclic_bspline_basis = CyclicBSplineConv(n_basis_funcs, order=order, window_size=10)</span>
+<span class="sd">    &gt;&gt;&gt; cyclic_bspline_basis = CyclicBSplineConv(</span>
+<span class="sd">    ...     n_basis_funcs, order=order, window_size=10</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; cyclic_bspline_basis</span>
 <span class="sd">    CyclicBSplineConv(n_basis_funcs=5, window_size=10, order=3)</span>
 <span class="sd">    &gt;&gt;&gt; sample_points = linspace(0, 1, 100)</span>
@@ -1210,11 +1224,13 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import CyclicBSplineConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
-<span class="sd">        &gt;&gt;&gt; basis = CyclicBSplineConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis = CyclicBSplineConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -1234,7 +1250,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = CyclicBSplineConv(10, window_size=11)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -1261,15 +1277,19 @@
 <span class="sd">            &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import CyclicBSplineConv</span>
-<span class="sd">            &gt;&gt;&gt; cbspline_basis = CyclicBSplineConv(n_basis_funcs=4, order=3, window_size=10)</span>
+<span class="sd">            &gt;&gt;&gt; cbspline_basis = CyclicBSplineConv(</span>
+<span class="sd">            ...     n_basis_funcs=4, order=3, window_size=10</span>
+<span class="sd">            ... )</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = cbspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">            ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">            &gt;&gt;&gt; plt.title('Cyclic B-Spline Basis Functions')</span>
+<span class="sd">            ...     p = plt.plot(</span>
+<span class="sd">            ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">            ...     )</span>
+<span class="sd">            &gt;&gt;&gt; plt.title("Cyclic B-Spline Basis Functions")</span>
 <span class="sd">            Text(0.5, 1.0, 'Cyclic B-Spline Basis Functions')</span>
-<span class="sd">            &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">            &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">            Text(0.5, 0, 'Domain')</span>
-<span class="sd">            &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">            &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">            Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">            &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">            &gt;&gt;&gt; plt.show()</span>
@@ -1355,7 +1375,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -1425,7 +1445,7 @@
 <span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        one_input, shape (20, 6)</span>
 
 <span class="sd">        """</span>
@@ -1445,7 +1465,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = MSplineEval(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -1475,12 +1495,14 @@
 <span class="sd">        &gt;&gt;&gt; mspline_basis = MSplineEval(n_basis_funcs=4, order=3)</span>
 <span class="sd">        &gt;&gt;&gt; sample_points, basis_values = mspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">        &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">        ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">        &gt;&gt;&gt; plt.title('M-Spline Basis Functions')</span>
+<span class="sd">        ...     p = plt.plot(</span>
+<span class="sd">        ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        &gt;&gt;&gt; plt.title("M-Spline Basis Functions")</span>
 <span class="sd">        Text(0.5, 1.0, 'M-Spline Basis Functions')</span>
-<span class="sd">        &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">        &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">        Text(0.5, 0, 'Domain')</span>
-<span class="sd">        &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">        &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">        Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">        &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">        &gt;&gt;&gt; plt.show()</span>
@@ -1638,7 +1660,7 @@
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -1658,7 +1680,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = MSplineConv(10, window_size=11)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -1688,12 +1710,14 @@
 <span class="sd">        &gt;&gt;&gt; mspline_basis = MSplineConv(n_basis_funcs=4, order=3, window_size=10)</span>
 <span class="sd">        &gt;&gt;&gt; sample_points, basis_values = mspline_basis.evaluate_on_grid(100)</span>
 <span class="sd">        &gt;&gt;&gt; for i in range(4):</span>
-<span class="sd">        ...     p = plt.plot(sample_points, basis_values[:, i], label=f'Function {i+1}')</span>
-<span class="sd">        &gt;&gt;&gt; plt.title('M-Spline Basis Functions')</span>
+<span class="sd">        ...     p = plt.plot(</span>
+<span class="sd">        ...         sample_points, basis_values[:, i], label=f"Function {i + 1}"</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        &gt;&gt;&gt; plt.title("M-Spline Basis Functions")</span>
 <span class="sd">        Text(0.5, 1.0, 'M-Spline Basis Functions')</span>
-<span class="sd">        &gt;&gt;&gt; plt.xlabel('Domain')</span>
+<span class="sd">        &gt;&gt;&gt; plt.xlabel("Domain")</span>
 <span class="sd">        Text(0.5, 0, 'Domain')</span>
-<span class="sd">        &gt;&gt;&gt; plt.ylabel('Basis Function Value')</span>
+<span class="sd">        &gt;&gt;&gt; plt.ylabel("Basis Function Value")</span>
 <span class="sd">        Text(0, 0.5, 'Basis Function Value')</span>
 <span class="sd">        &gt;&gt;&gt; l = plt.legend()</span>
 <span class="sd">        """</span>
@@ -1768,7 +1792,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain in ``mode="eval"``. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -1829,7 +1853,7 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import RaisedCosineLinearEval</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
 <span class="sd">            &gt;&gt;&gt; raised_cos_basis = RaisedCosineLinearEval(n_basis_funcs)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = raised_cos_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
@@ -1871,7 +1895,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLinearEval(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -1897,10 +1921,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLinearEval</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLinearEval(n_basis_funcs=6, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20,))</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         20,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        one_input, shape (20, 6)</span>
 
 <span class="sd">        """</span>
@@ -2020,8 +2048,10 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import RaisedCosineLinearConv</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05]) # sample decay rates</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
+<span class="sd">            &gt;&gt;&gt; decay_rates = np.array(</span>
+<span class="sd">            ...     [0.01, 0.02, 0.03, 0.04, 0.05]</span>
+<span class="sd">            ... )  # sample decay rates</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
 <span class="sd">            &gt;&gt;&gt; ortho_basis = RaisedCosineLinearConv(n_basis_funcs, window_size)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = ortho_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
@@ -2063,7 +2093,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLinearConv(10, window_size=100)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -2088,11 +2118,13 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLinearConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
-<span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLinearConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLinearConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -2157,7 +2189,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -2222,8 +2254,10 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import RaisedCosineLogEval</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05]) # sample decay rates</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
+<span class="sd">            &gt;&gt;&gt; decay_rates = np.array(</span>
+<span class="sd">            ...     [0.01, 0.02, 0.03, 0.04, 0.05]</span>
+<span class="sd">            ... )  # sample decay rates</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
 <span class="sd">            &gt;&gt;&gt; ortho_basis = RaisedCosineLogEval(n_basis_funcs)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = ortho_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
@@ -2265,7 +2299,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLogEval(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -2291,10 +2325,14 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLogEval</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLogEval(n_basis_funcs=6, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20,))</span>
+<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         20,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        one_input, shape (20, 6)</span>
 
 <span class="sd">        """</span>
@@ -2426,8 +2464,10 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import RaisedCosineLogConv</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05]) # sample decay rates</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
+<span class="sd">            &gt;&gt;&gt; decay_rates = np.array(</span>
+<span class="sd">            ...     [0.01, 0.02, 0.03, 0.04, 0.05]</span>
+<span class="sd">            ... )  # sample decay rates</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
 <span class="sd">            &gt;&gt;&gt; ortho_basis = RaisedCosineLogConv(n_basis_funcs, window_size)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = ortho_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
@@ -2469,7 +2509,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLogConv(10, window_size=100)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -2494,11 +2534,13 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import RaisedCosineLogConv</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
-<span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLogConv(n_basis_funcs=6, window_size=10, label="two_inputs")</span>
+<span class="sd">        &gt;&gt;&gt; basis = RaisedCosineLogConv(</span>
+<span class="sd">        ...     n_basis_funcs=6, window_size=10, label="two_inputs"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -2551,7 +2593,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -2610,9 +2652,13 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import OrthExponentialEval</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05]) # sample decay rates</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
-<span class="sd">            &gt;&gt;&gt; ortho_basis = OrthExponentialEval(n_basis_funcs, decay_rates=decay_rates)</span>
+<span class="sd">            &gt;&gt;&gt; decay_rates = np.array(</span>
+<span class="sd">            ...     [0.01, 0.02, 0.03, 0.04, 0.05]</span>
+<span class="sd">            ... )  # sample decay rates</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
+<span class="sd">            &gt;&gt;&gt; ortho_basis = OrthExponentialEval(</span>
+<span class="sd">            ...     n_basis_funcs, decay_rates=decay_rates</span>
+<span class="sd">            ... )</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = ortho_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
 <span class="sd">            [&lt;matplotlib.lines.Line2D object at ...</span>
@@ -2654,7 +2700,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = OrthExponentialEval(10, decay_rates=np.arange(1, 11))</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -2680,7 +2726,9 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import OrthExponentialEval</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
 <span class="sd">        &gt;&gt;&gt; # Define an additive basis</span>
-<span class="sd">        &gt;&gt;&gt; basis = OrthExponentialEval(n_basis_funcs=5, decay_rates=np.arange(1, 6), label="feature")</span>
+<span class="sd">        &gt;&gt;&gt; basis = OrthExponentialEval(</span>
+<span class="sd">        ...     n_basis_funcs=5, decay_rates=np.arange(1, 6), label="feature"</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; # Generate a sample input array and compute features</span>
 <span class="sd">        &gt;&gt;&gt; inp = np.random.randn(20)</span>
 <span class="sd">        &gt;&gt;&gt; X = basis.compute_features(inp)</span>
@@ -2802,9 +2850,13 @@
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import OrthExponentialConv</span>
 <span class="sd">            &gt;&gt;&gt; n_basis_funcs = 5</span>
-<span class="sd">            &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05]) # sample decay rates</span>
-<span class="sd">            &gt;&gt;&gt; window_size=10</span>
-<span class="sd">            &gt;&gt;&gt; ortho_basis = OrthExponentialConv(n_basis_funcs, window_size, decay_rates=decay_rates)</span>
+<span class="sd">            &gt;&gt;&gt; decay_rates = np.array(</span>
+<span class="sd">            ...     [0.01, 0.02, 0.03, 0.04, 0.05]</span>
+<span class="sd">            ... )  # sample decay rates</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 10</span>
+<span class="sd">            &gt;&gt;&gt; ortho_basis = OrthExponentialConv(</span>
+<span class="sd">            ...     n_basis_funcs, window_size, decay_rates=decay_rates</span>
+<span class="sd">            ... )</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = ortho_basis.evaluate_on_grid(100)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
 <span class="sd">            [&lt;matplotlib.lines.Line2D object at ...</span>
@@ -2825,7 +2877,9 @@
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import OrthExponentialConv</span>
 <span class="sd">        &gt;&gt;&gt; decay_rates = np.array([0.01, 0.02, 0.03, 0.04, 0.05])</span>
-<span class="sd">        &gt;&gt;&gt; ortho_basis = OrthExponentialConv(n_basis_funcs=5, window_size=20, decay_rates=decay_rates)</span>
+<span class="sd">        &gt;&gt;&gt; ortho_basis = OrthExponentialConv(</span>
+<span class="sd">        ...     n_basis_funcs=5, window_size=20, decay_rates=decay_rates</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; out = ortho_basis.evaluate(np.random.randn(100, 5, 2))</span>
 <span class="sd">        &gt;&gt;&gt; out.shape</span>
 <span class="sd">        (100, 5, 2, 5)</span>
@@ -2846,8 +2900,10 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
-<span class="sd">        &gt;&gt;&gt; basis = OrthExponentialConv(10, window_size=100, decay_rates=np.arange(1, 11))</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; basis = OrthExponentialConv(</span>
+<span class="sd">        ...     10, window_size=100, decay_rates=np.arange(1, 11)</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
 <span class="sd">        (1000, 10)</span>
@@ -2875,12 +2931,12 @@
 <span class="sd">        ...     n_basis_funcs=6,</span>
 <span class="sd">        ...     decay_rates=np.arange(1, 7),</span>
 <span class="sd">        ...     window_size=10,</span>
-<span class="sd">        ...     label="two_inputs"</span>
+<span class="sd">        ...     label="two_inputs",</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; X_multi = basis.compute_features(np.random.randn(20, 2))</span>
 <span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X_multi, axis=1)</span>
 <span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
+<span class="sd">        ...     print(f"{feature}, shape {sub_dict.shape}")</span>
 <span class="sd">        two_inputs, shape (20, 2, 6)</span>
 
 <span class="sd">        """</span>
@@ -2897,7 +2953,9 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
 <span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.OrthExponentialConv(5, window_size=10, decay_rates=np.arange(1, 6))</span>
+<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.OrthExponentialConv(</span>
+<span class="sd">        ...     5, window_size=10, decay_rates=np.arange(1, 6)</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
 <span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
 <span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
@@ -2946,7 +3004,7 @@
 <span class="sd">    bounds :</span>
 <span class="sd">        The bounds for the basis domain. The default ``bounds[0]`` and ``bounds[1]`` are the</span>
 <span class="sd">        minimum and the maximum of the samples provided when evaluating the basis.</span>
-<span class="sd">        If a sample is outside the bounds, the basis will return NaN.</span>
+<span class="sd">        If a sample is outside the bounds, the basis returns ``fill_value`` for that sample.</span>
 <span class="sd">    fill_value :</span>
 <span class="sd">        The value to fill when samples are outside the bounds. Default is NaN.</span>
 <span class="sd">    label :</span>
@@ -2955,7 +3013,7 @@
 <span class="sd">    """</span>
 
     <span class="c1"># ``IdentityBasis.evaluate`` already masks out-of-bounds samples, so the mixin must</span>
-    <span class="c1"># not apply ``fill_value`` a second time in ``_compute_features``.</span>
+    <span class="c1"># not apply ``fill_value`` a second time in ``evaluate``.</span>
     <span class="n">_apply_bounds_fill</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="c1"># For this basis, bounds are not using to rescale, therefore they do not define the</span>
@@ -3033,7 +3091,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = IdentityEval()</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -3208,7 +3266,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = Zero()</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # returns empty feature matrix</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -3330,7 +3388,7 @@
 
 <span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
 <span class="sd">            &gt;&gt;&gt; from nemos.basis import HistoryConv</span>
-<span class="sd">            &gt;&gt;&gt; window_size=100</span>
+<span class="sd">            &gt;&gt;&gt; window_size = 100</span>
 <span class="sd">            &gt;&gt;&gt; basis = HistoryConv(window_size=window_size)</span>
 <span class="sd">            &gt;&gt;&gt; sample_points, basis_values = basis.evaluate_on_grid(window_size)</span>
 <span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
@@ -3353,7 +3411,11 @@
 <span class="sd">        &gt;&gt;&gt; from nemos.basis import HistoryConv</span>
 <span class="sd">        &gt;&gt;&gt; basis = HistoryConv(window_size=20)</span>
 <span class="sd">        &gt;&gt;&gt; # evaluate for HistoryConv require a 1d input</span>
-<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(np.random.randn(100, ))</span>
+<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(</span>
+<span class="sd">        ...     np.random.randn(</span>
+<span class="sd">        ...         100,</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; out.shape</span>
 <span class="sd">        (100, 20)</span>
 <span class="sd">        """</span>
@@ -3373,7 +3435,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Generate data</span>
 <span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
+<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples,))  # raw time series</span>
 <span class="sd">        &gt;&gt;&gt; basis = HistoryConv(10)</span>
 <span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
 <span class="sd">        &gt;&gt;&gt; features.shape</span>
@@ -3452,321 +3514,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_window_size</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_window_size</span> <span class="o">=</span> <span class="n">window_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_n_basis_funcs</span> <span class="o">=</span> <span class="n">window_size</span></div>
-
-
-
-<div class="viewcode-block" id="FourierEval">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">FourierEval</span><span class="p">(</span><span class="n">BoundedEvalBasisMixin</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    N-dimensional Fourier basis for feature expansion.</span>
-
-<span class="sd">    This class generates a set of sine and cosine basis functions defined over</span>
-<span class="sd">    an ``n``-dimensional input space. The basis functions are constructed from</span>
-<span class="sd">    a Cartesian product of frequencies specified for each input dimension.</span>
-<span class="sd">    Each selected frequency combination contributes two basis functions</span>
-<span class="sd">    (cosine and sine), except for the all-zero frequency (DC component),</span>
-<span class="sd">    which contributes only a cosine term.</span>
-
-<span class="sd">    The class supports flexible frequency specification (integers, ranges, or</span>
-<span class="sd">    arrays per dimension) and optional masking to include or exclude specific</span>
-<span class="sd">    frequency combinations.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    frequencies :</span>
-<span class="sd">        Frequency specification(s).</span>
-
-<span class="sd">        Single specification (broadcasted to all dimensions when ``ndim &gt; 1``):</span>
-
-<span class="sd">            * :class:`int`: An integer ``k`` with ``k &gt;= 0``.</span>
-
-<span class="sd">            * :class:`tuple`: ``(low, high)``, a 2-element tuple of integers with ``0 &lt;= low &lt; high``.</span>
-
-<span class="sd">            * :class:`~numpy.ndarray`: 1-D NumPy array of non-negative integers. If not sorted ascending,</span>
-<span class="sd">              a ``UserWarning`` is issue for non-sorted arrays.</span>
-
-<span class="sd">        Per-dimension container:</span>
-
-<span class="sd">            * A :class:`list` of length ``ndim`` whose elements are each a valid single specification.</span>
-<span class="sd">              For ``ndim == 1``, a length-1 :class:`list` is also accepted.</span>
-
-<span class="sd">    ndim :</span>
-<span class="sd">        Dimensionality of the basis. Default is 1.</span>
-
-<span class="sd">    bounds :</span>
-<span class="sd">        Period bounds for each dimension. Unlike other basis classes where bounds define</span>
-<span class="sd">        a valid domain (with out-of-bounds samples filled with NaN), for the Fourier basis</span>
-<span class="sd">        the bounds define the period of the basis functions. Samples outside these bounds</span>
-<span class="sd">        are still valid and will be evaluated using the periodic nature of the basis.</span>
-
-<span class="sd">        * :class:`tuple`: ``(low, high)`` of floats: applies to all dimensions.</span>
-<span class="sd">        * :class:`list` of :class:`tuple`: ``[(low, high), ...]``, one tuple per dimension, length must match ``ndim``.</span>
-<span class="sd">        * :class:`None &lt;NoneType&gt;`: the period is inferred from the input data (minimum to maximum values).</span>
-
-<span class="sd">        In all cases, ``low`` must be strictly less than ``high``, and values must be convertible to floats.</span>
-
-<span class="sd">    frequency_mask :</span>
-<span class="sd">        Optional mask specifying which frequency components to include.</span>
-<span class="sd">        Can be:</span>
-
-<span class="sd">        * :class:`~typing.Literal`: either ``"no-intercept"`` - default - which drops</span>
-<span class="sd">          the 0-frequency DC term, or ``"all"`` which keeps all the frequencies -</span>
-<span class="sd">          equivalent to :class:`None &lt;NoneType&gt;`. The default excludes the intercept</span>
-<span class="sd">          because these basis objects are most commonly used to generate design matrices</span>
-<span class="sd">          for NeMoS GLMs, which already include an intercept term by default, making an</span>
-<span class="sd">          additional intercept in the design matrix redundant.</span>
-
-<span class="sd">        * Array-like of integers {0, 1} or booleans: A 1D mask with one entry</span>
-<span class="sd">          per column of ``masked_frequencies``, keeping (1/True) or dropping</span>
-<span class="sd">          (0/False) that frequency combination. At construction it filters the</span>
-<span class="sd">          combinations left by the default ``"no-intercept"`` selection; print</span>
-<span class="sd">          ``masked_frequencies`` to see the combinations in column order.</span>
-
-<span class="sd">        * :class:`~typing.Callable`: A function applied to each retained frequency</span>
-<span class="sd">          combination (one scalar per dimension, signed), returning a single</span>
-<span class="sd">          boolean or {0, 1} indicating whether to keep that frequency.</span>
-
-<span class="sd">        * :class:`None &lt;NoneType&gt;`: All frequencies are kept.</span>
-
-<span class="sd">        Values must be 0/1 or boolean. Callables must return a single boolean or</span>
-<span class="sd">        {0, 1} value for each frequency coordinate.</span>
-
-<span class="sd">    label :</span>
-<span class="sd">        Descriptive label for the basis (e.g., to use in plots or summaries).</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - If ``frequency_mask`` is provided, only the selected frequency</span>
-<span class="sd">      combinations are used to build the basis.</span>
-<span class="sd">    - The output of ``compute_features`` contains both cosine and sine components for</span>
-<span class="sd">      each active frequency combination, except that the all-zero frequency</span>
-<span class="sd">      includes only a cosine term.</span>
-<span class="sd">    - When a :class:`tuple` is provided as a frequency, it is interpreted</span>
-<span class="sd">      as a single range specification. Tuples that are not exactly a 2-element</span>
-<span class="sd">      tuple of non-negative integers are invalid.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">    &gt;&gt;&gt; from nemos.basis import FourierEval</span>
-<span class="sd">    &gt;&gt;&gt; rng = np.random.default_rng(0)</span>
-
-<span class="sd">    **1D: basic usage**</span>
-
-<span class="sd">    &gt;&gt;&gt; n_freq = 5</span>
-<span class="sd">    &gt;&gt;&gt; fourier_1d = FourierEval(n_freq)</span>
-<span class="sd">    &gt;&gt;&gt; # cos at 0..4 (5) + sin at 1..4 (4) = 9</span>
-<span class="sd">    &gt;&gt;&gt; fourier_1d.n_basis_funcs</span>
-<span class="sd">    8</span>
-<span class="sd">    &gt;&gt;&gt; x = rng.normal(size=8)</span>
-<span class="sd">    &gt;&gt;&gt; X = fourier_1d.compute_features(x)</span>
-<span class="sd">    &gt;&gt;&gt; X.shape  # (n_samples, n_basis_funcs)</span>
-<span class="sd">    (8, 8)</span>
-
-<span class="sd">    **2D: unmasked grid of frequency pairs**</span>
-
-<span class="sd">    &gt;&gt;&gt; fourier_2d = FourierEval(n_freq, ndim=2)</span>
-<span class="sd">    &gt;&gt;&gt; # half-space of the 5x5 grid has 41 pairs (incl. DC); DC dropped -&gt; 40; *2</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d.n_basis_funcs</span>
-<span class="sd">    80</span>
-<span class="sd">    &gt;&gt;&gt; x, y = rng.normal(size=(2, 6))</span>
-<span class="sd">    &gt;&gt;&gt; X = fourier_2d.compute_features(x, y)</span>
-<span class="sd">    &gt;&gt;&gt; X.shape</span>
-<span class="sd">    (6, 80)</span>
-
-<span class="sd">    **2D: masking with an array (drop 3 pairs)**</span>
-
-<span class="sd">    &gt;&gt;&gt; # one mask entry per retained pair: the default "no-intercept"</span>
-<span class="sd">    &gt;&gt;&gt; # selection drops the DC and leaves 40 pairs</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d.masked_frequencies.shape</span>
-<span class="sd">    (2, 40)</span>
-<span class="sd">    &gt;&gt;&gt; mask = np.ones(40)</span>
-<span class="sd">    &gt;&gt;&gt; mask[:3] = 0  # drop the first 3 pairs</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d_masked = FourierEval(</span>
-<span class="sd">    ...     n_freq,</span>
-<span class="sd">    ...     ndim=2,</span>
-<span class="sd">    ...     frequency_mask=mask</span>
-<span class="sd">    ... )</span>
-<span class="sd">    &gt;&gt;&gt; # (40 pairs - 3 dropped) * 2 (cos+sin) = 74</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d_masked.n_basis_funcs</span>
-<span class="sd">    74</span>
-
-<span class="sd">    **2D: masking with a callable**</span>
-
-<span class="sd">    &gt;&gt;&gt; # keep pairs inside a circle of radius 3.5 in frequency space</span>
-<span class="sd">    &gt;&gt;&gt; keep_circle = lambda fx, fy: (fx**2 + fy**2) ** 0.5 &lt; 3.5</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d_funcmask = FourierEval(</span>
-<span class="sd">    ...     n_freq,</span>
-<span class="sd">    ...     ndim=2,</span>
-<span class="sd">    ...     frequency_mask=keep_circle</span>
-<span class="sd">    ... )</span>
-<span class="sd">    &gt;&gt;&gt; fourier_2d_funcmask.n_basis_funcs</span>
-<span class="sd">    37</span>
-
-<span class="sd">    **Explicit frequency specifications**</span>
-
-<span class="sd">    &gt;&gt;&gt; # mix forms per-dimension: an explicit array</span>
-<span class="sd">    &gt;&gt;&gt; # and an inclusive tuple (low, high)</span>
-<span class="sd">    &gt;&gt;&gt; fourier_mixed = FourierEval(</span>
-<span class="sd">    ...     frequencies=[np.arange(3), (1, 4)],</span>
-<span class="sd">    ...     ndim=2</span>
-<span class="sd">    ... )</span>
-<span class="sd">    &gt;&gt;&gt; # 15 half-space pairs (no DC, since the y-axis omits 0) -&gt; 2*15 = 30</span>
-<span class="sd">    &gt;&gt;&gt; fourier_mixed.n_basis_funcs</span>
-<span class="sd">    30</span>
-
-<span class="sd">    """</span>
-
-    <span class="c1"># Fourier basis is defined over the entire real line; bounds specify the period,</span>
-    <span class="c1"># not a valid domain. No out-of-bounds filling should be applied.</span>
-    <span class="n">_apply_bounds_fill</span> <span class="o">=</span> <span class="kc">False</span>
-
-<div class="viewcode-block" id="FourierEval.__init__">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">frequencies</span><span class="p">:</span> <span class="p">(</span>
-            <span class="nb">int</span>
-            <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
-            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
-            <span class="o">|</span> <span class="n">NDArray</span>
-            <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">NDArray</span><span class="p">]</span>
-        <span class="p">),</span>
-        <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">frequency_mask</span><span class="p">:</span> <span class="p">(</span>
-            <span class="n">Literal</span><span class="p">[</span><span class="s2">"all"</span><span class="p">,</span> <span class="s2">"no-intercept"</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
-        <span class="p">)</span> <span class="o">=</span> <span class="s2">"no-intercept"</span><span class="p">,</span>
-        <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"FourierEval"</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="n">FourierBasis</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">frequencies</span><span class="o">=</span><span class="n">frequencies</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-            <span class="n">frequency_mask</span><span class="o">=</span><span class="n">frequency_mask</span><span class="p">,</span>
-            <span class="n">ndim</span><span class="o">=</span><span class="n">ndim</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">BoundedEvalBasisMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FourierEval.evaluate_on_grid">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.evaluate_on_grid">[docs]</a>
-    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate_on_grid"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_on_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        .. plot::</span>
-<span class="sd">            :include-source: True</span>
-<span class="sd">            :caption: FourierEval</span>
-
-<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
-<span class="sd">            &gt;&gt;&gt; from nemos.basis import FourierEval</span>
-<span class="sd">            &gt;&gt;&gt; n_frequencies = 5</span>
-<span class="sd">            &gt;&gt;&gt; fourier_basis = FourierEval(n_frequencies)</span>
-<span class="sd">            &gt;&gt;&gt; sample_points, basis_values = fourier_basis.evaluate_on_grid(100)</span>
-<span class="sd">            &gt;&gt;&gt; plt.plot(sample_points, basis_values)</span>
-<span class="sd">            [&lt;matplotlib.lines.Line2D object at ...</span>
-<span class="sd">            &gt;&gt;&gt; plt.show()</span>
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate_on_grid</span><span class="p">(</span><span class="o">*</span><span class="n">n_samples</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FourierEval.compute_features">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.compute_features">[docs]</a>
-    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"_compute_features"</span><span class="p">,</span> <span class="n">BoundedEvalBasisMixin</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FeatureMatrix</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
-
-<span class="sd">        &gt;&gt;&gt; # Generate data</span>
-<span class="sd">        &gt;&gt;&gt; num_samples = 1000</span>
-<span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, ))  # raw time series</span>
-<span class="sd">        &gt;&gt;&gt; basis = FourierEval(10)</span>
-<span class="sd">        &gt;&gt;&gt; features = basis.compute_features(X)  # basis transformed time series</span>
-<span class="sd">        &gt;&gt;&gt; features.shape</span>
-<span class="sd">        (1000, 18)</span>
-
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FourierEval.split_by_feature">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.split_by_feature">[docs]</a>
-    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"split_by_feature"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">split_by_feature</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">x</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
-<span class="sd">        &gt;&gt;&gt; from nemos.glm import GLM</span>
-<span class="sd">        &gt;&gt;&gt; basis = FourierEval(6, label="one_input")</span>
-<span class="sd">        &gt;&gt;&gt; X = basis.compute_features(np.random.randn(20,))</span>
-<span class="sd">        &gt;&gt;&gt; split_features_multi = basis.split_by_feature(X, axis=1)</span>
-<span class="sd">        &gt;&gt;&gt; for feature, sub_dict in split_features_multi.items():</span>
-<span class="sd">        ...        print(f"{feature}, shape {sub_dict.shape}")</span>
-<span class="sd">        one_input, shape (20, 10)</span>
-
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FourierEval.set_input_shape">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.set_input_shape">[docs]</a>
-    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"set_input_shape"</span><span class="p">,</span> <span class="n">AtomicBasisMixin</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import nemos as nmo</span>
-<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; basis = nmo.basis.FourierEval(5)</span>
-<span class="sd">        &gt;&gt;&gt; # Configure with an integer input:</span>
-<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(3)</span>
-<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
-<span class="sd">        24</span>
-<span class="sd">        &gt;&gt;&gt; # Configure with a tuple:</span>
-<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape((4, 5))</span>
-<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
-<span class="sd">        160</span>
-<span class="sd">        &gt;&gt;&gt; # Configure with an array:</span>
-<span class="sd">        &gt;&gt;&gt; x = np.ones((10, 4, 5))</span>
-<span class="sd">        &gt;&gt;&gt; _ = basis.set_input_shape(x)</span>
-<span class="sd">        &gt;&gt;&gt; basis.n_output_features</span>
-<span class="sd">        160</span>
-
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FourierEval.evaluate">
-<a class="viewcode-back" href="../../../api/generated/basis/nemos.basis.FourierEval.html#nemos.basis.FourierEval.evaluate">[docs]</a>
-    <span class="nd">@add_docstring</span><span class="p">(</span><span class="s2">"evaluate"</span><span class="p">,</span> <span class="n">FourierBasis</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">sample_pts</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">        &gt;&gt;&gt; from nemos.basis import FourierEval</span>
-<span class="sd">        &gt;&gt;&gt; basis = FourierEval(4)</span>
-<span class="sd">        &gt;&gt;&gt; out = basis.evaluate(np.random.randn(100, 5, 2))</span>
-<span class="sd">        &gt;&gt;&gt; out.shape</span>
-<span class="sd">        (100, 5, 2, 6)</span>
-<span class="sd">        """</span>
-        <span class="c1"># ruff: noqa: D205, D400</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">*</span><span class="n">sample_pts</span><span class="p">)</span></div>
-</div>
 
 </pre></div>
 

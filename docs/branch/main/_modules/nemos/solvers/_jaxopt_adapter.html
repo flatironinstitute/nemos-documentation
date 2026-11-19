@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.solvers._jaxopt_adapter &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>nemos.solvers._jaxopt_adapter &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -598,6 +598,13 @@
         <span class="n">init_params</span><span class="p">:</span> <span class="n">Params</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">solver_init_kwargs</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver_cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">"Missing optional dependency 'jaxopt'."</span>
+                <span class="s2">" Please use pip or "</span>
+                <span class="s2">"conda to install 'jaxopt'."</span>
+            <span class="p">)</span>
+
         <span class="k">if</span> <span class="n">solver_init_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"stepsize"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">"stepsize must be a number. Use 0.0 (or negative) for linesearch, "</span>
@@ -684,9 +691,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_optim_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">JaxoptSolverState</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OptimizationInfo</span><span class="p">:</span>
         <span class="n">num_steps</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">iter_num</span>  <span class="c1"># pyright: ignore</span>
-        <span class="n">function_val</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">state</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="p">)</span>  <span class="c1"># pyright: ignore</span>
+        <span class="n">function_val</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># pyright: ignore</span>
 
         <span class="k">return</span> <span class="n">OptimizationInfo</span><span class="p">(</span>
             <span class="n">function_val</span><span class="o">=</span><span class="n">function_val</span><span class="p">,</span>  <span class="c1"># pyright: ignore</span>

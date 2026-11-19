@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Population GLM &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>Population GLM &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -64,7 +64,7 @@
     <link rel="icon" href="../_static/NeMoS_favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fit GLMs For Neural Coupling" href="raw_history_feature.html" />
+    <link rel="next" title="Handle Silent Neurons During Initialization" href="handle_silent_neurons.html" />
     <link rel="prev" title="GLM Demo: Toy Model Examples" href="plot_02_glm_demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -498,6 +498,9 @@
 <li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Population GLM</a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handle_silent_neurons.html">Handle Silent Neurons During Initialization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -799,6 +802,12 @@ after the model is fit.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_main/venv/lib/python3.12/site-packages/nemos/glm/glm.py:1211: RuntimeWarning: The fit did not converge. Consider the following:
+1) Enable float64 with ``jax.config.update('jax_enable_x64', True)`` 
+2) Increase the max number of iterations or increase tolerance (if reasonable). These parameters can be specified by providing a ``solver_kwargs`` dictionary. For the available options see the ``self.solver.__init__`` docstrings.
+  warnings.warn(
+</pre></div>
+</div>
 <div class="output text_html">
         <div style="
             font-family: sans-serif;
@@ -819,7 +828,7 @@ after the model is fit.</p>
             </div>
             <div style="margin-top: 8px;">
                 <span style="margin-right: 15px;"><strong>Features:</strong> 3</span>
-                <span><strong>Converged:</strong> <span style="color: #28a745;">Yes</span></span>
+                <span><strong>Converged:</strong> <span style="color: #dc3545;">No</span></span>
             </div>
         </div>
         <style>.sk-global {
@@ -1559,7 +1568,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7fbe88309f80&gt;</td>
+            <td class="value">&lt;function exp...x7fe72e93e340&gt;</td>
         </tr>
     
 
@@ -1894,9 +1903,9 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.56283075 0.2565422 ]
- [0.02549857 0.        ]
- [0.         0.16695638]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5628307  0.2565422 ]
+ [0.02549856 0.        ]
+ [0.         0.16695637]]
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1950,7 @@ let’s go ahead and try.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_main/venv/lib/python3.12/site-packages/nemos/glm/glm.py:1122: RuntimeWarning: The fit did not converge. Consider the following:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jenkins/agent/workspace/CCN_nemos_main/venv/lib/python3.12/site-packages/nemos/glm/glm.py:1211: RuntimeWarning: The fit did not converge. Consider the following:
 1) Enable float64 with ``jax.config.update('jax_enable_x64', True)`` 
 2) Increase the max number of iterations or increase tolerance (if reasonable). These parameters can be specified by providing a ``solver_kwargs`` dictionary. For the available options see the ``self.solver.__init__`` docstrings.
   warnings.warn(
@@ -2013,7 +2022,7 @@ For example, if we use a Python <code class="docutils literal notranslate"><span
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'neu_0': Array([[0.02549865, 0.        ]], dtype=float32), 'neu_1': Array([[0.        , 0.16696058]], dtype=float32), 'shared': Array([[0.5628304 , 0.25654164]], dtype=float32)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'neu_0': Array([[0.02549864, 0.        ]], dtype=float32), 'neu_1': Array([[0.        , 0.16696055]], dtype=float32), 'shared': Array([[0.5628303, 0.2565416]], dtype=float32)}
 </pre></div>
 </div>
 </div>
@@ -2069,11 +2078,11 @@ For example, if we use a Python <code class="docutils literal notranslate"><span
       </div>
     </a>
     <a class="right-next"
-       href="raw_history_feature.html"
+       href="handle_silent_neurons.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fit GLMs For Neural Coupling</p>
+        <p class="prev-next-title">Handle Silent Neurons During Initialization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

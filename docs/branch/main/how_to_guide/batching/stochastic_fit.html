@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Stochastic optimization basics &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>Stochastic optimization basics &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -498,6 +498,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../plot_03_population_glm.html">Population GLM</a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../handle_silent_neurons.html">Handle Silent Neurons During Initialization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -737,6 +740,14 @@ This is precalculated and stored in <code class="docutils literal notranslate"><
 <li><p><a class="reference internal" href="../../api/generated/stochastic_optimization/nemos.batching.ArrayDataLoader.html#nemos.batching.ArrayDataLoader" title="nemos.batching.ArrayDataLoader"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">ArrayDataLoader</span></code></span></a>: use with in-memory arrays. Input and output are converted to JAX arrays before use. Useful if data fits into memory, but calculations run out of memory, as well as for quick prototyping.</p></li>
 <li><p><a class="reference internal" href="../../api/generated/stochastic_optimization/nemos.batching.LazyArrayDataLoader.html#nemos.batching.LazyArrayDataLoader" title="nemos.batching.LazyArrayDataLoader"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">LazyArrayDataLoader</span></code></span></a>: use with lazy/out-of-memory arrays, such as dask, zarr, HDF5 (used by NWB).</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both loaders accept pytrees of arrays (e.g. a dictionary of design matrices) in place of single arrays. All leaves must have the same number of samples along axis 0, and each batch has the same tree structure as the input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"position"</span><span class="p">:</span> <span class="n">X_position</span><span class="p">,</span> <span class="s2">"history"</span><span class="p">:</span> <span class="n">X_history</span><span class="p">}</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">batching</span><span class="o">.</span><span class="n">ArrayDataLoader</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">spike_trains</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <p>Here, even though our data would fit into memory, we pretend that it doesn’t for illustration purposes.
 <br />
 NWB uses HDF5 as a backend and by default <code class="docutils literal notranslate"><span class="pre">pynapple</span></code> loads arrays lazily, meaning that the actual data of <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">spike_trains</span></code> is not yet loaded into memory.</p>
@@ -1600,7 +1611,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f6059d79f80&gt;</td>
+            <td class="value">&lt;function exp...x7fbb482204a0&gt;</td>
         </tr>
     
 
@@ -1726,7 +1737,7 @@ a.param-doc-link::before {
        <tr class="default">
            <td class="param"><a class="param-doc-link" style="text-decoration:none;">intercept_</a></td>
            <td class="fitted-att-type">ArrayImpl[float64](10,)</td>
-           <td>Array([-1.651...dtype=float64)</td>
+           <td>Array([-1.653...dtype=float64)</td>
 
 
        </tr>
@@ -1946,7 +1957,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/7459c3b68e60707d709dd25ad9ce4d3969f4121bc62791b5f780af01b54ed8b6.png" src="../../_images/7459c3b68e60707d709dd25ad9ce4d3969f4121bc62791b5f780af01b54ed8b6.png" />
+<img alt="../../_images/bc9ca20f77fc1474046d00ccb34560d1e9c6226677f917081992d60469bd00fb.png" src="../../_images/bc9ca20f77fc1474046d00ccb34560d1e9c6226677f917081992d60469bd00fb.png" />
 </div>
 </div>
 <p>The loss is still dropping at the end of the run, so the model hasn’t converged yet.</p>
@@ -1972,7 +1983,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/b4639abb2a161fca9bc1bed7e5369bb70aa444e2b464d8bbf1052f7d34588fdc.png" src="../../_images/b4639abb2a161fca9bc1bed7e5369bb70aa444e2b464d8bbf1052f7d34588fdc.png" />
+<img alt="../../_images/e3c4875bfd4c4a7c879c5fefae22e268640720370a84223412149b46fbcfd938.png" src="../../_images/e3c4875bfd4c4a7c879c5fefae22e268640720370a84223412149b46fbcfd938.png" />
 </div>
 </div>
 <p>We’re getting closer, but still need some training.</p>

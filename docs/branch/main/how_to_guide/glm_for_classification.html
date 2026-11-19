@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fit GLM for Classification &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>Fit GLM for Classification &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -498,6 +498,9 @@
 <li class="toctree-l1"><a class="reference internal" href="plot_03_population_glm.html">Population GLM</a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="handle_silent_neurons.html">Handle Silent Neurons During Initialization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
@@ -619,7 +622,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.predict" title="nemos.glm.ClassifierGLM.predict"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict</span></code></span></a> returns predicted class labels</p></li>
 <li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.predict_proba" title="nemos.glm.ClassifierGLM.predict_proba"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">predict_proba</span></code></span></a> returns (log-)probabilities for each class</p></li>
-<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.set_classes" title="nemos.glm.ClassifierGLM.set_classes"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">set_classes</span></code></span></a> set class labels. By Default, classes are assumed to be <code class="docutils literal notranslate"><span class="pre">{0,</span> <span class="pre">...,</span> <span class="pre">n_classes</span> <span class="pre">-</span> <span class="pre">1}</span></code> however, this assumption can be overridden by calling <code class="docutils literal notranslate"><span class="pre">set_classes</span></code> passing an array of class labels.</p></li>
+<li><p><a class="reference internal" href="../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.set_classes" title="nemos.glm.ClassifierGLM.set_classes"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">set_classes</span></code></span></a> declares the class labels, which can be integers, strings, or any other hashable type. Without it, <a class="reference internal" href="../api/generated/glm/nemos.glm.ClassifierGLM.html#nemos.glm.ClassifierGLM.fit" title="nemos.glm.ClassifierGLM.fit"><span class="xref myst py py-meth"><code class="docutils literal notranslate"><span class="pre">fit</span></code></span></a> infers them from <code class="docutils literal notranslate"><span class="pre">y</span></code>, which must then hold all <code class="docutils literal notranslate"><span class="pre">n_classes</span></code> of them. Once declared, <code class="docutils literal notranslate"><span class="pre">y</span></code> may hold any subset of the labels, and a label outside the set raises. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> clears the declaration.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">observation_model</span></code> parameter cannot be set at model initialization, since <a class="reference internal" href="../api/generated/observation_models/nemos.observation_models.CategoricalObservations.html#nemos.observation_models.CategoricalObservations" title="nemos.observation_models.CategoricalObservations"><span class="xref myst py py-class"><code class="docutils literal notranslate"><span class="pre">CategoricalObservations</span></code></span></a> is the only compatible observation model.</p></li>
 </ul>
 <section id="generate-synthetic-data">

@@ -13,6 +13,7 @@
 
    .. autosummary::
    
+      ~ClassifierGLM.classes
       ~ClassifierGLM.classes_
       ~ClassifierGLM.fit_intercept
       ~ClassifierGLM.fix_params

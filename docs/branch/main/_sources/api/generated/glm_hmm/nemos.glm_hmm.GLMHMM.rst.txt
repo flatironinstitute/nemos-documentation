@@ -15,6 +15,7 @@
    
       ~GLMHMM.dirichlet_initial_proba
       ~GLMHMM.dirichlet_transition_proba
+      ~GLMHMM.estep_type
       ~GLMHMM.hmm_initialization_funcs
       ~GLMHMM.inverse_link_function
       ~GLMHMM.maxiter

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.observation_models.GaussianObservations &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>nemos.observation_models.GaussianObservations &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -143,8 +143,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -694,6 +694,12 @@ to set the default inverse link function.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nemos.observation_models.GaussianObservations.default_inverse_link_function" title="nemos.observation_models.GaussianObservations.default_inverse_link_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_inverse_link_function</span></code></a></p></td>
 <td><p>Identity link function for Gaussian observations.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.observation_models.GaussianObservations.glm_convexity_preserving_links" title="nemos.observation_models.GaussianObservations.glm_convexity_preserving_links"><code class="xref py py-obj docutils literal notranslate"><span class="pre">glm_convexity_preserving_links</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.observation_models.GaussianObservations.rate_range" title="nemos.observation_models.GaussianObservations.rate_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate_range</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nemos.observation_models.GaussianObservations.scale" title="nemos.observation_models.GaussianObservations.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></p></td>
 <td><p>Getter for the scale parameter of the model.</p></td>
 </tr>
@@ -859,6 +865,11 @@ name, value is the parameter value.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nemos.observation_models.GaussianObservations.glm_convexity_preserving_links">
+<span class="sig-name descname"><span class="pre">glm_convexity_preserving_links</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,)</span></span><a class="headerlink" href="#nemos.observation_models.GaussianObservations.glm_convexity_preserving_links" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.observation_models.GaussianObservations.likelihood">
 <span class="sig-name descname"><span class="pre">likelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicted_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_sample_scores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">Observations.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nemos.observation_models.GaussianObservations.likelihood" title="Link to this definition">#</a></dt>
@@ -969,6 +980,11 @@ London: Croom Helm.</p>
 </aside>
 </aside>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nemos.observation_models.GaussianObservations.rate_range">
+<span class="sig-name descname"><span class="pre">rate_range</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ClassVar" title="(in Python v3.15)"><span class="pre">ClassVar</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(-inf,</span> <span class="pre">inf)</span></span><a class="headerlink" href="#nemos.observation_models.GaussianObservations.rate_range" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.observation_models.GaussianObservations.sample_generator">
