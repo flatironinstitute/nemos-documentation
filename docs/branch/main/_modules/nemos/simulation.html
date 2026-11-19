@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.simulation &#8212; nemos 0.2.10.dev548 documentation</title>
+    <title>nemos.simulation &#8212; nemos 0.2.10.dev551 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=13df50c8"></script>
+    <script src="../../_static/documentation_options.js?v=f0fb379a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev551 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev551 documentation - Home"/>
   
   
 </a></div>
@@ -549,7 +549,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">validation</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.pytrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeaturePytree</span>
 
 <span class="c1"># Lazy load to avoid importing scipy.stats at module level</span>
 <span class="n">scipy</span> <span class="o">=</span> <span class="n">lazy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"scipy"</span><span class="p">)</span>
@@ -856,8 +855,6 @@
 <span class="sd">        &gt;&gt;&gt; _ = plt.title("Simulated firing rates")</span>
 <span class="sd">        &gt;&gt;&gt; _ = plt.show()</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">feedforward_input</span><span class="p">,</span> <span class="n">FeaturePytree</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"simulate_recurrent works only with arrays, not pytrees."</span><span class="p">)</span>
     <span class="c1"># convert to jnp.ndarray of floats</span>
     <span class="n">coupling_basis_matrix</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coupling_basis_matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">coupling_coef</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coupling_coef</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
