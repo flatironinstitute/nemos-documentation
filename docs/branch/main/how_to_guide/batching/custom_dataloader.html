@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating a custom DataLoader &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>Creating a custom DataLoader &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -143,8 +143,8 @@
       
     
     
-    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -500,6 +500,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../plot_03_population_glm.html">Population GLM</a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../handle_silent_neurons.html">Handle Silent Neurons During Initialization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../raw_history_feature.html">Fit GLMs For Neural Coupling</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -825,10 +828,10 @@
 ...                                                                                   ...
 0.9674999999999999      0.302096       0.959167       0.838925    1.1064     4.25361  ...
 0.9724999999999999      0.00226186     0.547505       1.05426     1.33596    3.99431  ...
-0.9774999999999999     -1.31125e-16    0.200843       0.912849    1.50964    3.80898  ...
-0.9824999999999999      1.4946e-17     0.0332556      0.679303    1.52162    3.73187  ...
-0.9874999999999999     -5.92119e-17    2.07242e-16    0.45577     1.41871    3.65134  ...
-0.9924999999999999      1.18424e-16   -1.77636e-16    0.273075    1.25474    3.53063  ...
+0.9774999999999999     -2.49549e-16    0.200843       0.912849    1.50964    3.80898  ...
+0.9824999999999999     -2.75498e-18    0.0332556      0.679303    1.52162    3.73187  ...
+0.9874999999999999      0             -2.96059e-17    0.45577     1.41871    3.65134  ...
+0.9924999999999999      1.18424e-16   -5.92119e-17    0.273075    1.25474    3.53063  ...
 0.9974999999999999      1              0.5            0.141021    1.06827    3.36626  ...
 dtype: float64, shape: (200, 50)
 </pre></div>
@@ -1634,7 +1637,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f70843be7a0&gt;</td>
+            <td class="value">&lt;function exp...x7f69d4654a40&gt;</td>
         </tr>
     
 
@@ -1980,7 +1983,7 @@ forceTheme('sk-container-id-1');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/fdc4e576df984ea70585bf64b90e0b0e2052e4a3c709627ffc545ed4a0e3910b.svg" src="../../_images/fdc4e576df984ea70585bf64b90e0b0e2052e4a3c709627ffc545ed4a0e3910b.svg" />
+<img alt="../../_images/b6a9af4ce3b376a82bf683a15f03e51c4dde17db22ba173f99d1698428a93082.svg" src="../../_images/b6a9af4ce3b376a82bf683a15f03e51c4dde17db22ba173f99d1698428a93082.svg" />
 </div>
 </div>
 </section>
@@ -2026,7 +2029,7 @@ shape: (3, 2), time unit: sec.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../../_images/7bee4ed42394d4cdf8cb1784ad86ccb2fc87b9eec3e70e7ac0f3671ed6e4feb4.svg" src="../../_images/7bee4ed42394d4cdf8cb1784ad86ccb2fc87b9eec3e70e7ac0f3671ed6e4feb4.svg" />
+<img alt="../../_images/d0ff8b3a8d65d50c9156fd4c216e2a8a992bb719a130d79fa13676d39ecd3e82.svg" src="../../_images/d0ff8b3a8d65d50c9156fd4c216e2a8a992bb719a130d79fa13676d39ecd3e82.svg" />
 </div>
 </div>
 <p>Putting the pieces together:</p>
@@ -2105,11 +2108,13 @@ shape: (3, 2), time unit: sec.
 <span class="sd">    Each row is ``(chunk_start, chunk_end, interval_start)``; ``interval_start`` lets the</span>
 <span class="sd">    loader clip the left context without reaching back into the previous interval.</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_chunk</span> <span class="o">+</span> <span class="n">interval_size</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">time_support</span><span class="o">.</span><span class="n">values</span>
-        <span class="k">for</span> <span class="n">start_chunk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">interval_size</span><span class="p">)</span>
-    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">start_chunk</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_chunk</span> <span class="o">+</span> <span class="n">interval_size</span><span class="p">,</span> <span class="n">end</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">time_support</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">for</span> <span class="n">start_chunk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">interval_size</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 <p class="sd-card-text">It returns the same <code class="docutils literal notranslate"><span class="pre">(chunk_start,</span> <span class="pre">chunk_end,</span> <span class="pre">interval_start)</span></code> rows the loader expects, so <code class="docutils literal notranslate"><span class="pre">self._chunks</span> <span class="pre">=</span> <span class="pre">split_intervals(spike_times.time_support,</span> <span class="pre">interval_size)</span></code> is a drop-in replacement for those three lines.</p>
@@ -2938,7 +2943,7 @@ a.param-doc-link::before {
                           this.parentElement.nextElementSibling)"
             ></button></td>
             <td class="param">inverse_link_function</td>
-            <td class="value">&lt;function exp...x7f70843be7a0&gt;</td>
+            <td class="value">&lt;function exp...x7f69d4654a40&gt;</td>
         </tr>
     
 
@@ -3284,7 +3289,7 @@ forceTheme('sk-container-id-2');</script></body></div></div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='Log index (~batch index)', ylabel='Loss value'&gt;
 </pre></div>
 </div>
-<img alt="../../_images/04c0c001c34ce4eb389fc887eb367e1215cdb240dee1e077dda3bf3cde06fb1e.svg" src="../../_images/04c0c001c34ce4eb389fc887eb367e1215cdb240dee1e077dda3bf3cde06fb1e.svg" />
+<img alt="../../_images/1ccd193af0b03d9ffd51434cc00133088d4beb67bde3e9fa3c8dfa5915ae30d5.svg" src="../../_images/1ccd193af0b03d9ffd51434cc00133088d4beb67bde3e9fa3c8dfa5915ae30d5.svg" />
 </div>
 </div>
 </section>

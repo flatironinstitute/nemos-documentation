@@ -14,8 +14,10 @@
    .. autosummary::
    
       ~FourierEval.bounds
+      ~FourierEval.freq_combinations
       ~FourierEval.frequencies
       ~FourierEval.frequency_mask
+      ~FourierEval.has_zero_phase
       ~FourierEval.input_shape
       ~FourierEval.is_complex
       ~FourierEval.label
@@ -23,6 +25,7 @@
       ~FourierEval.n_basis_funcs
       ~FourierEval.n_output_features
       ~FourierEval.ndim
+      ~FourierEval.weights
    
 
 

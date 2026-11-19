@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>nemos.glm.glm &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -553,23 +553,26 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation_models</span> <span class="k">as</span> <span class="n">obs</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">tree_utils</span><span class="p">,</span> <span class="n">validation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._hess</span><span class="w"> </span><span class="kn">import</span> <span class="n">LeafClaim</span><span class="p">,</span> <span class="n">MatrixProperty</span><span class="p">,</span> <span class="n">MatrixStructure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.._inverse_link_function_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">LINK_NAME_TO_FUNC</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.._observation_model_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">instantiate_observation_model</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..base_regressor</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRegressor</span><span class="p">,</span> <span class="n">strip_metadata</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..batching</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">_PreprocessedDataLoader</span><span class="p">,</span> <span class="n">is_data_loader</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callback</span><span class="p">,</span> <span class="n">TrainingContext</span><span class="p">,</span> <span class="n">_normalize_callbacks</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">NotFittedError</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_inverse_link_function</span><span class="p">,</span> <span class="n">softplus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">resolve_inverse_link_function</span><span class="p">,</span>
+    <span class="n">softplus</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..pytrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeaturePytree</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..regularizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticNet</span><span class="p">,</span> <span class="n">GroupLasso</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">,</span> <span class="n">Ridge</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WrappedProxSVRG</span><span class="p">,</span> <span class="n">WrappedSVRG</span><span class="p">,</span> <span class="n">list_stochastic_solvers</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers._compute_defaults</span><span class="w"> </span><span class="kn">import</span> <span class="n">glm_compute_optimal_stepsize_configs</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers._hess</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">BlockDiagonal</span><span class="p">,</span>
-    <span class="n">Full</span><span class="p">,</span>
-    <span class="n">HessianTag</span><span class="p">,</span>
-    <span class="n">PositiveDefinite</span><span class="p">,</span>
-    <span class="n">PositiveSemiDefinite</span><span class="p">,</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CHOLESKY_ERR_MSG</span><span class="p">,</span>
+    <span class="n">WrappedProxSVRG</span><span class="p">,</span>
+    <span class="n">WrappedSVRG</span><span class="p">,</span>
+    <span class="n">list_stochastic_solvers</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..solvers._compute_defaults</span><span class="w"> </span><span class="kn">import</span> <span class="n">glm_compute_optimal_stepsize_configs</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..type_casting</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast_to_jax</span><span class="p">,</span> <span class="n">support_pynapple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">DESIGN_INPUT_TYPE</span><span class="p">,</span> <span class="n">SolverState</span><span class="p">,</span> <span class="n">StepResult</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_elementwise_derivative</span><span class="p">,</span> <span class="n">format_repr</span>
@@ -697,17 +700,23 @@
 
 <span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
 
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                                   |</span>
-<span class="sd">    +===============+==================+=====================================================================+</span>
-<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                     |</span>
+<span class="sd">    +===============+==================+=======================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
 
 <span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
@@ -754,7 +763,9 @@
 <span class="sd">        Default is the Poisson model. Alternatives are "Gamma", "Bernoulli", "NegativeBinomial" and "Gaussian".</span>
 <span class="sd">    inverse_link_function :</span>
 <span class="sd">        A function that maps the linear combination of predictors into a firing rate. The default depends</span>
-<span class="sd">        on the observation model, see the table above.</span>
+<span class="sd">        on the observation model, see the table above. Can be a callable or one of the following</span>
+<span class="sd">        strings: ``"exp"``, ``"softplus"``, ``"logistic"``, ``"expit"``, ``"norm_cdf"``,</span>
+<span class="sd">        ``"one_over_x"``, ``"identity"``, ``"log_softmax"``.</span>
 <span class="sd">    regularizer :</span>
 <span class="sd">        Regularization to use for model optimization. Defines the regularization scheme</span>
 <span class="sd">        and related parameters.</span>
@@ -835,7 +846,9 @@
 
 <span class="sd">    Or pass the observation model object directly:</span>
 
-<span class="sd">    &gt;&gt;&gt; model = nmo.glm.GLM(observation_model=nmo.observation_models.GammaObservations())</span>
+<span class="sd">    &gt;&gt;&gt; model = nmo.glm.GLM(</span>
+<span class="sd">    ...     observation_model=nmo.observation_models.GammaObservations()</span>
+<span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; model.observation_model</span>
 <span class="sd">    GammaObservations()</span>
 
@@ -897,10 +910,7 @@
 
     <span class="n">_invalid_observation_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">CategoricalObservations</span><span class="p">,)</span>
     <span class="n">_validator_class</span> <span class="o">=</span> <span class="n">GLMValidator</span>
-    <span class="c1"># The unregularized GLM loss Hessian (Fisher information) is positive</span>
-    <span class="c1"># semidefinite; a strictly positive-definite regularizer (e.g. Ridge) promotes</span>
-    <span class="c1"># it to positive definite via ``combine_hessian_tags``.</span>
-    <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">Full</span><span class="p">,</span> <span class="nb">property</span><span class="o">=</span><span class="n">PositiveSemiDefinite</span><span class="p">)</span>
+
     <span class="c1"># default until the instance sets it; read during ``__init__`` before assignment</span>
     <span class="c1"># (e.g. when solver-kwargs validation resolves the default solver).</span>
     <span class="n">_fit_intercept</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -918,14 +928,73 @@
             <span class="k">return</span> <span class="s2">"Newton"</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_resolve_default_solver</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_hess_property_override</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># The GLM loss is positive definite on the intercept (its all-ones column is</span>
-        <span class="c1"># independent of X), the one subtree Ridge leaves unpenalized. So a Ridge-</span>
-        <span class="c1"># penalized GLM Hessian is positive definite even though coverage inference,</span>
-        <span class="c1"># seeing only the regularizer, certifies no more than General.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regularizer</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">PositiveDefinite</span>
-        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_hess_property</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MatrixProperty</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Resolve the hessian property.</span>
+
+<span class="sd">        Return the property of the GLM loss function for an unpenalized model.</span>
+<span class="sd">        The penalization contribution is resolved by combining the hessian tag</span>
+<span class="sd">        of the model with that of the regularizer.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Unknown links can easily break convexity: always tag as MatrixProperty.SYMMETRIC if the link is unknown.</span>
+
+<span class="sd">        """</span>
+        <span class="n">conv_preserving_inv_links</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_observation_model</span><span class="o">.</span><span class="n">glm_convexity_preserving_links</span>
+        <span class="p">)</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inverse_link_function</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="s2">"__module__"</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="s2">"__name__"</span><span class="p">):</span>
+            <span class="n">qual_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">link</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">link</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qual_name</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">convexity_preserving</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">link</span> <span class="ow">in</span> <span class="n">conv_preserving_inv_links</span>
+            <span class="ow">or</span> <span class="n">LINK_NAME_TO_FUNC</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">qual_name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">conv_preserving_inv_links</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">MatrixProperty</span><span class="o">.</span><span class="n">POSITIVE_SEMI_DEFINITE</span>
+            <span class="k">if</span> <span class="n">convexity_preserving</span>
+            <span class="k">else</span> <span class="n">MatrixProperty</span><span class="o">.</span><span class="n">SYMMETRIC</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_hess_leaf_claims</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">GLMParams</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">active_spec</span><span class="p">:</span> <span class="n">GLMParams</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GLMParams</span><span class="p">[</span><span class="n">LeafClaim</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Certify the intercept, whenever it is being fitted.</span>
+
+<span class="sd">        The intercept's own block of the loss Hessian is ``1.T W 1``, the per-sample</span>
+<span class="sd">        curvatures added up. They are non-negative for a link that keeps the likelihood</span>
+<span class="sd">        convex, and their sum is positive, so that block is definite for any design matrix.</span>
+<span class="sd">        No other block can be certified: each one is ``X.T W X`` on some columns of ``X``,</span>
+<span class="sd">        and whether that is definite is a question about the rank of the design.</span>
+
+<span class="sd">        The link is not checked here. One that breaks convexity leaves the whole tag</span>
+<span class="sd">        unsigned, and ``normalize`` drops the definite claim of an unsigned tag, so a single</span>
+<span class="sd">        rule covers every model rather than each model repeating the check.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params :</span>
+<span class="sd">            The parameters being fitted.</span>
+<span class="sd">        active_spec :</span>
+<span class="sd">            The filter spec ``params`` was partitioned with.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :</span>
+<span class="sd">            A tree shaped like ``params`` with ``LeafClaim.DEFINITE`` on the</span>
+<span class="sd">            intercept and ``LeafClaim.UNCLAIMED`` on the coefficients. An intercept that is</span>
+<span class="sd">            not being fitted is absent from ``params``, and so is its claim: there is no</span>
+<span class="sd">            block of the Hessian to describe.</span>
+<span class="sd">        """</span>
+        <span class="n">claims</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_hess_leaf_claims</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">active_spec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">active_spec</span><span class="o">.</span><span class="n">intercept</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">claims</span>
+        <span class="k">return</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="n">claims</span><span class="p">,</span> <span class="n">LeafClaim</span><span class="o">.</span><span class="n">DEFINITE</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GLM.__init__">
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.GLM.html#nemos.glm.GLM.__init__">[docs]</a>
@@ -1089,8 +1158,8 @@
 <span class="sd">            One of:</span>
 
 <span class="sd">            - ``None`` — use the observation model's default inverse link.</span>
-<span class="sd">            - ``str`` — name of a built-in (e.g. ``"identity"``, ``"log"``,</span>
-<span class="sd">              ``"logit"``); resolved by</span>
+<span class="sd">            - ``str`` — name of a built-in (e.g. ``"identity"``, ``"exp"``,</span>
+<span class="sd">              ``"softplus"``); resolved by</span>
 <span class="sd">              :func:`nemos.inverse_link_function_utils.resolve_inverse_link_function`.</span>
 <span class="sd">            - ``Callable`` — a custom function. Must be JAX-traceable</span>
 <span class="sd">              (differentiable) and return a ``jax.numpy.ndarray`` or scalar</span>
@@ -1361,7 +1430,7 @@
 <span class="sd">        &gt;&gt;&gt; # get model score</span>
 <span class="sd">        &gt;&gt;&gt; log_likelihood_score = model.score(X, y)</span>
 <span class="sd">        &gt;&gt;&gt; # get a pseudo-R2 score</span>
-<span class="sd">        &gt;&gt;&gt; pseudo_r2_score = model.score(X, y, score_type='pseudo-r2-McFadden')</span>
+<span class="sd">        &gt;&gt;&gt; pseudo_r2_score = model.score(X, y, score_type="pseudo-r2-McFadden")</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -1503,6 +1572,7 @@
                 <span class="n">data</span><span class="p">,</span>
                 <span class="n">y</span><span class="p">,</span>
                 <span class="n">frozen_coef</span><span class="o">=</span><span class="n">frozen_coef</span><span class="p">,</span>
+                <span class="n">rate_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span><span class="o">.</span><span class="n">rate_range</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">initial_coef</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_map</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">empty_params</span><span class="o">.</span><span class="n">coef</span>
@@ -1521,6 +1591,7 @@
                 <span class="n">empty_params</span><span class="o">.</span><span class="n">coef</span><span class="p">,</span>
                 <span class="n">frozen_coef</span><span class="o">=</span><span class="n">frozen_coef</span><span class="p">,</span>
                 <span class="n">frozen_intercept</span><span class="o">=</span><span class="n">frozen_intercept</span><span class="p">,</span>
+                <span class="n">rate_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">observation_model</span><span class="o">.</span><span class="n">rate_range</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="n">init_params</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">tree_at</span><span class="p">(</span>
@@ -1632,6 +1703,9 @@
         <span class="c1"># initialize params if no params are provided</span>
         <span class="k">if</span> <span class="n">init_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">init_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_specific_initialization</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="c1"># validate only if the user pinned something through fix_params</span>
+            <span class="k">if</span> <span class="n">jax</span><span class="o">.</span><span class="n">tree_util</span><span class="o">.</span><span class="n">tree_leaves</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fix_params</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_consistency</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">init_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_user_params</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="n">init_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validator</span><span class="o">.</span><span class="n">validate_and_cast_params</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
@@ -1645,7 +1719,22 @@
         <span class="c1"># then recombine</span>
         <span class="n">active</span><span class="p">,</span> <span class="n">frozen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partition_active</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_optimizer_and_state</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">frozen_params</span><span class="o">=</span><span class="n">frozen</span><span class="p">)</span>
-        <span class="n">params</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_run</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">CHOLESKY_ERR_MSG</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">):</span>
+                <span class="k">raise</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Cholesky solve failed because the Hessian may not be positive definite. "</span>
+                <span class="s2">"This can occur when fitting partially or fully silent populations with "</span>
+                <span class="s2">"Newton and Ridge. Try setting "</span>
+                <span class="s2">"solver_kwargs={'linear_solver': 'eigh'} or "</span>
+                <span class="s2">"solver_kwargs={'linear_solver': 'identity_shift'} "</span>
+                <span class="s2">"when constructing the model or via `set_params`."</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+
         <span class="n">params</span> <span class="o">=</span> <span class="n">eqx</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">frozen</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">tree_utils</span><span class="o">.</span><span class="n">pytree_map_and_reduce</span><span class="p">(</span>
@@ -1770,7 +1859,10 @@
 <span class="sd">        &gt;&gt;&gt; X = jnp.ones((100, 5))</span>
 <span class="sd">        &gt;&gt;&gt; y = jnp.ones((100,))</span>
 <span class="sd">        &gt;&gt;&gt; loader = ArrayDataLoader(X, y, batch_size=32, shuffle="full")</span>
-<span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(solver_name="GradientDescent", solver_kwargs={"stepsize": 0.01, "acceleration" : False})</span>
+<span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(</span>
+<span class="sd">        ...     solver_name="GradientDescent",</span>
+<span class="sd">        ...     solver_kwargs={"stepsize": 0.01, "acceleration": False},</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; # Stop early when the solver's convergence criterion is met.</span>
 <span class="sd">        &gt;&gt;&gt; model = model.stochastic_fit(</span>
 <span class="sd">        ...     loader, n_passes=10, callbacks=SolverConvergenceCallback()</span>
@@ -1878,7 +1970,6 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_warn_about_estimated_svrg_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Warn if SVRG settings are estimated on sample data instead of the full dataset."""</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="p">,</span> <span class="p">(</span><span class="n">WrappedSVRG</span><span class="p">,</span> <span class="n">WrappedProxSVRG</span><span class="p">)):</span>
             <span class="k">return</span>
 
@@ -2303,7 +2394,10 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Representation of the GLM class."""</span>
         <span class="k">return</span> <span class="n">format_repr</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">multiline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_name_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">"inverse_link_function"</span><span class="p">]</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">multiline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">use_name_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">"inverse_link_function"</span><span class="p">],</span>
+            <span class="n">array_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">"classes"</span><span class="p">],</span>
         <span class="p">)</span></div>
 
 
@@ -2370,8 +2464,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # Saving and loading a custom inverse link function</span>
 <span class="sd">        &gt;&gt;&gt; model = nmo.glm.GLM(</span>
-<span class="sd">        ...     observation_model="Poisson",</span>
-<span class="sd">        ...     inverse_link_function=lambda x: x**2</span>
+<span class="sd">        ...     observation_model="Poisson", inverse_link_function=lambda x: x**2</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; model.save_params("model_params.npz")</span>
 <span class="sd">        &gt;&gt;&gt; # Provide a mapping for the custom link function when loading.</span>
@@ -2391,7 +2484,6 @@
 <span class="sd">        solver_kwargs: {}</span>
 <span class="sd">        solver_name: LBFGS</span>
 <span class="sd">        """</span>
-
         <span class="c1"># initialize saving dictionary</span>
         <span class="n">fit_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fit_state</span><span class="p">()</span>
         <span class="n">fit_attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"solver_state_"</span><span class="p">)</span>
@@ -2447,17 +2539,23 @@
 <span class="sd">    stored in tabular format, shape (n_timebins, num_features) or as a pytree of arrays of the same shape.</span>
 <span class="sd">    Below is a table listing the default and available solvers for each regularizer.</span>
 
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                                   |</span>
-<span class="sd">    +===============+==================+=====================================================================+</span>
-<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG, ProximalGradient, Newton |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
-<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient                                                    |</span>
-<span class="sd">    +---------------+------------------+---------------------------------------------------------------------+</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Regularizer   | Default Solver   | Available Solvers                                     |</span>
+<span class="sd">    +===============+==================+=======================================================+</span>
+<span class="sd">    | UnRegularized | LBFGS            | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Ridge         | Newton           | GradientDescent, BFGS, LBFGS, NonlinearCG,            |</span>
+<span class="sd">    |               |                  | ProximalGradient, SVRG, ProxSVRG, Newton,             |</span>
+<span class="sd">    |               |                  | ProximalNewton                                        |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | Lasso         | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | ElasticNet    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
+<span class="sd">    | GroupLasso    | ProximalGradient | ProximalGradient, ProxSVRG, ProximalNewton            |</span>
+<span class="sd">    +---------------+------------------+-------------------------------------------------------+</span>
 
 <span class="sd">    The default solver for ``Ridge`` is ``Newton``: the ridge penalty makes the Hessian positive</span>
 <span class="sd">    definite, so each step is a stable Cholesky solve that converges in a handful of iterations at the</span>
@@ -2504,7 +2602,9 @@
 <span class="sd">        Default is the Poisson model.</span>
 <span class="sd">    inverse_link_function :</span>
 <span class="sd">        A function that maps the linear combination of predictors into a firing rate. The default depends</span>
-<span class="sd">        on the observation model, see the table above.</span>
+<span class="sd">        on the observation model, see the table above. Can be a callable or one of the following</span>
+<span class="sd">        strings: ``"exp"``, ``"softplus"``, ``"logistic"``, ``"expit"``, ``"norm_cdf"``,</span>
+<span class="sd">        ``"one_over_x"``, ``"identity"``, ``"log_softmax"``.</span>
 <span class="sd">    regularizer :</span>
 <span class="sd">        Regularization to use for model optimization. Defines the regularization scheme</span>
 <span class="sd">        and related parameters.</span>
@@ -2599,16 +2699,16 @@
 <span class="sd">    &gt;&gt;&gt; X_dict = {"feature_1": feature_1, "feature_2": feature_2}</span>
 <span class="sd">    &gt;&gt;&gt; weights = dict(</span>
 <span class="sd">    ...     feature_1=jnp.array([[0.0, 0.5], [0.0, -0.5]]),</span>
-<span class="sd">    ...     feature_2=jnp.array([[1.0, 0.0]])</span>
+<span class="sd">    ...     feature_2=jnp.array([[1.0, 0.0]]),</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; rate = np.exp(</span>
-<span class="sd">    ...     X_dict["feature_1"].dot(weights["feature_1"]) +</span>
-<span class="sd">    ...     X_dict["feature_2"].dot(weights["feature_2"])</span>
+<span class="sd">    ...     X_dict["feature_1"].dot(weights["feature_1"])</span>
+<span class="sd">    ...     + X_dict["feature_2"].dot(weights["feature_2"])</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; y = np.random.poisson(rate)</span>
 <span class="sd">    &gt;&gt;&gt; feature_mask = {</span>
 <span class="sd">    ...     "feature_1": jnp.array([[0, 1], [0, 1]], dtype=jnp.int32),</span>
-<span class="sd">    ...     "feature_2": jnp.array([[1, 0]], dtype=jnp.int32)</span>
+<span class="sd">    ...     "feature_2": jnp.array([[1, 0]], dtype=jnp.int32),</span>
 <span class="sd">    ... }</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.PopulationGLM(feature_mask=feature_mask).fit(X_dict, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.coef_</span>
@@ -2630,22 +2730,19 @@
 <span class="sd">    &gt;&gt;&gt; weights = np.array([[0.5, 0.0], [-0.5, -0.5], [0.0, 1.0]])</span>
 <span class="sd">    &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(weights)))</span>
 <span class="sd">    &gt;&gt;&gt; model = nmo.glm.PopulationGLM(</span>
-<span class="sd">    ...     regularizer="Ridge",</span>
-<span class="sd">    ...     regularizer_strength=0.1</span>
+<span class="sd">    ...     regularizer="Ridge", regularizer_strength=0.1</span>
 <span class="sd">    ... ).fit(X, y)</span>
 <span class="sd">    &gt;&gt;&gt; model.regularizer</span>
 <span class="sd">    Ridge()</span>
 <span class="sd">    """</span>
 
     <span class="n">_validator_class</span> <span class="o">=</span> <span class="n">PopulationGLMValidator</span>
-    <span class="c1"># positive semidefinite like the single-neuron GLM: the unpenalized block can be</span>
-    <span class="c1"># singular (a masked-out coefficient has no curvature). Ridge promotes it to</span>
-    <span class="c1"># positive definite through ``_hess_property_override``.</span>
-    <span class="n">_hess_tag</span><span class="p">:</span> <span class="n">HessianTag</span> <span class="o">=</span> <span class="n">HessianTag</span><span class="p">(</span>
-        <span class="n">structure</span><span class="o">=</span><span class="n">BlockDiagonal</span><span class="p">,</span>
-        <span class="nb">property</span><span class="o">=</span><span class="n">PositiveSemiDefinite</span><span class="p">,</span>
-        <span class="n">batch_axes</span><span class="o">=</span><span class="n">GLMParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">)</span>
+    <span class="c1"># One block per neuron, since the Hessian is assembled by vmapping over the neuron</span>
+    <span class="c1"># axis: axis 1 of ``coef``, which is ``(n_features, n_neurons)``, and axis 0 of</span>
+    <span class="c1"># ``intercept``. The sign and the per-leaf claims are inherited from ``GLM`` and hold</span>
+    <span class="c1"># block by block — each neuron's intercept block is that neuron's sum of weights.</span>
+    <span class="n">_hess_structure</span> <span class="o">=</span> <span class="n">MatrixStructure</span><span class="o">.</span><span class="n">BLOCK_DIAGONAL</span>
+    <span class="n">_hess_batch_axes</span> <span class="o">=</span> <span class="n">GLMParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PopulationGLM.__init__">
 <a class="viewcode-back" href="../../../api/generated/glm/nemos.glm.PopulationGLM.html#nemos.glm.PopulationGLM.__init__">[docs]</a>
@@ -2800,7 +2897,7 @@
 <span class="sd">        &gt;&gt;&gt; num_samples, num_features, num_neurons = 100, 3, 2</span>
 <span class="sd">        &gt;&gt;&gt; X = np.random.normal(size=(num_samples, num_features))</span>
 <span class="sd">        &gt;&gt;&gt; # Weights is defined by how each feature influences the output, shape (num_features, num_neurons)</span>
-<span class="sd">        &gt;&gt;&gt; weights = np.array([[ 0.5,  0. ], [-0.5, -0.5], [ 0. ,  1. ]])</span>
+<span class="sd">        &gt;&gt;&gt; weights = np.array([[0.5, 0.0], [-0.5, -0.5], [0.0, 1.0]])</span>
 <span class="sd">        &gt;&gt;&gt; # Output y simulates a Poisson distribution based on a linear model between features X and wegihts</span>
 <span class="sd">        &gt;&gt;&gt; y = np.random.poisson(np.exp(X.dot(weights)))</span>
 <span class="sd">        &gt;&gt;&gt; # Define a feature mask, shape (num_features, num_neurons)</span>
@@ -2896,7 +2993,7 @@
         <span class="c1"># filter spec is per-leaf, so expand before splitting the axes.</span>
         <span class="n">active_axis</span><span class="p">,</span> <span class="n">frozen_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partition_active</span><span class="p">(</span>
             <span class="n">tree_utils</span><span class="o">.</span><span class="n">tree_broadcast_prefix</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_hess_tag</span><span class="o">.</span><span class="n">batch_axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_filter_spec</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_hess_batch_axes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_filter_spec</span><span class="p">()</span>
             <span class="p">)</span>
         <span class="p">)</span>
 

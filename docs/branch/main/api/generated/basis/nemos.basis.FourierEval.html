@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nemos.basis.FourierEval &#8212; nemos 0.2.10.dev470 documentation</title>
+    <title>nemos.basis.FourierEval &#8212; nemos 0.2.10.dev548 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=ecc95952"></script>
+    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev470 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev470 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
   
   
 </a></div>
@@ -661,7 +661,7 @@
 <h1>nemos.basis.FourierEval<a class="headerlink" href="#nemos-basis-fouriereval" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">nemos.basis.</span></span><span class="sig-name descname"><span class="pre">FourierEval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no-intercept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FourierEval'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">nemos.basis.</span></span><span class="sig-name descname"><span class="pre">FourierEval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no-intercept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FourierEval'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BoundedEvalBasisMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FourierBasis</span></code></p>
 <p>N-dimensional Fourier basis for feature expansion.</p>
 <p>This class generates a set of sine and cosine basis functions defined over
@@ -696,17 +696,18 @@ For <code class="docutils literal notranslate"><span class="pre">ndim</span> <sp
 </p></li>
 <li><p><strong>ndim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Dimensionality of the basis. Default is 1.</p></li>
 <li><p><strong>bounds</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]], <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – <p>Period bounds for each dimension. Unlike other basis classes where bounds define
-a valid domain (with out-of-bounds samples filled with NaN), for the Fourier basis
+a valid domain (with out-of-bounds samples set to <code class="docutils literal notranslate"><span class="pre">fill_value</span></code>), for the Fourier basis
 the bounds define the period of the basis functions. Samples outside these bounds
 are still valid and will be evaluated using the periodic nature of the basis.</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>: <code class="docutils literal notranslate"><span class="pre">(low,</span> <span class="pre">high)</span></code> of floats: applies to all dimensions.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>: <code class="docutils literal notranslate"><span class="pre">[(low,</span> <span class="pre">high),</span> <span class="pre">...]</span></code>, one tuple per dimension, length must match <code class="docutils literal notranslate"><span class="pre">ndim</span></code>.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>: the period is inferred from the input data (minimum to maximum values).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>: <code class="docutils literal notranslate"><span class="pre">[(low,</span> <span class="pre">high),</span> <span class="pre">...]</span></code>, one tuple per dimension,</p></li>
 </ul>
+<p>length must match <code class="docutils literal notranslate"><span class="pre">ndim</span></code>.
+* <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>: the period is inferred from the input data (minimum to maximum values).</p>
 <p>In all cases, <code class="docutils literal notranslate"><span class="pre">low</span></code> must be strictly less than <code class="docutils literal notranslate"><span class="pre">high</span></code>, and values must be convertible to floats.</p>
 </p></li>
-<li><p><strong>frequency_mask</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'all'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'no-intercept'</span></span></code></span>], NDArray[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>], <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – <p>Optional mask specifying which frequency components to include.
+<li><p><strong>frequency_mask</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'all'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'no-intercept'</span></span></code></span>], <a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – <p>Optional mask specifying which frequency components to include.
 Can be:</p>
 <ul>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Literal</span></code>: either <code class="docutils literal notranslate"><span class="pre">&quot;no-intercept&quot;</span></code> - default - which drops
@@ -728,6 +729,10 @@ boolean or {0, 1} indicating whether to keep that frequency.</p></li>
 <p>Values must be 0/1 or boolean. Callables must return a single boolean or
 {0, 1} value for each frequency coordinate.</p>
 </p></li>
+<li><p><strong>weights</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[ArrayLike]</span>) – Optional per-output-column weights, with one entry per basis function
+(<code class="docutils literal notranslate"><span class="pre">n_basis_funcs</span></code>), applied inside <code class="docutils literal notranslate"><span class="pre">evaluate</span></code>. The columns are ordered
+as the cosine terms followed by the sine terms. When <code class="docutils literal notranslate"><span class="pre">None</span></code> (default),
+no reweighting is applied.</p></li>
 <li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Descriptive label for the basis (e.g., to use in plots or summaries).</p></li>
 </ul>
 </dd>
@@ -779,11 +784,7 @@ tuple of non-negative integers are invalid.</p></li>
 <span class="go">(2, 40)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># drop the first 3 pairs</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_masked</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">n_freq</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">frequency_mask</span><span class="o">=</span><span class="n">mask</span>
-<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_masked</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">n_freq</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frequency_mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># (40 pairs - 3 dropped) * 2 (cos+sin) = 74</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_masked</span><span class="o">.</span><span class="n">n_basis_funcs</span>
 <span class="go">74</span>
@@ -792,11 +793,7 @@ tuple of non-negative integers are invalid.</p></li>
 <p><strong>2D: masking with a callable</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># keep pairs inside a circle of radius 3.5 in frequency space</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">keep_circle</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">:</span> <span class="p">(</span><span class="n">fx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">fy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">&lt;</span> <span class="mf">3.5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_funcmask</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">n_freq</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">frequency_mask</span><span class="o">=</span><span class="n">keep_circle</span>
-<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_funcmask</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">n_freq</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">frequency_mask</span><span class="o">=</span><span class="n">keep_circle</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_2d_funcmask</span><span class="o">.</span><span class="n">n_basis_funcs</span>
 <span class="go">37</span>
 </pre></div>
@@ -804,10 +801,7 @@ tuple of non-negative integers are invalid.</p></li>
 <p><strong>Explicit frequency specifications</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># mix forms per-dimension: an explicit array</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># and an inclusive tuple (low, high)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_mixed</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span>
-<span class="gp">... </span>    <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span>
-<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_mixed</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># 15 half-space pairs (no DC, since the y-axis omits 0) -&gt; 2*15 = 30</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fourier_mixed</span><span class="o">.</span><span class="n">n_basis_funcs</span>
 <span class="go">30</span>
@@ -819,11 +813,17 @@ tuple of non-negative integers are invalid.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.bounds" title="nemos.basis.FourierEval.bounds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bounds</span></code></a></p></td>
 <td><p>Returns bounds, as provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.frequencies" title="nemos.basis.FourierEval.frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequencies</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.freq_combinations" title="nemos.basis.FourierEval.freq_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_combinations</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.frequencies" title="nemos.basis.FourierEval.frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequencies</span></code></a></p></td>
 <td><p>Frequencies for the basis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.frequency_mask" title="nemos.basis.FourierEval.frequency_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_mask</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.frequency_mask" title="nemos.basis.FourierEval.frequency_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_mask</span></code></a></p></td>
 <td><p>Get the frequency mask for the Fourier basis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.has_zero_phase" title="nemos.basis.FourierEval.has_zero_phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_zero_phase</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.input_shape" title="nemos.basis.FourierEval.input_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">input_shape</span></code></a></p></td>
 <td><p>Expected per-sample input shape.</p></td>
@@ -846,21 +846,28 @@ tuple of non-negative integers are invalid.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.ndim" title="nemos.basis.FourierEval.ndim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndim</span></code></a></p></td>
 <td><p>The dimensionality of the basis.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nemos.basis.FourierEval.weights" title="nemos.basis.FourierEval.weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weights</span></code></a></p></td>
+<td><p>Per-output-column weights applied inside <a class="reference internal" href="#nemos.basis.FourierEval.evaluate" title="nemos.basis.FourierEval.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no-intercept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FourierEval'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no-intercept'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FourierEval'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.__init__" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frequencies</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em> | </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>] </em><em>| </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>] </em><em>| </em><em>List</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>]</em><em>] </em><em>| </em><em>NDArray</em><em> | </em><em>List</em><em>[</em><em>NDArray</em><em>]</em>)</p></li>
+<li><p><strong>frequencies</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a><em>]</em><em>] </em><em>| </em><em>TypeAliasForwardRef</em><em>(</em><em>'NDArray'</em><em>) </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><em>List</em></a><em>[</em><em>TypeAliasForwardRef</em><em>(</em><em>'NDArray'</em><em>)</em><em>]</em>)</p></li>
 <li><p><strong>ndim</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>)</p></li>
-<li><p><strong>bounds</strong> (<em>Optional</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>] </em><em>| </em><em>Tuple</em><em>[</em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>]</em><em>]</em><em>]</em>)</p></li>
-<li><p><strong>frequency_mask</strong> (<em>Literal</em><em>[</em><em>'all'</em><em>, </em><em>'no-intercept'</em><em>] </em><em>| </em><em>NDArray</em><em>[</em><em>bool</em><em>] </em><em>| </em><em>None</em>)</p></li>
-<li><p><strong>label</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>bounds</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.15)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>]</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>frequency_mask</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><em>Literal</em></a><em>[</em><em>'all'</em><em>, </em><em>'no-intercept'</em><em>] </em><em>| </em><em>~jax.Array</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>weights</strong> (<em>TypeAliasForwardRef</em><em>(</em><em>'ArrayLike'</em><em>) </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1033,7 +1040,7 @@ the bounds keeps the domain constant across calls, for instance across cross-val
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.compute_features">
-<span class="sig-name descname"><span class="pre">compute_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.compute_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.compute_features" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.compute_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.compute_features" title="Link to this definition">#</a></dt>
 <dd><p>Evaluate basis at sample points.</p>
 <p>The basis is evaluated at the locations specified in the inputs. For example,
 <code class="docutils literal notranslate"><span class="pre">compute_features(np.array([0,</span> <span class="pre">.5]))</span></code> would return the array:</p>
@@ -1068,7 +1075,7 @@ used as a transformer, e.g. inside a cross-validation loop).</p>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_samples</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="p">))</span>  <span class="c1"># raw time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,))</span>  <span class="c1"># raw time series</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># basis transformed time series</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
@@ -1079,7 +1086,7 @@ used as a transformer, e.g. inside a cross-validation loop).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.evaluate">
-<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sample_pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.evaluate" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sample_pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.evaluate" title="Link to this definition">#</a></dt>
 <dd><p>Evaluate the Fourier basis at the sample points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1107,7 +1114,7 @@ used as a transformer, e.g. inside a cross-validation loop).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.evaluate_on_grid">
-<span class="sig-name descname"><span class="pre">evaluate_on_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">n_samples</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.evaluate_on_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.evaluate_on_grid" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">evaluate_on_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">n_samples</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.evaluate_on_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.evaluate_on_grid" title="Link to this definition">#</a></dt>
 <dd><p>Evaluate the basis set on a grid of equi-spaced sample points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1146,6 +1153,11 @@ points where we’ve evaluated the basis.</p></li>
 </figcaption>
 </figure>
 </dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nemos.basis.FourierEval.freq_combinations">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">freq_combinations</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a></span><a class="headerlink" href="#nemos.basis.FourierEval.freq_combinations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.frequencies">
@@ -1223,6 +1235,11 @@ name, value is the parameter value.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="nemos.basis.FourierEval.has_zero_phase">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">has_zero_phase</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><a class="headerlink" href="#nemos.basis.FourierEval.has_zero_phase" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.input_shape">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nemos.basis.FourierEval.input_shape" title="Link to this definition">#</a></dt>
 <dd><p>Expected per-sample input shape.</p>
@@ -1268,15 +1285,15 @@ returned as separate columns.</p>
 <dd class="field-odd"><p>The retained frequency combinations, shape
 <code class="docutils literal notranslate"><span class="pre">(ndim,</span> <span class="pre">n_frequency_combinations)</span></code>. Column <code class="docutils literal notranslate"><span class="pre">i</span></code> is the frequency
 multi-index of the i-th combination; each column contributes a
-cosine and a sine feature (cosine only for the DC term). Read-only:
-assign <code class="docutils literal notranslate"><span class="pre">frequency_mask</span></code> to change it.</p>
+cosine and a sine feature (cosine only for the DC term). It cannot be
+set directly; assign <code class="docutils literal notranslate"><span class="pre">frequency_mask</span></code> to change it.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.n_basis_funcs">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n_basis_funcs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#nemos.basis.FourierEval.n_basis_funcs" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n_basis_funcs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><a class="headerlink" href="#nemos.basis.FourierEval.n_basis_funcs" title="Link to this definition">#</a></dt>
 <dd><p>Number of basis functions.</p>
 </dd></dl>
 
@@ -1299,7 +1316,7 @@ this property will return <code class="docutils literal notranslate"><span class
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.set_input_shape">
-<span class="sig-name descname"><span class="pre">set_input_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.set_input_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.set_input_shape" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_input_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.set_input_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.set_input_shape" title="Link to this definition">#</a></dt>
 <dd><p>Set the expected input shape for the basis object.</p>
 <p>This method configures the shape of the input data that the basis object expects.
 <code class="docutils literal notranslate"><span class="pre">xi</span></code> can be specified as an integer, a tuple of integers, or derived
@@ -1356,7 +1373,7 @@ is not set in this method, then <code class="docutils literal notranslate"><span
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nemos.basis.FourierEval.set_params" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.set_params" title="Link to this definition">#</a></dt>
 <dd><p>Set params handling correctly the frequencies and their mask.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1389,7 +1406,7 @@ each input is provided as a separate time series for each basis element.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nemos.basis.FourierEval.split_by_feature">
-<span class="sig-name descname"><span class="pre">split_by_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/basis.html#FourierEval.split_by_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.split_by_feature" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">split_by_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/nemos/basis/_fourier_basis.html#FourierEval.split_by_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nemos.basis.FourierEval.split_by_feature" title="Link to this definition">#</a></dt>
 <dd><p>Decompose an array along a specified axis into sub-arrays based on the number of expected inputs.</p>
 <p>This function takes an array (e.g., a design matrix or model coefficients) and splits it along
 a designated axis.</p>
@@ -1442,10 +1459,14 @@ coefficient arrays (features along rows). All other dimensions are preserved.</p
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.basis</span><span class="w"> </span><span class="kn">import</span> <span class="n">FourierEval</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">nemos.glm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GLM</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">FourierEval</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"one_input"</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">compute_features</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="mi">20</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">split_features_multi</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">split_by_feature</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">sub_dict</span> <span class="ow">in</span> <span class="n">split_features_multi</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="gp">... </span>       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">sub_dict</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, shape </span><span class="si">{</span><span class="n">sub_dict</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="go">one_input, shape (20, 10)</span>
 </pre></div>
 </div>
@@ -1468,8 +1489,12 @@ fixed rather than re-inferred on each cross-validation fold. Otherwise
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># load some data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span><span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glm</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">basis</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">nmo</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">RaisedCosineLinearEval</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="gp">... </span>    <span class="o">.</span><span class="n">set_input_shape</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="o">.</span><span class="n">to_transformer</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glm</span> <span class="o">=</span> <span class="n">nmo</span><span class="o">.</span><span class="n">glm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">regularizer</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">regularizer_strength</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"basis"</span><span class="p">,</span> <span class="n">basis</span><span class="p">),</span> <span class="p">(</span><span class="s2">"glm"</span><span class="p">,</span> <span class="n">glm</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">glm__regularizer_strength</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">),</span>
@@ -1488,6 +1513,14 @@ fixed rather than re-inferred on each cross-validation fold. Otherwise
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../_transformer_basis/nemos.basis._transformer_basis.TransformerBasis.html#nemos.basis._transformer_basis.TransformerBasis" title="nemos.basis._transformer_basis.TransformerBasis"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerBasis</span></code></a></span></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nemos.basis.FourierEval.weights">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">weights</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.jax.dev/en/latest/_autosummary/jax.Array.html#jax.Array" title="(in JAX)"><span class="pre">Array</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#nemos.basis.FourierEval.weights" title="Link to this definition">#</a></dt>
+<dd><p>Per-output-column weights applied inside <a class="reference internal" href="#nemos.basis.FourierEval.evaluate" title="nemos.basis.FourierEval.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> when no weights were provided at construction, in which case no
+reweighting is applied.</p>
 </dd></dl>
 
 </dd></dl>

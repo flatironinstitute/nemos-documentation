@@ -14,6 +14,8 @@
    .. autosummary::
    
       ~Observations.default_inverse_link_function
+      ~Observations.glm_convexity_preserving_links
+      ~Observations.rate_range
       ~Observations.scale
    
 

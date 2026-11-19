@@ -32,6 +32,6 @@
       ~Ridge.get_params
       ~Ridge.get_proximal_operator
       ~Ridge.penalized_loss
-      ~Ridge.resolve_hess_tag
+      ~Ridge.penalty_fn
       ~Ridge.set_params
    
