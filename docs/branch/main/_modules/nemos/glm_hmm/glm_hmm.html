@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev548 documentation</title>
+    <title>nemos.glm_hmm.glm_hmm &#8212; nemos 0.2.10.dev551 documentation</title>
   
   
   
@@ -45,7 +45,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../_static/documentation_options.js?v=13df50c8"></script>
+    <script src="../../../_static/documentation_options.js?v=f0fb379a"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev548 documentation - Home"/>
-    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev548 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev551 documentation - Home"/>
+    <img src="../../../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev551 documentation - Home"/>
   
   
 </a></div>
@@ -559,7 +559,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..hmm.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_state_format</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..inverse_link_function_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_inverse_link_function</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..observation_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Observations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">..pytrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeaturePytree</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..regularizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupLasso</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Regularizer</span><span class="p">,</span> <span class="n">Ridge</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..tree_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">pytree_map_and_reduce</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -2206,7 +2205,7 @@
             <span class="c1"># ensure boolean and first sample is a session start</span>
             <span class="n">session_starts</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">session_starts</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="c1"># grab the data</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">FeaturePytree</span><span class="p">)</span> <span class="k">else</span> <span class="n">X</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">X</span>
 
         <span class="c1"># wrap into model params (assumes init was done via</span>
         <span class="c1"># `initialize_optimizer_and_state` so the EM step function is in place)</span>
