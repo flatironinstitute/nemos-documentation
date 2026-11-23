@@ -1,0 +1,37 @@
+﻿nemos.basis.\_basis.Basis
+=========================
+
+.. currentmodule:: nemos.basis._basis
+
+.. autoclass:: Basis
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Basis.n_basis_funcs
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Basis.__init__
+      ~Basis.compute_features
+      ~Basis.evaluate
+      ~Basis.evaluate_on_grid
+      ~Basis.get_params
+      ~Basis.set_input_shape
+      ~Basis.set_params
+      ~Basis.setup_basis
+      ~Basis.to_transformer
+   

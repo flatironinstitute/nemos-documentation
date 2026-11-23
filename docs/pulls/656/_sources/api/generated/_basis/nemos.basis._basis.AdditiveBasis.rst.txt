@@ -1,0 +1,46 @@
+﻿nemos.basis.\_basis.AdditiveBasis
+=================================
+
+.. currentmodule:: nemos.basis._basis
+
+.. autoclass:: AdditiveBasis
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AdditiveBasis.basis1
+      ~AdditiveBasis.basis2
+      ~AdditiveBasis.bounds
+      ~AdditiveBasis.input_shape
+      ~AdditiveBasis.is_complex
+      ~AdditiveBasis.label
+      ~AdditiveBasis.n_basis_funcs
+      ~AdditiveBasis.n_output_features
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AdditiveBasis.__init__
+      ~AdditiveBasis.compute_features
+      ~AdditiveBasis.evaluate
+      ~AdditiveBasis.evaluate_on_grid
+      ~AdditiveBasis.get_params
+      ~AdditiveBasis.set_input_shape
+      ~AdditiveBasis.set_params
+      ~AdditiveBasis.setup_basis
+      ~AdditiveBasis.split_by_feature
+      ~AdditiveBasis.to_transformer
+      ~AdditiveBasis.update_default_label_id
+   

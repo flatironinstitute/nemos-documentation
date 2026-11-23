@@ -1,0 +1,29 @@
+﻿nemos.callbacks.TestLossLogger
+==============================
+
+.. currentmodule:: nemos.callbacks
+
+.. autoclass:: TestLossLogger
+   :members:
+   :inherited-members:
+
+
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TestLossLogger.__init__
+      ~TestLossLogger.on_batch_begin
+      ~TestLossLogger.on_batch_end
+      ~TestLossLogger.on_pass_begin
+      ~TestLossLogger.on_pass_end
+      ~TestLossLogger.on_train_begin
+      ~TestLossLogger.on_train_end
+   
