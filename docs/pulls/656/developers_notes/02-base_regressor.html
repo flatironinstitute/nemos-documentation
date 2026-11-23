@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The Abstract Class BaseRegressor &#8212; nemos 0.2.10.dev563 documentation</title>
+    <title>The Abstract Class BaseRegressor &#8212; nemos 0.2.10.dev565 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=ce2b4925"></script>
+    <script src="../_static/documentation_options.js?v=a1da5df1"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,8 +141,8 @@
       
     
     
-    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev563 documentation - Home"/>
-    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev563 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_Full.svg" class="logo__image only-light" alt="nemos 0.2.10.dev565 documentation - Home"/>
+    <img src="../_static/NeMoS_Logo_CMYK_White.svg" class="logo__image only-dark pst-js-only" alt="nemos 0.2.10.dev565 documentation - Home"/>
   
   
 </a></div>
@@ -588,6 +588,7 @@ As a <code class="docutils literal notranslate"><span class="pre">BaseRegressor<
 <li><p><code class="docutils literal notranslate"><span class="pre">_set_model_params</span></code>: Unpack the internal parameter representation and store as sklearn-style attributes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>, <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">save_params</span></code>: Serialize and save model parameters to disk.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_get_optimal_solver_params_config</span></code>: Return functions for computing default step size and batch size for the solver.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_get_params_shape</span></code>: Return the internal parameter representation with shape tuples as leaves, inferred from <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. The concrete <code class="docutils literal notranslate"><span class="pre">_get_empty_params</span></code> builds the empty parameters from it, with the dtype of <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
 </ol>
 </section>
 </section>
