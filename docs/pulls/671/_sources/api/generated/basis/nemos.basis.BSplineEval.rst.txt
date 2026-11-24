@@ -1,0 +1,44 @@
+﻿nemos.basis.BSplineEval
+=======================
+
+.. currentmodule:: nemos.basis
+
+.. autoclass:: BSplineEval
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BSplineEval.bounds
+      ~BSplineEval.input_shape
+      ~BSplineEval.is_complex
+      ~BSplineEval.label
+      ~BSplineEval.n_basis_funcs
+      ~BSplineEval.n_output_features
+      ~BSplineEval.order
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BSplineEval.__init__
+      ~BSplineEval.compute_features
+      ~BSplineEval.evaluate
+      ~BSplineEval.evaluate_on_grid
+      ~BSplineEval.get_params
+      ~BSplineEval.set_input_shape
+      ~BSplineEval.set_params
+      ~BSplineEval.setup_basis
+      ~BSplineEval.split_by_feature
+      ~BSplineEval.to_transformer
+   

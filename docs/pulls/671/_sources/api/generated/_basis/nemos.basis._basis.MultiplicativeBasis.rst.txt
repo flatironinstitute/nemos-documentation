@@ -1,0 +1,46 @@
+﻿nemos.basis.\_basis.MultiplicativeBasis
+=======================================
+
+.. currentmodule:: nemos.basis._basis
+
+.. autoclass:: MultiplicativeBasis
+   :members:
+   :inherited-members:
+
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MultiplicativeBasis.basis1
+      ~MultiplicativeBasis.basis2
+      ~MultiplicativeBasis.bounds
+      ~MultiplicativeBasis.input_shape
+      ~MultiplicativeBasis.is_complex
+      ~MultiplicativeBasis.label
+      ~MultiplicativeBasis.n_basis_funcs
+      ~MultiplicativeBasis.n_output_features
+   
+
+
+
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MultiplicativeBasis.__init__
+      ~MultiplicativeBasis.compute_features
+      ~MultiplicativeBasis.evaluate
+      ~MultiplicativeBasis.evaluate_on_grid
+      ~MultiplicativeBasis.get_params
+      ~MultiplicativeBasis.set_input_shape
+      ~MultiplicativeBasis.set_params
+      ~MultiplicativeBasis.setup_basis
+      ~MultiplicativeBasis.split_by_feature
+      ~MultiplicativeBasis.to_transformer
+      ~MultiplicativeBasis.update_default_label_id
+   
